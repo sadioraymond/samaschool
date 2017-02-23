@@ -24,7 +24,6 @@ function onConnect(socket) {
     require('../api/Etablissement_Module/classe/classe.socket').register(socket);
     require('../api/Etablissement_Module/etablissement/etablissement.socket').register(socket);
     require('../api/Etablissement_Module/niveau/niveau.socket').register(socket);
-    require('../api/thing/thing.socket').register(socket);
 }
 
 export default function(socketio) {
