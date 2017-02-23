@@ -17,8 +17,6 @@ export default function(app) {
     app.use('/api/classes', require('./api/Etablissement_Module/classe'));
     app.use('/api/etablissements', require('./api/Etablissement_Module/etablissement'));
     app.use('/api/niveaus', require('./api/Etablissement_Module/niveau'));
-
-    app.use('/api/things', require('./api/thing'));
     app.use('/api/users', require('./api/user'));
 
     app.use('/auth', require('./auth').default);
