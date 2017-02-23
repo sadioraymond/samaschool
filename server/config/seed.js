@@ -18,6 +18,8 @@ import Profil from '../api/Utilisateur_Module/profil/profil.model';
 import DProfil from '../api/Utilisateur_Module/detail_profil/detail_profil.model';
 import suivi_cours from '../api/Utilisateur_Module/suivi_cours/suivi_cours.model';
 import Chapitre from '../api/Utilisateur_Module/chapitre/chapitre.model';
+import Cycle from '../api/Etablissement_Module/cycle/cycle.model';
+import Dclasse from '../api/Etablissement_Module/detail_classe/detail_classe.model';
 import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
@@ -169,6 +171,26 @@ export default function seedDatabaseIfNeeded() {
                     })
                     .then(() => console.log('finished populating Chapitre'))
                     .catch(err => console.log('error populating Chapitre', err));
+            });
+        Cycle.find({}).remove()
+            .then(() => {
+                Cycle.create({
+                        name: 'Cycle 1'
+                    }, {
+                        name: 'Cycle 2'
+                    })
+                    .then(() => console.log('finished populating Cycle'))
+                    .catch(err => console.log('error populating Cycle', err));
+            });
+        Dclasse.find({}).remove()
+            .then(() => {
+                Dclasse.create({
+                        name: 'Détail STIC3'
+                    }, {
+                        name: 'Détail MASTER'
+                    })
+                    .then(() => console.log('finished populating Détail Classe'))
+                    .catch(err => console.log('error populating Détail Classe', err));
             });
     }
 }

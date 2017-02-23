@@ -16,6 +16,8 @@ function onConnect(socket) {
     });
 
     // Insert sockets below
+    require('../api/Etablissement_Module/detail_classe/detail_classe.socket').register(socket);
+    require('../api/Etablissement_Module/cycle/cycle.socket').register(socket);
     require('../api/Utilisateur_Module/chapitre/chapitre.socket').register(socket);
     require('../api/Utilisateur_Module/suivi_cours/suivi_cours.socket').register(socket);
     require('../api/Utilisateur_Module/detail_profil/detail_profil.socket').register(socket);
