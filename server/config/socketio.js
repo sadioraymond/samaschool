@@ -16,6 +16,11 @@ function onConnect(socket) {
     });
 
     // Insert sockets below
+    require('../api/Utilisateur_Module/chapitre/chapitre.socket').register(socket);
+    require('../api/Utilisateur_Module/suivi_cours/suivi_cours.socket').register(socket);
+    require('../api/Utilisateur_Module/detail_profil/detail_profil.socket').register(socket);
+    require('../api/Utilisateur_Module/profil/profil.socket').register(socket);
+    require('../api/Utilisateur_Module/cours/cours.socket').register(socket);
     require('../api/Etablissement_Module/annee_academique/annee_academique.socket').register(socket);
     require('../api/Etablissement_Module/suivi_cours_classe/suivi_cours_classe.socket').register(socket);
     require('../api/Etablissement_Module/detail_user/detail_user.socket').register(socket);

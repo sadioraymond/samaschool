@@ -13,6 +13,11 @@ import DAnnonce from '../api/Etablissement_Module/detail_annonce/detail_annonce.
 import DUsers from '../api/Etablissement_Module/detail_user/detail_user.model';
 import suivi_cours_classe from '../api/Etablissement_Module/suivi_cours_classe/suivi_cours_classe.model';
 import Annee from '../api/Etablissement_Module/annee_academique/annee_academique.model';
+import Cours from '../api/Utilisateur_Module/cours/cours.model';
+import Profil from '../api/Utilisateur_Module/profil/profil.model';
+import DProfil from '../api/Utilisateur_Module/detail_profil/detail_profil.model';
+import suivi_cours from '../api/Utilisateur_Module/suivi_cours/suivi_cours.model';
+import Chapitre from '../api/Utilisateur_Module/chapitre/chapitre.model';
 import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
@@ -114,6 +119,56 @@ export default function seedDatabaseIfNeeded() {
                     })
                     .then(() => console.log('finished populating Année Académique'))
                     .catch(err => console.log('error populating Année Académique', err));
+            });
+        Cours.find({}).remove()
+            .then(() => {
+                Cours.create({
+                        name: 'Cours 1'
+                    }, {
+                        name: 'Cours 2'
+                    })
+                    .then(() => console.log('finished populating Cours'))
+                    .catch(err => console.log('error populating Cours', err));
+            });
+        Profil.find({}).remove()
+            .then(() => {
+                Profil.create({
+                        name: 'Profil 1'
+                    }, {
+                        name: 'Profil 2'
+                    })
+                    .then(() => console.log('finished populating Profil'))
+                    .catch(err => console.log('error populating Profil', err));
+            });
+        DProfil.find({}).remove()
+            .then(() => {
+                DProfil.create({
+                        name: 'Détail Profil 1'
+                    }, {
+                        name: 'Détail Profil 2'
+                    })
+                    .then(() => console.log('finished populating Détail Profil'))
+                    .catch(err => console.log('error populating Détail Profil', err));
+            });
+        suivi_cours.find({}).remove()
+            .then(() => {
+                suivi_cours.create({
+                        name: 'Suivi User1'
+                    }, {
+                        name: 'Suivi User2'
+                    })
+                    .then(() => console.log('finished populating Suivi cours'))
+                    .catch(err => console.log('error populating Suivi cours', err));
+            });
+        Chapitre.find({}).remove()
+            .then(() => {
+                Chapitre.create({
+                        name: 'Chapitre 1'
+                    }, {
+                        name: 'Chapitre 2'
+                    })
+                    .then(() => console.log('finished populating Chapitre'))
+                    .catch(err => console.log('error populating Chapitre', err));
             });
     }
 }
