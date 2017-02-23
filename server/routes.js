@@ -9,6 +9,11 @@ import path from 'path';
 
 export default function(app) {
     // Insert routes below
+    app.use('/api/chapitres', require('./api/Utilisateur_Module/chapitre'));
+    app.use('/api/suivi_courss', require('./api/Utilisateur_Module/suivi_cours'));
+    app.use('/api/detail_profils', require('./api/Utilisateur_Module/detail_profil'));
+    app.use('/api/profils', require('./api/Utilisateur_Module/profil'));
+    app.use('/api/courss', require('./api/Utilisateur_Module/cours'));
     app.use('/api/annee_academiques', require('./api/Etablissement_Module/annee_academique'));
     app.use('/api/suivi_cours_classes', require('./api/Etablissement_Module/suivi_cours_classe'));
     app.use('/api/detail_users', require('./api/Etablissement_Module/detail_user'));
