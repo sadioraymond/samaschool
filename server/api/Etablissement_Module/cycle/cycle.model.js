@@ -1,13 +1,13 @@
 'use strict';
 
 import mongoose from 'mongoose';
-import {registerEvents} from './cycle.events';
-
+import { registerEvents } from './cycle.events';
+var autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose);
 var CycleSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+    _id: Number,
+    libelle: String
 });
-
+CycleSchema.plugin(autoIncrement.plugin, 'Cycle');
 registerEvents(CycleSchema);
 export default mongoose.model('Cycle', CycleSchema);

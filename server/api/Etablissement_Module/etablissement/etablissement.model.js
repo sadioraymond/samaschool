@@ -2,11 +2,15 @@
 
 import mongoose from 'mongoose';
 import { registerEvents } from './etablissement.events';
-
+var autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose);
 var EtablissementSchema = new mongoose.Schema({
-    name: String,
-    active: Boolean
+    _id: Number,
+    libelle: String,
+    adresse: String,
+    tel: String,
+    email: String,
 });
-
+EtablissementSchema.plugin(autoIncrement.plugin, 'Etablissement');
 registerEvents(EtablissementSchema);
 export default mongoose.model('Etablissement', EtablissementSchema);
