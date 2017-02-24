@@ -65,7 +65,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of SuiviCoursClasses
 export function index(req, res) {
-  return SuiviCoursClasse.find().exec()
+  return SuiviCoursClasse.find().populate('cours').populate('classe').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
