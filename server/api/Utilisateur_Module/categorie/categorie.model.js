@@ -7,6 +7,7 @@ var CategorieSchema = new mongoose.Schema({
   name: String,
   info: String,
   active: Boolean
+  
 });
 
 registerEvents(CategorieSchema);
