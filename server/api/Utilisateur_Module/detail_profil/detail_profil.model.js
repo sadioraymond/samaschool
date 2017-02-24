@@ -7,12 +7,12 @@ autoIncrement.initialize(mongoose);
 var DetailProfilSchema = new mongoose.Schema({
     _id: Number,
     user: {
-        type: Number,
+        type: mongoose.Schema.ObjectId,
         ref: 'User'
     },
-    cours: {
+    profil: {
         type: Number,
-        ref: 'Cours'
+        ref: 'Profil'
     },
     date: Date
 });

@@ -8,7 +8,6 @@ var CoursSchema = new mongoose.Schema({
     _id: Number,
     description: String,
     contenu: String,
-    image: String,
     date_creation: Date,
     sous_categorie: {
         type: Number,
