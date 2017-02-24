@@ -78,6 +78,15 @@ export function show(req, res) {
     .catch(handleError(res));
 }
 
+// Gets all Cours related to a SousCategorie
+export function getCoursBySousCat(req, res) {
+  return Cours.find({sous_categorie : req.params.scat}).populate().exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+
 // Creates a new Cours in the DB
 export function create(req, res) {
   return Cours.create(req.body)

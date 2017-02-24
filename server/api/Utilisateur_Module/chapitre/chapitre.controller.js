@@ -78,6 +78,14 @@ export function show(req, res) {
     .catch(handleError(res));
 }
 
+// Gets all Chapitres related to a cours
+export function getChapitreByCours(req, res) {
+  return Chapitre.find({cours : req.params.cours}).populate().exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 // Creates a new Chapitre in the DB
 export function create(req, res) {
   return Chapitre.create(req.body)
