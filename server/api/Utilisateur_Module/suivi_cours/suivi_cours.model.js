@@ -1,20 +1,20 @@
 'use strict';
 
 import mongoose from 'mongoose';
-import {registerEvents} from './suivi_cours.events';
+import { registerEvents } from './suivi_cours.events';
 var autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(mongoose);
 var SuiviCoursSchema = new mongoose.Schema({
- id : Number,
- cours :{
-   type : Number,
-   ref : 'Cours'
- },
- user : {
-   type : Number,
-   ref : 'User'
- },
- date_suivie : Date
+    _id: Number,
+    cours: {
+        type: Number,
+        ref: 'Cours'
+    },
+    user: {
+        type: Number,
+        ref: 'User'
+    },
+    date_suivie: Date
 });
 
 registerEvents(SuiviCoursSchema);

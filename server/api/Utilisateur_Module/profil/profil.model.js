@@ -1,12 +1,12 @@
 'use strict';
 
 import mongoose from 'mongoose';
-import {registerEvents} from './profil.events';
+import { registerEvents } from './profil.events';
 var autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(mongoose);
 var ProfilSchema = new mongoose.Schema({
-  id : Number,
-  libelle : String
+    _id: Number,
+    libelle: String
 });
 
 registerEvents(ProfilSchema);
