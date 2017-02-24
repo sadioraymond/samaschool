@@ -18,5 +18,5 @@ var SuiviCoursSchema = new mongoose.Schema({
 });
 
 registerEvents(SuiviCoursSchema);
-ProfilSchema.plugin(autoIncrement.plugin, 'SuiviCours');
-export default mongoose.model('ProfilSchema', SuiviCoursSchema);
+SuiviCoursSchema.plugin(autoIncrement.plugin, 'SuiviCours');
+export default mongoose.model('SuiviCours', SuiviCoursSchema);
