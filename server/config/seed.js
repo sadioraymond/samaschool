@@ -20,6 +20,8 @@ import suivi_cours from '../api/Utilisateur_Module/suivi_cours/suivi_cours.model
 import Chapitre from '../api/Utilisateur_Module/chapitre/chapitre.model';
 import Cycle from '../api/Etablissement_Module/cycle/cycle.model';
 import Dclasse from '../api/Etablissement_Module/detail_classe/detail_classe.model';
+import SousCat from '../api/Utilisateur_Module/sous_categorie/sous_categorie.model';
+import Categorie from '../api/Utilisateur_Module/categorie/categorie.model';
 import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
@@ -191,6 +193,26 @@ export default function seedDatabaseIfNeeded() {
                     })
                     .then(() => console.log('finished populating Détail Classe'))
                     .catch(err => console.log('error populating Détail Classe', err));
+            });
+        SousCat.find({}).remove()
+            .then(() => {
+                SousCat.create({
+                        name: 'Sous Catégorie 1'
+                    }, {
+                        name: 'Sous Catégorie 2'
+                    })
+                    .then(() => console.log('finished populating Sous Catégorie'))
+                    .catch(err => console.log('error populating Sous Catégorie', err));
+            });
+        Categorie.find({}).remove()
+            .then(() => {
+                Categorie.create({
+                        name: 'Catégorie 1'
+                    }, {
+                        name: 'Catégorie 2'
+                    })
+                    .then(() => console.log('finished populating Catégorie'))
+                    .catch(err => console.log('error populating Catégorie', err));
             });
     }
 }
