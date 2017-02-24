@@ -65,7 +65,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of Courss
 export function index(req, res) {
-  return Cours.find().exec()
+  return Cours.find().populate('sous_categorie').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -80,7 +80,7 @@ export function show(req, res) {
 
 // Gets all Cours related to a SousCategorie
 export function getCoursBySousCat(req, res) {
-  return Cours.find({sous_categorie : req.params.scat}).populate().exec()
+  return Cours.find({sous_categorie : req.params.scat}).populate('sous_categorie').exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));

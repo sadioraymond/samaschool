@@ -65,7 +65,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of DetailProfils
 export function index(req, res) {
-  return DetailProfil.find().exec()
+  return DetailProfil.find().populate('user').populate('cours').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
