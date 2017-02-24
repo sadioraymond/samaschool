@@ -1,11 +1,11 @@
 'use strict';
 
 import mongoose from 'mongoose';
-import {registerEvents} from './categorie.events';
+import { registerEvents } from './categorie.events';
 
 var CategorieSchema = new mongoose.Schema({
-  id : Number,
-  libelle : String
+    _id: Number,
+    libelle: String
 
 });
 

@@ -1,19 +1,19 @@
 'use strict';
 
 import mongoose from 'mongoose';
-import {registerEvents} from './cours.events';
+import { registerEvents } from './cours.events';
 var autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(mongoose);
 var CoursSchema = new mongoose.Schema({
-  id : Number,
-  description : String,
-  contenu : String,
-  image : String,
-  date_creation : Date,
-  sous_categorie : {
-    type : Number,
-    ref : 'SousCategorie'
-  }
+    _id: Number,
+    description: String,
+    contenu: String,
+    image: String,
+    date_creation: Date,
+    sous_categorie: {
+        type: Number,
+        ref: 'SousCategorie'
+    }
 });
 
 registerEvents(CoursSchema);
