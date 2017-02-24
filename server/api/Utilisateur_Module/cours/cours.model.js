@@ -2,12 +2,20 @@
 
 import mongoose from 'mongoose';
 import {registerEvents} from './cours.events';
-
+var autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose);
 var CoursSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+  id : Number,
+  description : String,
+  contenu : String,
+  image : String,
+  date_creation : Date,
+  sous_categorie : {
+    type : Number,
+    ref : 'SousCategorie'
+  }
 });
 
 registerEvents(CoursSchema);
+CoursSchema.plugin(autoIncrement.plugin, 'Cours');
 export default mongoose.model('Cours', CoursSchema);

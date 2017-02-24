@@ -4,10 +4,9 @@ import mongoose from 'mongoose';
 import {registerEvents} from './categorie.events';
 
 var CategorieSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
-  
+  id : Number,
+  libelle : String
+
 });
 
 registerEvents(CategorieSchema);
