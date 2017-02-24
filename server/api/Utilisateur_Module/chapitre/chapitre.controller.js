@@ -65,7 +65,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of Chapitres
 export function index(req, res) {
-  return Chapitre.find().exec()
+  return Chapitre.find().populate('cours').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -80,7 +80,7 @@ export function show(req, res) {
 
 // Gets all Chapitres related to a cours
 export function getChapitreByCours(req, res) {
-  return Chapitre.find({cours : req.params.cours}).populate().exec()
+  return Chapitre.find({cours : req.params.cours}).populate('cours').exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));

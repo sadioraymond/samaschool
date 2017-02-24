@@ -65,7 +65,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of SousCategories
 export function index(req, res) {
-  return SousCategorie.find().exec()
+  return SousCategorie.find().populate('categorie').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -80,7 +80,7 @@ export function show(req, res) {
 
 //gets all sousCategorie related to a categorie
 export function getSousCatByCat(req, res) {
-  return SousCategorie.find({categorie : req.params.cat}).populate().exec()
+  return SousCategorie.find({categorie : req.params.cat}).populate('categorie').exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
