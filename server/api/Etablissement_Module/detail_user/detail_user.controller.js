@@ -65,7 +65,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of DetailUsers
 export function index(req, res) {
-  return DetailUser.find().exec()
+  return DetailUser.find().populate('user').populate('etablissement').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
