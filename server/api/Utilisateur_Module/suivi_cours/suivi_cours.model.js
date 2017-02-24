@@ -2,12 +2,21 @@
 
 import mongoose from 'mongoose';
 import {registerEvents} from './suivi_cours.events';
-
+var autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose);
 var SuiviCoursSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+ id : Number,
+ cours :{
+   type : Number,
+   ref : 'Cours'
+ },
+ user : {
+   type : Number,
+   ref : 'User'
+ },
+ date_suivie : Date
 });
 
 registerEvents(SuiviCoursSchema);
-export default mongoose.model('SuiviCours', SuiviCoursSchema);
+ProfilSchema.plugin(autoIncrement.plugin, 'SuiviCours');
+export default mongoose.model('ProfilSchema', SuiviCoursSchema);

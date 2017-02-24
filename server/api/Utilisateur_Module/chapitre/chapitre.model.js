@@ -6,9 +6,12 @@ autoIncrement.initialize(mongoose);
 import { registerEvents } from './chapitre.events';
 
 var ChapitreSchema = new mongoose.Schema({
-    name: String,
-    info: String,
-    active: Boolean
+    id : Number,
+    libelle : String,
+    cours : {
+        type : Number,
+        ref : 'Cours'
+    }
 });
 
 registerEvents(ChapitreSchema);

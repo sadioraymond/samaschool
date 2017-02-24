@@ -4,9 +4,12 @@ import mongoose from 'mongoose';
 import {registerEvents} from './sous_categorie.events';
 
 var SousCategorieSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+  id : Number,
+  libelle : String,
+  categorie : {
+    type : Number,
+    ref : 'Categorie'
+  }
 });
 
 registerEvents(SousCategorieSchema);
