@@ -11,7 +11,7 @@ var SuiviCoursSchema = new mongoose.Schema({
         ref: 'Cours'
     },
     user: {
-        type: Number,
+        type: mongoose.Schema.ObjectId,
         ref: 'User'
     },
     date_suivie: Date
