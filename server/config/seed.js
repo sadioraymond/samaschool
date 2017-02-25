@@ -2079,9 +2079,60 @@ export default function seedDatabaseIfNeeded() {
     Annee.find({}).remove()
       .then(() => {
         Annee.create({
-            name: '2015-04'
+            _id: 1,
+            user: "58b03802d98ff60ec2777f8c",
+            classe: 1,
+            annee: "2016-2017"
           }, {
-            name: '2016-05'
+            _id: 2,
+            user: "58b03802d98ff60ec2777f8d",
+            classe: 2,
+            annee: "2016-2017"
+          }, {
+            _id: 3,
+            user: "58b03802d98ff60ec2777f8e",
+            classe: 3,
+            annee: "2016-2017"
+          }, {
+            _id: 4,
+            user: "58b03802d98ff60ec2777f8f",
+            classe: 4,
+            annee: "2016-2017"
+          }, {
+            _id: 5,
+            user: "58b03802d98ff60ec2777f90",
+            classe: 5,
+            annee: "2016-2017"
+          }, {
+            _id: 6,
+            user: "58b03802d98ff60ec2777f91",
+            classe: 6,
+            annee: "2016-2017"
+          }, {
+            _id: 7,
+            user: "58b03802d98ff60ec2777f92",
+            classe: 7,
+            annee: "2016-2017"
+          }, {
+            _id: 8,
+            user: "58b03802d98ff60ec2777f93",
+            classe: 8,
+            annee: "2016-2017"
+          }, {
+            _id: 9,
+            user: "58b03802d98ff60ec2777f94",
+            classe: 9,
+            annee: "2016-2017"
+          }, {
+            _id: 10,
+            user: "58b03802d98ff60ec2777f95",
+            classe: 10,
+            annee: "2016-2017"
+          }, {
+            _id: 11,
+            user: "58b03802d98ff60ec2777f95",
+            classe: 9,
+            annee: "2015-2016"
           })
           .then(() => console.log('finished populating Année Académique'))
           .catch(err => console.log('error populating Année Académique', err));
