@@ -2079,9 +2079,60 @@ export default function seedDatabaseIfNeeded() {
     Annee.find({}).remove()
       .then(() => {
         Annee.create({
-            name: '2015-04'
+            _id: 1,
+            user: "58b03802d98ff60ec2777f8c",
+            classe: 1,
+            annee: "2016-2017"
           }, {
-            name: '2016-05'
+            _id: 2,
+            user: "58b03802d98ff60ec2777f8d",
+            classe: 2,
+            annee: "2016-2017"
+          }, {
+            _id: 3,
+            user: "58b03802d98ff60ec2777f8e",
+            classe: 3,
+            annee: "2016-2017"
+          }, {
+            _id: 4,
+            user: "58b03802d98ff60ec2777f8f",
+            classe: 4,
+            annee: "2016-2017"
+          }, {
+            _id: 5,
+            user: "58b03802d98ff60ec2777f90",
+            classe: 5,
+            annee: "2016-2017"
+          }, {
+            _id: 6,
+            user: "58b03802d98ff60ec2777f91",
+            classe: 6,
+            annee: "2016-2017"
+          }, {
+            _id: 7,
+            user: "58b03802d98ff60ec2777f92",
+            classe: 7,
+            annee: "2016-2017"
+          }, {
+            _id: 8,
+            user: "58b03802d98ff60ec2777f93",
+            classe: 8,
+            annee: "2016-2017"
+          }, {
+            _id: 9,
+            user: "58b03802d98ff60ec2777f94",
+            classe: 9,
+            annee: "2016-2017"
+          }, {
+            _id: 10,
+            user: "58b03802d98ff60ec2777f95",
+            classe: 10,
+            annee: "2016-2017"
+          }, {
+            _id: 11,
+            user: "58b03802d98ff60ec2777f95",
+            classe: 9,
+            annee: "2015-2016"
           })
           .then(() => console.log('finished populating Année Académique'))
           .catch(err => console.log('error populating Année Académique', err));
@@ -3944,9 +3995,65 @@ export default function seedDatabaseIfNeeded() {
     Dclasse.find({}).remove()
       .then(() => {
         Dclasse.create({
-            name: 'Détail STIC3'
+            _id: 1,
+            classe: 1,
+            etablissement: 1,
+            date: "2016-05-30"
           }, {
-            name: 'Détail MASTER'
+            _id: 2,
+            classe: 2,
+            etablissement: 2,
+            date: "2016-07-18"
+          }, {
+            _id: 3,
+            classe: 3,
+            etablissement: 3,
+            date: "2017-01-30"
+          }, {
+            _id: 4,
+            classe: 4,
+            etablissement: 4,
+            date: "2016-12-02"
+          }, {
+            _id: 5,
+            classe: 5,
+            etablissement: 5,
+            date: "2017-04-30"
+          }, {
+            _id: 6,
+            classe: 6,
+            etablissement: 6,
+            date: "2017-01-21"
+          }, {
+            _id: 7,
+            classe: 7,
+            etablissement: 7,
+            date: "2016-11-14"
+          }, {
+            _id: 8,
+            classe: 8,
+            etablissement: 8,
+            date: "2017-03-16"
+          }, {
+            _id: 9,
+            classe: 9,
+            etablissement: 9,
+            date: "2016-07-30"
+          }, {
+            _id: 10,
+            classe: 10,
+            etablissement: 10,
+            date: "2017-10-01"
+          }, {
+            _id: 11,
+            classe: 10,
+            etablissement: 11,
+            date: "2015-10-01"
+          }, {
+            _id: 12,
+            classe: 10,
+            etablissement: 16,
+            date: "2014-10-01"
           })
           .then(() => console.log('finished populating Détail Classe'))
           .catch(err => console.log('error populating Détail Classe', err));

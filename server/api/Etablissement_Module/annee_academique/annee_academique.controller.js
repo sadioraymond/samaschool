@@ -65,7 +65,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of AnneeAcademiques
 export function index(req, res) {
-  return AnneeAcademique.find().exec()
+  return AnneeAcademique.find().populate('user').populate('classe').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
