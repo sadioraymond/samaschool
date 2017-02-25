@@ -65,7 +65,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of DetailClasses
 export function index(req, res) {
-  return DetailClasse.find().exec()
+  return DetailClasse.find().populate('classe').populate('etablissement').exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
