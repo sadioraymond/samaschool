@@ -12,7 +12,8 @@ var CoursSchema = new mongoose.Schema({
     sous_categorie: {
         type: Number,
         ref: 'SousCategorie'
-    }
+    },
+    status: String
 });
 
 registerEvents(CoursSchema);
