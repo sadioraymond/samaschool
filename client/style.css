@@ -894,7 +894,7 @@ li.vimeo:hover {
 .dmtop {
     background-color: #3C3D41;
     border-bottom: 3px solid #fff;
-    background-image: url(images/arrow.png);
+    background-image: url(assets/images/arrow.png);
     background-position: 50% 50%;
     background-repeat: no-repeat;
     z-index: 9999;
@@ -1291,7 +1291,7 @@ body.boxed #wrapper {
 }
 
 body.boxed {
-    background: url(upload/bg.jpg) repeat center center scroll;
+    background: url(assets/assets/upload/bg.jpg) repeat center center scroll;
 }
 
 .loginbox p {
@@ -2159,7 +2159,7 @@ blockquote cite {
     top: 0;
     left: 0;
     bottom: 0;
-    background: url(upload/about.jpg);
+    background: url(assets/upload/about.jpg);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -2173,7 +2173,7 @@ blockquote cite {
     top: 0;
     left: 0;
     bottom: 0;
-    background: url(upload/about_01.jpg);
+    background: url(assets/upload/about_01.jpg);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -2730,7 +2730,7 @@ hr.invis1 {
 }
 
 .related-title {
-    background: transparent url(images/dots.gif) 0 6px repeat-x;
+    background: transparent url(assets/images/dots.gif) 0 6px repeat-x;
     font-size: 18px;
     padding: 0;
     text-transform: uppercase;
