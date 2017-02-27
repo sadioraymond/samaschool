@@ -78,6 +78,35 @@ export function show(req, res) {
     .catch(handleError(res));
 }
 
+// Liste des users qui suivent un cours
+export function getUserByCours(req, res) {
+  SuiviCours.find({cours : req.params.cr}).populate('user').exec()
+    .then(list => {
+      var us = [];
+      list.forEach(function(element) {
+        us.push(element.user);
+      });
+      return res.json(us);
+    })
+    
+}
+
+
+// Liste des cours suivis par un user
+export function getCoursByUser(req, res) {
+  SuiviCours.find({user : req.params.us}).populate('cours').exec()
+    .then(list => {
+      var cr = [];
+      list.forEach(function(element) {
+        cr.push(element.cours);
+      });
+      return res.json(cr);
+    })
+    
+}
+
+
+
 // Creates a new SuiviCours in the DB
 export function create(req, res) {
   return SuiviCours.create(req.body)
