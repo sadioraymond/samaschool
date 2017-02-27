@@ -1,5 +1,5 @@
-@import '~bootstrap/dist/css/bootstrap.css';
-@import '~bootstrap-social/bootstrap-social.css';
+/*@import '~bootstrap/dist/css/bootstrap.css';*/
+/*@import '~bootstrap-social/bootstrap-social.css';*/
 /**
  * Bootstrap Fonts
  */
@@ -13,7 +13,7 @@
   url('/assets/fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }*/
 
-@import '~font-awesome/css/font-awesome.css';
+/*@import '~font-awesome/css/font-awesome.css';*/
 
 /**
  *Font Awesome Fonts
@@ -46,7 +46,7 @@
 /* inject:css */
 /*@import 'admin/admin.css';
 @import 'main/main.css';
-@import '../components/footer/footer.css';
+@import '../components/footer/footer.css'; */
 @import '../components/modal/modal.css';
-@import '../components/oauth-buttons/oauth-buttons.css';*/
+/* @import '../components/oauth-buttons/oauth-buttons.css';*/
 /* endinject */
