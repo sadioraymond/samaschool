@@ -78,6 +78,21 @@ export function show(req, res) {
     .catch(handleError(res));
 }
 
+// Liste des users qui suivent un 
+
+export function getUserByCours(req, res) {
+  SuiviCours.find({cours : req.params.cr}).populate('user').exec()
+    .then(list => {
+      var us = [];
+      list.forEach(function(element) {
+        us.push(element.user);
+      });
+      return res.json(us);
+    })
+    
+}
+
+
 // Creates a new SuiviCours in the DB
 export function create(req, res) {
   return SuiviCours.create(req.body)
