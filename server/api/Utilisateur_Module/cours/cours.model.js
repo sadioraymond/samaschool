@@ -13,7 +13,11 @@ var CoursSchema = new mongoose.Schema({
         type: Number,
         ref: 'SousCategorie'
     },
-    status: String
+    status: String,
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+    }
 });
 
 registerEvents(CoursSchema);
