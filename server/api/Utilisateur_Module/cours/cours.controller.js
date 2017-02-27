@@ -14,6 +14,8 @@ import jsonpatch from 'fast-json-patch';
 import Cours from './cours.model';
 import User from '../detail_profil/detail_profil.model';
 import Profil from '../profil/profil.model';
+import Classe from '../../Etablissement_Module/detail_classe/detail_classe.model';
+import Suivi from '../../Etablissement_Module/suivi_cours_classe/suivi_cours_classe.model';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -93,12 +95,36 @@ export function getCoursByProf(req, res) {
                 });
             } else {
                 console.log('C est pas un prof');
-                return res.json(null);
+                return res.json("Vous n'etes pas un Professeur");
             }
         }, this);
 
     });
 
+}
+
+// Gets all Cours created by a Prof in a school
+export function getCoursByProfAdnSchool(req, res) {
+    Cours.find({ user: req.params.ids }).exec(function(err, cou) {
+        cou.forEach(function(elements) {
+            var lescourss = [];
+            if (err) { return handleError(res, err); }
+            Classe.find({ etablissement: req.params.etablis }).exec(function(err, classes) {
+                classes.forEach(function(elem) {
+                    Suivi.find({ classe: elem._id, cours: elements._id }).exec(function(err, cour) {
+                        if (err) { return handleError(res, err); }
+                        /* console.log('id Cours bi', elements._id);
+                         console.log('id Classe bi', elem._id);*/
+                        if (cour.length !== 0) {
+                            console.log('Cours yi', cour);
+                            lescourss.push(cour);
+                        }
+                    });
+                }, this);
+            })
+        }, this);
+        return res.json(lescourss);
+    });
 }
 
 // Gets all Cours related to a School
