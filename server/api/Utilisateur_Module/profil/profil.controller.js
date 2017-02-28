@@ -74,18 +74,28 @@ export function index(req, res) {
 
 //Get all Prof
 export function getAllProf(req, res) {
-    DProfil.find({ profil: 3 }).exec(function(err, userss) {
-        var profs = [];
-        userss.forEach(function(element) {
-            User.find({ _id: element.user.toString() }).exec(function(err, prof) {
-                if (err) { return handleError(res, err); }
-                profs.push(prof);
-                console.log('Prof yi', profs);
-                return res.json(profs);
-            });
-        }, this);
-        //return res.json(profs);
-    });
+     DProfil.find({profil : 3}).populate('user').exec()
+        .then(list => {
+            var us = [];
+      list.forEach(function(element) {
+        us.push(element.user);
+      });
+      return res.json(us);
+        })
+        
+}
+
+//Get all etudiants
+export function getAllEtu(req, res) {
+     DProfil.find({profil : 2}).populate('user').exec()
+        .then(list => {
+            var us = [];
+      list.forEach(function(element) {
+        us.push(element.user);
+      });
+      return res.json(us);
+        })
+        
 }
 
 // Gets a single Profil from the DB

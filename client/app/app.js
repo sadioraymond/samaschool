@@ -20,18 +20,23 @@ import {
 import _Auth from '../components/auth/auth.module';
 import account from './account';
 import admin from './admin';
-// import navbar from '../components/navbar/navbar.component';
+import navbar from '../components/navbar/navbar.component';
 // import footer from '../components/footer/footer.component';
-// import main from './main/main.component';
+import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
+
+import courses from '../components/courses/courses.component';
+import bottomfooter from '../components/bottomFooter/bottomFooter.component';
+
 import coursProvider from '../app/factory/coursProvider/coursProvider.service';
 import etablissementProvider from '../app/factory/etablissementProvider/etablissementProvider.service';
+
 import './app.css';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider
+        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses
     ])
     .config(routeConfig)
     .run(function($rootScope, $location, Auth) {
