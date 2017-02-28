@@ -14,7 +14,7 @@ import uiBootstrap from 'angular-ui-bootstrap';
 
 
 import {
-  routeConfig
+    routeConfig
 } from './app.config';
 
 import _Auth from '../components/auth/auth.module';
@@ -26,29 +26,30 @@ import admin from './admin';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
+import coursProvider from '../app/factory/coursProvider/coursProvider.service';
 
 import './app.css';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-  uiBootstrap, _Auth, account, admin, constants, socket, util
-])
-  .config(routeConfig)
-  .run(function($rootScope, $location, Auth) {
-    'ngInject';
-    // Redirect to login if route requires auth and you're not logged in
+        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider
+    ])
+    .config(routeConfig)
+    .run(function($rootScope, $location, Auth) {
+        'ngInject';
+        // Redirect to login if route requires auth and you're not logged in
 
-    $rootScope.$on('$stateChangeStart', function(event, next) {
-      Auth.isLoggedIn(function(loggedIn) {
-        if(next.authenticate && !loggedIn) {
-          $location.path('/login');
-        }
-      });
+        $rootScope.$on('$stateChangeStart', function(event, next) {
+            Auth.isLoggedIn(function(loggedIn) {
+                if (next.authenticate && !loggedIn) {
+                    $location.path('/login');
+                }
+            });
+        });
     });
-  });
 
 angular.element(document)
-  .ready(() => {
-    angular.bootstrap(document, ['samaschoolApp'], {
-      strictDi: true
+    .ready(() => {
+        angular.bootstrap(document, ['samaschoolApp'], {
+            strictDi: true
+        });
     });
-  });
