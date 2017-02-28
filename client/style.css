@@ -931,7 +931,7 @@ body.leftside .container-fluid {
     float: left;
     height: 100%;
     bottom: 0;
-    left: : 0;
+    left: 0;
     overflow-y: auto;
     z-index: 9991;
     overflow-x: scroll;
