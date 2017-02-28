@@ -27,11 +27,11 @@ import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
 import coursProvider from '../app/factory/coursProvider/coursProvider.service';
-
+import etablissementProvider from '../app/factory/etablissementProvider/etablissementProvider.service';
 import './app.css';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider
+        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider
     ])
     .config(routeConfig)
     .run(function($rootScope, $location, Auth) {
