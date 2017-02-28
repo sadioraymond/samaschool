@@ -103,30 +103,6 @@ export function getCoursByProf(req, res) {
 
 }
 
-// Gets all Cours created by a Prof in a school
-export function getCoursByProfAdnSchool(req, res) {
-    Cours.find({ user: req.params.ids }).exec(function(err, cou) {
-        cou.forEach(function(elements) {
-            var lescourss = [];
-            if (err) { return handleError(res, err); }
-            Classe.find({ etablissement: req.params.etablis }).exec(function(err, classes) {
-                classes.forEach(function(elem) {
-                    Suivi.find({ classe: elem._id, cours: elements._id }).exec(function(err, cour) {
-                        if (err) { return handleError(res, err); }
-                        /* console.log('id Cours bi', elements._id);
-                         console.log('id Classe bi', elem._id);*/
-                        if (cour.length !== 0) {
-                            console.log('Cours yi', cour);
-                            lescourss.push(cour);
-                        }
-                    });
-                }, this);
-            })
-        }, this);
-        return res.json(lescourss);
-    });
-}
-
 // Gets all Cours related to a School
 export function getCoursByEtablissement(req, res) {
     User.find({ user: req.params.etab }).exec(function(err, userss) {
