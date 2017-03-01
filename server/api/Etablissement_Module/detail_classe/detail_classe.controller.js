@@ -90,6 +90,19 @@ export function show(req, res) {
         .catch(handleError(res));
 }
 
+// Gets etablissement by classe
+export function getEtabByClasse(req, res) {
+   DetailClasse.find({ classe: req.params.cl }).populate('etablissement').exec()
+        .then(list => {
+            var us = [];
+            list.forEach(function(element) {
+                us.push(element.etablissement);
+            });
+            return res.json(us);
+        })
+}
+
+
 // Creates a new DetailClasse in the DB
 export function create(req, res) {
     return DetailClasse.create(req.body)

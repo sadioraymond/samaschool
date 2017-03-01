@@ -99,6 +99,21 @@ export function getCoursByClasse(req, res) {
 
 }
 
+//Get Classe By Cours
+
+export function getClasseByCours(req, res) {
+    SuiviCoursClasse.find({ cours: req.params.cr }).populate('classe').exec()
+        .then(list => {
+            var us = [];
+            list.forEach(function(element) {
+                us.push(element.classe);
+            });
+            return res.json(us);
+        })
+
+}
+
+
 // Upserts the given SuiviCoursClasse in the DB at the specified ID
 export function upsert(req, res) {
     if (req.body._id) {

@@ -89,6 +89,22 @@ export function getClassByUser(req, res) {
         
 }
 
+// Gets les users d'une classe pour une année
+export function getUserByclasse(req, res) {
+AnneeAcademique.find({classe : req.params.cl}).populate('user').exec()
+        .then(list => {
+            var us = [];
+            list.forEach(function(element) {
+                if(element.annee == req.params.an){
+                    us.push(element.user);
+                }
+            }, this);
+            return res.json(us);
+        })
+        
+        
+}
+
 
 // Creates a new AnneeAcademique in the DB
 export function create(req, res) {
