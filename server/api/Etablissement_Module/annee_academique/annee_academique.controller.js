@@ -71,21 +71,6 @@ export function index(req, res) {
         .catch(handleError(res));
 }
 
-//Get All Prof By School
-
-export function GetProfBySchool(req, res) {
-    Classe.find({ etablissement: req.params.id }).exec().then(list => {
-        var profs = [];
-        list.forEach(function(element) {
-            AnneeAcademique.find({ classe: element.classe }).populate('user').then(liste => {
-                profs.push(liste);
-                console.log('Prof yi', liste);
-            });
-        }, this);
-        return res.json(profs);
-    });
-
-}
 
 // Gets a single AnneeAcademique from the DB
 export function show(req, res) {
