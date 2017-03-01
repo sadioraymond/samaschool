@@ -2,13 +2,13 @@
 const angular = require('angular');
 
 /*@ngInject*/
-export function etablissementProviderService($http, $q) {
+export function suiviCoursClasseProviderService($http, $q) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    this.listeEtab = null;
-    this.listeEtablissement = function() {
+
+    this.getCoursByClasse = function(classe) {
         var deferred = $q.defer();
         var liste = [];
-        $http.get('/api/etablissements', {
+        $http.get('/api/suivi_cours_classes/classe/' + classe, {
             cache: true
         }).then(function(list) {
             liste = list.data;
@@ -22,6 +22,6 @@ export function etablissementProviderService($http, $q) {
     }
 }
 
-export default angular.module('samaschoolApp.etablissementProvider', [])
-    .service('etablissementProvider', etablissementProviderService)
+export default angular.module('samaschoolApp.suivi_cours_classeProvider', [])
+    .service('suiviCoursClasseProvider', suiviCoursClasseProviderService)
     .name;
