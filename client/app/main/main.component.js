@@ -18,6 +18,7 @@ export class MainController {
     listeEtablissement;
     detailClasseProvider;
     listClasseSchool;
+    listClasseNiveau;
     /*@ngInject*/
     constructor($http, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider) {
         this.$http = $http;
@@ -29,6 +30,17 @@ export class MainController {
         this.etablissementProvider = etablissementProvider;
         this.detailClasseProvider = detailClasseProvider;
 
+    }
+    getClasseByNiveau(id) {
+        this.classeProvider.getClasseByNiveau(id).then(list => {
+            this.listClasseNiveau = list;
+            if (this.listClasseNiveau.length == 0) {
+                console.log('Liste Vide');
+            } else {
+                console.log('Les Classe du Niveau', this.listClasseNiveau);
+            }
+
+        });
     }
     getClasseByEtablissement(id) {
         this.detailClasseProvider.getClasseByEtablissement(id).then(list => {
@@ -76,6 +88,9 @@ export class MainController {
                 console.log('Liste Vide');
             } else {
                 console.log('Les Niveaux', this.listNiveau);
+                for (var i = 0; i < this.listNiveau.length; i++) {
+                    this.getClasseByNiveau(this.listNiveau[i]._id);
+                }
             }
         });
         this.classeProvider.listClasse().then(list => {
