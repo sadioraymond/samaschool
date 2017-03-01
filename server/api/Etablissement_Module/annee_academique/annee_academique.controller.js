@@ -80,6 +80,16 @@ export function show(req, res) {
         .catch(handleError(res));
 }
 
+// Gets AnneeAcademique by User
+export function getClassByUser(req, res) {
+  return AnneeAcademique.find({user : req.params.us}).populate('classe').exec()
+        .then(handleEntityNotFound(res))
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+        
+}
+
+
 // Creates a new AnneeAcademique in the DB
 export function create(req, res) {
     return AnneeAcademique.create(req.body)
