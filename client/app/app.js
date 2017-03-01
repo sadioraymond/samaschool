@@ -32,11 +32,12 @@ import bottomfooter from '../components/bottomFooter/bottomFooter.component';
 
 import coursProvider from '../app/factory/coursProvider/coursProvider.service';
 import etablissementProvider from '../app/factory/etablissementProvider/etablissementProvider.service';
-
+import classeProvider from '../app/factory/classeProvider/classeProvider.service';
+import niveauProvider from '../app/factory/niveauProvider/niveauProvider.service';
 import './app.css';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses
+        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider
     ])
     .config(routeConfig)
     .run(function($rootScope, $location, Auth) {

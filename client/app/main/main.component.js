@@ -8,12 +8,14 @@ export class MainController {
     newThing = '';
     coursProvider;
     listCours;
+    classeProvider;
+    listClasse;
     /*@ngInject*/
-    constructor($http, $scope, socket, coursProvider) {
+    constructor($http, $scope, socket, coursProvider, classeProvider) {
         this.$http = $http;
         this.socket = socket;
         this.coursProvider = coursProvider;
-
+        this.classeProvider = classeProvider;
 
     }
 
@@ -24,6 +26,14 @@ export class MainController {
                 console.log('Liste Vide');
             } else {
                 console.log('Les Cours', this.listCours);
+            }
+        });
+        this.classeProvider.listClasse().then(list => {
+            this.listClasse = list;
+            if (this.listClasse.length == 0) {
+                console.log('Liste Vide');
+            } else {
+                console.log('Les Classe', this.listClasse);
             }
         });
 
