@@ -8,6 +8,7 @@ var router = express.Router();
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.get('/user/:us', controller.getClassByUser);
+router.get('/classe/:cl/:an', controller.getUserByclasse);
 router.post('/', controller.create);
 router.put('/:id', controller.upsert);
 router.patch('/:id', controller.patch);
