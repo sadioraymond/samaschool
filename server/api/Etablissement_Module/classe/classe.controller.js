@@ -78,6 +78,15 @@ export function show(req, res) {
     .catch(handleError(res));
 }
 
+// Gets Classes by a niveau
+export function getclasseByNiveau(req, res) {
+  return Classe.find({niveau : req.params.niv}).exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+
 // Creates a new Classe in the DB
 export function create(req, res) {
   return Classe.create(req.body)
