@@ -86,6 +86,20 @@ export function getclasseByNiveau(req, res) {
     .catch(handleError(res));
 }
 
+// Gets Classes by a niveau
+export function getNiveauByClasse(req, res) {
+Classe.find({libelle : req.params.cl}).populate('niveau').exec()
+    .then(list => {
+      var niv = [];
+      list.forEach(function(element) {
+        niv.push(element.niveau)
+      }, this);
+      return res.json(niv);
+    })
+    
+}
+
+
 
 // Creates a new Classe in the DB
 export function create(req, res) {
