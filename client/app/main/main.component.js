@@ -14,15 +14,31 @@ export class MainController {
     listCoursClasse;
     niveauProvider;
     listNiveau;
+    etablissementProvider;
+    listeEtablissement;
+    detailClasseProvider;
+    listClasseSchool;
     /*@ngInject*/
-    constructor($http, $scope, socket, coursProvider, classeProvider, suiviCoursClasseProvider, niveauProvider) {
+    constructor($http, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider) {
         this.$http = $http;
         this.socket = socket;
         this.coursProvider = coursProvider;
         this.classeProvider = classeProvider;
         this.suiviCoursClasseProvider = suiviCoursClasseProvider;
         this.niveauProvider = niveauProvider;
+        this.etablissementProvider = etablissementProvider;
+        this.detailClasseProvider = detailClasseProvider;
 
+    }
+    getClasseByEtablissement(id) {
+        this.detailClasseProvider.getClasseByEtablissement(id).then(list => {
+            this.listClasseSchool = list;
+            if (this.listClasseSchool.length == 0) {
+                console.log('Liste Vide');
+            } else {
+                console.log('Les Classe de L établissement', this.listClasseSchool);
+            }
+        });
     }
     getCoursByClasse(id) {
         this.suiviCoursClasseProvider.getCoursByClasse(id).then(list => {
@@ -41,6 +57,17 @@ export class MainController {
                 console.log('Liste Vide');
             } else {
                 console.log('Les Cours', this.listCours);
+            }
+        });
+        this.etablissementProvider.listeEtablissement().then(list => {
+            this.listeEtablissement = list;
+            if (this.listeEtablissement.length == 0) {
+                console.log('Liste Vide');
+            } else {
+                console.log('Les Etablissements', this.listeEtablissement);
+                for (var i = 0; i < this.listeEtablissement.length; i++) {
+                    this.getClasseByEtablissement(this.listeEtablissement[i]._id);
+                }
             }
         });
         this.niveauProvider.listNiveau().then(list => {
@@ -66,7 +93,6 @@ export class MainController {
     }
 
 }
-
 export default angular.module('samaschoolApp.main', [uiRouter])
     .config(routing)
     .component('main', {
