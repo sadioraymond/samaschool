@@ -5,20 +5,35 @@ const angular = require('angular');
 export function classeProviderService($http, $q) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     this.listClasse = function() {
-        var deferred = $q.defer();
-        var liste = [];
-        $http.get('/api/classes', {
-            cache: true
-        }).then(function(list) {
-            liste = list.data;
-            deferred.resolve(liste);
+            var deferred = $q.defer();
+            var liste = [];
+            $http.get('/api/classes', {
+                cache: true
+            }).then(function(list) {
+                liste = list.data;
+                deferred.resolve(liste);
 
-        });
-        liste = deferred.promise;
+            });
+            liste = deferred.promise;
 
-        return liste;
+            return liste;
 
-    }
+        }
+        /* this.getClasseByNiveau = function(classe) {
+             var deferred = $q.defer();
+             var liste = [];
+             $http.get('/api/classe/classe/' + classe, {
+                 cache: true
+             }).then(function(list) {
+                 liste = list.data;
+                 deferred.resolve(liste);
+
+             });
+             liste = deferred.promise;
+
+             return liste;
+
+         }*/
 }
 
 export default angular.module('samaschoolApp.classeProvider', [])
