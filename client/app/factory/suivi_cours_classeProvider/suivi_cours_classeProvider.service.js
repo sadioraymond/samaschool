@@ -2,12 +2,13 @@
 const angular = require('angular');
 
 /*@ngInject*/
-export function niveauProviderService($http, $q) {
+export function suiviCoursClasseProviderService($http, $q) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    this.listNiveau = function() {
+
+    this.getCoursByClasse = function(classe) {
         var deferred = $q.defer();
         var liste = [];
-        $http.get('/api/niveaus', {
+        $http.get('/api/suivi_cours_classes/classe/' + classe, {
             cache: true
         }).then(function(list) {
             liste = list.data;
@@ -21,6 +22,6 @@ export function niveauProviderService($http, $q) {
     }
 }
 
-export default angular.module('samaschoolApp.niveauProvider', [])
-    .service('niveauProvider', niveauProviderService)
+export default angular.module('samaschoolApp.suivi_cours_classeProvider', [])
+    .service('suiviCoursClasseProvider', suiviCoursClasseProviderService)
     .name;

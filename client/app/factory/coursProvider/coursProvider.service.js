@@ -11,7 +11,6 @@ export function coursProviderService($http, $q) {
         $http.get('/api/courss', {
             cache: true
         }).then(function(list) {
-            console.log("cours yi bakhna", list);
             liste = list.data;
             deferred.resolve(liste);
 
