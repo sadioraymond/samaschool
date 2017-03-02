@@ -43,10 +43,11 @@ import jsFonctions from '../app/factory/jsFonctions/jsFonctions.service';
 
 // ------ Les routes -------
 import CoursesPagesComponent from './coursesPages/coursesPages.component';
+import CourseSinglePageComponent from './courseSinglePage/courseSinglePage.component';
 import './app.css';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, statistics, teachers, etablissements, CoursesPagesComponent
+        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent
     ])
     .config(routeConfig)
     .run(function($rootScope, $location, Auth) {
