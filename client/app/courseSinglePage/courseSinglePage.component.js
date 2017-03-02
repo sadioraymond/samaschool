@@ -18,7 +18,7 @@ export class CourseSinglePageComponent {
         // setTimeout(function () {
 
         this.jsFonctions.pluginScript();
-        // this.jsFonctions.otherScript();
+        this.jsFonctions.otherScript();
         // }, 0);
       });
   }
