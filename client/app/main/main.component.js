@@ -67,11 +67,10 @@ export class MainController {
   $onInit() {
     angular.element(document)
       .ready(() => {
-        // setTimeout(function () {
-
+        setTimeout(() => {
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
-        // }, 0);
+        }, 0);
       });
     this.coursProvider.listCours().then(list => {
       this.listCours = list;
