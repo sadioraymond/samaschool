@@ -15,11 +15,10 @@ export class CourseSinglePageComponent {
   $onInit() {
     angular.element(document)
       .ready(() => {
-        // setTimeout(function () {
-
-        this.jsFonctions.pluginScript();
-        this.jsFonctions.otherScript();
-        // }, 0);
+        setTimeout(() => {
+          this.jsFonctions.pluginScript();
+          this.jsFonctions.otherScript();
+        }, 0);
       });
   }
 }

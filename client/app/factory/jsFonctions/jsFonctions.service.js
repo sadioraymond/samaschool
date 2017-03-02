@@ -3,7 +3,7 @@ const angular = require('angular');
 
 /*@ngInject*/
 export function jsFonctionsService() {
-	// AngularJS will instantiate a singleton by calling "new" on this function
+  // AngularJS will instantiate a singleton by calling "new" on this function
 
   this.pluginScript = function () {
     /******************************************
@@ -2782,10 +2782,10 @@ export function jsFonctionsService() {
                     e.positionFullscreenButton(a.left - c.left, a.top - c.top, !0)
                   }
                 }).on("mouseout", function () {
-                //   "plugin-hover" == f.fullscreenMode && (null !== g && (clearTimeout(g), delete g),
-                //    g = setTimeout(function () {
-                //     e.hideFullscreenButton()
-                //   }, 1500))
+                  //   "plugin-hover" == f.fullscreenMode && (null !== g && (clearTimeout(g), delete g),
+                  //    g = setTimeout(function () {
+                  //     e.hideFullscreenButton()
+                  //   }, 1500))
                 });
               if (b.fullscreenBtn = h, f.globalBind("keydown", function (a) {
                   27 == a.keyCode && (mejs.MediaFeatures.hasTrueNativeFullScreen && mejs.MediaFeatures.isFullScreen() || f.isFullScreen) && b.exitFullScreen()
