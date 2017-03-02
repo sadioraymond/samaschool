@@ -29,6 +29,9 @@ import socket from '../components/socket/socket.service';
 
 import courses from '../components/courses/courses.component';
 import bottomfooter from '../components/bottomFooter/bottomFooter.component';
+import statistics from '../components/statistics/statistics.component';
+import teachers from '../components/teachers/teachers.component';
+import etablissements from '../components/etablissements/etablissements.component';
 
 import coursProvider from '../app/factory/coursProvider/coursProvider.service';
 import etablissementProvider from '../app/factory/etablissementProvider/etablissementProvider.service';
@@ -36,10 +39,11 @@ import classeProvider from '../app/factory/classeProvider/classeProvider.service
 import niveauProvider from '../app/factory/niveauProvider/niveauProvider.service';
 import suiviCoursClasseProvider from '../app/factory/suivi_cours_classeProvider/suivi_cours_classeProvider.service';
 import detailClasseProvider from '../app/factory/detail_classeProvider/detail_classeProvider.service';
+import jsFonctions from '../app/factory/jsFonctions/jsFonctions.service';
 import './app.css';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider
+        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, statistics, teachers, etablissements
     ])
     .config(routeConfig)
     .run(function($rootScope, $location, Auth) {
