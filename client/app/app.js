@@ -32,6 +32,7 @@ import bottomfooter from '../components/bottomFooter/bottomFooter.component';
 import statistics from '../components/statistics/statistics.component';
 import teachers from '../components/teachers/teachers.component';
 import etablissements from '../components/etablissements/etablissements.component';
+import banner from '../components/banner/banner.component';
 
 import coursProvider from '../app/factory/coursProvider/coursProvider.service';
 import etablissementProvider from '../app/factory/etablissementProvider/etablissementProvider.service';
@@ -44,10 +45,13 @@ import jsFonctions from '../app/factory/jsFonctions/jsFonctions.service';
 // ------ Les routes -------
 import CoursesPagesComponent from './coursesPages/coursesPages.component';
 import CourseSinglePageComponent from './courseSinglePage/courseSinglePage.component';
+import RegisterComponent from './register/register.component';
+import ProfilComponent from './profil/profil.component';
+
 import './app.css';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent
+        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent
     ])
     .config(routeConfig)
     .run(function($rootScope, $location, Auth) {
