@@ -1594,32 +1594,44 @@ export default function seedDatabaseIfNeeded() {
                         _id: 1,
                         user: "58b03802d98ff60ec2777f95",
                         etablissement: 1,
-                        dateentree: "2016-09-30"
+                        dateentree: "2016-09-30",
+                        suivre: true,
+                        active: true
                     }, {
                         _id: 2,
                         user: "58b03802d98ff60ec2777f92",
                         etablissement: 2,
-                        dateentree: "2016-06-05"
+                        dateentree: "2016-06-05",
+                        suivre: true,
+                        active: true
                     }, {
                         _id: 3,
                         user: "58b03802d98ff60ec2777f94",
                         etablissement: 1,
-                        dateentree: "2017-11-19"
+                        dateentree: "2017-11-19",
+                        suivre: true,
+                        active: true
                     }, {
                         _id: 4,
                         user: "58b03802d98ff60ec2777f94",
                         etablissement: 2,
-                        dateentree: "2017-05-18"
+                        dateentree: "2017-05-18",
+                        suivre: true,
+                        active: true
                     }, {
                         _id: 5,
                         user: "58b03802d98ff60ec2777f93",
                         etablissement: 1,
-                        dateentree: "2017-04-13"
+                        dateentree: "2017-04-13",
+                        suivre: true,
+                        active: true
                     }, {
                         _id: 6,
                         user: "58b03802d98ff60ec2777f93",
                         etablissement: 2,
-                        dateentree: "2017-08-26"
+                        dateentree: "2017-08-26",
+                        suivre: true,
+                        active: true
                     })
                     .then(() => console.log('finished populating Detail User'))
                     .catch(err => console.log('error populating Detail User', err));
