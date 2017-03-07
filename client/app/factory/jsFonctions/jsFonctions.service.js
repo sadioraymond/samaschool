@@ -92,10 +92,12 @@ export function jsFonctionsService() {
           jQuery('.dmtop').css({
             bottom: "25px"
           });
+          // jQuery('header').removeClass('header-absolute').css({position: "fixed"});
         } else {
           jQuery('.dmtop').css({
             bottom: "-100px"
           });
+          // jQuery('header').addClass('header-absolute');
         }
       });
       jQuery('.dmtop').click(function () {
@@ -1370,6 +1372,7 @@ export function jsFonctionsService() {
             f = Math.floor(a / 60) % 60,
             g = Math.floor(a % 60),
             h = Math.floor((a % 1 * d).toFixed(3));
+            var lis = [];
           lis = [
             [h, "f"],
             [g, "s"],
@@ -1377,7 +1380,7 @@ export function jsFonctionsService() {
             [e, "h"]
           ];
           var j = c;
-          for (i = 0, len = lis.length; i < len; i++) j = j.replace(lis[i][1] + lis[i][1], this.twoDigitsString(lis[i][0])), j = j.replace(lis[i][1], lis[i][0]);
+          for (var i = 0, len = lis.length; i < len; i++) j = j.replace(lis[i][1] + lis[i][1], this.twoDigitsString(lis[i][0])), j = j.replace(lis[i][1], lis[i][0]);
           return j
         },
         timeCodeToSeconds: function (a, b, c, d) {
