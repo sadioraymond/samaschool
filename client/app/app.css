@@ -1,24 +1,24 @@
-@import '~bootstrap/dist/css/bootstrap.css';
-@import '~bootstrap-social/bootstrap-social.css';
+/*@import '~bootstrap/dist/css/bootstrap.css';*/
+/*@import '~bootstrap-social/bootstrap-social.css';*/
 /**
  * Bootstrap Fonts
  */
 
-@font-face {
+/*@font-face {
   font-family: 'Glyphicons Halflings';
   src: url('/assets/fonts/bootstrap/glyphicons-halflings-regular.eot');
   src: url('/assets/fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
   url('/assets/fonts/bootstrap/glyphicons-halflings-regular.woff') format('woff'),
   url('/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf') format('truetype'),
   url('/assets/fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
+}*/
 
-@import '~font-awesome/css/font-awesome.css';
+/*@import '~font-awesome/css/font-awesome.css';*/
 
 /**
  *Font Awesome Fonts
  */
-
+/*
 @font-face {
   font-family: 'FontAwesome';
   src: url('/assets/fonts/font-awesome/fontawesome-webfont.eot?v=4.1.0');
@@ -28,7 +28,7 @@
   url('/assets/fonts/font-awesome/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
   font-weight: normal;
   font-style: normal;
-}
+}*/
 
 /**
  * App-wide Styles
@@ -45,7 +45,11 @@
 /* Component styles are injected through gulp */
 /* inject:css */
 @import 'admin/admin.css';
+@import 'courseSinglePage/courseSinglePage.css';
+@import 'coursesPages/coursesPages.css';
 @import 'main/main.css';
+@import 'profil/profil.css';
+@import 'register/register.css';
 @import '../components/footer/footer.css';
 @import '../components/modal/modal.css';
 @import '../components/oauth-buttons/oauth-buttons.css';
