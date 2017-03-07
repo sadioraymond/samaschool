@@ -19,6 +19,21 @@ export function detailClasseProviderService($http, $q) {
         return liste;
 
     }
+    this.getEtabByClasse = function(classe) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/detail_classes/classe/' + classe, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
 }
 
 export default angular.module('samaschoolApp.detail_classeProvider', [])
