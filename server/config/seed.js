@@ -22,6 +22,7 @@ import Cycle from '../api/Etablissement_Module/cycle/cycle.model';
 import Dclasse from '../api/Etablissement_Module/detail_classe/detail_classe.model';
 import SousCat from '../api/Utilisateur_Module/sous_categorie/sous_categorie.model';
 import Categorie from '../api/Utilisateur_Module/categorie/categorie.model';
+import suivi from '../api/Etablissement_Module/suivi/suivi.model';
 import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
@@ -1922,6 +1923,66 @@ export default function seedDatabaseIfNeeded() {
                     })
                     .then(() => console.log('finished populating Détail Profil'))
                     .catch(err => console.log('error populating Détail Profil', err));
+            });
+        suivi.find({}).remove()
+            .then(() => {
+                suivi.create({
+                        _id: 1,
+                        user: "58b03802d98ff60ec2777f91",
+                        id_prof: "58b03802d98ff60ec2777f93",
+                        active: true,
+                        date: "2017-02-03"
+                    }, {
+                        _id: 2,
+                        user: "58b03802d98ff60ec2777f90",
+                        id_prof: "58b03802d98ff60ec2777f93",
+                        active: true,
+                        date: "2016-08-29"
+                    }, {
+                        _id: 3,
+                        id_user: "58b03802d98ff60ec2777f8f",
+                        id_prof: "58b03802d98ff60ec2777f93",
+                        active: true,
+                        date: "2016-10-04"
+                    }, {
+                        _id: 4,
+                        id_user: "58b03802d98ff60ec2777f8e",
+                        id_prof: "58b03802d98ff60ec2777f93",
+                        active: true,
+                        date: "2018-01-19"
+                    }, {
+                        _id: 5,
+                        id_user: "58b03802d98ff60ec2777f8d",
+                        id_prof: "58b03802d98ff60ec2777f93",
+                        active: true,
+                        date: "2017-03-19"
+                    }, {
+                        _id: 6,
+                        id_user: "58b03802d98ff60ec2777f8c",
+                        id_prof: "58b03802d98ff60ec2777f93",
+                        active: true,
+                        date: "2016-06-13"
+                    }, {
+                        _id: 7,
+                        id_user: "58b03802d98ff60ec2777f8e",
+                        id_prof: "58b03802d98ff60ec2777f94",
+                        active: true,
+                        date: "2018-01-19"
+                    }, {
+                        _id: 8,
+                        id_user: "58b03802d98ff60ec2777f8d",
+                        id_prof: "58b03802d98ff60ec2777f94",
+                        active: true,
+                        date: "2017-03-19"
+                    }, {
+                        _id: 9,
+                        id_user: "58b03802d98ff60ec2777f8c",
+                        id_prof: "58b03802d98ff60ec2777f94",
+                        active: true,
+                        date: "2016-06-13"
+                    })
+                    .then(() => console.log('finished populating Suivi'))
+                    .catch(err => console.log('error populating Suivi', err));
             });
         suivi_cours.find({}).remove()
             .then(() => {
