@@ -50,8 +50,8 @@ export class MainController {
         });
     }
     getCoursByProf(id) {
-        this.coursProvider.getCoursByProf(id).then(list => {
-            this.listCoursProf = list;
+        this.coursProvider.getCoursByProf(id).then(liste => {
+            this.listCoursProf = liste;
             if (this.listCoursProf.length == 0) {
                 // console.log('Aucun cours pour ce prof');
             } else {
