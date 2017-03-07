@@ -11,6 +11,7 @@ export class ProfilComponent {
   contact = true;
   etablissement = false;
   course = false;
+  LIs = [];
   /*@ngInject*/
   constructor(jsFonctions) {
     this.message = 'Hello';
@@ -25,13 +26,23 @@ export class ProfilComponent {
       }, 0);
     });
   }
+  doActive(e) {
+    this.LIs = document.querySelectorAll('#ss_sidebar > li');
+    for (var i = 0; i < this.LIs.length; i++) {
+      if (this.LIs[i].className == 'active') {
+        this.LIs[i].className = '';
+      }
+    }
+    var LI = $("." + e.target.className).parent('li')[0];
+    $(LI).addClass('active');
+  }
   etablissementClick() {
     this.profil = false;
     this.contact = false;
     this.course = false;
     this.etablissement = true;
     window.scrollTo(0, window.scrollY + 1);
-      
+
     // console.log(window.scrollY);
   }
   profilClick() {
