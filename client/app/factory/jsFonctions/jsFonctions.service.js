@@ -1222,6 +1222,30 @@ export function jsFonctionsService() {
       }
     })
 
+    $('#owl-annonces').owlCarousel({
+      loop: true,
+      margin: 30,
+      nav: true,
+      autoplay: true,
+      autoplayTimeout: 2000,
+      autoplayHoverPause: true,
+      dots: false,
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 1
+        },
+        1100: {
+          items: 1
+        },
+        1200: {
+          items: 1
+        }
+      }
+    })
+
     $('#owl-testimonial-2').owlCarousel({
       loop: true,
       margin: 30,
@@ -1372,7 +1396,7 @@ export function jsFonctionsService() {
             f = Math.floor(a / 60) % 60,
             g = Math.floor(a % 60),
             h = Math.floor((a % 1 * d).toFixed(3));
-            var lis = [];
+          var lis = [];
           lis = [
             [h, "f"],
             [g, "s"],
