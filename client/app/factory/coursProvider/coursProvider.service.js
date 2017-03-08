@@ -16,10 +16,38 @@ export function coursProviderService($http, $q) {
 
         });
         liste = deferred.promise;
-
         return liste;
 
     }
+
+    this.CoursPlusSuivi = function() {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/courss/cours/suivi', {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+        return liste;
+    }
+
+    this.FindById = function(id) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/courss/' + id, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+        return liste;
+    }
+
     this.getClasseByCours = function(cours) {
         var deferred = $q.defer();
         var liste = [];

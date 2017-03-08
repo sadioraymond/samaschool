@@ -19,6 +19,38 @@ export function profilProviderService($http, $q) {
         return liste;
 
     }
+
+    this.ProfesseurPlusSuivi = function() {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/suivis/plussuivi', {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
+
+    this.FindProfByID = function(id) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/users/' + id, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
 }
 
 export default angular.module('samaschoolApp.profilProvider', [])
