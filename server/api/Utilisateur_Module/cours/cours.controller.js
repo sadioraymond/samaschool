@@ -85,28 +85,40 @@ export function show(req, res) {
 var stringify = require('json-stringify-safe');
 // GLes Cours les plus suivies
 export function getCoursPlusSuivi(req, res) {
-    
-     Cours.find().exec()
+
+    Cours.find().exec()
         .then(list => {
             var tabCours = [];
             var cpt = 0;
+            var tampon;
             list.map(li => {
-             SuiviCours.find({cours : li._id}).count()
-             .then(nb => {
-                 var ben = {};
-              ben.id = li._id;
-              ben.nb_suiv = nb;
-              tabCours.push(ben);
-                cpt++;
-                if(cpt == list.length)
-                return res.json(tabCours)                
-             })
+                SuiviCours.find({ cours: li._id }).count()
+                    .then(nb => {
+                        var ben = {};
+                        ben.id = li._id;
+                        ben.nb_suiv = nb;
+                        tabCours.push(ben);
+                        cpt++;
+                        if (cpt == list.length) {
+                            for (let j = 0; j < tabCours.length - 1; j++) {
+                                for (let k = j + 1; k < tabCours.length; k++) {
+                                    if (tabCours[j].nb_suiv < tabCours[k].nb_suiv) {
+                                        tampon = tabCours[j];
+                                        tabCours[j] = tabCours[k];
+                                        tabCours[k] = tampon;
+                                    }
+                                }
+                            }
+                            return res.json(tabCours);
+                        }
+
+                    })
 
             })
-         
-    })
-    
-        
+
+        })
+
+
 }
 
 
