@@ -70,6 +70,45 @@ export function index(req, res) {
         .catch(handleError(res));
 }
 
+//Get All followers By prof
+export function GetfollowersByProf(req, res) {
+    Suivi.find({ id_prof: req.params.id }).populate('id_user').exec()
+        .then(list => {
+            var tab = [];
+            list.forEach(function(element) {
+                tab.push(element.id_user);
+            });
+            return res.json(tab);
+        });
+}
+
+//Get All followed By user
+export function GetfollowedByUser(req, res) {
+    Suivi.find({ id_user: req.params.ids }).populate('id_prof').exec()
+        .then(list => {
+            var tab = [];
+            list.forEach(function(element) {
+                tab.push(element.id_prof);
+            });
+            return res.json(tab);
+        });
+
+}
+
+//Get Prof Most follow
+export function GetProfMostfollow(req, res) {
+    Suivi.find().populate('id_prof').exec()
+        .then(list => {
+            var tab = [];
+            list.forEach(function(element) {
+                tab.push(element.id_prof);
+            });
+            return res.json(tab);
+        });
+
+}
+
+
 // Gets a single Suivi from the DB
 export function show(req, res) {
     return Suivi.findById(req.params.id).exec()
