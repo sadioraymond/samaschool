@@ -46,6 +46,15 @@ function removeEntity(res) {
     };
 }
 
+function verify(tab, element) {
+    for (let i = 0; i < tab.length; i++) {
+        if (tab[i].toString() == element.toString()) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function handleEntityNotFound(res) {
     return function(entity) {
         if (!entity) {
@@ -94,16 +103,46 @@ export function GetfollowedByUser(req, res) {
         });
 
 }
-
 //Get Prof Most follow
 export function GetProfMostfollow(req, res) {
-    Suivi.find().populate('id_prof').exec()
+    Suivi.find().exec()
         .then(list => {
             var tab = [];
+            var tabs = [];
+            var tampon;
             list.forEach(function(element) {
-                tab.push(element.id_prof);
+                if (tab.length != 0) {
+                    if (!verify(tab, element.id_prof)) {
+                        tab.push(element.id_prof);
+                    }
+                } else {
+                    tab.push(element.id_prof);
+                }
             });
-            return res.json(tab);
+            var cpt = 0;
+            for (let i = 0; i < tab.length; i++) {
+                Suivi.find({ id_prof: tab[i] }).exec(function(err, cp) {
+                    var save = {};
+                    save.id = tab[i]
+                    save.nbfois = cp.length;
+                    console.log('compte', save.nbfois);
+                    tabs.push(save);
+                    cpt++;
+                    if (cpt == tab.length) {
+                        for (let j = 0; j < tabs.length - 1; j++) {
+                            for (let k = j + 1; k < tabs.length; k++) {
+                                if (tabs[j].nbfois < tabs[k].nbfois) {
+                                    tampon = tabs[j];
+                                    tabs[j] = tabs[k];
+                                    tabs[k] = tampon;
+                                }
+                            }
+                        }
+                        return res.json(tabs);
+                    }
+                });
+            }
+
         });
 
 }
