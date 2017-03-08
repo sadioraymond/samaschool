@@ -1,17 +1,17 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/detail_users              ->  index
- * POST    /api/detail_users              ->  create
- * GET     /api/detail_users/:id          ->  show
- * PUT     /api/detail_users/:id          ->  upsert
- * PATCH   /api/detail_users/:id          ->  patch
- * DELETE  /api/detail_users/:id          ->  destroy
+ * GET     /api/suivis              ->  index
+ * POST    /api/suivis              ->  create
+ * GET     /api/suivis/:id          ->  show
+ * PUT     /api/suivis/:id          ->  upsert
+ * PATCH   /api/suivis/:id          ->  patch
+ * DELETE  /api/suivis/:id          ->  destroy
  */
 
 'use strict';
 
 import jsonpatch from 'fast-json-patch';
-import DetailUser from './detail_user.model';
+import Suivi from './suivi.model';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -46,6 +46,15 @@ function removeEntity(res) {
     };
 }
 
+function verify(tab, element) {
+    for (let i = 0; i < tab.length; i++) {
+        if (tab[i].toString() == element.toString()) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function handleEntityNotFound(res) {
     return function(entity) {
         if (!entity) {
@@ -56,16 +65,6 @@ function handleEntityNotFound(res) {
     };
 }
 
-function verify(tab, element) {
-    for (let i = 0; i < tab.length; i++) {
-        if (tab[i].toString() == element.toString()) {
-            return true;
-        }
-    }
-    return false;
-}
-
-
 function handleError(res, statusCode) {
     statusCode = statusCode || 500;
     return function(err) {
@@ -73,40 +72,56 @@ function handleError(res, statusCode) {
     };
 }
 
-// Gets a list of DetailUsers
+// Gets a list of Suivis
 export function index(req, res) {
-    return DetailUser.find().populate('user').populate('etablissement').exec()
+    return Suivi.find().populate('id_user').populate('id_prof').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
 
-// Gets a single DetailUser from the DB
-export function show(req, res) {
-    return DetailUser.findById(req.params.id).exec()
-        .then(handleEntityNotFound(res))
-        .then(respondWithResult(res))
-        .catch(handleError(res));
+//Get All followers By prof
+export function GetfollowersByProf(req, res) {
+    Suivi.find({ id_prof: req.params.id }).populate('id_user').exec()
+        .then(list => {
+            var tab = [];
+            list.forEach(function(element) {
+                tab.push(element.id_user);
+            });
+            return res.json(tab);
+        });
 }
 
-//Get Most Popular School
-export function GetMostPopularSchool(req, res) {
-    DetailUser.find().exec()
+//Get All followed By user
+export function GetfollowedByUser(req, res) {
+    Suivi.find({ id_user: req.params.ids }).populate('id_prof').exec()
+        .then(list => {
+            var tab = [];
+            list.forEach(function(element) {
+                tab.push(element.id_prof);
+            });
+            return res.json(tab);
+        });
+
+}
+//Get Prof Most follow
+export function GetProfMostfollow(req, res) {
+    Suivi.find().exec()
         .then(list => {
             var tab = [];
             var tabs = [];
             var tampon;
             list.forEach(function(element) {
                 if (tab.length != 0) {
-                    if (!verify(tab, element.etablissement)) {
-                        tab.push(element.etablissement);
+                    if (!verify(tab, element.id_prof)) {
+                        tab.push(element.id_prof);
                     }
                 } else {
-                    tab.push(element.etablissement);
+                    tab.push(element.id_prof);
                 }
             });
             var cpt = 0;
             for (let i = 0; i < tab.length; i++) {
-                DetailUser.find({ etablissement: tab[i] }).exec(function(err, cp) {
+                Suivi.find({ id_prof: tab[i] }).exec(function(err, cp) {
                     var save = {};
                     save.id = tab[i]
                     save.nbfois = cp.length;
@@ -132,39 +147,48 @@ export function GetMostPopularSchool(req, res) {
 
 }
 
-// Creates a new DetailUser in the DB
+
+// Gets a single Suivi from the DB
+export function show(req, res) {
+    return Suivi.findById(req.params.id).exec()
+        .then(handleEntityNotFound(res))
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+}
+
+// Creates a new Suivi in the DB
 export function create(req, res) {
-    return DetailUser.create(req.body)
+    return Suivi.create(req.body)
         .then(respondWithResult(res, 201))
         .catch(handleError(res));
 }
 
-// Upserts the given DetailUser in the DB at the specified ID
+// Upserts the given Suivi in the DB at the specified ID
 export function upsert(req, res) {
     if (req.body._id) {
         delete req.body._id;
     }
-    return DetailUser.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true }).exec()
+    return Suivi.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true }).exec()
 
     .then(respondWithResult(res))
         .catch(handleError(res));
 }
 
-// Updates an existing DetailUser in the DB
+// Updates an existing Suivi in the DB
 export function patch(req, res) {
     if (req.body._id) {
         delete req.body._id;
     }
-    return DetailUser.findById(req.params.id).exec()
+    return Suivi.findById(req.params.id).exec()
         .then(handleEntityNotFound(res))
         .then(patchUpdates(req.body))
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
 
-// Deletes a DetailUser from the DB
+// Deletes a Suivi from the DB
 export function destroy(req, res) {
-    return DetailUser.findById(req.params.id).exec()
+    return Suivi.findById(req.params.id).exec()
         .then(handleEntityNotFound(res))
         .then(removeEntity(res))
         .catch(handleError(res));

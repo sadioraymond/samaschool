@@ -14,7 +14,9 @@ var DetailUserSchema = new mongoose.Schema({
         type: Number,
         ref: 'Etablissement'
     },
-    dateentree: Date
+    dateentree: Date,
+    suivre: Boolean,
+    active: Boolean
 });
 DetailUserSchema.plugin(autoIncrement.plugin, 'DetailUser');
 registerEvents(DetailUserSchema);

@@ -20,6 +20,37 @@ export function etablissementProviderService($http, $q) {
         return liste;
 
     }
+
+    this.EtablissementPlussuivi = function() {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/detail_users/suivi', {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
+    this.FindEtabByID = function(id) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/etablissements/' + id, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
 }
 
 export default angular.module('samaschoolApp.etablissementProvider', [])
