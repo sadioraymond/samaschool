@@ -1928,13 +1928,13 @@ export default function seedDatabaseIfNeeded() {
             .then(() => {
                 suivi.create({
                         _id: 1,
-                        user: "58b03802d98ff60ec2777f91",
+                        id_user: "58b03802d98ff60ec2777f91",
                         id_prof: "58b03802d98ff60ec2777f93",
                         active: true,
                         date: "2017-02-03"
                     }, {
                         _id: 2,
-                        user: "58b03802d98ff60ec2777f90",
+                        id_user: "58b03802d98ff60ec2777f90",
                         id_prof: "58b03802d98ff60ec2777f93",
                         active: true,
                         date: "2016-08-29"
@@ -2179,7 +2179,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 10,
                         classe: 10,
-                        etablissement: 12,
+                        etablissement: 2,
                         date: "2017-10-01"
                     })
                     .then(() => console.log('finished populating Détail Classe'))
