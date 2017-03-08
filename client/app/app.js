@@ -29,9 +29,11 @@ import socket from '../components/socket/socket.service';
 
 import courses from '../components/courses/courses.component';
 import bottomfooter from '../components/bottomFooter/bottomFooter.component';
+
 import statistics from '../components/statistics/statistics.component';
 import teachers from '../components/teachers/teachers.component';
 import etablissements from '../components/etablissements/etablissements.component';
+import banner from '../components/banner/banner.component';
 
 import coursProvider from '../app/factory/coursProvider/coursProvider.service';
 import etablissementProvider from '../app/factory/etablissementProvider/etablissementProvider.service';
@@ -39,22 +41,28 @@ import classeProvider from '../app/factory/classeProvider/classeProvider.service
 import niveauProvider from '../app/factory/niveauProvider/niveauProvider.service';
 import suiviCoursClasseProvider from '../app/factory/suivi_cours_classeProvider/suivi_cours_classeProvider.service';
 import detailClasseProvider from '../app/factory/detail_classeProvider/detail_classeProvider.service';
+import profilProvider from '../app/factory/profilProvider/profilProvider.service';
 import jsFonctions from '../app/factory/jsFonctions/jsFonctions.service';
 
 // ------ Les routes -------
 import CoursesPagesComponent from './coursesPages/coursesPages.component';
+import CourseSinglePageComponent from './courseSinglePage/courseSinglePage.component';
+import RegisterComponent from './register/register.component';
+import ProfilComponent from './profil/profil.component';
+import EtablissementPagesComponent from './etablissementPages/etablissementPages.component';
+
 import './app.css';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, statistics, teachers, etablissements, CoursesPagesComponent
-    ])
+    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent
+])
     .config(routeConfig)
-    .run(function($rootScope, $location, Auth) {
+    .run(function ($rootScope, $location, Auth) {
         'ngInject';
         // Redirect to login if route requires auth and you're not logged in
 
-        $rootScope.$on('$stateChangeStart', function(event, next) {
-            Auth.isLoggedIn(function(loggedIn) {
+        $rootScope.$on('$stateChangeStart', function (event, next) {
+            Auth.isLoggedIn(function (loggedIn) {
                 if (next.authenticate && !loggedIn) {
                     $location.path('/login');
                 }

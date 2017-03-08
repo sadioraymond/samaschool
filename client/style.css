@@ -2159,7 +2159,7 @@ blockquote cite {
     top: 0;
     left: 0;
     bottom: 0;
-    background: url(assets/upload/about.jpg);
+    background: url(assets/upload/info_1.jpg);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -2167,7 +2167,19 @@ blockquote cite {
     overflow: hidden;
     position: absolute;
 }
-
+.myimg2 {
+    padding: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: url(assets/upload/statistique.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    position: absolute;
+}
 .myimg1 {
     padding: 0;
     top: 0;

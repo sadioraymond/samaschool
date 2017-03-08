@@ -13,14 +13,13 @@ export class CoursesPagesComponent {
     this.message = 'Hello';
   }
   $onInit() {
-    // setTimeout(function () {
-      angular.element(document)
-        .ready(() => {
-
+    angular.element(document)
+      .ready(() => {
+        setTimeout(() => {
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
-        });
-    // }, 0);
+        }, 0);
+      });
   }
 }
 

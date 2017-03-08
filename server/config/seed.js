@@ -22,6 +22,7 @@ import Cycle from '../api/Etablissement_Module/cycle/cycle.model';
 import Dclasse from '../api/Etablissement_Module/detail_classe/detail_classe.model';
 import SousCat from '../api/Utilisateur_Module/sous_categorie/sous_categorie.model';
 import Categorie from '../api/Utilisateur_Module/categorie/categorie.model';
+import suivi from '../api/Etablissement_Module/suivi/suivi.model';
 import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
@@ -1594,32 +1595,44 @@ export default function seedDatabaseIfNeeded() {
                         _id: 1,
                         user: "58b03802d98ff60ec2777f95",
                         etablissement: 1,
-                        dateentree: "2016-09-30"
+                        dateentree: "2016-09-30",
+                        suivre: true,
+                        active: true
                     }, {
                         _id: 2,
                         user: "58b03802d98ff60ec2777f92",
                         etablissement: 2,
-                        dateentree: "2016-06-05"
+                        dateentree: "2016-06-05",
+                        suivre: true,
+                        active: true
                     }, {
                         _id: 3,
                         user: "58b03802d98ff60ec2777f94",
                         etablissement: 1,
-                        dateentree: "2017-11-19"
+                        dateentree: "2017-11-19",
+                        suivre: true,
+                        active: true
                     }, {
                         _id: 4,
                         user: "58b03802d98ff60ec2777f94",
                         etablissement: 2,
-                        dateentree: "2017-05-18"
+                        dateentree: "2017-05-18",
+                        suivre: true,
+                        active: true
                     }, {
                         _id: 5,
                         user: "58b03802d98ff60ec2777f93",
                         etablissement: 1,
-                        dateentree: "2017-04-13"
+                        dateentree: "2017-04-13",
+                        suivre: true,
+                        active: true
                     }, {
                         _id: 6,
                         user: "58b03802d98ff60ec2777f93",
                         etablissement: 2,
-                        dateentree: "2017-08-26"
+                        dateentree: "2017-08-26",
+                        suivre: true,
+                        active: true
                     })
                     .then(() => console.log('finished populating Detail User'))
                     .catch(err => console.log('error populating Detail User', err));
@@ -1911,6 +1924,66 @@ export default function seedDatabaseIfNeeded() {
                     .then(() => console.log('finished populating Détail Profil'))
                     .catch(err => console.log('error populating Détail Profil', err));
             });
+        suivi.find({}).remove()
+            .then(() => {
+                suivi.create({
+                        _id: 1,
+                        id_user: "58b03802d98ff60ec2777f91",
+                        id_prof: "58b03802d98ff60ec2777f93",
+                        active: true,
+                        date: "2017-02-03"
+                    }, {
+                        _id: 2,
+                        id_user: "58b03802d98ff60ec2777f90",
+                        id_prof: "58b03802d98ff60ec2777f93",
+                        active: true,
+                        date: "2016-08-29"
+                    }, {
+                        _id: 3,
+                        id_user: "58b03802d98ff60ec2777f8f",
+                        id_prof: "58b03802d98ff60ec2777f93",
+                        active: true,
+                        date: "2016-10-04"
+                    }, {
+                        _id: 4,
+                        id_user: "58b03802d98ff60ec2777f8e",
+                        id_prof: "58b03802d98ff60ec2777f93",
+                        active: true,
+                        date: "2018-01-19"
+                    }, {
+                        _id: 5,
+                        id_user: "58b03802d98ff60ec2777f8d",
+                        id_prof: "58b03802d98ff60ec2777f93",
+                        active: true,
+                        date: "2017-03-19"
+                    }, {
+                        _id: 6,
+                        id_user: "58b03802d98ff60ec2777f8c",
+                        id_prof: "58b03802d98ff60ec2777f93",
+                        active: true,
+                        date: "2016-06-13"
+                    }, {
+                        _id: 7,
+                        id_user: "58b03802d98ff60ec2777f8e",
+                        id_prof: "58b03802d98ff60ec2777f94",
+                        active: true,
+                        date: "2018-01-19"
+                    }, {
+                        _id: 8,
+                        id_user: "58b03802d98ff60ec2777f8d",
+                        id_prof: "58b03802d98ff60ec2777f94",
+                        active: true,
+                        date: "2017-03-19"
+                    }, {
+                        _id: 9,
+                        id_user: "58b03802d98ff60ec2777f8c",
+                        id_prof: "58b03802d98ff60ec2777f94",
+                        active: true,
+                        date: "2016-06-13"
+                    })
+                    .then(() => console.log('finished populating Suivi'))
+                    .catch(err => console.log('error populating Suivi', err));
+            });
         suivi_cours.find({}).remove()
             .then(() => {
                 suivi_cours.create({
@@ -2106,7 +2179,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 10,
                         classe: 10,
-                        etablissement: 12,
+                        etablissement: 2,
                         date: "2017-10-01"
                     })
                     .then(() => console.log('finished populating Détail Classe'))
