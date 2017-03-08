@@ -32,7 +32,7 @@ export class MainController {
     listProfplussuivi;
     listeEtablissementPlussuivi;
     listeEPlussuivi;
-    CoursPlussuivi;
+    CoursPlusSuivi;
     Profplussuivi;
     /*@ngInject*/
     constructor($http, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider) {
