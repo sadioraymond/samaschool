@@ -14,6 +14,7 @@ import jsonpatch from 'fast-json-patch';
 import Cours from './cours.model';
 import User from '../detail_profil/detail_profil.model';
 import Profil from '../profil/profil.model';
+import SuiviCours from '../suivi_cours/suivi_cours.model';
 import Classe from '../../Etablissement_Module/detail_classe/detail_classe.model';
 import Suivi from '../../Etablissement_Module/suivi_cours_classe/suivi_cours_classe.model';
 
@@ -81,6 +82,33 @@ export function show(req, res) {
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
+var stringify = require('json-stringify-safe');
+// GLes Cours les plus suivies
+export function getCoursPlusSuivi(req, res) {
+    
+     Cours.find().exec()
+        .then(list => {
+            var tabCours = [];
+            var cpt = 0;
+            list.map(li => {
+             SuiviCours.find({cours : li._id}).count()
+             .then(nb => {
+                 var ben = {};
+              ben.id = li._id;
+              ben.nb_suiv = nb;
+              tabCours.push(ben);
+                cpt++;
+                if(cpt == list.length)
+                return res.json(tabCours)                
+             })
+
+            })
+         
+    })
+    
+        
+}
+
 
 // Gets all Cours related to a Prof
 export function getCoursByProf(req, res) {
