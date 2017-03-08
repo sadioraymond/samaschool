@@ -6,8 +6,8 @@ var controller = require('./suivi.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
-router.get('/:id', controller.show);
 router.get('/plussuivi', controller.GetProfMostfollow);
+router.get('/:id', controller.show);
 router.get('/followers/:id', controller.GetfollowersByProf);
 router.get('/followed/:ids', controller.GetfollowedByUser);
 router.post('/', controller.create);
