@@ -154,7 +154,7 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="cartmenu"><a href="course-checkout.html"><i class="fa fa-shopping-bag"></i> <sup>2</sup></a></li>
+            <li class="cartmenu" ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo"><a ng-click="$ctrl.open()"><i class="fa fa-shopping-bag"></i> <sup>2</sup></a></li>
             <li class="dropdown cartmenu searchmenu hasmenu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search"></i></a>
               <ul class="dropdown-menu show-right">
@@ -185,3 +185,63 @@
 <!-- end header -->
 
 
+<script type="text/ng-template" id="myModalContent.html">
+  <div class="tab-first menu-center">
+    <div class="modal-header" style="border: 0px;">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#connexion" aria-controls="connexion" role="tab" data-toggle="tab">Connexion</a></li>
+        <li role="presentation"><a href="#inscription" aria-controls="inscription" role="tab" data-toggle="tab">Inscription</a></li>
+      </ul>
+    </div>
+    <div class="tab-content" class="modal-body" id="modal-body">
+      <div role="tabpanel" class="tab-pane active" id="connexion">
+        <div class="tab-padding clearfix">
+          <div class="loginform">
+            <form class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <input type="email" name="email" class="form-control" placeholder="Email">
+                <input type="password" name="password" class="form-control" placeholder="Password">
+                <button type="submit" value="SEND" class="btn btn-primary btn-block btn-lg"> Login Account</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="inscription">
+        <div class="tab-padding clearfix">
+          <div class="row">
+            <div class="col-md-7 col-md-offset-3">
+              <ul class="list-inline social-small" style="height:50px; margin-left:10px;">
+                <li><a href="#"><i style="height:30px; width: 100px;" class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i style="height:30px; width: 100px;" class="fa fa-google-plus"></i></a></li>
+              </ul>
+              <!-- end social icons -->
+            </div>
+          </div>
+          <div class="row" style="height:30px;">
+            <div class="col-md-2 col-md-offset-5"> <strong> Ou </strong> </div>
+          </div>
+          <div class="loginform">
+            <form class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <input type="text" name="name" class="form-control" placeholder="Username">
+                <input type="email" name="email" class="form-control" placeholder="Email">
+                <input type="password" name="password" class="form-control" placeholder="Password">
+                <input type="password" name="password" class="form-control" placeholder="Re-Enter Password">
+                <button type="submit" value="SEND" class="btn btn-primary btn-block btn-lg"> Create Account</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/ng-template" id="stackedModal.html">
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title-{{name}}">The {{name}} modal!</h3>
+  </div>
+  <div class="modal-body" id="modal-body-{{name}}">
+    Having multiple modals open at once is probably bad UX but it's technically possible.
+  </div>
+</script>
