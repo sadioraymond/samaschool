@@ -12,6 +12,8 @@
 
 import jsonpatch from 'fast-json-patch';
 import SuiviCoursClasse from './suivi_cours_classe.model';
+import Detail from '../detail_classe/detail_classe.model';
+import Cours from '../../Utilisateur_Module/cours/cours.model';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -61,6 +63,44 @@ function handleError(res, statusCode) {
     return function(err) {
         res.status(statusCode).send(err);
     };
+}
+
+export function GetCoursProfInSchool(req, res) {
+    Cours.find({ user: req.params.id }).exec()
+        .then(list => {
+            var tab = [];
+            var tabs = [];
+            var coursProf = [];
+            list.forEach(function(element) {
+                tab.push(element._id);
+            });
+            if (tab.length == 0) {
+                return res.json(tabs);
+            } else {
+                var cpt = 0;
+                for (let i = 0; i < tab.length; i++) {
+                    SuiviCoursClasse.find({ cours: tab[i] }).populate('cours').exec(function(err, cp) {
+                        cp.forEach(function(eleme) {
+                            var cou = [];
+                            cou.push(eleme.cours);
+                            Detail.find({ classe: eleme.classe }).populate('classe').populate('etablissement').exec(function(err, etab) {
+                                var save = {};
+                                save.cours = cou;
+                                save.detail = etab;
+                                tabs.push(save);
+                                cpt++;
+                                if (cpt == tab.length) {
+
+                                    return res.json(tabs);
+                                }
+                            });
+                        });
+                    });
+                }
+            }
+
+        });
+
 }
 
 // Gets a list of SuiviCoursClasses
