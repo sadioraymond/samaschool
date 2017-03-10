@@ -7,6 +7,7 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
+router.get('/school/:id', controller.GetCoursProfInSchool);
 router.get('/classe/:id', controller.getCoursByClasse);
 router.get('/cours/:cr', controller.getClasseByCours);
 router.post('/', controller.create);

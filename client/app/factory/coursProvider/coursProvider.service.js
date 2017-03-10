@@ -78,7 +78,21 @@ export function coursProviderService($http, $q) {
         return liste;
 
     }
+    this.GetCoursProfInSchool = function(prof) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/suivi_cours_classes/school/' + prof, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
 
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
 }
 
 export default angular.module('samaschoolApp.coursProvider', [])
