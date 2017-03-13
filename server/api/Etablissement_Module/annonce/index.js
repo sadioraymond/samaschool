@@ -6,6 +6,7 @@ var controller = require('./annonce.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/etablissement/:id', controller.getAnnoceByEtablissement);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.upsert);
