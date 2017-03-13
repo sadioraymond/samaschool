@@ -9,6 +9,8 @@ import path from 'path';
 
 export default function(app) {
     // Insert routes below
+    app.use('/api/type_fichiers', require('./api/Utilisateur_Module/type_fichier'));
+    app.use('/api/fichiers', require('./api/Utilisateur_Module/fichier'));
     app.use('/api/suivis', require('./api/Etablissement_Module/suivi'));
     app.use('/api/categories', require('./api/Utilisateur_Module/categorie'));
     app.use('/api/sous_categories', require('./api/Utilisateur_Module/sous_categorie'));
