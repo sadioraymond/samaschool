@@ -1,0 +1,16 @@
+<div class="row text-center">
+
+  <div class="col-md-4 col-sm-12 mob20" ng-repeat="souscat in $ctrl.listSousCat" style="height: 400px;">
+    <div id="{{souscat._id}}" class="boxes text-left service-first withcircle withborder leftservice">
+      <i class="scat fa fa-university alignleft" ng-click="profilCtrl.sCatClick()"></i>
+      <h3 class="scat" ng-click="profilCtrl.sCatClick()"> {{souscat.libelle}} </h3>
+      <p>Professional responsive and retina ready template for online learning websites!</p>
+      
+      <i class="fa fa-tags alignleft" style="height: 20px; width: 25px;" ng-click="profilCtrl.catClick()"></i> {{souscat.categorie.libelle}}
+    </div>
+    <!-- end box -->
+  </div>
+  <!-- end col -->
+
+</div>
+<!-- end row -->

@@ -9,20 +9,20 @@
             <div class="row">
               <div class="col-sm-12 col-md-12">
                 <div class="clearfix">
-                    <div class="avatar-author">
-                      <a href="author.html">
-                        <img alt="" src="assets/upload/team_01.jpg" class="img-responsive">
-                      </a>
-                    </div>
-                    <div class="author-title desc">
-                      <h4><a href="member-profile.html">John DOE</a></h4>
-                      <a class="authorlink" href="https://showwp.com">https://showwp.com</a>
-                      <ul class="list-inline social-small">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                      </ul>
-                    </div>
+                  <div class="avatar-author">
+                    <a href="author.html">
+                      <img alt="" src="assets/upload/team_01.jpg" class="img-responsive">
+                    </a>
+                  </div>
+                  <div class="author-title desc">
+                    <h4><a href="member-profile.html">John DOE</a></h4>
+                    <a class="authorlink" href="https://showwp.com">https://showwp.com</a>
+                    <ul class="list-inline social-small">
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
               <!-- end col -->
@@ -52,7 +52,7 @@
               <ul id="ss_sidebar">
                 <li class="active"><a href="" ng-click="profilCtrl.profilClick(); profilCtrl.doActive($event)" class="profilClass">Profil</a></li>
                 <li><a href="" ng-click="profilCtrl.etablissementClick(); profilCtrl.doActive($event)" class="etabClass">Etablissements<span>2</span> </a></li>
-                <li><a href="" ng-click="profilCtrl.courseClick(); profilCtrl.doActive($event)" class="coursesClass">Courses <span>4</span></a></li>
+                <li><a href="" ng-click="profilCtrl.courseClick(); profilCtrl.doActive($event)" class="coursesClass">Courses <span>4 </span></a></li>
                 <!--<li><a href="member-achievements.html">Achievements <span>6</span></a></li>-->
                 <li><a href="">Forum Topics <span>33</span></a></li>
                 <li><a href="">Friends <span>8</span></a></li>
@@ -174,6 +174,11 @@
       <!-- end right -->
 
       <div ng-show="profilCtrl.course" id="sidebar1" class="col-md-9 col-sm-12">
+        <div ng-if="profilCtrl.createCourseLink" class="row" style="margin-bottom: 2em;">
+          <div class="col-md-4">
+            <button ng-click="profilCtrl.createCourseClick()" type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Demarrer Ici pour creer un cours</button>
+          </div>
+        </div>
         <div class="widget clearfix">
           <div class="member-profile">
             <div class="big-title">
@@ -271,6 +276,100 @@
         </div>
       </div>
       <!-- end right -->
+
+      <div ng-show="profilCtrl.createCourse" id="sidebar1" class="col-md-8 col-sm-12">
+        <!--<div class="row" style="margin-bottom: 2em;">
+          <div class="col-md-4">
+            <button ng-click="profilCtrl.createCourse" type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Demarrer Ici pour creer un cours</button>
+          </div>
+        </div>-->
+        <div class="widget clearfix">
+          <div id="post-content" class="single-course">
+            <div class="course-single-quiz">
+              <small>Quiz for : <span><a href="course-single.html">Learning Web Design in 22 Days</a></span></small><br>
+              <small>Quiz Status: <span>Not Finished</span> </small>
+
+              <hr>
+
+              <div class="quiz-wrapper">
+                <h3>Creer votre cours en quelques étapes</h3>
+                <h4>How to integrate Bootstrap CSS and JS files into a HTML file?</h4>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the, when an unknown printer took. Lorem Ipsum is simply dummy text of the
+                  printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+                  1500s, when an unknown printer took.</p>
+                <div class="row">
+                  <div class="skills course-complete text-left">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" ng-style="profilCtrl.styleProgress" data-transitiongoal="profilCtrl.stateProgress"><span> {{profilCtrl.stateProgress}} </span></div>
+                    </div>
+                  </div>
+                  <hr class="invis">
+                  <hr class="invis">
+                </div>
+                <!--end progressbar-->
+                <div class="row text-center" ng-show="profilCtrl.firstPart">
+                  <div class="col-md-6 col-md-offset-3">
+                    <input list="browsers" class="form-control" placeholder="Name">
+                    <datalist id="browsers">
+                      <option value="Internet Explorer">
+                        <option value="Firefox">
+                          <option value="Chrome">
+                            <option value="Opera">
+                              <option value="Safari">
+                    </datalist>
+                  </div>
+                  <div class="col-md-4 col-sm-12 mob20" ng-repeat="cat in profilCtrl.listCat" style="height: 400px;">
+                    <div id="{{cat._id}}" class="boxes text-left service-first withcircle withborder leftservice">
+                      <i class="scat fa fa-university alignleft" ng-click="profilCtrl.sCatClick()"></i>
+                      <h3 class="scat" ng-click="profilCtrl.sCatClick()"> {{cat.libelle}} </h3>
+                      <p>Professional responsive and retina ready template for online learning websites!</p>
+                      <i class="fa fa-tags alignleft" style="height: 20px; width: 25px;" ng-click="profilCtrl.catClick()"></i>                      {{cat.categorie.libelle}}
+                    </div>
+                    <!-- end box -->
+                  </div>
+                  <!-- end col -->
+
+                </div>
+                <!-- end row -->
+                <!--end  categorie-->
+                <div ng-show="profilCtrl.secondPart" class="row text-center">
+                  <div class="contact_form">
+                    <form id="createcourseform" class="row" name="createcourseform" method="post">
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label for="titre">Titre du cours</label>
+                          <textarea class="form-control" id="titre" rows="1" ng-model="profilCtrl.titreCours" placeholder="Titre du cours"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="objectif">Objectif du cours</label>
+                          <textarea class="form-control" id="objectif" rows="4" ng-model="profilCtrl.objectifCours" placeholder="Objectif du cours"></textarea>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <!-- end row -->
+                <hr class="invis">
+                <div class="row">
+                  <div class="col-md-6">
+                    <a href="#" ng-click="profilCtrl.prevClick()" class="btn btn-primary btn-square btn-block">Prev Quiz Question</a>
+                  </div>
+                  <div class="col-md-6">
+                    <a href="#" ng-click="profilCtrl.nextClick()" class="btn btn-primary btn-square btn-block">Next Quiz Question</a>
+                  </div>
+                </div>
+                <!-- end row -->
+              </div>
+              <!-- end quiz wrapper -->
+            </div>
+            <!-- end desc -->
+          </div>
+          <!-- end col -->
+        </div>
+      </div>
+      <!-- end right -->
+
       <div ng-show="profilCtrl.contact" id="sidebar2" class="col-md-3 col-sm-12 mob30">
         <div class="widget clearfix">
           <div class="member-profile">

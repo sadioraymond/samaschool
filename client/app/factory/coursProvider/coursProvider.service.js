@@ -96,5 +96,5 @@ export function coursProviderService($http, $q) {
 }
 
 export default angular.module('samaschoolApp.coursProvider', [])
-    .service('coursProvider', coursProviderService)
-    .name;
+  .service('coursProvider', coursProviderService)
+  .name;
