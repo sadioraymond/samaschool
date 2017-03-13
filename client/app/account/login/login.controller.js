@@ -1,5 +1,6 @@
 'use strict';
 // @flow
+// import ModalInstanceCtrl from '../../../components/navbar/navbar.component';
 
 type User = {
   name: string;
@@ -19,23 +20,27 @@ export default class LoginController {
   submitted = false;
   Auth;
   $state;
+  userProvider;
 
   /*@ngInject*/
-  constructor(Auth, $state) {
+  constructor(Auth, $state, userProvider) {
     this.Auth = Auth;
     this.$state = $state;
+    this.userProvider = userProvider;
   }
 
   login(form) {
     this.submitted = true;
 
-    if(form.$valid) {
+    if (form.$valid) {
       this.Auth.login({
-        email: this.user.email,
-        password: this.user.password
-      })
+          email: this.user.email,
+          password: this.user.password
+        })
         .then(() => {
           // Logged in, redirect to home
+
+          this.userProvider.partage(this.userProvider.varbi);
           this.$state.go('main');
         })
         .catch(err => {

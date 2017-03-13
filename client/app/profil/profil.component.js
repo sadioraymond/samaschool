@@ -34,6 +34,7 @@ export class ProfilComponent {
         this.jsFonctions = jsFonctions;
         this.sousCategorieProvider = souscategorieProvider;
         this.categorieProvider = categorieProvider;
+
     }
     getSousCatByCategorie(id) {
         this.sousCategorieProvider.getSousCatByCategorie(id).then(list => {
@@ -48,6 +49,8 @@ export class ProfilComponent {
                 setTimeout(() => {
                     this.jsFonctions.pluginScript();
                     this.jsFonctions.otherScript();
+                  // To style only <select>s with the selectpicker class
+          $('.selectpicker').selectpicker();
                 }, 0);
             });
         this.categorieProvider.listCategorie().then(list => {
