@@ -2131,62 +2131,61 @@ export default function seedDatabaseIfNeeded() {
                     .catch(err => console.log('error populating Cycle', err));
             });
         Dclasse.find({}).remove()
-
-        .then(() => {
-            Dclasse.create({
-                    _id: 1,
-                    classe: 1,
-                    etablissement: 1,
-                    date: "2016-05-30"
-                }, {
-                    _id: 2,
-                    classe: 2,
-                    etablissement: 1,
-                    date: "2016-07-18"
-                }, {
-                    _id: 3,
-                    classe: 3,
-                    etablissement: 1,
-                    date: "2017-01-30"
-                }, {
-                    _id: 4,
-                    classe: 4,
-                    etablissement: 1,
-                    date: "2016-12-02"
-                }, {
-                    _id: 5,
-                    classe: 5,
-                    etablissement: 1,
-                    date: "2017-04-30"
-                }, {
-                    _id: 6,
-                    classe: 6,
-                    etablissement: 2,
-                    date: "2017-01-21"
-                }, {
-                    _id: 7,
-                    classe: 7,
-                    etablissement: 2,
-                    date: "2016-11-14"
-                }, {
-                    _id: 8,
-                    classe: 8,
-                    etablissement: 2,
-                    date: "2017-03-16"
-                }, {
-                    _id: 9,
-                    classe: 9,
-                    etablissement: 2,
-                    date: "2016-07-30"
-                }, {
-                    _id: 10,
-                    classe: 10,
-                    etablissement: 2,
-                    date: "2017-10-01"
-                })
-                .then(() => console.log('finished populating Détail Classe'))
-                .catch(err => console.log('error populating Détail Classe', err));
-        });
+            .then(() => {
+                Dclasse.create({
+                        _id: 1,
+                        classe: 1,
+                        etablissement: 1,
+                        date: "2016-05-30"
+                    }, {
+                        _id: 2,
+                        classe: 2,
+                        etablissement: 1,
+                        date: "2016-07-18"
+                    }, {
+                        _id: 3,
+                        classe: 3,
+                        etablissement: 1,
+                        date: "2017-01-30"
+                    }, {
+                        _id: 4,
+                        classe: 4,
+                        etablissement: 1,
+                        date: "2016-12-02"
+                    }, {
+                        _id: 5,
+                        classe: 5,
+                        etablissement: 1,
+                        date: "2017-04-30"
+                    }, {
+                        _id: 6,
+                        classe: 6,
+                        etablissement: 2,
+                        date: "2017-01-21"
+                    }, {
+                        _id: 7,
+                        classe: 7,
+                        etablissement: 2,
+                        date: "2016-11-14"
+                    }, {
+                        _id: 8,
+                        classe: 8,
+                        etablissement: 2,
+                        date: "2017-03-16"
+                    }, {
+                        _id: 9,
+                        classe: 9,
+                        etablissement: 2,
+                        date: "2016-07-30"
+                    }, {
+                        _id: 10,
+                        classe: 10,
+                        etablissement: 2,
+                        date: "2017-10-01"
+                    })
+                    .then(() => console.log('finished populating Détail Classe'))
+                    .catch(err => console.log('error populating Détail Classe', err));
+            });
         SousCat.find({}).remove()
             .then(() => {
                 SousCat.create({
@@ -2322,6 +2321,9 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 2,
                         libelle: "Fichier Video"
+                    }, {
+                        _id: 3,
+                        libelle: "Fichier Image"
                     })
                     .then(() => console.log('finished populating Type Fichier'))
                     .catch(err => console.log('error populating Type Fichier', err));
