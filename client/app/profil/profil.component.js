@@ -41,6 +41,8 @@ export class ProfilComponent {
         setTimeout(() => {
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
+          // To style only <select>s with the selectpicker class
+          $('.selectpicker').selectpicker();
         }, 0);
       });
     this.categorieProvider.listSousCat().then(list => {

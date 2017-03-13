@@ -63,7 +63,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider) {
   $ctrl.selected = {
     item: $ctrl.items[0]
   };
-
+  userProvider.varbi = $uibModalInstance;
   $ctrl.ok = function () {
     $uibModalInstance.close($ctrl.selected.item);
   };
@@ -71,11 +71,11 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider) {
   $ctrl.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
-  $ctrl.createUser = function () {
-    userProvider.ajoutUser($ctrl.nameUser, $ctrl.emailUser, $ctrl.pwdUser)
-    ;
-    // window.location.reload();
-  };
+  // $ctrl.createUser = function () {
+  //   userProvider.ajoutUser($ctrl.nameUser, $ctrl.emailUser, $ctrl.pwdUser)
+  //   ;
+  //   // window.location.reload();
+  // };
 }
 
 ModalDemoCtrl.$inject = ["$uibModal", "$log", "$document"];
