@@ -2,6 +2,7 @@
 /* eslint no-sync: 0 */
 
 import angular from 'angular';
+import SignupController from '../../app/account/signup/signup.controller';
 
 export class NavbarComponent {
   menu = [{
@@ -12,13 +13,15 @@ export class NavbarComponent {
   isAdmin: Function;
   getCurrentUser: Function;
   isCollapsed = true;
+  // userProvider;
 
-  constructor(Auth) {
+  constructor(Auth, userProvider) {
     'ngInject';
 
     this.isLoggedIn = Auth.isLoggedInSync;
     this.isAdmin = Auth.isAdminSync;
     this.getCurrentUser = Auth.getCurrentUserSync;
+    // this.userProvider = userProvider;
   }
 
 }
@@ -54,7 +57,7 @@ export function ModalDemoCtrl($uibModal, $log, $document) {
     });
   };
 }
-export function ModalInstanceCtrl($uibModalInstance, items) {
+export function ModalInstanceCtrl($uibModalInstance, items, userProvider) {
   var $ctrl = this;
   $ctrl.items = items;
   $ctrl.selected = {
@@ -68,10 +71,15 @@ export function ModalInstanceCtrl($uibModalInstance, items) {
   $ctrl.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
+  $ctrl.createUser = function () {
+    userProvider.ajoutUser($ctrl.nameUser, $ctrl.emailUser, $ctrl.pwdUser)
+    ;
+    // window.location.reload();
+  };
 }
 
 ModalDemoCtrl.$inject = ["$uibModal", "$log", "$document"];
-ModalInstanceCtrl.$inject = ["$uibModalInstance", "items"];
+ModalInstanceCtrl.$inject = ["$uibModalInstance", "items", "userProvider"];
 export default angular.module('directives.navbar', [])
   .component('navbar', {
     template: require('./navbar.html'),

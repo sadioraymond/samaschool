@@ -3,15 +3,16 @@ const angular = require('angular');
 
 /*@ngInject*/
 export function userProviderService($http, $q) {
+    console.log('okkoko')
     // AngularJS will instantiate a singleton by calling "new" on this function
-    this.AjoutUser = function(name, email, password) {
+    this.ajoutUser = function(name, email, password) {
         var deferred = $q.defer();
         $http.post('/api/users', {
             name: name,
             email: email,
             password: password
         }).then(function() {
-            console.log("Bakhna");
+            alert('joi ');
         });
     }
     this.ListUser = function() {
