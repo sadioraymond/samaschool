@@ -51,19 +51,19 @@ import CourseSinglePageComponent from './courseSinglePage/courseSinglePage.compo
 import RegisterComponent from './register/register.component';
 import ProfilComponent from './profil/profil.component';
 import EtablissementPagesComponent from './etablissementPages/etablissementPages.component';
-
+import userProvider from '../app/factory/userProvider/userProvider.service';
 import './app.css';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces
-])
+        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider
+    ])
     .config(routeConfig)
-    .run(function ($rootScope, $location, Auth) {
+    .run(function($rootScope, $location, Auth) {
         'ngInject';
         // Redirect to login if route requires auth and you're not logged in
 
-        $rootScope.$on('$stateChangeStart', function (event, next) {
-            Auth.isLoggedIn(function (loggedIn) {
+        $rootScope.$on('$stateChangeStart', function(event, next) {
+            Auth.isLoggedIn(function(loggedIn) {
                 if (next.authenticate && !loggedIn) {
                     $location.path('/login');
                 }
