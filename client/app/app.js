@@ -45,9 +45,6 @@ import suiviCoursClasseProvider from '../app/factory/suivi_cours_classeProvider/
 import detailClasseProvider from '../app/factory/detail_classeProvider/detail_classeProvider.service';
 import profilProvider from '../app/factory/profilProvider/profilProvider.service';
 import jsFonctions from '../app/factory/jsFonctions/jsFonctions.service';
-import sousCategorieProvider from '../app/factory/sousCategorieProvider/sousCategorieProvider.service';
-import categorieProvider from '../app/factory/categorieProvider/categorieProvider.service';
-
 // ------ Les routes -------
 import CoursesPagesComponent from './coursesPages/coursesPages.component';
 import CourseSinglePageComponent from './courseSinglePage/courseSinglePage.component';
@@ -55,10 +52,12 @@ import RegisterComponent from './register/register.component';
 import ProfilComponent from './profil/profil.component';
 import EtablissementPagesComponent from './etablissementPages/etablissementPages.component';
 import userProvider from '../app/factory/userProvider/userProvider.service';
+import categorieProvider from '../app/factory/categorieProvider/categorieProvider.service';
+import souscategorieProvider from '../app/factory/souscategorieProvider/souscategorieProvider.service';
 import './app.css';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategorieProvider, sousCategories, categorieProvider
+        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider
     ])
     .config(routeConfig)
     .run(function($rootScope, $location, Auth) {

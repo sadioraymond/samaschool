@@ -16,6 +16,8 @@ function onConnect(socket) {
     });
 
     // Insert sockets below
+    require('../api/Utilisateur_Module/type_fichier/type_fichier.socket').register(socket);
+    require('../api/Utilisateur_Module/fichier/fichier.socket').register(socket);
     require('../api/Etablissement_Module/suivi/suivi.socket').register(socket);
     require('../api/Utilisateur_Module/categorie/categorie.socket').register(socket);
     require('../api/Utilisateur_Module/sous_categorie/sous_categorie.socket').register(socket);

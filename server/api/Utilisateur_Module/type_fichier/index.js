@@ -1,12 +1,11 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./annonce.controller');
+var controller = require('./type_fichier.controller');
 
 var router = express.Router();
 
 router.get('/', controller.index);
-router.get('/etablissement/:id', controller.getAnnoceByEtablissement);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.upsert);
