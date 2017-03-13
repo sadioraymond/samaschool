@@ -19,6 +19,21 @@ export function souscategorieProviderService($http, $q) {
         return liste;
 
     }
+    this.getSousCatByCategorie = function(souscat) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/sous_categories/cat/' + souscat, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
 }
 
 export default angular.module('samaschoolApp.souscategorieProvider', [])

@@ -25,6 +25,7 @@ export class ProfilComponent {
     LIs = [];
     elementCard = [];
     objetCours = {};
+    listSouscatBycat;
     // $log;
     /*@ngInject*/
     constructor(jsFonctions, categorieProvider, souscategorieProvider) {
@@ -33,6 +34,12 @@ export class ProfilComponent {
         this.jsFonctions = jsFonctions;
         this.sousCategorieProvider = souscategorieProvider;
         this.categorieProvider = categorieProvider;
+    }
+    getSousCatByCategorie(id) {
+        this.sousCategorieProvider.getSousCatByCategorie(id).then(list => {
+            this.listSouscatBycat = list;
+            console.log('Les Sous Catégories de la Categorie', this.listSouscatBycat);
+        });
     }
     $onInit() {
 
@@ -49,6 +56,9 @@ export class ProfilComponent {
                 console.log('Liste Vide');
             } else {
                 console.log('Les Categories', this.listCat);
+                for (let i = 0; i < this.listCat.length; i++) {
+                    this.getSousCatByCategorie(this.listCat[i]._id);
+                }
                 // $log.info('les cat ', this.listCat);
             }
         });
