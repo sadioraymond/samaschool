@@ -310,27 +310,17 @@
                 <!--end progressbar-->
                 <div class="row text-center" ng-show="profilCtrl.firstPart">
                   <div class="col-md-6 col-md-offset-3">
-                    <!--<input list="browsers" class="form-control" placeholder="Name">
-                    <datalist id="browsers">
-                      <option value="Internet Explorer">
-                        <option value="Firefox">
-                          <option value="Chrome">
-                            <option value="Opera">
-                              <option value="Safari">
-                    </datalist>-->
-                    <select class="selectpicker" data-live-search="true">
-  <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-  <option data-tokens="mustard">Burger, Shake and a Smile</option>
-  <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-</select>
+                    <select ng-change="profilCtrl.selectedVal()" ng-model="profilCtrl.selectedId">
+                      <option ng-repeat="cat in profilCtrl.listCat" ng-value="{{cat._id}}"> {{cat.libelle}} </option>
+                    </select>
 
                   </div>
-                  <div class="col-md-4 col-sm-12 mob20" ng-repeat="cat in profilCtrl.listCat" style="height: 400px;">
-                    <div id="{{cat._id}}" class="boxes text-left service-first withcircle withborder leftservice">
-                      <i class="scat fa fa-university alignleft" ng-click="profilCtrl.sCatClick()"></i>
-                      <h3 class="scat" ng-click="profilCtrl.sCatClick()"> {{cat.libelle}} </h3>
-                      <p>Professional responsive and retina ready template for online learning websites!</p>
-                      <i class="fa fa-tags alignleft" style="height: 20px; width: 25px;" ng-click="profilCtrl.catClick()"></i>                      {{cat.categorie.libelle}}
+                  <div class="col-md-4 col-sm-12 mob20" ng-repeat="sousCat in profilCtrl.listSouscatBycat" style="height: 400px;">
+                    <div id="{{sousCat._id}}" class="boxes text-left service-first withcircle withborder leftservice" ng-click="profilCtrl.sCatClick($event)">
+                      <i ng-class="scat_{{sousCat._id}}" class="fa fa-university alignleft"></i>
+                      <h3 ng-class="scat_{{sousCat._id}}"> {{sousCat.libelle | limitTo:30}} </h3>
+                      <p>Professional responsive and retina ready
+                        !</p>
                     </div>
                     <!-- end box -->
                   </div>

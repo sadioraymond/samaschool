@@ -41,7 +41,7 @@ export default class LoginController {
           // Logged in, redirect to home
 
           this.userProvider.partage(this.userProvider.varbi);
-          this.$state.go('main');
+          // this.$state.go('ymain');
         })
         .catch(err => {
           this.errors.login = err.message;
