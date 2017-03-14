@@ -145,16 +145,25 @@
                 <li><a href="blog-3.html">Blog Grid Sidebar</a></li>
                 <li><a href="blog-4.html">Blog Grid Fullwidth</a></li>
                 <li><a href="single.html">Blog Single Sidebar</a></li>
-                <li><a href="single-1.html">Blog Single Fullwidth</a></li>
+                <li><a ui-sref="signup">Blog Single Fullwidth</a></li>
 
               </ul>
             </li>
             <li><a href="forums.html">Forums</a></li>
             <li><a href="page-contact.html">Contact</a></li>
+            <!--<li ng-if="$ctrl.isLoggedIn()">{{$ctrl.getCurrentUser().name}}</li>-->
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="cartmenu" ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo"><a ng-click="$ctrl.open()"><i class="fa fa-shopping-bag"></i> <sup>2</sup></a></li>
+            <li ng-if="$ctrl.isLoggedIn()" class="cartmenu dropdown hasmenu" ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-shopping-bag"></i> <sup>2</sup></a>
+              <ul class="dropdown-menu">
+                <li><a href="blog.html">Blog List Layout</a></li>
+                <li><a href="blog-1.html">Blog Normal Layout</a></li>
+                <li><a ui-sref="logout">Log-out</a></li>
+              </ul>
+            </li>
+            <li ng-if="!$ctrl.isLoggedIn()" class="cartmenu" ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo"><a ng-click="$ctrl.open()"><i class="fa fa-sign-in" aria-hidden="true"></i> </a></li>
             <li class="dropdown cartmenu searchmenu hasmenu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search"></i></a>
               <ul class="dropdown-menu show-right">
@@ -215,7 +224,7 @@
                     Please enter a valid email.
                   </p>
 
-                  <p class="help-block">{{ vm.errors.login }}</p>
+                  <p class="help-block">{{ vm.errors.login }} </p>
                 </div>
 
                 <div>
@@ -242,55 +251,67 @@
           </div>
           <div class="loginform" ng-controller="SignupController as vm">
             <form class="form row" name="form" ng-submit="vm.register(form)" novalidate>
-<div class="col-md-10 col-md-offset-1">
-              <div class="form-group" ng-class="{ 'has-success': form.name.$valid && vm.submitted,
+              <div class="col-md-10 col-md-offset-1">
+                <div class="form-group" ng-class="{ 'has-success': form.name.$valid && vm.submitted,
                                             'has-error': form.name.$invalid && vm.submitted }">
-
-                <input type="text" name="name" class="form-control" ng-model="vm.user.name" placeholder="Username" required/>
-                <p class="help-block" ng-show="form.name.$error.required && vm.submitted">
-                  A name is required
-                </p>
-              </div>
-
-              <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
+                  <input type="text" name="name" class="form-control" ng-model="vm.user.name" placeholder="Username" required/>
+                  <p class="help-block" ng-show="form.name.$error.required && vm.submitted">
+                    A name is required
+                  </p>
+                </div>
+                <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
                                             'has-error': form.email.$invalid && vm.submitted }">
+                  <input type="email" name="email" class="form-control" ng-model="vm.user.email" placeholder="Email" required mongoose-error/>
+                  <p class="help-block" ng-show="form.email.$error.email && vm.submitted">
+                    Doesn't look like a valid email.
+                  </p>
+                  <p class="help-block" ng-show="form.email.$error.required && vm.submitted">
+                    What's your email address?
+                  </p>
+                  <p class="help-block" ng-show="form.email.$error.mongoose">
+                    {{ vm.errors.email }}
+                  </p>
+                </div>
 
-                <input type="email" name="email" class="form-control" ng-model="vm.user.email" placeholder="Email" required mongoose-error/>
-                <p class="help-block" ng-show="form.email.$error.email && vm.submitted">
-                  Doesn't look like a valid email.
-                </p>
-                <p class="help-block" ng-show="form.email.$error.required && vm.submitted">
-                  What's your email address?
-                </p>
-                <p class="help-block" ng-show="form.email.$error.mongoose">
-                  {{ vm.errors.email }}
-                </p>
-              </div>
 
-              <div class="form-group" ng-class="{ 'has-success': form.password.$valid && vm.submitted,
+                <div class="form-group" ng-class="{ 'has-success': form.password.$valid && vm.submitted,
                                             'has-error': form.password.$invalid && vm.submitted }">
 
-                <input type="password" name="password" class="form-control" ng-model="vm.user.password" placeholder="Password" ng-minlength="3" required mongoose-error/>
-                <p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && vm.submitted">
-                  Password must be at least 3 characters.
-                </p>
-                <p class="help-block" ng-show="form.password.$error.mongoose">
-                  {{ vm.errors.password }}
-                </p>
-              </div>
+                  <input placeholder="Password" type="password" name="password" class="form-control" ng-model="vm.user.password" ng-minlength="3"
+                    required mongoose-error/>
 
-              <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && vm.submitted,
+                  <p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && vm.submitted">
+                    Password must be at least 3 characters.
+                  </p>
+
+                  <p class="help-block" ng-show="form.password.$error.mongoose">
+                    {{ vm.errors.password }}
+                  </p>
+                </div>
+
+
+                <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && vm.submitted,
                                             'has-error': form.confirmPassword.$invalid && vm.submitted }">
-                <input type="password" name="confirmPassword" class="form-control" placeholder="confirmPassword" ng-model="vm.user.confirmPassword" match="vm.user.password"
-                  ng-minlength="3" required/>
-                <p class="help-block" ng-show="form.confirmPassword.$error.match && vm.submitted">
-                  Passwords must match.
-                </p>
-              </div>
 
-              <div>
-            <button type="submit" value="SEND" class="btn btn-primary btn-block btn-lg"> Create Account</button>
-              </div>
+                  <input placeholder="Confirm password" type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword"
+                    match="vm.user.password" ng-minlength="3" required mongoose-error/>
+
+                  <p class="help-block" ng-show="form.confirmPassword.$error.match && vm.submitted">
+                    Passwords must match.
+                  </p>
+
+                  <p class="help-block" ng-show="form.confirmPassword.$error.mongoose">
+                    {{ vm.errors.confirmPassword }}
+                  </p>
+                  <p class="help-block" style="color: red;" ng-show="vm.matchPass"> 
+                    Passwords must match.
+                  </p>
+                </div>
+
+
+                <div>
+                  <button type="submit" value="SEND" class="btn btn-primary btn-block btn-lg"> Create Account</button>
+                </div>
               </div>
             </form>
           </div>
