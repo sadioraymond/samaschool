@@ -24,6 +24,7 @@ import SousCat from '../api/Utilisateur_Module/sous_categorie/sous_categorie.mod
 import Categorie from '../api/Utilisateur_Module/categorie/categorie.model';
 import suivi from '../api/Etablissement_Module/suivi/suivi.model';
 import Type from '../api/Utilisateur_Module/type_fichier/type_fichier.model';
+import exercice from '../api/Utilisateur_Module/exercice/exercice.model';
 import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
@@ -1725,57 +1726,67 @@ export default function seedDatabaseIfNeeded() {
             .then(() => {
                 suivi_cours.create({
                         _id: 1,
-                        cours: 1,
+                        publication: 1,
                         user: "58b03802d98ff60ec2777f8c",
                         date_suivie: "2017-08-11"
                     }, {
                         _id: 2,
-                        cours: 2,
+                        publication: 2,
                         user: "58b03802d98ff60ec2777f8c",
                         date_suivie: "2016-04-28"
                     }, {
                         _id: 3,
-                        cours: 3,
+                        publication: 3,
                         user: "58b03802d98ff60ec2777f8e",
                         date_suivie: "2017-05-01"
                     }, {
                         _id: 4,
-                        cours: 4,
+                        publication: 4,
                         user: "58b03802d98ff60ec2777f8e",
                         date_suivie: "2017-01-11"
                     }, {
                         _id: 5,
-                        cours: 5,
+                        publication: 5,
                         user: "58b03802d98ff60ec2777f8e",
                         date_suivie: "2017-02-21"
                     }, {
                         _id: 6,
-                        cours: 6,
+                        publication: 6,
                         user: "58b03802d98ff60ec2777f8e",
                         date_suivie: "2017-04-03"
                     }, {
                         _id: 7,
-                        cours: 7,
+                        publication: 7,
                         user: "58b03802d98ff60ec2777f8f",
                         date_suivie: "2016-07-21"
                     }, {
                         _id: 8,
-                        cours: 8,
+                        publication: 8,
                         user: "58b03802d98ff60ec2777f8f",
                         date_suivie: "2017-04-15"
                     }, {
                         _id: 9,
-                        cours: 9,
+                        publication: 9,
                         user: "58b03802d98ff60ec2777f8f",
                         date_suivie: "2017-12-21"
                     }, {
                         _id: 10,
-                        cours: 10,
+                        publication: 10,
                         user: "58b03802d98ff60ec2777f8f",
                         date_suivie: "2017-03-19"
                     }, {
                         _id: 11,
-                        cours: 10,
+                        publication: 10,
+                        user: "58b03802d98ff60ec2777f8c",
+                        date_suivie: "2016-11-20"
+                    }, {
+                        _id: 12,
+                        publication: 11,
+                        user: "58b03802d98ff60ec2777f8f",
+                        date_suivie: "2017-03-19"
+                    }, {
+                        _id: 13,
+                        publication: 12,
                         user: "58b03802d98ff60ec2777f8c",
                         date_suivie: "2016-11-20"
                     })
@@ -2063,6 +2074,26 @@ export default function seedDatabaseIfNeeded() {
                     })
                     .then(() => console.log('finished populating Type Fichier'))
                     .catch(err => console.log('error populating Type Fichier', err));
+            });
+        exercice.find({}).remove()
+            .then(() => {
+                exercice.create({
+                        _id: 11,
+                        description: "rutrum lorem ac",
+                        exercice: "sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero",
+                        date_creation: "2017-02-12",
+                        sous_categorie: 12,
+                        user: "58b03802d98ff60ec2777f93"
+                    }, {
+                        _id: 12,
+                        description: "eu, placerat eget,",
+                        exercice: "ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt",
+                        date_creation: "2016-05-04",
+                        sous_categorie: 13,
+                        user: "58b03802d98ff60ec2777f93"
+                    })
+                    .then(() => console.log('finished populating exercice:'))
+                    .catch(err => console.log('error populating exercice:', err));
             });
     }
 }
