@@ -19,17 +19,21 @@ export class ProfilComponent {
   createCourseLink = false;
   firstPart = true;
   secondPart = false;
-  // thirdPart = false;
+  thirdPart = false;
+  fourthPart = false;
   selectedCount = 0;
   stateProgress = 0;
   LIs = [];
+  obj = {};
   elementCard = [];
+  listChap = [];
   objetCours = {};
   listSouscatBycat;
-  // $log;
+  titreChap = [];
+  objChap = [];
+
   /*@ngInject*/
   constructor(jsFonctions, categorieProvider, souscategorieProvider) {
-    // this.$log = $log;
     this.message = 'Hello';
     this.jsFonctions = jsFonctions;
     this.sousCategorieProvider = souscategorieProvider;
@@ -43,7 +47,6 @@ export class ProfilComponent {
     });
   }
   $onInit() {
-
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
@@ -121,52 +124,87 @@ export class ProfilComponent {
 
   }
   sCatClick(e) {
-    this.elementCard = e.target.className;
-    console.log(e.target.className)
-    if (this.elementCard.includes('withcircle')) {
-      $(`#${e.target.getAttribute('id')}`).removeClass('withcircle');
-      this.selectedCount = this.selectedCount + 1;
-    } else {
-      $(`#${e.target.getAttribute('id')}`).addClass('withcircle');
-      this.selectedCount = this.selectedCount - 1;
-    }
-    console.log(this.selectedCount)
+    // listClass = e.target.className;
+    // console.log(e.target.className)
+    // if (listClass.includes('withcircle')) {
+    //   $(`#${e.target.getAttribute('id')}`).removeClass('withcircle');
+    //   this.selectedCount = this.selectedCount + 1;
+    // } else {
+    //   $(`#${e.target.getAttribute('id')}`).addClass('withcircle');
+    //   this.selectedCount = this.selectedCount - 1;
+    // }
+    // console.log(this.selectedCount)
   }
   nextClick() {
-    if (this.titreCours && this.objectifCours && this.titreCours.length >= 3 && this.objectifCours.length >= 5 && this.stateProgress == 50 && this.firstPart != true) {
+    if (this.titreChap && this.objectifChap && !this.numberError && this.stateProgress == 50 && this.firstPart != true && this.secondPart != true && this.nbChap) {
       console.log('next next');
       this.firstPart = false;
       this.secondPart = false;
-      this.thirdPart = true;
-      this.stateProgress = 100;
+      this.thirdPart = false;
+      this.fourthPart = true;
+      this.stateProgress = 75;
       this.styleProgress = {
         'width': `${this.stateProgress}%`,
         'visibility': 'visible',
         'animation-name': 'slideInLeft'
       }
-    }
-    if (this.selectedCount === 1 && this.stateProgress === 0) {
+      console.info(this.nbChap);
+      this.objetCours.nbChap = this.nbChap;
+      for (let c = 0; c < this.nbChap; c++) {
+        // var element = array[c];
+        console.log('ooooo', this.titreChap[c]);
 
+        this.objChap[c] = [
+          this.titreChap[c],
+          this.objectifChap[c]
+        ];
+      }
+      this.objetCours.objChap = this.objChap;
+      console.log('le cours ', this.objetCours);
+    }
+    if (this.titreCours && this.objectifCours && !this.numberError && this.titreCours.length >= 3 && this.objectifCours.length >= 5 && this.stateProgress == 25 && this.firstPart != true) {
+      console.log('next next');
       this.firstPart = false;
-      this.secondPart = true;
-      // this.thirdPart = false;
+      this.secondPart = false;
+      this.thirdPart = true;
+      this.fourthPart = false;
       this.stateProgress = 50;
       this.styleProgress = {
         'width': `${this.stateProgress}%`,
         'visibility': 'visible',
         'animation-name': 'slideInLeft'
       }
-      this.selectedCount = 0;
+      this.objetCours.detailscours = {
+        'titrecours': this.titreCours,
+        'objectifcours': this.objectifCours
+      };
+      console.log('le cours ', this.objetCours);
+    }
+    if (this.selectedId && this.selectedIdsCat && this.stateProgress === 0) {
+      console.log(this.selectedId)
+      this.firstPart = false;
+      this.secondPart = true;
+      this.thirdPart = false;
+      this.fourthPart = false;
+      this.stateProgress = 25;
+      this.styleProgress = {
+        'width': `${this.stateProgress}%`,
+        'visibility': 'visible',
+        'animation-name': 'slideInLeft'
+      }
+      this.objetCours.sousCategorie = this.selectedIdsCat;
+      console.log(this.objetCours.sousCategorie)
     } else {
       console.log('next no this.selectedCount === 1 && this.stateProgress === 0 ');
     }
 
   }
   prevClick() {
-    if (this.stateProgress === 50) {
+    if (this.stateProgress === 25) {
       this.firstPart = true;
-      // this.thirdPart = false;
+      this.thirdPart = false;
       this.secondPart = false;
+      this.fourthPart = false;
       this.stateProgress = 0;
       this.styleProgress = {
         'width': `${this.stateProgress}%`,
@@ -176,10 +214,24 @@ export class ProfilComponent {
       this.selectedCount = 1;
       return;
     }
-    if (this.stateProgress === 100) {
+    if (this.stateProgress === 50) {
       this.firstPart = false;
-      // this.thirdPart = false;
+      this.thirdPart = false;
       this.secondPart = true;
+      this.fourthPart = false;
+      this.stateProgress = 25;
+      this.styleProgress = {
+        'width': `${this.stateProgress}%`,
+        'visibility': 'visible',
+        'animation-name': 'slideInLeft'
+      }
+      return;
+    }
+    if (this.stateProgress === 75) {
+      this.firstPart = false;
+      this.thirdPart = true;
+      this.secondPart = false;
+      this.fourthPart = false;
       this.stateProgress = 50;
       this.styleProgress = {
         'width': `${this.stateProgress}%`,
@@ -192,6 +244,43 @@ export class ProfilComponent {
   }
   selectedVal() {
     this.getSousCatByCategorie(this.selectedId);
+    // this.showSCat = true;
+  }
+  verifyNumber() {
+    if (this.nbh) {
+      if (this.nbh < 1 || this.nbh > 99) {
+        this.numberError = true;
+      } else {
+        this.numberError = false;
+      }
+    }
+  }
+  verifyNumberChap() {
+    if (this.nbChap) {
+      if (this.nbChap < 1 || this.nbChap > 20) {
+        this.numberChapError = true;
+      } else {
+        this.numberChapError = false;
+      }
+    }
+  }
+  GenerateFields() {
+    if (this.nbChap) {
+      if (this.nbChap < 1 || this.nbChap > 20) {
+        this.numberChapError = true;
+      } else {
+        this.numberChapError = false;
+        this.listChap = [];
+        for (let i = 0; i < this.nbChap; i++) {
+          this.listChap.push(i);
+          console.log(this.listChap)
+        }
+      }
+    }
+  }
+  delChap(indexTab) {
+    this.listChap.splice(indexTab, 1);
+    console.log(this.listChap)
   }
 }
 

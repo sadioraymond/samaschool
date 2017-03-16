@@ -71,11 +71,6 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider) {
   $ctrl.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
-  // $ctrl.createUser = function () {
-  //   userProvider.ajoutUser($ctrl.nameUser, $ctrl.emailUser, $ctrl.pwdUser)
-  //   ;
-  //   // window.location.reload();
-  // };
 }
 
 ModalDemoCtrl.$inject = ["$uibModal", "$log", "$document"];
