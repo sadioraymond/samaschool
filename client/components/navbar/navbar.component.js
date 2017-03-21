@@ -13,15 +13,33 @@ export class NavbarComponent {
   isAdmin: Function;
   getCurrentUser: Function;
   isCollapsed = true;
-  // userProvider;
-
+  msg = false;
+  test = false;
+  userProvider;
   constructor(Auth, userProvider) {
     'ngInject';
-
     this.isLoggedIn = Auth.isLoggedInSync;
     this.isAdmin = Auth.isAdminSync;
     this.getCurrentUser = Auth.getCurrentUserSync;
-    // this.userProvider = userProvider;
+    this.userProvider = userProvider;
+
+  }
+  $onInit() {}
+  showMsg() {
+    this.test = true;
+    // document.querySelector('#topbar_msg').click();
+    // angular.element('#topbar_msg').triggerHandler('click');
+    return this.userProvider.msg;
+  }
+  closeMsg() {
+    console.log('iiiiiiiiiiiiiiiii')
+    if (this.userProvider.msg) {
+      setTimeout(() => {
+        this.test = false;
+      }, 2000);
+    }else{
+      console.log('ttttttt')
+    }
   }
 
 }
