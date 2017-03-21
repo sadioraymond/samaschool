@@ -16,20 +16,30 @@ export class NavbarComponent {
   msg = false;
   test = false;
   userProvider;
+  fegn;
   constructor(Auth, userProvider) {
     'ngInject';
     this.isLoggedIn = Auth.isLoggedInSync;
     this.isAdmin = Auth.isAdminSync;
     this.getCurrentUser = Auth.getCurrentUserSync;
     this.userProvider = userProvider;
+   
+   
 
   }
-  $onInit() {}
+  $onInit() {
+     
+  }
   showMsg() {
     this.test = true;
     // document.querySelector('#topbar_msg').click();
     // angular.element('#topbar_msg').triggerHandler('click');
     return this.userProvider.msg;
+  }
+  con(){
+    this.fegn = true;
+    $('#topbar_msg').fadeOut(3000);
+    return this.fegn;
   }
   closeMsg() {
     console.log('iiiiiiiiiiiiiiiii')
