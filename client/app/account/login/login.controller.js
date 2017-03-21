@@ -42,7 +42,7 @@ export default class LoginController {
           // document.querySelector('#topbar_msg').click();
           setTimeout(() => {
             this.userProvider.partage(this.userProvider.varbi);
-            angular.element('#topbar_msg').triggerHandler('click');
+            // angular.element('#topbar_msg').triggerHandler('click');
           }, 500);
           // Logged in, redirect to home
           // this.$state.go('main');
