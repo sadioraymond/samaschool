@@ -309,22 +309,18 @@
                 </div>
                 <!--end progressbar-->
                 <div class="row text-center" ng-show="profilCtrl.firstPart">
-                  <div class="col-md-6 col-md-offset-3">
+                  <div class="col-md-6">
+                    <label for="categorie">Categories </label>
                     <select ng-change="profilCtrl.selectedVal()" ng-model="profilCtrl.selectedId">
                       <option ng-repeat="cat in profilCtrl.listCat" ng-value="{{cat._id}}"> {{cat.libelle}} </option>
                     </select>
-
                   </div>
-                  <div class="col-md-4 col-sm-12 mob20" ng-repeat="sousCat in profilCtrl.listSouscatBycat" style="height: 400px;">
-                    <div id="{{sousCat._id}}" class="boxes text-left service-first withcircle withborder leftservice" ng-click="profilCtrl.sCatClick($event)">
-                      <i ng-class="scat_{{sousCat._id}}" class="fa fa-university alignleft"></i>
-                      <h3 ng-class="scat_{{sousCat._id}}"> {{sousCat.libelle | limitTo:30}} </h3>
-                      <p>Professional responsive and retina ready
-                        !</p>
-                    </div>
-                    <!-- end box -->
+                  <div class="col-md-6" ng-show="profilCtrl.selectedId">
+                    <label for="scategorie">sous Categories </label>
+                    <select ng-change="profilCtrl.selectedValsCat()" ng-model="profilCtrl.selectedIdsCat">
+                      <option ng-repeat="scat in profilCtrl.listSouscatBycat" ng-value="{{scat._id}}"> {{scat.libelle | limitTo:15}} </option>
+                    </select>
                   </div>
-                  <!-- end col -->
 
                 </div>
                 <!-- end row -->
@@ -335,15 +331,52 @@
                       <div class="col-md-8">
                         <div class="form-group">
                           <label for="titre">Titre du cours</label>
-                          <textarea class="form-control" id="titre" rows="1" ng-model="profilCtrl.titreCours" placeholder="Titre du cours"></textarea>
+                          <input type="text" class="form-control" id="titre" ng-model="profilCtrl.titreCours" placeholder="Titre du cours">
                         </div>
                         <div class="form-group">
                           <label for="objectif">Objectif du cours</label>
                           <textarea class="form-control" id="objectif" rows="4" ng-model="profilCtrl.objectifCours" placeholder="Objectif du cours"></textarea>
                         </div>
+                        <div class="form-group">
+                          <label for="nbh">Nombre d'heures du cours</label>
+                          <input ng-change="profilCtrl.verifyNumber()" type="number" id="nbh" ng-model="profilCtrl.nbh" placeholder="HH" min="01" required
+                          />
+                          <span ng-show="profilCtrl.numberError" class="label label-warning">le nombre d'heures doit etre compris entre 1 et 99h</span>
+
+                        </div>
                       </div>
                     </form>
                   </div>
+                </div>
+                <!-- end row -->
+                <div ng-show="profilCtrl.thirdPart" class="row text-center">
+                  <div class="contact_form">
+                    <form id="createcourseform" class="row" name="createcourseform" method="post">
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label for="nbChap">Nombre de chapitres du cours</label>
+                          <input ng-change="profilCtrl.verifyNumberChap()" type="number" id="nbChap" ng-model="profilCtrl.nbChap" min="01" required/>
+                          <a ng-click="profilCtrl.GenerateFields()" class="btn btn-primary btn-xs">Valider</a>
+                          <span ng-show="profilCtrl.numberChapError" class="label label-warning">Entre 1 et 20 chapitres sont autorisés</span>
+                        </div>
+                        <div class="row" ng-repeat="chap in profilCtrl.listChap">
+                          <span>{{chap + 1}} <i ng-click="profilCtrl.delChap(chap)" class="fa fa-trash" aria-hidden="true"></i></span>
+                          <div class="form-group">
+                            <label for="titreChap">Titre du chapitre  </label>
+                            <input type="text" class="form-control" id="titreChap" ng-model="profilCtrl.titreChap[chap]" placeholder="Titre du chapitre">
+                          </div>
+                          <div class="form-group">
+                            <label for="objectifChap">Objectif du chapitre</label>
+                            <textarea class="form-control" id="objectifChap" rows="4" ng-model="profilCtrl.objectifChap[chap]" placeholder="Objectif du chapitre"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <!-- end row -->
+                <div ng-show="profilCtrl.fourtPart" class="row text-center">
+                  
                 </div>
                 <!-- end row -->
                 <hr class="invis">
