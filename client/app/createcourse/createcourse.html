@@ -1,1 +1,122 @@
-<banner>    </banner>
+<banner> </banner>
+
+<div id="sidebar1" class="container">
+    <!--<div class="row" style="margin-bottom: 2em;">
+          <div class="col-md-4">
+            <button ng-click="createcourseCtrl.createCourse" type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Demarrer Ici pour creer un cours</button>
+          </div>
+        </div>-->
+    <div class="widget clearfix">
+        <div id="post-content" class="row single-course">
+            <div class="course-single-quiz">
+                <small>Quiz for : <span><a href="course-single.html">Learning Web Design in 22 Days</a></span></small><br>
+                <small>Quiz Status: <span>Not Finished</span> </small>
+
+                <hr>
+
+                <div class="quiz-wrapper">
+                    <h3>Creer votre cours en quelques étapes</h3>
+                    <h4>How to integrate Bootstrap CSS and JS files into a HTML file?</h4>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                        standard dummy text ever since the, when an unknown printer took. Lorem Ipsum is simply dummy text
+                        of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+                        ever since the 1500s, when an unknown printer took.</p>
+                    <div class="row">
+                        <div class="skills course-complete text-left">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" ng-style="createcourseCtrl.styleProgress" data-transitiongoal="createcourseCtrl.stateProgress"><span> {{createcourseCtrl.stateProgress}} </span></div>
+                            </div>
+                        </div>
+                        <hr class="invis">
+                        <hr class="invis">
+                    </div>
+                    <!--end progressbar-->
+                    <div class="row text-center" ng-show="createcourseCtrl.firstPart">
+                        <div class="col-md-6">
+                            <label for="categorie">Categories </label>
+                            <select ng-change="createcourseCtrl.selectedVal()" ng-model="createcourseCtrl.selectedId">
+                      <option ng-repeat="cat in createcourseCtrl.listCat" ng-value="{{cat._id}}"> {{cat.libelle}} </option>
+                    </select>
+                        </div>
+                        <div class="col-md-6" ng-show="createcourseCtrl.selectedId">
+                            <label for="scategorie">sous Categories </label>
+                            <select ng-change="createcourseCtrl.selectedValsCat()" ng-model="createcourseCtrl.selectedIdsCat">
+                      <option ng-repeat="scat in createcourseCtrl.listSouscatBycat" ng-value="{{scat._id}}"> {{scat.libelle | limitTo:15}} </option>
+                    </select>
+                        </div>
+
+                    </div>
+                    <!-- end row -->
+                    <!--end  categorie-->
+                    <div ng-show="createcourseCtrl.secondPart" class="row text-center">
+                        <div class="contact_form">
+                            <form id="createcourseform" class="row" name="createcourseform" method="post">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="titre">Titre du cours</label>
+                                        <input type="text" class="form-control" id="titre" ng-model="createcourseCtrl.titreCours" placeholder="Titre du cours">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="objectif">Objectif du cours</label>
+                                        <textarea class="form-control" id="objectif" rows="4" ng-model="createcourseCtrl.objectifCours" placeholder="Objectif du cours"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nbh">Nombre d'heures du cours</label>
+                                        <input ng-change="createcourseCtrl.verifyNumber()" type="number" id="nbh" ng-model="createcourseCtrl.nbh" placeholder="HH" min="01" required />
+                                        <span ng-show="createcourseCtrl.numberError" class="label label-warning">le nombre d'heures doit etre compris entre 1 et 99h</span>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <div ng-show="createcourseCtrl.thirdPart" class="row text-center">
+                        <div class="contact_form">
+                            <form id="createcourseform" class="row" name="createcourseform" method="post">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="nbChap">Nombre de chapitres du cours</label>
+                                        <input ng-change="createcourseCtrl.verifyNumberChap()" type="number" id="nbChap" ng-model="createcourseCtrl.nbChap" min="01" required/>
+                                        <a ng-click="createcourseCtrl.GenerateFields()" class="btn btn-primary btn-xs">Valider</a>
+                                        <span ng-show="createcourseCtrl.numberChapError" class="label label-warning">Entre 1 et 20 chapitres sont autorisés</span>
+                                    </div>
+                                    <div class="row" ng-repeat="chap in createcourseCtrl.listChap">
+                                        <span>{{chap + 1}} <i ng-click="createcourseCtrl.delChap(chap)" class="fa fa-trash" aria-hidden="true"></i></span>
+                                        <div class="form-group">
+                                            <label for="titreChap">Titre du chapitre  </label>
+                                            <input type="text" class="form-control" id="titreChap" ng-model="createcourseCtrl.titreChap[chap]" placeholder="Titre du chapitre">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="objectifChap">Objectif du chapitre</label>
+                                            <textarea class="form-control" id="objectifChap" rows="4" ng-model="createcourseCtrl.objectifChap[chap]" placeholder="Objectif du chapitre"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <div ng-show="createcourseCtrl.fourtPart" class="row text-center">
+
+                    </div>
+                    <!-- end row -->
+                    <hr class="invis">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="#" ng-click="createcourseCtrl.prevClick()" class="btn btn-primary btn-square btn-block">Prev Quiz Question</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#" ng-click="createcourseCtrl.nextClick()" class="btn btn-primary btn-square btn-block">Next Quiz Question</a>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end quiz wrapper -->
+            </div>
+            <!-- end desc -->
+        </div>
+        <!-- end col -->
+    </div>
+</div>
+<!-- end right -->
