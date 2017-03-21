@@ -7,7 +7,6 @@ var extend = require('mongoose-schema-extend');
 var PublicationSchema = ParentModele.Modele();
 var CoursSchema = PublicationSchema.extend({
     contenu: String,
-    status: String
 });
 
 registerEvents(CoursSchema);

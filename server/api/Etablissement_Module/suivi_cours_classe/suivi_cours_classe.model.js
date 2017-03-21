@@ -6,9 +6,10 @@ var autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(mongoose);
 var SuiviCoursClasseSchema = new mongoose.Schema({
     _id: Number,
-    cours: {
+    publication: {
         type: Number,
-        ref: 'Cours'
+        ref: 'Cours',
+        ref: 'Exercice'
     },
     classe: {
         type: Number,

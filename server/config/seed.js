@@ -1379,67 +1379,67 @@ export default function seedDatabaseIfNeeded() {
             .then(() => {
                 suivi_cours_classe.create({
                         _id: 1,
-                        cours: 1,
+                        publication: 1,
                         classe: 1,
                         date: "2017-08-21"
                     }, {
                         _id: 2,
-                        cours: 2,
+                        publication: 2,
                         classe: 2,
                         date: "2016-08-09"
                     }, {
                         _id: 3,
-                        cours: 3,
+                        publication: 3,
                         classe: 3,
                         date: "2018-01-14"
                     }, {
                         _id: 4,
-                        cours: 4,
+                        publication: 4,
                         classe: 4,
                         date: "2016-03-22"
                     }, {
                         _id: 5,
-                        cours: 5,
+                        publication: 5,
                         classe: 5,
                         date: "2017-05-03"
                     }, {
                         _id: 6,
-                        cours: 6,
+                        publication: 6,
                         classe: 6,
                         date: "2017-10-06"
                     }, {
                         _id: 7,
-                        cours: 7,
+                        publication: 7,
                         classe: 7,
                         date: "2017-08-06"
                     }, {
                         _id: 8,
-                        cours: 8,
+                        publication: 8,
                         classe: 8,
                         date: "2016-11-11"
                     }, {
                         _id: 9,
-                        cours: 9,
+                        publication: 9,
                         classe: 9,
                         date: "2016-04-14"
                     }, {
                         _id: 10,
-                        cours: 10,
+                        publication: 10,
                         classe: 10,
                         date: "2016-09-28"
                     }, {
                         _id: 11,
-                        cours: 1,
+                        publication: 1,
                         classe: 10,
                         date: "2016-05-28"
                     }, {
                         _id: 13,
-                        cours: 10,
+                        publication: 10,
                         classe: 1,
                         date: "2016-10-28"
                     }, {
                         _id: 14,
-                        cours: 3,
+                        publication: 3,
                         classe: 8,
                         date: "2015-09-28"
                     })
@@ -2080,14 +2080,14 @@ export default function seedDatabaseIfNeeded() {
                 exercice.create({
                         _id: 11,
                         description: "rutrum lorem ac",
-                        exercice: "sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero",
+                        document: "sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero",
                         date_creation: "2017-02-12",
                         sous_categorie: 12,
                         user: "58b03802d98ff60ec2777f93"
                     }, {
                         _id: 12,
                         description: "eu, placerat eget,",
-                        exercice: "ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt",
+                        document: "ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt",
                         date_creation: "2016-05-04",
                         sous_categorie: 13,
                         user: "58b03802d98ff60ec2777f93"

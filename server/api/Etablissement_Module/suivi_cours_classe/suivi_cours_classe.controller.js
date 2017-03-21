@@ -79,13 +79,13 @@ export function GetCoursProfInSchool(req, res) {
             } else {
                 var cpt = 0;
                 for (let i = 0; i < tab.length; i++) {
-                    SuiviCoursClasse.find({ cours: tab[i] }).populate('cours').exec(function(err, cp) {
+                    SuiviCoursClasse.find({ publication: tab[i] }).populate('publication').exec(function(err, cp) {
                         cp.forEach(function(eleme) {
                             var cou = [];
-                            cou.push(eleme.cours);
+                            cou.push(eleme.publication);
                             Detail.find({ classe: eleme.classe }).populate('classe').populate('etablissement').exec(function(err, etab) {
                                 var save = {};
-                                save.cours = cou;
+                                save.publication = cou;
                                 save.detail = etab;
                                 tabs.push(save);
                                 cpt++;
@@ -105,7 +105,7 @@ export function GetCoursProfInSchool(req, res) {
 
 // Gets a list of SuiviCoursClasses
 export function index(req, res) {
-    return SuiviCoursClasse.find().populate('cours').populate('classe').exec()
+    return SuiviCoursClasse.find().populate('publication').populate('classe').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
@@ -128,11 +128,11 @@ export function create(req, res) {
 //Get Cours By Classe
 
 export function getCoursByClasse(req, res) {
-    SuiviCoursClasse.find({ classe: req.params.id }).populate('cours').exec()
+    SuiviCoursClasse.find({ classe: req.params.id }).populate('publication').exec()
         .then(list => {
             var us = [];
             list.forEach(function(element) {
-                us.push(element.cours);
+                us.push(element.publication);
             });
             return res.json(us);
         })
@@ -142,7 +142,7 @@ export function getCoursByClasse(req, res) {
 //Get Classe By Cours
 
 export function getClasseByCours(req, res) {
-    SuiviCoursClasse.find({ cours: req.params.cr }).populate('classe').exec()
+    SuiviCoursClasse.find({ publication: req.params.cr }).populate('classe').exec()
         .then(list => {
             var us = [];
             list.forEach(function(element) {
