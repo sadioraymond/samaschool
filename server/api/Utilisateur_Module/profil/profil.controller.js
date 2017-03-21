@@ -74,28 +74,73 @@ export function index(req, res) {
 
 //Get all Prof
 export function getAllProf(req, res) {
-     DProfil.find({profil : 3}).populate('user').exec()
+    DProfil.find({ profil: 3 }).populate('user').exec()
         .then(list => {
             var us = [];
-      list.forEach(function(element) {
-        us.push(element.user);
-      });
-      return res.json(us);
+            list.forEach(function(element) {
+                us.push(element.user);
+            });
+            return res.json(us);
         })
-        
+
 }
 
 //Get all etudiants
 export function getAllEtu(req, res) {
-     DProfil.find({profil : 2}).populate('user').exec()
+    DProfil.find({ profil: 2 }).populate('user').exec()
         .then(list => {
             var us = [];
-      list.forEach(function(element) {
-        us.push(element.user);
-      });
-      return res.json(us);
+            list.forEach(function(element) {
+                us.push(element.user);
+            });
+            return res.json(us);
         })
-        
+
+}
+
+//IS he Prof
+export function isProf(req, res) {
+    DProfil.find({ user: req.params.id }).exec()
+        .then(list => {
+            var tab = [];
+            list.forEach(function(element) {
+                if (element.profil == 3) {
+                    return res.json(true);
+                } else {
+                    return res.json(false);
+                }
+            });
+        });
+}
+
+//IS he Etudiant
+export function isEtudiant(req, res) {
+    DProfil.find({ user: req.params.id }).exec()
+        .then(list => {
+            var tab = [];
+            list.forEach(function(element) {
+                if (element.profil == 2) {
+                    return res.json(true);
+                } else {
+                    return res.json(false);
+                }
+            });
+        });
+}
+
+//IS he Simple User
+export function isUserSimple(req, res) {
+    DProfil.find({ user: req.params.id }).exec()
+        .then(list => {
+            var tab = [];
+            list.forEach(function(element) {
+                if (element.profil == 1) {
+                    return res.json(true);
+                } else {
+                    return res.json(false);
+                }
+            });
+        });
 }
 
 // Gets a single Profil from the DB

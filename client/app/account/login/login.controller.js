@@ -38,10 +38,14 @@ export default class LoginController {
           password: this.user.password
         })
         .then(() => {
+          this.userProvider.msg = true;
+          // document.querySelector('#topbar_msg').click();
+          setTimeout(() => {
+            this.userProvider.partage(this.userProvider.varbi);
+            angular.element('#topbar_msg').triggerHandler('click');
+          }, 500);
           // Logged in, redirect to home
-
-          this.userProvider.partage(this.userProvider.varbi);
-          // this.$state.go('ymain');
+          // this.$state.go('main');
         })
         .catch(err => {
           this.errors.login = err.message;
