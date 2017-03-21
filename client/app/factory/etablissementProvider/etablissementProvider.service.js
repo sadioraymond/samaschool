@@ -51,7 +51,19 @@ export function etablissementProviderService($http, $q) {
         return liste;
 
     }
+    this.ajoutEtablissement = function(libelle, adresse, tel, email) {
+        var deferred = $q.defer();
+        $http.post('/api/etablissements', {
+            libelle: libelle,
+            adresse: adresse,
+            tel: tel,
+            email: email,
+        }).then(function() {
+            console.log("Bakhna");
+        });
+    }
 }
+
 
 export default angular.module('samaschoolApp.etablissementProvider', [])
     .service('etablissementProvider', etablissementProviderService)
