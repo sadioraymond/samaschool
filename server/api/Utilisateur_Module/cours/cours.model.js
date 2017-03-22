@@ -6,7 +6,8 @@ import ParentModele from '../publication/publication.model';
 var extend = require('mongoose-schema-extend');
 var PublicationSchema = ParentModele.Modele();
 var CoursSchema = PublicationSchema.extend({
-    contenu: String,
+    nbheures: Number,
+    images: String
 });
 
 registerEvents(CoursSchema);
