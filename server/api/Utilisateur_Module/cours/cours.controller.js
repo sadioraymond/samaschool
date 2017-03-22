@@ -79,7 +79,8 @@ function verify(tab, element) {
 
 // Gets a list of Courss
 export function index(req, res) {
-    return Cours.find().populate('sous_categorie').exec()
+    var cou = "Cours";
+    return Cours.find({ Genre: cou }).populate('sous_categorie').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
@@ -94,8 +95,8 @@ export function show(req, res) {
 var stringify = require('json-stringify-safe');
 // GLes Cours les plus suivies
 export function getCoursPlusSuivi(req, res) {
-
-    Cours.find().exec()
+    var cou = "Cours";
+    Cours.find({ Genre: cou }).exec()
         .then(list => {
             var tabCours = [];
             var cpt = 0;
