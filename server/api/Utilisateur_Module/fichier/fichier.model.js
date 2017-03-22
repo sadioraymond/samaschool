@@ -8,10 +8,11 @@ var FichierSchema = new mongoose.Schema({
     _id: Number,
     cours: {
         type: Number,
-        ref: 'Cours'
+        ref: 'Cours',
+        ref: 'Chapitre'
     },
-    titre: String,
     link: String,
+    contenu: String,
     type: {
         type: Number,
         ref: 'TypeFichier'
