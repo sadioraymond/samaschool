@@ -122,6 +122,32 @@ export function coursProviderService($http, $q) {
             console.log("Bakhna");
         });
     }
+
+    this.ajoutCours2 = function(titre, description, date, sous_cat, user, status, nbheures, images, tab) {
+        var deferred = $q.defer();
+        $http.post('/api/courss', {
+            titre: titre,
+            description: description,
+            date_creation: date,
+            sous_categorie: sous_cat,
+            user: user,
+            status: status,
+            nbheures: nbheures,
+            images: images
+        }).then(function(data) {
+            console.log("Cours bi Bakhna");
+            for (let i = 0; i < tab.lenght; i++) {
+                $http.post('/api/chapitres', {
+                    libelle: tab[i].libelle,
+                    objectif: tab[i].objectif,
+                    cours: data.data._id
+                }).then(function() {
+                    console.log("Chapitre yi Bakhnagnou");
+                });
+            }
+        });
+    }
+
 }
 
 export default angular.module('samaschoolApp.coursProvider', [])
