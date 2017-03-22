@@ -107,6 +107,19 @@ export function coursProviderService($http, $q) {
         return liste;
 
     }
+    this.ajoutCours = function(titre, description, date, sous_cat, user, status) {
+        var deferred = $q.defer();
+        $http.post('/api/courss', {
+            titre: titre,
+            description: description,
+            date_creation: date,
+            sous_categorie: sous_cat,
+            user: user,
+            status: status
+        }).then(function() {
+            console.log("Bakhna");
+        });
+    }
 }
 
 export default angular.module('samaschoolApp.coursProvider', [])
