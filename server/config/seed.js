@@ -66,8 +66,8 @@ export default function seedDatabaseIfNeeded() {
                         password: "Passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f92",
-                        name: "Adam",
-                        email: "adam@example.com",
+                        name: "chico",
+                        email: "chico@example.com",
                         password: "Passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f93",
@@ -76,8 +76,8 @@ export default function seedDatabaseIfNeeded() {
                         password: "Passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f94",
-                        name: "Hadassah",
-                        email: "hadassah@example.com",
+                        name: "kain",
+                        email: "kain@example.com",
                         password: "Passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f95",
@@ -1507,7 +1507,7 @@ export default function seedDatabaseIfNeeded() {
                 cours.create({
                         _id: 1,
                         description: "rutrum lorem ac",
-                        contenu: "sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero",
+                        titre: "sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero",
                         date_creation: "2017-02-12",
                         sous_categorie: 12,
                         status: "Private",
@@ -1515,7 +1515,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 2,
                         description: "eu, placerat eget,",
-                        contenu: "ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt",
+                        titre: "ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt",
                         date_creation: "2016-05-04",
                         sous_categorie: 13,
                         status: "Private",
@@ -1523,7 +1523,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 3,
                         description: "mauris ut mi. Duis risus odio, auctor vitae, aliquet",
-                        contenu: "dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui.",
+                        titre: "dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui.",
                         date_creation: "2016-04-26",
                         sous_categorie: 5,
                         status: "Private",
@@ -1531,7 +1531,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 4,
                         description: "interdum",
-                        contenu: "dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada",
+                        titre: "dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada",
                         date_creation: "2017-01-30",
                         sous_categorie: 9,
                         status: "Private",
@@ -1539,7 +1539,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 5,
                         description: "quam quis diam. Pellentesque habitant",
-                        contenu: "Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus",
+                        titre: "Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus",
                         date_creation: "2017-12-10",
                         sous_categorie: 2,
                         status: "Private",
@@ -1547,7 +1547,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 6,
                         description: "augue. Sed molestie. Sed id risus quis diam luctus",
-                        contenu: "In mi pede, nonummy ut, molestie in, tempus eu, ligula.",
+                        titre: "In mi pede, nonummy ut, molestie in, tempus eu, ligula.",
                         date_creation: "2016-03-09",
                         sous_categorie: 11,
                         status: "Private",
@@ -1555,7 +1555,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 7,
                         description: "ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam auctor, velit",
-                        contenu: "elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris",
+                        titre: "elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris",
                         date_creation: "2017-10-14",
                         sous_categorie: 12,
                         status: "Private",
@@ -1563,7 +1563,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 8,
                         description: "id nunc interdum feugiat. Sed",
-                        contenu: "penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin",
+                        titre: "penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin",
                         date_creation: "2017-08-20",
                         sous_categorie: 4,
                         status: "Private",
@@ -1571,7 +1571,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 9,
                         description: "commodo at, libero. Morbi accumsan laoreet",
-                        contenu: "et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu.",
+                        titre: "et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu.",
                         date_creation: "2016-03-01",
                         sous_categorie: 7,
                         status: "Private",
@@ -1579,7 +1579,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 10,
                         description: "feugiat placerat velit. Quisque",
-                        contenu: "nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus",
+                        titre: "nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus",
                         date_creation: "2017-11-27",
                         sous_categorie: 13,
                         status: "Private",
@@ -2079,6 +2079,7 @@ export default function seedDatabaseIfNeeded() {
             .then(() => {
                 exercice.create({
                         _id: 11,
+                        titre: "exo1",
                         description: "rutrum lorem ac",
                         document: "sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero",
                         date_creation: "2017-02-12",
@@ -2086,6 +2087,7 @@ export default function seedDatabaseIfNeeded() {
                         user: "58b03802d98ff60ec2777f93"
                     }, {
                         _id: 12,
+                        titre: "exo2",
                         description: "eu, placerat eget,",
                         document: "ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt",
                         date_creation: "2016-05-04",
