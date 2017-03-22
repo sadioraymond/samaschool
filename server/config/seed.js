@@ -71,8 +71,8 @@ export default function seedDatabaseIfNeeded() {
                         password: "Passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f93",
-                        name: "Hammett",
-                        email: "hammett@example.com",
+                        name: "raymond",
+                        email: "ray@example.com",
                         password: "Passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f94",
