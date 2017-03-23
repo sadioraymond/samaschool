@@ -4870,3 +4870,6 @@ small {
         font-size: 21px;
     }
 }
+.degrade {
+background-image:linear-gradient(#fff, #DCDCDC);
+}
