@@ -14,7 +14,7 @@ import uiBootstrap from 'angular-ui-bootstrap';
 
 
 import {
-    routeConfig
+  routeConfig
 } from './app.config';
 
 import _Auth from '../components/auth/auth.module';
@@ -45,6 +45,7 @@ import suiviCoursClasseProvider from '../app/factory/suivi_cours_classeProvider/
 import detailClasseProvider from '../app/factory/detail_classeProvider/detail_classeProvider.service';
 import profilProvider from '../app/factory/profilProvider/profilProvider.service';
 import jsFonctions from '../app/factory/jsFonctions/jsFonctions.service';
+import chapitreProvider from '../app/factory/chapitreProvider/chapitreProvider.service';
 // ------ Les routes -------
 import CoursesPagesComponent from './coursesPages/coursesPages.component';
 import CourseSinglePageComponent from './courseSinglePage/courseSinglePage.component';
@@ -55,29 +56,56 @@ import userProvider from '../app/factory/userProvider/userProvider.service';
 import categorieProvider from '../app/factory/categorieProvider/categorieProvider.service';
 import souscategorieProvider from '../app/factory/souscategorieProvider/souscategorieProvider.service';
 import CreatecourseComponent from './createcourse/createcourse.component';
-import chapitreProvider from '../app/factory/chapitreProvider/chapitreProvider.service';
+
+import PreviewComponent from './preview/preview.component';
 import './app.css';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, chapitreProvider
-    ])
-    .config(routeConfig)
-    .run(function($rootScope, $location, Auth) {
-        'ngInject';
-        // Redirect to login if route requires auth and you're not logged in
+    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider
+  ])
+  .config(routeConfig)
+  .run(function ($rootScope, $location, Auth) {
+    'ngInject';
+    // Redirect to login if route requires auth and you're not logged in
 
-        $rootScope.$on('$stateChangeStart', function(event, next) {
-            Auth.isLoggedIn(function(loggedIn) {
-                if (next.authenticate && !loggedIn) {
-                    $location.path('/login');
-                }
-            });
-        });
+    $rootScope.$on('$stateChangeStart', function (event, next) {
+      Auth.isLoggedIn(function (loggedIn) {
+        if (next.authenticate && !loggedIn) {
+          $location.path('/login');
+        }
+      });
     });
+  })
+  .directive('cleditor', function () {
+    return {
+      require: '?ngModel',
+      link: function (scope, elm, attr, ngModel) {
+
+        if (!ngModel) return;
+
+        ngModel.$render = function () {
+          elm.val(ngModel.$viewValue).blur();
+        };
+
+
+
+        elm.cleditor().change(function () {
+          var value = elm.val();
+
+          if (!scope.$$phase) {
+            scope.$apply(function () {
+              ngModel.$setViewValue(value);
+
+            });
+          }
+        });
+      }
+    }
+  });
 
 angular.element(document)
-    .ready(() => {
-        angular.bootstrap(document, ['samaschoolApp'], {
-            strictDi: true
-        });
+  .ready(() => {
+    angular.bootstrap(document, ['samaschoolApp'], {
+      strictDi: true
     });
+  });

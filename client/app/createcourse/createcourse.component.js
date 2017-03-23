@@ -12,6 +12,7 @@ export class CreatecourseComponent {
   listSousCat;
   categorieProvider;
   listCat;
+  coursProvider;
   firstPart = true;
   secondPart = false;
   thirdPart = false;
@@ -25,13 +26,15 @@ export class CreatecourseComponent {
   objetCours = {};
   listSouscatBycat;
   titreChap = [];
-  objChap = [];
-  constructor(jsFonctions, categorieProvider, souscategorieProvider) {
+  objChap = {};
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider) {
     this.jsFonctions = jsFonctions;
     this.categorieProvider = categorieProvider;
     this.souscategorieProvider = souscategorieProvider;
+    this.coursProvider = coursProvider;
     this.message = 'Hello';
     this.firstPart = true;
+    this.directpublish = false;
   }
   getSousCatByCategorie(id) {
     this.souscategorieProvider.getSousCatByCategorie(id).then(list => {
@@ -71,7 +74,7 @@ export class CreatecourseComponent {
     });
   }
   nextClick() {
-    if (this.titreChap && this.objectifChap && !this.numberError && this.stateProgress == 50 && this.firstPart != true && this.secondPart != true && this.nbChap) {
+    if (this.titreChap && this.objectifChap && this.contenuChap && !this.numberError && this.stateProgress == 50 && this.firstPart != true && this.secondPart != true && this.nbChap) {
       console.log('next next');
       this.firstPart = false;
       this.secondPart = false;
@@ -86,15 +89,37 @@ export class CreatecourseComponent {
       console.info(this.nbChap);
       this.objetCours.nbChap = this.nbChap;
       for (let c = 0; c < this.nbChap; c++) {
-        // var element = array[c];
-        console.log('ooooo', this.titreChap[c]);
-
-        this.objChap[c] = [
-          this.titreChap[c],
-          this.objectifChap[c]
-        ];
+        this.titrech = this.titreChap[c];
+        this.objectifch = this.objectifChap[c];
+        this.contenuch = this.contenuChap[c];
+        this.lienVideoch = this.lienVideoChap[c];
+        this.objChap[`${c}`] = {
+          'titre': this.titrech,
+          'objectif': this.objectifch,
+          'contenu': this.contenuch,
+          'lienVideo': this.lienVideoch,
+        };
       }
       this.objetCours.objChap = this.objChap;
+      console.log('le cours ', this.objetCours);
+    }
+    if (this.urlvideo != "" && this.stateProgress == 50 && !this.firstPart && !this.secondPart && this.directpublish) {
+      this.firstPart = false;
+      this.secondPart = false;
+      this.thirdPart = false;
+      this.fourthPart = true;
+      this.stateProgress = 75;
+      this.styleProgress = {
+        'width': `${this.stateProgress}%`,
+        'visibility': 'visible',
+        'animation-name': 'slideInLeft'
+      }
+      this.objetCours.detailscours = {
+        'titrecours': this.titreCours,
+        'objectifcours': this.objectifCours,
+        'heure': this.nbh,
+        'lien': this.urlvideo
+      };
       console.log('le cours ', this.objetCours);
     }
     if (this.titreCours && this.objectifCours && !this.numberError && this.titreCours.length >= 3 && this.objectifCours.length >= 5 && this.stateProgress == 25 && this.firstPart != true) {
@@ -111,7 +136,8 @@ export class CreatecourseComponent {
       }
       this.objetCours.detailscours = {
         'titrecours': this.titreCours,
-        'objectifcours': this.objectifCours
+        'objectifcours': this.objectifCours,
+        'heure': this.nbh
       };
       console.log('le cours ', this.objetCours);
     }
@@ -130,7 +156,7 @@ export class CreatecourseComponent {
       this.objetCours.sousCategorie = this.selectedIdsCat;
       console.log(this.objetCours.sousCategorie)
     } else {
-      console.log('next no this.selectedCount === 1 && this.stateProgress === 0 ');
+      console.log('cant go next');
     }
 
   }
@@ -217,9 +243,16 @@ export class CreatecourseComponent {
     this.listChap.splice(indexTab, 1);
     console.log(this.listChap)
   }
+  publish() {
+    this.coursProvider.createdCourse = this.objetCours;
+    console.log('course added !!!')
+  }
+  directPublish() {
+    this.directpublish = true;
+  }
 }
 
-CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider"];
+CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider"];
 
 export default angular.module('samaschoolApp.createcourse', [uiRouter])
   .config(routes)
