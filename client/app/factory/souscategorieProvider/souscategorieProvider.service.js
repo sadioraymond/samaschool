@@ -30,7 +30,20 @@ export function souscategorieProviderService($http, $q) {
 
         });
         liste = deferred.promise;
+        return liste;
 
+    }
+    this.getSousCatById = function(id) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/sous_categories/' + id, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
         return liste;
 
     }

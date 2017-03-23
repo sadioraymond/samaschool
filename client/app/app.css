@@ -69,6 +69,8 @@
 
 @import 'main/main.css';
 
+@import 'preview/preview.css';
+
 @import 'profil/profil.css';
 
 @import 'register/register.css';
