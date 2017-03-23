@@ -45,6 +45,7 @@ import suiviCoursClasseProvider from '../app/factory/suivi_cours_classeProvider/
 import detailClasseProvider from '../app/factory/detail_classeProvider/detail_classeProvider.service';
 import profilProvider from '../app/factory/profilProvider/profilProvider.service';
 import jsFonctions from '../app/factory/jsFonctions/jsFonctions.service';
+import chapitreProvider from '../app/factory/chapitreProvider/chapitreProvider.service';
 // ------ Les routes -------
 import CoursesPagesComponent from './coursesPages/coursesPages.component';
 import CourseSinglePageComponent from './courseSinglePage/courseSinglePage.component';
@@ -55,11 +56,12 @@ import userProvider from '../app/factory/userProvider/userProvider.service';
 import categorieProvider from '../app/factory/categorieProvider/categorieProvider.service';
 import souscategorieProvider from '../app/factory/souscategorieProvider/souscategorieProvider.service';
 import CreatecourseComponent from './createcourse/createcourse.component';
+
 import PreviewComponent from './preview/preview.component';
 import './app.css';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent
+    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider
   ])
   .config(routeConfig)
   .run(function ($rootScope, $location, Auth) {
@@ -93,6 +95,7 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
           if (!scope.$$phase) {
             scope.$apply(function () {
               ngModel.$setViewValue(value);
+
             });
           }
         });

@@ -68,9 +68,19 @@ function handleError(res, statusCode) {
     };
 }
 
+function verify(tab, element) {
+    for (let i = 0; i < tab.length; i++) {
+        if (tab[i].toString() == element.toString()) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // Gets a list of Courss
 export function index(req, res) {
-    return Cours.find().populate('sous_categorie').exec()
+    var cou = "Cours";
+    return Cours.find({ Genre: cou }).populate('sous_categorie').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
@@ -85,8 +95,8 @@ export function show(req, res) {
 var stringify = require('json-stringify-safe');
 // GLes Cours les plus suivies
 export function getCoursPlusSuivi(req, res) {
-
-    Cours.find().exec()
+    var cou = "Cours";
+    Cours.find({ Genre: cou }).exec()
         .then(list => {
             var tabCours = [];
             var cpt = 0;
@@ -121,6 +131,36 @@ export function getCoursPlusSuivi(req, res) {
 
 }
 
+//Cours les plus récents
+
+export function getCoursRecents(req, res) {
+    Cours.find().exec()
+        .then(list => {
+            var tab = [];
+            var tampon;
+            list.forEach(function(element) {
+                if (tab.length != 0) {
+                    if (!verify(tab, element)) {
+                        tab.push(element);
+                    }
+                } else {
+                    tab.push(element);
+                }
+            });
+            for (let j = 0; j < tab.length - 1; j++) {
+                for (let k = j + 1; k < tab.length; k++) {
+                    if (tab[j].date_creation < tab[k].date_creation) {
+                        tampon = tab[j];
+                        tab[j] = tab[k];
+                        tab[k] = tampon;
+                    }
+                }
+            }
+            return res.json(tab);
+
+        });
+
+}
 
 // Gets all Cours related to a Prof
 export function getCoursByProf(req, res) {
