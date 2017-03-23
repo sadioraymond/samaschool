@@ -35,6 +35,7 @@ export class CreatecourseComponent {
     this.message = 'Hello';
     this.firstPart = true;
     this.directpublish = false;
+    this.link = "https://player.vimeo.com/video/160024074?title=0&byline=0&portrait=0";
   }
   getSousCatByCategorie(id) {
     this.souscategorieProvider.getSousCatByCategorie(id).then(list => {
@@ -48,8 +49,11 @@ export class CreatecourseComponent {
         setTimeout(() => {
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
+
         }, 0);
       });
+
+    this.link = "https://player.vimeo.com/video/160024074?title=0&byline=0&portrait=0";
     this.categorieProvider.listCategorie().then(list => {
       this.listCat = list;
       if (this.listCat.length == 0) {
@@ -99,6 +103,7 @@ export class CreatecourseComponent {
           'contenu': this.contenuch,
           'lienVideo': this.lienVideoch,
         };
+        console.log('waw', this.objChap[`${c}`].titre)
       }
       this.objetCours.objChap = this.objChap;
       console.log('le cours ', this.objetCours);
@@ -121,6 +126,8 @@ export class CreatecourseComponent {
         'lien': this.urlvideo
       };
       console.log('le cours ', this.objetCours);
+      this.link = "https://player.vimeo.com/video/160024074?title=0&byline=0&portrait=0";
+
     }
     if (this.titreCours && this.objectifCours && !this.numberError && this.titreCours.length >= 3 && this.objectifCours.length >= 5 && this.stateProgress == 25 && this.firstPart != true) {
       console.log('next next');
@@ -261,4 +268,9 @@ export default angular.module('samaschoolApp.createcourse', [uiRouter])
     controller: CreatecourseComponent,
     controllerAs: 'createcourseCtrl'
   })
+  .filter('trustAsResourceUrl', ['$sce', function ($sce) {
+    return function (val) {
+      return $sce.trustAsResourceUrl(val);
+    };
+  }])
   .name;

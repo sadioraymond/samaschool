@@ -80,7 +80,7 @@
                 <div class="col-md-8">
                   <div class="form-group col-md-6">
                     <label for="urlvideo">Joindre une video</label>
-                    <input type="url" id="urlvideo" ng-model="createcourseCtrl.urlvideo" min="01"
+                    <input type="text" id="urlvideo" ng-model="createcourseCtrl.urlvideo" min="01"
                       required/>
                     <a ng-click="createcourseCtrl.directPublish()" class="btn btn-primary btn-xs">Valider</a>
                   </div>
@@ -116,11 +116,14 @@
           </div>
           <!-- end row -->
           <div ng-show="createcourseCtrl.fourthPart" class="row text-center">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <a ng-click="createcourseCtrl.addCourse()" class="btn btn-success btn-block">Publier</a><br>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <a ng-click="createcourseCtrl.publish()" ui-sref="preview" class="btn btn-warning btn-block">Aperçu</a><br>
+            </div>
+            <div class="col-md-4">
+              <a ng-click="createcourseCtrl.publish()" class="btn btn-warning btn-block">Brouillon</a><br>
             </div>
           </div>
           <!-- end row -->

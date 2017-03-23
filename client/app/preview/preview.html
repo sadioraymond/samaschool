@@ -63,17 +63,14 @@
                 <tr>
                   <th>Type</th>
                   <th>Lesson Title</th>
+                  <th>Numero</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr ng-repeat="(key, chapitre) in previewCtrl.createdcourse.objChap">
                   <td><i class="fa fa-play-circle"></i></td>
-                  <td><a href="#">Introduction</a></td>
-                </tr>
-                <tr ng-repeat="chapitre in previewCtrl.createdcourse.objchap">
-                  {{chapitre}}
-                  <td><i class="fa fa-play-circle"></i></td>
-                  <td><a href="#">Introduction</a></td>
+                  <td><a href="#">{{chapitre.titre}}</a></td>
+                  <td>{{(key | number) + (1)}} </td>
                 </tr>
               </tbody>
             </table>
@@ -247,12 +244,13 @@
         <div class="col-md-6 col-sm-12">
           <div class="big-title">
             <h2 class="related-title">
-              <span>YOUTUBE VIDEO</span>
+              <span>VIMEO VIDEO</span>
             </h2>
           </div>
           <!-- end big-title -->
           <div class="post-media">
-            <iframe width="560" height="315" ng-src="previewCtrl.createdcourse.detailscours.lien" frameborder="0" allowfullscreen></iframe>
+            <iframe ng-src="{{previewCtrl.createdcourse.detailscours.lien | trustAsResourceUrl}}" width="500" height="281" frameborder="0"
+              webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
           </div>
         </div>
         <!-- end col -->
