@@ -29,6 +29,8 @@ export class CreatecourseComponent {
     objChap = {};
     getcurrentUser;
     currentdate = new Date();
+    datetime;
+    activite;
     constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth) {
         this.jsFonctions = jsFonctions;
         this.categorieProvider = categorieProvider;
@@ -39,45 +41,12 @@ export class CreatecourseComponent {
         this.directpublish = false;
         this.link = "https://player.vimeo.com/video/160024074?title=0&byline=0&portrait=0";
         this.getcurrentUser = Auth.getCurrentUserSync;
+        this.datetime = this.currentdate.getFullYear() + "-" + (this.currentdate.getMonth() + 1) + "-" + this.currentdate.getDate();
     }
     getSousCatByCategorie(id) {
         this.souscategorieProvider.getSousCatByCategorie(id).then(list => {
             this.listSouscatBycat = list;
             console.log('Les Sous Catégories de la Categorie', this.listSouscatBycat);
-        });
-    }
-    $onInit() {
-        angular.element(document)
-            .ready(() => {
-                setTimeout(() => {
-                    this.jsFonctions.pluginScript();
-                    this.jsFonctions.otherScript();
-
-                }, 0);
-            });
-
-        this.link = "https://player.vimeo.com/video/160024074?title=0&byline=0&portrait=0";
-        this.categorieProvider.listCategorie().then(list => {
-            this.listCat = list;
-            if (this.listCat.length == 0) {
-                console.log('Liste Vide');
-            } else {
-                console.log('Les Categories', this.listCat);
-                // for (let i = 0; i < this.listCat.length; i++) {
-                //   this.getSousCatByCategorie(this.listCat[i]._id);
-                // }
-                // $log.info('les cat ', this.listCat);
-            }
-        });
-        this.souscategorieProvider.listSousCategorie().then(list => {
-            this.listSousCat = list;
-            if (this.listSousCat.length == 0) {
-                console.log('Liste Vide');
-            } else {
-                // console.log('Les  cat', this.listSousCat);
-                console.info('les Sous catégories ', this.listSousCat);
-                // $log.info('les sous cat ', this.listSousCat);
-            }
         });
     }
 
@@ -254,13 +223,15 @@ export class CreatecourseComponent {
             console.log('khol contenu chap', c, this.objetCours.objChap[`${c}`].contenu);
             console.log('khol lienVideo chap', c, this.objetCours.objChap[`${c}`].lienVideo);
         }
-        var datetime = this.currentdate.getFullYear() + "-" + (this.currentdate.getMonth() + 1) + "-" + this.currentdate.getDate();
-        console.log('Date bi', datetime);
-        this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap);
+        console.log('Date bi', this.datetime);
+        this.activite = true;
+        this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);
         //  window.location.reload();
     }
     addBrouillon() {
-
+        console.log('Date bi', this.datetime);
+        this.activite = false;
+        this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);
     }
     selectedVal() {
         this.getSousCatByCategorie(this.selectedId);
@@ -304,7 +275,7 @@ export class CreatecourseComponent {
     }
     publish() {
         this.coursProvider.createdCourse = this.objetCours;
-        console.log('course added !!!')
+        console.log('course added !!!');
     }
     directPublish() {
         this.directpublish = true;
