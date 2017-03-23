@@ -5,6 +5,7 @@ const angular = require('angular');
 export function coursProviderService($http, $q) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     this.listeCouu = null;
+    this.createdCourse = {};
     this.listCours = function() {
         var deferred = $q.defer();
         var liste = [];
