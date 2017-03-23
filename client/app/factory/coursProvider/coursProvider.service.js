@@ -124,7 +124,7 @@ export function coursProviderService($http, $q) {
         });
     }
 
-    this.ajoutCours2 = function(titre, description, date, sous_cat, user, status, nbheures, images, tab) {
+    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -132,18 +132,23 @@ export function coursProviderService($http, $q) {
             date_creation: date,
             sous_categorie: sous_cat,
             user: user,
-            status: status,
             nbheures: nbheures,
-            images: images
         }).then(function(data) {
             console.log("Cours bi Bakhna");
-            for (let i = 0; i < tab.lenght; i++) {
+            for (let i = 0; i < taille; i++) {
                 $http.post('/api/chapitres', {
-                    libelle: tab[i].libelle,
-                    objectif: tab[i].objectif,
+                    libelle: tab[`${i}`].titre,
+                    objectif: tab[`${i}`].objectif,
                     cours: data.data._id
-                }).then(function() {
+                }).then(function(datas) {
                     console.log("Chapitre yi Bakhnagnou");
+                    $http.post('/api/fichiers', {
+                        cours: datas.data._id,
+                        link: tab[`${i}`].lienVideo,
+                        contenu: tab[`${i}`].contenu
+                    }).then(function() {
+                        console.log("Fichiers yi Bakhnagnou");
+                    });
                 });
             }
         });

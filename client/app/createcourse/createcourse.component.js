@@ -27,7 +27,9 @@ export class CreatecourseComponent {
     listSouscatBycat;
     titreChap = [];
     objChap = {};
-    constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider) {
+    getcurrentUser;
+    currentdate = new Date();
+    constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth) {
         this.jsFonctions = jsFonctions;
         this.categorieProvider = categorieProvider;
         this.souscategorieProvider = souscategorieProvider;
@@ -35,6 +37,7 @@ export class CreatecourseComponent {
         this.message = 'Hello';
         this.firstPart = true;
         this.directpublish = false;
+        this.getcurrentUser = Auth.getCurrentUserSync;
     }
     getSousCatByCategorie(id) {
         this.souscategorieProvider.getSousCatByCategorie(id).then(list => {
@@ -74,6 +77,7 @@ export class CreatecourseComponent {
         });
     }
     nextClick() {
+        console.log('User bi', this.getcurrentUser().name);
         if (this.titreChap && this.objectifChap && this.contenuChap && !this.numberError && this.stateProgress == 50 && this.firstPart != true && this.secondPart != true && this.nbChap) {
             console.log('next next');
             this.firstPart = false;
@@ -203,6 +207,22 @@ export class CreatecourseComponent {
         }
 
     }
+    addCour() {
+        console.log('khol titre', this.objetCours.detailscours.titrecours);
+        console.log('khol objectif', this.objetCours.detailscours.objectifcours);
+        console.log('khol heure', this.objetCours.detailscours.heure);
+        console.log('khol sous categorie', this.objetCours.sousCategorie);
+        for (let c = 0; c < this.nbChap; c++) {
+            console.log('khol titre chap', c, this.objetCours.objChap[`${c}`].titre);
+            console.log('khol objectif chap', c, this.objetCours.objChap[`${c}`].objectif);
+            console.log('khol contenu chap', c, this.objetCours.objChap[`${c}`].contenu);
+            console.log('khol lienVideo chap', c, this.objetCours.objChap[`${c}`].lienVideo);
+        }
+        var datetime = this.currentdate.getFullYear() + "-" + (this.currentdate.getMonth() + 1) + "-" + this.currentdate.getDate();
+        console.log('Date bi', datetime);
+        this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap);
+        //  window.location.reload();
+    }
     selectedVal() {
         this.getSousCatByCategorie(this.selectedId);
         // this.showSCat = true;
@@ -252,7 +272,7 @@ export class CreatecourseComponent {
     }
 }
 
-CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider"];
+CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth"];
 
 export default angular.module('samaschoolApp.createcourse', [uiRouter])
     .config(routes)
