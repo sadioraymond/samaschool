@@ -29,6 +29,8 @@ export class CreatecourseComponent {
   objChap = {};
   getcurrentUser;
   currentdate = new Date();
+    datetime;
+    activite;
   constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth) {
     this.jsFonctions = jsFonctions;
     this.categorieProvider = categorieProvider;
@@ -39,7 +41,7 @@ export class CreatecourseComponent {
     this.directpublish = false;
     this.link = "https://player.vimeo.com/video/160024074?title=0&byline=0&portrait=0";
     this.getcurrentUser = Auth.getCurrentUserSync;
-    this.contenuCours = "louyyyyyyyyyyy";
+    this.datetime = this.currentdate.getFullYear() + "-" + (this.currentdate.getMonth() + 1) + "-" + this.currentdate.getDate();
   }
   getSousCatByCategorie(id) {
     this.souscategorieProvider.getSousCatByCategorie(id).then(list => {
@@ -211,25 +213,28 @@ export class CreatecourseComponent {
     }
 
   }
-  addCour() {
-    console.log('khol titre', this.objetCours.detailscours.titrecours);
-    console.log('khol objectif', this.objetCours.detailscours.objectifcours);
-    console.log('khol heure', this.objetCours.detailscours.heure);
-    console.log('khol sous categorie', this.objetCours.sousCategorie);
-    for (let c = 0; c < this.nbChap; c++) {
-      console.log('khol titre chap', c, this.objetCours.objChap[`${c}`].titre);
-      console.log('khol objectif chap', c, this.objetCours.objChap[`${c}`].objectif);
-      console.log('khol contenu chap', c, this.objetCours.objChap[`${c}`].contenu);
-      console.log('khol lienVideo chap', c, this.objetCours.objChap[`${c}`].lienVideo);
+    addCour() {
+        console.log('khol titre', this.objetCours.detailscours.titrecours);
+        console.log('khol objectif', this.objetCours.detailscours.objectifcours);
+        console.log('khol heure', this.objetCours.detailscours.heure);
+        console.log('khol sous categorie', this.objetCours.sousCategorie);
+        for (let c = 0; c < this.nbChap; c++) {
+            console.log('khol titre chap', c, this.objetCours.objChap[`${c}`].titre);
+            console.log('khol objectif chap', c, this.objetCours.objChap[`${c}`].objectif);
+            console.log('khol contenu chap', c, this.objetCours.objChap[`${c}`].contenu);
+            console.log('khol lienVideo chap', c, this.objetCours.objChap[`${c}`].lienVideo);
+        }
+        console.log('Date bi', this.datetime);
+        this.activite = true;
+        this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);
+        //  window.location.reload();
     }
-    var datetime = this.currentdate.getFullYear() + "-" + (this.currentdate.getMonth() + 1) + "-" + this.currentdate.getDate();
-    console.log('Date bi', datetime);
-    this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap);
-    //  window.location.reload();
-  }
-  addBrouillon() {
+    addBrouillon() {
+        console.log('Date bi', this.datetime);
+        this.activite = false;
+        this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);
+    }
 
-  }
   selectedVal() {
     this.getSousCatByCategorie(this.selectedId);
     // this.showSCat = true;
@@ -328,6 +333,14 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider) {
   $ctrl.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
+
+    publish() {
+        this.coursProvider.createdCourse = this.objetCours;
+        console.log('course added !!!');
+    }
+    directPublish() {
+        this.directpublish = true;
+    }
 }
 
 CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth"];

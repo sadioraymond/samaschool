@@ -80,11 +80,18 @@ function verify(tab, element) {
 // Gets a list of Courss
 export function index(req, res) {
     var cou = "Cours";
-    return Cours.find({ Genre: cou }).populate('sous_categorie').exec()
+    var act = true;
+    return Cours.find({ Genre: cou, actif: act }).populate('sous_categorie').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
-
+export function brouillon(req, res) {
+    var cou = "Cours";
+    var act = false;
+    return Cours.find({ actif: act }).populate('sous_categorie').exec()
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+}
 // Gets a single Cours from the DB
 export function show(req, res) {
     return Cours.findById(req.params.id).exec()

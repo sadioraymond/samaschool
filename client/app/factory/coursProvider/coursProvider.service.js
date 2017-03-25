@@ -124,7 +124,7 @@ export function coursProviderService($http, $q) {
         });
     }
 
-    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille) {
+    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -133,6 +133,7 @@ export function coursProviderService($http, $q) {
             sous_categorie: sous_cat,
             user: user,
             nbheures: nbheures,
+            actif: act
         }).then(function(data) {
             console.log("Cours bi Bakhna");
             for (let i = 0; i < taille; i++) {
