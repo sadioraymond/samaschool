@@ -34,6 +34,21 @@ export function classeProviderService($http, $q) {
         return liste;
 
     }
+    this.getClasseByUser = function(user) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/annee_academiques/user/' + user, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
 }
 
 export default angular.module('samaschoolApp.classeProvider', [])
