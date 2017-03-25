@@ -1,6 +1,6 @@
 <banner></banner>
 <section class="section bgw">
-  <div ng-show="false">
+  <div ng-show="true">
     <div class="container">
       <div style="margin: 4em;" class="text-center image-center hidden-xs">
         <img src="assets/upload/device_03.png" alt="" class="img-responsive wow fadeInUp" style="display: block;">
@@ -70,7 +70,7 @@
                 <tr ng-repeat="(key, chapitre) in previewCtrl.createdcourse.objChap">
                   <td><i class="fa fa-play-circle"></i></td>
                   <td><a href="#">{{chapitre.titre}}</a></td>
-                  <td>{{(key | number) + (1)}} </td>
+                  <td>{{$index + 1}} </td>
                 </tr>
               </tbody>
             </table>
@@ -238,24 +238,24 @@
     </div>
     <!-- end container -->
   </div>
-  <div ng-show="true">
+  <div ng-show="false">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-sm-12">
-          <div class="big-title">
-            <h2 class="related-title">
-              <span>VIMEO VIDEO</span>
-            </h2>
-          </div>
-          <!-- end big-title -->
-          <div class="post-media">
-            <iframe ng-src="{{previewCtrl.createdcourse.detailscours.lien | trustAsResourceUrl}}" width="500" height="281" frameborder="0"
-              webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-          </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="big-title">
+          <h2 class="related-title">
+            <span>YOUTUBE VIDEO</span>
+          </h2>
         </div>
-        <!-- end col -->
+        <!-- end big-title -->
+        <div class="post-media">
+          <iframe width="560" height="315" ng-src="{{previewCtrl.createdcourse.detailscours.lien | trustAsResourceUrl}}"  frameborder="0" allowfullscreen>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis nostrum accusantium consectetur illum vero dolor veniam ut aspernatur aut. Nam adipisci tempore voluptatum harum suscipit blanditiis atque possimus natus qui.
+          </iframe>
+        </div>
       </div>
+      <!-- end col -->
     </div>
+  </div>
   </div>
 </section>
 <!-- end section -->
