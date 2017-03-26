@@ -124,8 +124,8 @@
               </div>
               <!-- end row -->
               <div ng-show="createcourseCtrl.fourthPart" class="row text-center">
-                <div class="col-md-4">
-                  <a ng-click="createcourseCtrl.addCour()" class="btn btn-success btn-block">Publier</a><br>
+                <div class="col-md-4" ng-controller="ModalDemoCtrl as $ctrl">
+                  <a ng-click="$ctrl.open()" class="btn btn-success btn-block">Publier</a><br>
                 </div>
                 <div class="col-md-4">
                   <a ng-click="createcourseCtrl.publish()" ui-sref="preview" class="btn btn-warning btn-block">Aperçu</a><br>
@@ -161,9 +161,33 @@
 
 
 <script type="text/ng-template" id="myModalContent.html">
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam perferendis libero cumque. Vitae dolores, quam veniam, consequuntur rem numquam hic explicabo perspiciatis beatae, molestiae at quos non, nisi ipsum culpa.
-  </p>
+
+  <form role="form">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 modal-header">
+        <h3 class="modal-title" id="modal-title">Publier!</h3>
+      </div>
+      </div>
+      <div class="row modal-body" id="modal-body">
+        <ul ng-repeat="item in $ctrl.items" class="col-md-4">
+          <!--<li ng-repeat="item in $ctrl.items">
+          <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+        </li>-->
+          etablissement: {{item}}
+          <div ng-repeat="item in $ctrl.items" class="checkbox checkbox-primary">
+            <input type="checkbox" class="styled checkbox-primary">
+            <label>
+              class
+          </label>
+          </div>
+        </ul>
+        Selected: <b>{{ $ctrl.selected.item }}</b>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+      </div>
+  </form>
 </script>
 <script type="text/ng-template" id="stackedModal.html">
   <div class="modal-header">

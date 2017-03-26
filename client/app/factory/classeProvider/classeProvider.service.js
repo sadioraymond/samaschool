@@ -35,6 +35,7 @@ export function classeProviderService($http, $q) {
 
     }
     this.getClasseByUser = function(user) {
+        console.log('okkokokokokokokoko')
         var deferred = $q.defer();
         var liste = [];
         $http.get('/api/annee_academiques/user/' + user, {
@@ -45,7 +46,6 @@ export function classeProviderService($http, $q) {
 
         });
         liste = deferred.promise;
-
         return liste;
 
     }

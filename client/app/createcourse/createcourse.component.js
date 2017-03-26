@@ -13,6 +13,8 @@ export class CreatecourseComponent {
   categorieProvider;
   listCat;
   coursProvider;
+  listClass;
+  classeProvider;
   firstPart = true;
   secondPart = false;
   thirdPart = false;
@@ -29,17 +31,18 @@ export class CreatecourseComponent {
   objChap = {};
   getcurrentUser;
   currentdate = new Date();
-    datetime;
-    activite;
-  constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth) {
+  datetime;
+  activite;
+  etabProf;
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth, classeProvider) {
     this.jsFonctions = jsFonctions;
     this.categorieProvider = categorieProvider;
     this.souscategorieProvider = souscategorieProvider;
     this.coursProvider = coursProvider;
+    this.classeProvider = classeProvider;
     this.message = 'Hello';
     this.firstPart = true;
     this.directpublish = false;
-    this.link = "https://player.vimeo.com/video/160024074?title=0&byline=0&portrait=0";
     this.getcurrentUser = Auth.getCurrentUserSync;
     this.datetime = this.currentdate.getFullYear() + "-" + (this.currentdate.getMonth() + 1) + "-" + this.currentdate.getDate();
   }
@@ -56,6 +59,15 @@ export class CreatecourseComponent {
         setTimeout(() => {
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
+          this.classeProvider.getClasseByUser(this.getcurrentUser()._id).then(list => {
+            this.listClass = list;
+            if (this.listClass.length == 0) {
+              console.log('Liste Vide');
+            } else {
+              console.info('les classes du prof connecté ', this.listClass);
+            }
+
+          });
         }, 0);
       });
     this.noPlan = false;
@@ -83,7 +95,7 @@ export class CreatecourseComponent {
     });
   }
   nextClick() {
-    console.log('User bi', this.getcurrentUser().name);
+    console.log('User bi', this.getcurrentUser());
     if (this.titreChap && this.objectifChap && this.contenuChap && !this.numberError && this.stateProgress == 50 && this.firstPart != true && this.secondPart != true && this.nbChap) {
       console.log('next next');
       this.firstPart = false;
@@ -213,28 +225,27 @@ export class CreatecourseComponent {
     }
 
   }
-    addCour() {
-        console.log('khol titre', this.objetCours.detailscours.titrecours);
-        console.log('khol objectif', this.objetCours.detailscours.objectifcours);
-        console.log('khol heure', this.objetCours.detailscours.heure);
-        console.log('khol sous categorie', this.objetCours.sousCategorie);
-        for (let c = 0; c < this.nbChap; c++) {
-            console.log('khol titre chap', c, this.objetCours.objChap[`${c}`].titre);
-            console.log('khol objectif chap', c, this.objetCours.objChap[`${c}`].objectif);
-            console.log('khol contenu chap', c, this.objetCours.objChap[`${c}`].contenu);
-            console.log('khol lienVideo chap', c, this.objetCours.objChap[`${c}`].lienVideo);
-        }
-        console.log('Date bi', this.datetime);
-        this.activite = true;
-        this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);
-        //  window.location.reload();
+  addCour() {
+    console.log('khol titre', this.objetCours.detailscours.titrecours);
+    console.log('khol objectif', this.objetCours.detailscours.objectifcours);
+    console.log('khol heure', this.objetCours.detailscours.heure);
+    console.log('khol sous categorie', this.objetCours.sousCategorie);
+    for (let c = 0; c < this.nbChap; c++) {
+      console.log('khol titre chap', c, this.objetCours.objChap[`${c}`].titre);
+      console.log('khol objectif chap', c, this.objetCours.objChap[`${c}`].objectif);
+      console.log('khol contenu chap', c, this.objetCours.objChap[`${c}`].contenu);
+      console.log('khol lienVideo chap', c, this.objetCours.objChap[`${c}`].lienVideo);
     }
-    addBrouillon() {
-        console.log('Date bi', this.datetime);
-        this.activite = false;
-        this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);
-    }
-
+    console.log('Date bi', this.datetime);
+    this.activite = true;
+    this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);
+    //  window.location.reload();
+  }
+  addBrouillon() {
+    console.log('Date bi', this.datetime);
+    this.activite = false;
+    this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);
+  }
   selectedVal() {
     this.getSousCatByCategorie(this.selectedId);
     // this.showSCat = true;
@@ -333,17 +344,9 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider) {
   $ctrl.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
-
-    publish() {
-        this.coursProvider.createdCourse = this.objetCours;
-        console.log('course added !!!');
-    }
-    directPublish() {
-        this.directpublish = true;
-    }
 }
 
-CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth"];
+CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth", "classeProvider"];
 ModalDemoCtrl.$inject = ["$uibModal", "$log", "$document"];
 ModalInstanceCtrl.$inject = ["$uibModalInstance", "items", "userProvider"];
 
