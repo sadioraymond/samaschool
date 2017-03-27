@@ -124,7 +124,7 @@ export function coursProviderService($http, $q) {
         });
     }
 
-    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act) {
+    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act, classes) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -152,9 +152,17 @@ export function coursProviderService($http, $q) {
                     });
                 });
             }
+
+            for (let j = 0; j < classes.length; j++) {
+                $http.post('/api/suivi_cours_classes', {
+                    publication: data.data._id,
+                    classe: classes[j],
+                    date: date
+                })
+            }
         });
     }
-
+    this.objetCours = {};
 }
 
 export default angular.module('samaschoolApp.coursProvider', [])

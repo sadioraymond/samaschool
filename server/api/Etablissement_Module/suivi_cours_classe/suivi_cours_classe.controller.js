@@ -142,7 +142,7 @@ export function getCoursByClasse(req, res) {
 //Get Classe By Cours
 
 export function getClasseByCours(req, res) {
-    SuiviCoursClasse.find({ publication: req.params.cr }).populate('classe').exec()
+    SuiviCoursClasse.find({ publication: req.params.cr }).populate('classe').populate('publication').exec()
         .then(list => {
             var us = [];
             list.forEach(function(element) {
