@@ -38,15 +38,27 @@
               <div ng-show="createcourseCtrl.firstPart" class="row text-center">
                 <div class="col-md-6">
                   <label for="categorie">Categories </label>
-                  <select ng-change="createcourseCtrl.selectedVal()" ng-model="createcourseCtrl.selectedId">
-                      <option ng-repeat="cat in createcourseCtrl.listCat" ng-value="{{cat._id}}"> {{cat.libelle}} </option>
-                    </select>
+                  <!-- Single button -->
+                  <div class="btn-group" uib-dropdown is-open="false">
+                    <button ng-model="createcourseCtrl.categ.id" id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+                      {{createcourseCtrl.categ.libelle}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                      <li role="menuitem" ng-repeat="cat in createcourseCtrl.listCat" ng-click="createcourseCtrl.selectedCateg(cat)"><a href="#">{{cat.libelle}}</a></li>
+                    </ul>
+                  </div>
                 </div>
                 <div class="col-md-6" ng-show="createcourseCtrl.selectedId">
                   <label for="scategorie">sous Categories </label>
-                  <select ng-change="createcourseCtrl.selectedValsCat()" ng-model="createcourseCtrl.selectedIdsCat">
-                      <option ng-repeat="scat in createcourseCtrl.listSouscatBycat" ng-value="{{scat._id}}"> {{scat.libelle | limitTo:15}} </option>
-                    </select>
+                  <div class="btn-group" uib-dropdown is-open="false">
+                    <button ng-model="createcourseCtrl.sCateg.id" id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle
+                      ng-disabled="disabled">
+                      {{createcourseCtrl.sCateg.libelle}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                      <li role="menuitem" ng-repeat="scat in createcourseCtrl.listSouscatBycat" ng-click="createcourseCtrl.selectedSCateg(scat)"><a href="#">{{scat.libelle}}</a></li>
+                    </ul>
+                  </div>
                 </div>
 
               </div>
@@ -167,26 +179,26 @@
       <div class="col-md-4 col-md-offset-4 modal-header">
         <h3 class="modal-title" id="modal-title">Publier!</h3>
       </div>
-      </div>
-      <div class="row modal-body" id="modal-body">
-        <ul ng-repeat="item in $ctrl.items" class="col-md-4">
-          <!--<li ng-repeat="item in $ctrl.items">
+    </div>
+    <div class="row modal-body" id="modal-body">
+      <ul ng-repeat="item in $ctrl.items" class="col-md-4">
+        <!--<li ng-repeat="item in $ctrl.items">
           <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
         </li>-->
-          etablissement: {{item}}
-          <div ng-repeat="item in $ctrl.items" class="checkbox checkbox-primary">
-            <input type="checkbox" class="styled checkbox-primary">
-            <label>
+        etablissement: {{item}}
+        <div ng-repeat="item in $ctrl.items" class="checkbox checkbox-info">
+          <input type="checkbox" class="styled checkbox-info">
+          <label>
               class
           </label>
-          </div>
-        </ul>
-        Selected: <b>{{ $ctrl.selected.item }}</b>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
-      </div>
+        </div>
+      </ul>
+      Selected: <b>{{ $ctrl.selected.item }}</b>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+      <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+    </div>
   </form>
 </script>
 <script type="text/ng-template" id="stackedModal.html">

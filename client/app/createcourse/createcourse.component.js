@@ -34,6 +34,14 @@ export class CreatecourseComponent {
   datetime;
   activite;
   etabProf;
+  categ = {
+    id: "",
+    libelle: ""
+  };
+  sCateg = {
+    id: "",
+    libelle: ""
+  };
   constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth, classeProvider) {
     this.jsFonctions = jsFonctions;
     this.categorieProvider = categorieProvider;
@@ -45,6 +53,10 @@ export class CreatecourseComponent {
     this.directpublish = false;
     this.getcurrentUser = Auth.getCurrentUserSync;
     this.datetime = this.currentdate.getFullYear() + "-" + (this.currentdate.getMonth() + 1) + "-" + this.currentdate.getDate();
+    this.categ.id = "";
+    this.categ.libelle = "selectionner le domaine";
+    this.sCateg.id = "";
+    this.sCateg.libelle = "selectionner le sous domaine";
   }
   getSousCatByCategorie(id) {
     this.souscategorieProvider.getSousCatByCategorie(id).then(list => {
@@ -163,8 +175,7 @@ export class CreatecourseComponent {
       };
       console.log('le cours ', this.objetCours);
     }
-    if (this.selectedId && this.selectedIdsCat && this.stateProgress === 0) {
-      console.log(this.selectedId)
+    if (this.selectedIdsCat && this.stateProgress === 0) {
       this.firstPart = false;
       this.secondPart = true;
       this.thirdPart = false;
@@ -175,7 +186,7 @@ export class CreatecourseComponent {
         'visibility': 'visible',
         'animation-name': 'slideInLeft'
       }
-      this.objetCours.sousCategorie = this.selectedIdsCat;
+      this.objetCours.sousCategorie = this.sCateg.id;
       console.log(this.objetCours.sousCategorie)
     } else {
       console.log('cant go next');
@@ -246,10 +257,6 @@ export class CreatecourseComponent {
     this.activite = false;
     this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);
   }
-  selectedVal() {
-    this.getSousCatByCategorie(this.selectedId);
-    // this.showSCat = true;
-  }
   verifyNumber() {
     if (this.nbh) {
       if (this.nbh < 1 || this.nbh > 99) {
@@ -296,6 +303,24 @@ export class CreatecourseComponent {
   }
   directPublish() {
     this.directpublish = true;
+  }
+  // pour dropdown des Categories
+  selectedCateg(categorie) {
+    console.log(categorie)
+    console.log(this.categ)
+    this.sCateg.id = "";
+    this.sCateg.libelle = "selectionner le sous domaine";
+    this.selectedIdsCat = false;
+    this.categ.id = categorie._id;
+    this.categ.libelle = categorie.libelle;
+    this.selectedId = true;
+    console.log(this.categ)
+    this.getSousCatByCategorie(this.categ.id);
+  }
+  selectedSCateg(sousCategorie) {
+    this.sCateg.id = sousCategorie._id;
+    this.sCateg.libelle = sousCategorie.libelle;
+    this.selectedIdsCat = true;
   }
 }
 export function ModalDemoCtrl($uibModal, $log, $document) {
