@@ -7,7 +7,8 @@ var extend = require('mongoose-schema-extend');
 var PublicationSchema = ParentModele.Modele();
 var CoursSchema = PublicationSchema.extend({
     nbheures: Number,
-    images: String
+    images: String,
+    actif: Boolean
 });
 
 registerEvents(CoursSchema);

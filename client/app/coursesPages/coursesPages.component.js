@@ -21,6 +21,7 @@ export class CoursesPagesComponent {
     this.jsFonctions = jsFonctions;
     this.coursProvider = coursProvider;
     this.categorieProvider = categorieProvider;
+
   }
  
 
@@ -32,6 +33,7 @@ export class CoursesPagesComponent {
           this.jsFonctions.otherScript();
         }, 0);
       });
+
 
 // Avoir la liste de tous les coursau chargement de la page
       this.coursProvider.listCours().then(list =>{
@@ -53,7 +55,9 @@ export class CoursesPagesComponent {
 
 
 
+
 CoursesPagesComponent.$inject = ["jsFonctions", "coursProvider","categorieProvider"];
+
 export default angular.module('samaschoolApp.coursesPages', [uiRouter])
   .config(routes)
   .component('coursesPages', {
