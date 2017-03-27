@@ -4,6 +4,7 @@ const angular = require('angular');
 /*@ngInject*/
 export function classeProviderService($http, $q) {
     // AngularJS will instantiate a singleton by calling "new" on this function
+    this.selectedClasses = [];
     this.listClasse = function() {
         var deferred = $q.defer();
         var liste = [];
