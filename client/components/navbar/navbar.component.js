@@ -37,9 +37,9 @@ export class NavbarComponent {
     return this.userProvider.msg;
   }
   con(){
-    this.fegn = true;
-    $('#topbar_msg').fadeOut(3000);
-    return this.fegn;
+    // this.fegn = true;
+    $('#topbar_msg').fadeOut(6000);
+    // return this.fegn;
   }
   closeMsg() {
     console.log('iiiiiiiiiiiiiiiii')

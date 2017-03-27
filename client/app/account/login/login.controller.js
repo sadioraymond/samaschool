@@ -49,6 +49,7 @@ export default class LoginController {
         })
         .catch(err => {
           this.errors.login = err.message;
+           this.$state.go('main');
         });
     }
   }
