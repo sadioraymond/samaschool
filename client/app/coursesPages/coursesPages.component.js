@@ -7,12 +7,20 @@ import routes from './coursesPages.routes';
 
 export class CoursesPagesComponent {
   /*@ngInject*/
+
+  // Les services à injecter
   jsFonctions;
   coursProvider;
+  categorieProvider;
+
+  //Les variables gloabales
   tousLesCours;
-  constructor(jsFonctions, coursProvider) {
+  lesCategories;
+
+  constructor(jsFonctions, coursProvider, categorieProvider) {
     this.jsFonctions = jsFonctions;
     this.coursProvider = coursProvider;
+    this.categorieProvider = categorieProvider;
 
   }
  
@@ -27,11 +35,17 @@ export class CoursesPagesComponent {
       });
 
 
+// Avoir la liste de tous les coursau chargement de la page
       this.coursProvider.listCours().then(list =>{
       this.tousLesCours = list;
-      console.log('fiii',list);
+      console.log('tous les cours',list);
     })
-     
+
+// Avoir toutes les categories au chargement de la page
+    this.categorieProvider.listCategorie().then(list => {
+      this.lesCategories = list;
+      console.log('toutes les categories',list);
+    })
       
   }
 
@@ -41,7 +55,8 @@ export class CoursesPagesComponent {
 
 
 
-CoursesPagesComponent.$inject = ["jsFonctions", "coursProvider"];
+
+CoursesPagesComponent.$inject = ["jsFonctions", "coursProvider","categorieProvider"];
 
 export default angular.module('samaschoolApp.coursesPages', [uiRouter])
   .config(routes)
