@@ -13,6 +13,8 @@ export class CreatecourseComponent {
   categorieProvider;
   listCat;
   coursProvider;
+  listClass;
+  classeProvider;
   firstPart = true;
   secondPart = false;
   thirdPart = false;
@@ -27,14 +29,22 @@ export class CreatecourseComponent {
   listSouscatBycat;
   titreChap = [];
   objChap = {};
-  constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider) {
+  getcurrentUser;
+  currentdate = new Date();
+  datetime;
+  activite;
+  etabProf;
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth, classeProvider) {
     this.jsFonctions = jsFonctions;
     this.categorieProvider = categorieProvider;
     this.souscategorieProvider = souscategorieProvider;
     this.coursProvider = coursProvider;
+    this.classeProvider = classeProvider;
     this.message = 'Hello';
     this.firstPart = true;
     this.directpublish = false;
+    this.getcurrentUser = Auth.getCurrentUserSync;
+    this.datetime = this.currentdate.getFullYear() + "-" + (this.currentdate.getMonth() + 1) + "-" + this.currentdate.getDate();
   }
   getSousCatByCategorie(id) {
     this.souscategorieProvider.getSousCatByCategorie(id).then(list => {
@@ -42,14 +52,25 @@ export class CreatecourseComponent {
       console.log('Les Sous Catégories de la Categorie', this.listSouscatBycat);
     });
   }
+
   $onInit() {
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
+          this.classeProvider.getClasseByUser(this.getcurrentUser()._id).then(list => {
+            this.listClass = list;
+            if (this.listClass.length == 0) {
+              console.log('Liste Vide');
+            } else {
+              console.info('les classes du prof connecté ', this.listClass);
+            }
+
+          });
         }, 0);
       });
+    this.noPlan = false;
     this.categorieProvider.listCategorie().then(list => {
       this.listCat = list;
       if (this.listCat.length == 0) {
@@ -74,6 +95,7 @@ export class CreatecourseComponent {
     });
   }
   nextClick() {
+    console.log('User bi', this.getcurrentUser());
     if (this.titreChap && this.objectifChap && this.contenuChap && !this.numberError && this.stateProgress == 50 && this.firstPart != true && this.secondPart != true && this.nbChap) {
       console.log('next next');
       this.firstPart = false;
@@ -203,6 +225,27 @@ export class CreatecourseComponent {
     }
 
   }
+  addCour() {
+    console.log('khol titre', this.objetCours.detailscours.titrecours);
+    console.log('khol objectif', this.objetCours.detailscours.objectifcours);
+    console.log('khol heure', this.objetCours.detailscours.heure);
+    console.log('khol sous categorie', this.objetCours.sousCategorie);
+    for (let c = 0; c < this.nbChap; c++) {
+      console.log('khol titre chap', c, this.objetCours.objChap[`${c}`].titre);
+      console.log('khol objectif chap', c, this.objetCours.objChap[`${c}`].objectif);
+      console.log('khol contenu chap', c, this.objetCours.objChap[`${c}`].contenu);
+      console.log('khol lienVideo chap', c, this.objetCours.objChap[`${c}`].lienVideo);
+    }
+    console.log('Date bi', this.datetime);
+    this.activite = true;
+    this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);
+    //  window.location.reload();
+  }
+  addBrouillon() {
+    console.log('Date bi', this.datetime);
+    this.activite = false;
+    this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);
+  }
   selectedVal() {
     this.getSousCatByCategorie(this.selectedId);
     // this.showSCat = true;
@@ -226,16 +269,20 @@ export class CreatecourseComponent {
     }
   }
   GenerateFields() {
-    if (this.nbChap) {
-      if (this.nbChap < 1 || this.nbChap > 20) {
-        this.numberChapError = true;
-      } else {
-        this.numberChapError = false;
-        this.listChap = [];
-        for (let i = 0; i < this.nbChap; i++) {
-          this.listChap.push(i);
-          console.log(this.listChap)
-        }
+    this.noPlan = false;
+    if (this.nbChap == 0) {
+      this.listChap = [];
+      this.noPlan = true;
+    } else if (this.nbChap < 0 || this.nbChap > 10) {
+      this.listChap = [];
+      this.numberChapError = true;
+    } else {
+      this.noPlan = false;
+      this.numberChapError = false;
+      this.listChap = [];
+      for (let i = 0; i < this.nbChap; i++) {
+        this.listChap.push(i);
+        console.log(this.listChap)
       }
     }
   }
@@ -251,8 +298,57 @@ export class CreatecourseComponent {
     this.directpublish = true;
   }
 }
+export function ModalDemoCtrl($uibModal, $log, $document) {
+  var $ctrl = this;
+  $ctrl.items = ['item1', 'item2', 'item3'];
 
-CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider"];
+  $ctrl.animationsEnabled = true;
+
+  $ctrl.open = function (size, parentSelector) {
+    var parentElem = parentSelector ?
+      angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+    var modalInstance = $uibModal.open({
+      animation: $ctrl.animationsEnabled,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl',
+      controllerAs: '$ctrl',
+      size: size,
+      appendTo: parentElem,
+      resolve: {
+        items: function () {
+          return $ctrl.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $ctrl.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+}
+export function ModalInstanceCtrl($uibModalInstance, items, userProvider) {
+  var $ctrl = this;
+  $ctrl.items = items;
+  $ctrl.selected = {
+    item: $ctrl.items[0]
+  };
+  userProvider.varbi = $uibModalInstance;
+  $ctrl.ok = function () {
+    $uibModalInstance.close($ctrl.selected.item);
+  };
+
+  $ctrl.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+}
+
+CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth", "classeProvider"];
+ModalDemoCtrl.$inject = ["$uibModal", "$log", "$document"];
+ModalInstanceCtrl.$inject = ["$uibModalInstance", "items", "userProvider"];
 
 export default angular.module('samaschoolApp.createcourse', [uiRouter])
   .config(routes)
@@ -261,4 +357,41 @@ export default angular.module('samaschoolApp.createcourse', [uiRouter])
     controller: CreatecourseComponent,
     controllerAs: 'createcourseCtrl'
   })
+  .controller('ModalDemoCtrl', ModalDemoCtrl)
+  .controller('ModalInstanceCtrl', ModalInstanceCtrl)
+  .component('modalComponent', {
+    templateUrl: 'myModalContent.html',
+    bindings: {
+      resolve: '<',
+      close: '&',
+      dismiss: '&'
+    },
+    controller: function () {
+      var $ctrl = this;
+
+      $ctrl.$onInit = function () {
+        $ctrl.items = $ctrl.resolve.items;
+        $ctrl.selected = {
+          item: $ctrl.items[0]
+        };
+      };
+
+      $ctrl.ok = function () {
+        $ctrl.close({
+          $value: $ctrl.selected.item
+        });
+      };
+
+      $ctrl.cancel = function () {
+        $ctrl.dismiss({
+          $value: 'cancel'
+        });
+      };
+    }
+  })
+  .filter('trustAsResourceUrl', ['$sce', function ($sce) {
+    return function (val) {
+      return $sce.trustAsResourceUrl(val);
+    };
+  }])
   .name;

@@ -6,6 +6,7 @@ var controller = require('./cours.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/brouillon', controller.brouillon);
 router.get('/recents', controller.getCoursRecents);
 router.get('/:id', controller.show);
 router.get('/sousCat/:scat', controller.getCoursBySousCat);

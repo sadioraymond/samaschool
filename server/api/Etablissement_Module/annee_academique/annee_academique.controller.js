@@ -82,27 +82,46 @@ export function show(req, res) {
 
 // Gets AnneeAcademique by User
 export function getClassByUser(req, res) {
-  return AnneeAcademique.find({user : req.params.us}).populate('classe').exec()
-        .then(handleEntityNotFound(res))
-        .then(respondWithResult(res))
-        .catch(handleError(res));
-        
+    AnneeAcademique.find({ user: req.params.us }).exec().then(list => {
+        var tab = [];
+        var tabs = [];
+        list.forEach(function(element) {
+            tab.push(element.classe);
+        });
+        if (tab.length == 0) {
+            return res.json(tabs);
+        } else {
+            var cpt = 0;
+            for (let i = 0; i < tab.length; i++) {
+                Classe.find({ classe: tab[i] }).populate('classe').populate('etablissement').exec(function(err, cl) {
+                    tabs.push(cl);
+                    cpt++;
+                    if (cpt == tab.length) {
+                        return res.json(tabs);
+                    }
+                });
+            }
+        }
+
+    });
+
+
 }
 
 // Gets les users d'une classe pour une année
 export function getUserByclasse(req, res) {
-AnneeAcademique.find({classe : req.params.cl}).populate('user').exec()
+    AnneeAcademique.find({ classe: req.params.cl }).populate('user').exec()
         .then(list => {
             var us = [];
             list.forEach(function(element) {
-                if(element.annee == req.params.an){
+                if (element.annee == req.params.an) {
                     us.push(element.user);
                 }
             }, this);
             return res.json(us);
         })
-        
-        
+
+
 }
 
 
