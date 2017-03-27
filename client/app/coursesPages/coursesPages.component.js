@@ -8,10 +8,15 @@ import routes from './coursesPages.routes';
 export class CoursesPagesComponent {
   /*@ngInject*/
   jsFonctions;
-  constructor(jsFonctions) {
+  coursProvider;
+  tousLesCours;
+  constructor(jsFonctions, coursProvider) {
     this.jsFonctions = jsFonctions;
-    this.message = 'Hello';
+    this.coursProvider = coursProvider;
+
   }
+ 
+
   $onInit() {
     angular.element(document)
       .ready(() => {
@@ -20,15 +25,29 @@ export class CoursesPagesComponent {
           this.jsFonctions.otherScript();
         }, 0);
       });
+
+
+      this.coursProvider.listCours().then(list =>{
+      this.tousLesCours = list;
+      console.log('fiii',list);
+    })
+     
+      
   }
+
+ 
+
 }
 
-CoursesPagesComponent.$inject = ["jsFonctions"];
+
+
+CoursesPagesComponent.$inject = ["jsFonctions", "coursProvider"];
+
 export default angular.module('samaschoolApp.coursesPages', [uiRouter])
   .config(routes)
   .component('coursesPages', {
     template: require('./coursesPages.html'),
     controller: CoursesPagesComponent,
-    controllerAs: 'coursesPagesCtrl'
+    controllerAs: 'vm'
   })
   .name;
