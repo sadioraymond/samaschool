@@ -359,14 +359,23 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     $ctrl.getcurrentUser = Auth.getCurrentUserSync;
     $ctrl.datetime = $ctrl.currentdate.getFullYear() + "-" + ($ctrl.currentdate.getMonth() + 1) + "-" + $ctrl.currentdate.getDate();
     $ctrl.activite = true;
+    $ctrl.selection = [];
     coursProvider.objetCours.date = $ctrl.datetime;
     coursProvider.objetCours.user = $ctrl.getcurrentUser()._id;
     coursProvider.objetCours.act = $ctrl.activite;
+    $ctrl.toggleSelection = function toggleSelection(value) {     
+        var idx = $ctrl.selection.indexOf(value);       // is currently selected
+             
+        if (idx > -1) {        $ctrl.selection.splice(idx, 1);      }       // is newly selected
+             
+        else {        $ctrl.selection.push(value);      }   
+    };
     $ctrl.ok = function() {
         $uibModalInstance.close($ctrl.selected.item);
-        // console.log('idsss', $ctrl.selectedClass);
-        coursProvider.ajoutCours2(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, coursProvider.objetCours.tab, coursProvider.objetCours.taille, $ctrl.activite, $ctrl.selectedClass);
+        coursProvider.ajoutCours2(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, coursProvider.objetCours.tab, coursProvider.objetCours.taille, $ctrl.activite, $ctrl.selection);
         console.log('khol li', coursProvider.objetCours);
+        console.log('verif', $ctrl.selection);
+
     };
 
     $ctrl.cancel = function() {
