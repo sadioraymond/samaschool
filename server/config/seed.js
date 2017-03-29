@@ -1737,17 +1737,17 @@ export default function seedDatabaseIfNeeded() {
                 suivi_cours.create({
                         _id: 1,
                         publication: 1,
-                        user: "58b03802d98ff60ec2777f8c",
+                        user: "58b03802d98ff60ec2777f93",
                         date_suivie: "2017-08-11"
                     }, {
                         _id: 2,
                         publication: 2,
-                        user: "58b03802d98ff60ec2777f8c",
+                        user: "58b03802d98ff60ec2777f93",
                         date_suivie: "2016-04-28"
                     }, {
                         _id: 3,
                         publication: 3,
-                        user: "58b03802d98ff60ec2777f8e",
+                        user: "58b03802d98ff60ec2777f93",
                         date_suivie: "2017-05-01"
                     }, {
                         _id: 4,
