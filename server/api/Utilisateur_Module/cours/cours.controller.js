@@ -81,7 +81,7 @@ function verify(tab, element) {
 export function index(req, res) {
     var cou = "Cours";
     var act = true;
-    return Cours.find({ Genre: cou}).populate('sous_categorie').exec()
+    return Cours.find({ Genre: cou }).populate('sous_categorie').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
