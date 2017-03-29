@@ -15,7 +15,7 @@
                     </a>
                   </div>
                   <div class="author-title desc">
-                    <h4><a href="member-profile.html">John DOE</a></h4>
+                    <h4><a href="member-profile.html">{{profilCtrl.getCurrentUser().name}}</a></h4>
                     <a class="authorlink" href="https://showwp.com">https://showwp.com</a>
                     <ul class="list-inline social-small">
                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -51,7 +51,7 @@
             <div class="member-desc clearfix">
               <ul id="ss_sidebar">
                 <li class="active"><a href="" ng-click="profilCtrl.profilClick(); profilCtrl.doActive($event)" class="profilClass">Profil</a></li>
-                <li><a href="" ng-click="profilCtrl.etablissementClick(); profilCtrl.doActive($event)" class="etabClass">Etablissements<span>2</span> </a></li>
+                <li><a href="" ng-click="profilCtrl.etablissementClick(); profilCtrl.doActive($event)" class="etabClass">Etablissements<span> {{profilCtrl.LesEtabIncrit.length}} </span> </a></li>
                 <li><a href="" ng-click="profilCtrl.courseClick(); profilCtrl.doActive($event)" class="coursesClass">Courses <span>4 </span></a></li>
                 <!--<li><a href="member-achievements.html">Achievements <span>6</span></a></li>-->
                 <li><a href="">Forum Topics <span>33</span></a></li>
@@ -75,7 +75,7 @@
           <div class="member-profile">
             <div class="big-title">
               <h2 class="related-title">
-                <span>About John's</span>
+                <span>About {{profilCtrl.getCurrentUser().name}}</span>
               </h2>
             </div>
             <!-- end big-title -->
@@ -106,31 +106,14 @@
             <!-- end big-title -->
 
             <div class="row profile-badges">
-              <div class="col-md-6 col-sm-12 wow fadeIn">
+              <div class="col-md-6 col-sm-12 wow fadeIn" ng-repeat="etab in profilCtrl.LesEtabIncrit">
                 <div class="boxes text-left service-first withcircle withborder leftservice">
                   <i class="fa fa-user-plus alignleft"></i>
-                  <h3>Profile Badge</h3>
-                  <p>Professional responsive and retina ready template for online learning websites!</p>
-                </div>
-                <!-- end box -->
-              </div>
-              <!-- end col -->
 
-              <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
-                  <i class="fa fa-user-plus alignleft"></i>
-                  <h3>Profile Badge</h3>
-                  <p>Professional responsive and retina ready template for online learning websites!</p>
-                </div>
-                <!-- end box -->
-              </div>
-              <!-- end col -->
-
-              <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
-                  <i class="fa fa-trophy alignleft"></i>
-                  <h3>Win a Compoment</h3>
-                  <p>Professional responsive and retina ready template for online learning websites!</p>
+                  <h3> {{etab.libelle}} </h3>
+                  <p> {{etab.adresse}} </p>
+                  <p> {{etab.email}} </p>
+                  <p> {{etab.tel}} </p>
                 </div>
                 <!-- end box -->
               </div>

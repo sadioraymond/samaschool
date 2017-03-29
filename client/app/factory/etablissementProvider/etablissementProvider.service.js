@@ -62,6 +62,21 @@ export function etablissementProviderService($http, $q) {
             console.log("Bakhna");
         });
     }
+    this.getEtabByUser = function(user) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/etablissements/user/' + user, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
 }
 
 

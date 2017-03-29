@@ -27,9 +27,6 @@ export class MainController {
     listCoursPlussuivi;
     listProfplussuivi;
     listeEtablissementPlussuivi;
-    listeEPlussuivi;
-    CoursPlusSuivi;
-    Profplussuivi;
     listProfSchool;
     /*@ngInject*/
     constructor($http, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider) {
@@ -44,39 +41,6 @@ export class MainController {
         this.jsFonctions = jsFonctions;
         this.profilProvider = profilProvider;
 
-    }
-    FindEtabByID(id, nbfois) {
-        this.etablissementProvider.FindEtabByID(id).then(list => {
-            this.listeEPlussuivi = list;
-            if (this.listeEPlussuivi.length == 0) {
-                console.log('Liste Vide');
-            } else {
-                this.listeEPlussuivi.nbsuivi = nbfois;
-                console.log('Les Etablissements les plus suivis', this.listeEPlussuivi);
-            }
-        });
-    }
-    FindProfByID(id, nbfois) {
-        this.profilProvider.FindProfByID(id).then(list => {
-            this.Profplussuivi = list;
-            if (this.Profplussuivi.length == 0) {
-                // console.log('Aucun Professeur');
-            } else {
-                this.Profplussuivi.nb_suivi = nbfois;
-                console.log('Les professeurs les plus suivi sont', this.Profplussuivi);
-            }
-        });
-    }
-    FindCoursById(id, nb) {
-        this.coursProvider.FindById(id).then(list => {
-            this.CoursPlusSuivi = list;
-            if (this.CoursPlusSuivi.length == 0) {
-                console.log('Liste Vide');
-            } else {
-                this.CoursPlusSuivi.suivi = nb;
-                console.log('Les Cours les plus suivi', this.CoursPlusSuivi);
-            }
-        });
     }
     GetCoursProfInSchool(id) {
         this.coursProvider.GetCoursProfInSchool(id).then(list => {
@@ -140,9 +104,7 @@ export class MainController {
             if (this.listCoursPlussuivi.length == 0) {
                 console.log('Liste Vide');
             } else {
-                for (let i = 0; i < this.listCoursPlussuivi.length; i++) {
-                    this.FindCoursById(this.listCoursPlussuivi[i].id, this.listCoursPlussuivi[i].nb_suiv);
-                }
+                console.log('Les Cours les plus suivi', this.listCoursPlussuivi);
             }
         });
         this.etablissementProvider.listeEtablissement().then(list => {
@@ -161,9 +123,7 @@ export class MainController {
             if (this.listeEtablissementPlussuivi.length == 0) {
                 console.log('Liste Vide');
             } else {
-                for (let i = 0; i < this.listeEtablissementPlussuivi.length; i++) {
-                    this.FindEtabByID(this.listeEtablissementPlussuivi[i].id, this.listeEtablissementPlussuivi[i].nbfois);
-                }
+                console.log('Les Etablissements les plus suivis', this.listeEtablissementPlussuivi);
             }
         });
         this.niveauProvider.listNiveau().then(list => {
@@ -204,9 +164,7 @@ export class MainController {
             if (this.listProfplussuivi.length == 0) {
                 // console.log('Aucun Professeur');
             } else {
-                for (let i = 0; i < this.listProfplussuivi.length; i++) {
-                    this.FindProfByID(this.listProfplussuivi[i].id, this.listProfplussuivi[i].nbfois);
-                }
+                console.log('Les professeurs les plus suivi sont', this.listProfplussuivi);
             }
         });
 

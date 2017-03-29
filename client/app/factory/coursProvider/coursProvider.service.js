@@ -108,7 +108,7 @@ export function coursProviderService($http, $q) {
         return liste;
 
     }
-    this.ajoutCours = function(titre, description, date, sous_cat, user, status, nbheures, images) {
+    this.ajoutCours = function(titre, description, date, sous_cat, user, status, nbheures, act, classes) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -118,13 +118,20 @@ export function coursProviderService($http, $q) {
             user: user,
             status: status,
             nbheures: nbheures,
-            images: images
-        }).then(function() {
+            actif: act
+        }).then(function(data) {
             console.log("Bakhna");
+            for (let j = 0; j < classes.length; j++) {
+                $http.post('/api/suivi_cours_classes', {
+                    publication: data.data._id,
+                    classe: classes[j],
+                    date: date
+                })
+            }
         });
     }
 
-    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act) {
+    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act, classes) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -152,9 +159,17 @@ export function coursProviderService($http, $q) {
                     });
                 });
             }
+
+            for (let j = 0; j < classes.length; j++) {
+                $http.post('/api/suivi_cours_classes', {
+                    publication: data.data._id,
+                    classe: classes[j],
+                    date: date
+                })
+            }
         });
     }
-
+    this.objetCours = {};
 }
 
 export default angular.module('samaschoolApp.coursProvider', [])

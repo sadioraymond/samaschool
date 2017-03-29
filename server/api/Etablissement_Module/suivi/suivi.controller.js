@@ -80,7 +80,7 @@ export function index(req, res) {
 }
 
 //Get All followers By prof
-export function GetfollowersByProf(req, res) {
+export function getfollowersByProf(req, res) {
     Suivi.find({ id_prof: req.params.id }).populate('id_user').exec()
         .then(list => {
             var tab = [];
@@ -92,7 +92,7 @@ export function GetfollowersByProf(req, res) {
 }
 
 //Get All followed By user
-export function GetfollowedByUser(req, res) {
+export function getfollowedByUser(req, res) {
     Suivi.find({ id_user: req.params.ids }).populate('id_prof').exec()
         .then(list => {
             var tab = [];
@@ -104,7 +104,7 @@ export function GetfollowedByUser(req, res) {
 
 }
 //Get Prof Most follow
-export function GetProfMostfollow(req, res) {
+export function getProfMostfollow(req, res) {
     Suivi.find().exec()
         .then(list => {
             var tab = [];
@@ -121,9 +121,11 @@ export function GetProfMostfollow(req, res) {
             });
             var cpt = 0;
             for (let i = 0; i < tab.length; i++) {
-                Suivi.find({ id_prof: tab[i] }).exec(function(err, cp) {
+                Suivi.find({ id_prof: tab[i] }).populate('id_prof').exec(function(err, cp) {
                     var save = {};
-                    save.id = tab[i]
+                    cp.forEach(function(e) {
+                        save.professeur = e.id_prof;
+                    });
                     save.nbfois = cp.length;
                     console.log('compte', save.nbfois);
                     tabs.push(save);
