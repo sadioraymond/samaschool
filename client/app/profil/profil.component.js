@@ -6,12 +6,30 @@ const uiRouter = require('angular-ui-router');
 import routes from './profil.routes';
 
 export class ProfilComponent {
+  // les services à injecter
   jsFonctions;
   sousCategorieProvider;
-  listSousCat;
   categorieProvider;
+  etablissementProvider;
+  
+  // Les variables
   listCat;
-  profil = true;
+  selectedCount = 0;
+  stateProgress = 0;
+   listSousCat;
+  LIs = [];
+  obj = {};
+  elementCard = [];
+  listChap = [];
+  objetCours = {};
+  listSouscatBycat;
+  titreChap = [];
+  objChap = [];
+  getCurrentUser: Function;
+  LesEtabIncrit;
+
+//les booleen pour cacher ou montrer des div
+   profil = true;
   contact = true;
   etablissement = false;
   course = false;
@@ -21,23 +39,15 @@ export class ProfilComponent {
   secondPart = false;
   thirdPart = false;
   fourthPart = false;
-  selectedCount = 0;
-  stateProgress = 0;
-  LIs = [];
-  obj = {};
-  elementCard = [];
-  listChap = [];
-  objetCours = {};
-  listSouscatBycat;
-  titreChap = [];
-  objChap = [];
 
   /*@ngInject*/
-  constructor(jsFonctions, categorieProvider, souscategorieProvider) {
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider) {
     this.message = 'Hello';
     this.jsFonctions = jsFonctions;
     this.sousCategorieProvider = souscategorieProvider;
     this.categorieProvider = categorieProvider;
+    this.getCurrentUser = Auth.getCurrentUserSync;
+    this.etablissementProvider = etablissementProvider;
 
   }
   getSousCatByCategorie(id) {
@@ -54,18 +64,19 @@ export class ProfilComponent {
           this.jsFonctions.otherScript();
         }, 0);
       });
+
+// Liste des categorie au hargement de la page
     this.categorieProvider.listCategorie().then(list => {
       this.listCat = list;
       if (this.listCat.length == 0) {
         console.log('Liste Vide');
       } else {
         console.log('Les Categories', this.listCat);
-        // for (let i = 0; i < this.listCat.length; i++) {
-        //   this.getSousCatByCategorie(this.listCat[i]._id);
-        // }
-        // $log.info('les cat ', this.listCat);
+        
       }
     });
+
+// Liste des sous catégories au chargement de la page
     this.sousCategorieProvider.listSousCategorie().then(list => {
       this.listSousCat = list;
       if (this.listSousCat.length == 0) {
@@ -76,7 +87,18 @@ export class ProfilComponent {
         // $log.info('les sous cat ', this.listSousCat);
       }
     });
+
+//Liste des Etablissements où le User est inscrit au chargement de la page
+   setTimeout(() => {
+       
+    this.etablissementProvider.getEtabByUser(this.getCurrentUser()._id).then(list => {
+      this.LesEtabIncrit = list;
+      console.log('les etablissements', list);
+    })
+     }, 1000);
   }
+  
+  
   doActive(e) {
     this.LIs = document.querySelectorAll('#ss_sidebar > li');
     for (var i = 0; i < this.LIs.length; i++) {
@@ -284,7 +306,7 @@ export class ProfilComponent {
   }
 }
 
-ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider"];
+ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth","etablissementProvider"];
 export default angular.module('samaschoolApp.profil', [uiRouter])
   .config(routes)
   .component('profil', {

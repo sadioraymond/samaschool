@@ -2,8 +2,8 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 nopad">
-        <div class="member-cover">
-          <img src="assets/upload/member-cover.jpg" alt="" class="img-responsive">
+        <div class="member-cover  ">
+          <img src="assets/upload/member-cover_2.jpg" alt="" class="img-responsive" style="height: 500px; width:1300px">
           <div class="lightoverlay overlay"></div>
           <div class="authorbox">
             <div class="row">
@@ -11,11 +11,11 @@
                 <div class="clearfix">
                   <div class="avatar-author">
                     <a href="author.html">
-                      <img alt="" src="assets/upload/team_01.jpg" class="img-responsive">
+                      <img alt="" src="assets/upload/404.jpeg" class="img-responsive">
                     </a>
                   </div>
                   <div class="author-title desc">
-                    <h4><a href="member-profile.html">John DOE</a></h4>
+                    <h4><a href="member-profile.html">{{profilCtrl.getCurrentUser().name}}</a></h4>
                     <a class="authorlink" href="https://showwp.com">https://showwp.com</a>
                     <ul class="list-inline social-small">
                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -51,7 +51,7 @@
             <div class="member-desc clearfix">
               <ul id="ss_sidebar">
                 <li class="active"><a href="" ng-click="profilCtrl.profilClick(); profilCtrl.doActive($event)" class="profilClass">Profil</a></li>
-                <li><a href="" ng-click="profilCtrl.etablissementClick(); profilCtrl.doActive($event)" class="etabClass">Etablissements<span>2</span> </a></li>
+                <li><a href="" ng-click="profilCtrl.etablissementClick(); profilCtrl.doActive($event)" class="etabClass">Etablissements<span> {{profilCtrl.LesEtabIncrit.length}} </span> </a></li>
                 <li><a href="" ng-click="profilCtrl.courseClick(); profilCtrl.doActive($event)" class="coursesClass">Courses <span>4 </span></a></li>
                 <!--<li><a href="member-achievements.html">Achievements <span>6</span></a></li>-->
                 <li><a href="">Forum Topics <span>33</span></a></li>
@@ -75,7 +75,7 @@
           <div class="member-profile">
             <div class="big-title">
               <h2 class="related-title">
-                <span>About John's</span>
+                <span>About {{profilCtrl.getCurrentUser().name}}</span>
               </h2>
             </div>
             <!-- end big-title -->
@@ -106,21 +106,14 @@
             <!-- end big-title -->
 
             <div class="row profile-badges">
-              <div class="col-md-6 col-sm-12 wow fadeIn">
+              <div class="col-md-6 col-sm-12 wow fadeIn" ng-repeat="etab in profilCtrl.LesEtabIncrit">
                 <div class="boxes text-left service-first withcircle withborder leftservice">
                   <i class="fa fa-user-plus alignleft"></i>
-                  <h3>Profile Badge</h3>
-                  <p>Professional responsive and retina ready template for online learning websites!</p>
-                </div>
-                <!-- end box -->
-              </div>
-              <!-- end col -->
 
-              <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
-                  <i class="fa fa-trophy alignleft"></i>
-                  <h3>Win a Compoment</h3>
-                  <p>Professional responsive and retina ready template for online learning websites!</p>
+                  <h3> {{etab.libelle}} </h3>
+                  <p> {{etab.adresse}} </p>
+                  <p> {{etab.email}} </p>
+                  <p> {{etab.tel}} </p>
                 </div>
                 <!-- end box -->
               </div>
@@ -153,6 +146,15 @@
 
               <div class="col-md-6 col-sm-12 wow fadeIn">
                 <div class="boxes text-left service-first withcircle withborder leftservice">
+                  <i class="fa fa-pencil alignleft"></i>
+                  <h3>Contribute Teachme Blog</h3>
+                  <p>Professional responsive and retina ready template for online learning websites!</p>
+                </div>
+              </div>
+              <!-- end col -->
+
+              <div class="col-md-6 col-sm-12 wow fadeIn">
+                <div class="boxes text-left service-first withcircle withborder leftservice">
                   <i class="fa fa-comments-o alignleft"></i>
                   <h3>Forum Moderator</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
@@ -166,7 +168,7 @@
                   <h3>Help to the development site</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
                 </div>
-                </div>
+              </div>
               <!-- end box -->
 
               <!-- end col -->
@@ -179,11 +181,11 @@
       <!-- end right -->
 
       <div ng-show="profilCtrl.course" id="sidebar1" class="col-md-9 col-sm-12">
-        <div ng-if="profilCtrl.createCourseLink" class="row" style="margin-bottom: 2em;">
+        <!--<div ng-if="profilCtrl.createCourseLink" class="row" style="margin-bottom: 2em;">
           <div class="col-md-4">
             <button ng-click="profilCtrl.createCourseClick()" type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Demarrer Ici pour creer un cours</button>
           </div>
-        </div>
+        </div>-->
         <div class="widget clearfix">
           <div class="member-profile">
             <div class="big-title">
@@ -314,10 +316,11 @@
     <!-- end row -->
   </div>
   <!-- end container -->
+  </div>
 </section>
 <!-- end section -->
 
-<section class="welcomebox-wrapper">
+<!--<section class="welcomebox-wrapper">
   <div class="container">
     <div class="welcomebox m900">
       <div class="row">
@@ -325,15 +328,11 @@
           <h2>Learning Management System</h2>
           <p>Welcome to Teachme creative site template for learning websites and companies.</p>
         </div>
-        <!-- end col -->
         <div class="col-md-4 col-sm-4 col-xs-12 text-right">
           <a href="login.html" class="btn btn-default">Create Account</a>
         </div>
-        <!-- end col -->
       </div>
-      <!-- end row -->
     </div>
-    <!-- end callout -->
   </div>
-</section>
+</section>-->
 <!-- end section -->
