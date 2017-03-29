@@ -109,11 +109,13 @@ export function getCoursPlusSuivi(req, res) {
             var cpt = 0;
             var tampon;
             list.map(li => {
-                SuiviCours.find({ cours: li._id }).count()
+                SuiviCours.find({ publication: li._id }).populate('publication').exec()
                     .then(nb => {
                         var ben = {};
-                        ben.id = li._id;
-                        ben.nb_suiv = nb;
+                        nb.forEach(function(e) {
+                            ben.cours = e.publication
+                        });
+                        ben.nb_suiv = nb.length;
                         tabCours.push(ben);
                         cpt++;
                         if (cpt == list.length) {
