@@ -106,9 +106,11 @@ export function GetMostPopularSchool(req, res) {
             });
             var cpt = 0;
             for (let i = 0; i < tab.length; i++) {
-                DetailUser.find({ etablissement: tab[i] }).exec(function(err, cp) {
+                DetailUser.find({ etablissement: tab[i] }).populate('etablissement').exec(function(err, cp) {
                     var save = {};
-                    save.id = tab[i]
+                    cp.forEach(function(e) {
+                        save.etablissement = e.etablissement;
+                    });
                     save.nbfois = cp.length;
                     console.log('compte', save.nbfois);
                     tabs.push(save);

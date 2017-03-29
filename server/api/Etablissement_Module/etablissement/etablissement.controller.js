@@ -81,10 +81,18 @@ export function show(req, res) {
 
 //get Etablissement By USer 
 export function getEtablissementByUser(req, res) {
-    return Detail.find({ user: req.params.id }).populate('user').populate('etablissement').exec()
-        .then(handleEntityNotFound(res))
-        .then(respondWithResult(res))
-        .catch(handleError(res));
+    Detail.find({ user: req.params.id }).populate('etablissement').exec().then(list => {
+        var etab = [];
+        var cpt = 0;
+        list.map(etablis => {
+            etab.push(etablis.etablissement);
+            cpt++;
+            if (cpt == list.length) {
+                return res.json(etab);
+            }
+        });
+    });
+
 }
 
 // Creates a new Etablissement in the DB
