@@ -11,6 +11,7 @@ export class ProfilComponent {
   sousCategorieProvider;
   categorieProvider;
   etablissementProvider;
+  suiviCoursProvider;
   
   // Les variables
   listCat;
@@ -39,15 +40,17 @@ export class ProfilComponent {
   secondPart = false;
   thirdPart = false;
   fourthPart = false;
+  lesCoursSuivis;
 
   /*@ngInject*/
-  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider) {
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider) {
     this.message = 'Hello';
     this.jsFonctions = jsFonctions;
     this.sousCategorieProvider = souscategorieProvider;
     this.categorieProvider = categorieProvider;
     this.getCurrentUser = Auth.getCurrentUserSync;
     this.etablissementProvider = etablissementProvider;
+    this.suiviCoursProvider = suiviCoursProvider;
 
   }
   getSousCatByCategorie(id) {
@@ -65,7 +68,7 @@ export class ProfilComponent {
         }, 0);
       });
 
-// Liste des categorie au hargement de la page
+// Liste des categorie au chargement de la page
     this.categorieProvider.listCategorie().then(list => {
       this.listCat = list;
       if (this.listCat.length == 0) {
@@ -96,7 +99,18 @@ export class ProfilComponent {
       console.log('les etablissements', list);
     })
      }, 1000);
+     
+// Liste des cours suivis par le User
+    setTimeout(() => {
+       
+    this.suiviCoursProvider.getCoursByUser(this.getCurrentUser()._id).then(list => {
+      this.lesCoursSuivis = list;
+      console.log('les cours', list);
+    })
+     }, 1000);
+
   }
+  
   
   
   doActive(e) {
@@ -306,7 +320,7 @@ export class ProfilComponent {
   }
 }
 
-ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth","etablissementProvider"];
+ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth","etablissementProvider","suiviCoursProvider"];
 export default angular.module('samaschoolApp.profil', [uiRouter])
   .config(routes)
   .component('profil', {
