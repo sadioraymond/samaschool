@@ -14,7 +14,7 @@ export class CoursesPagesComponent {
   categorieProvider;
   souscategorieProvider;
 
-  //Les variables gloabales
+  //Les variables globales
   tousLesCours;
   lesCategories;
   lesSousCategories;
