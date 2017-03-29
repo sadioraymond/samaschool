@@ -2,13 +2,14 @@
 <section class="section bgw">
   <div ng-show="true">
     <div class="container">
+      
       <div style="margin: 4em;" class="text-center image-center hidden-xs">
         <img src="assets/upload/device_03.png" alt="" class="img-responsive wow fadeInUp" style="display: block;">
       </div>
       <div class="row">
         <div id="post-content" class="col-md-8 col-sm-12 single-course">
           <div class="post-media clearfix">
-            <video class="videoplayer" poster="assets/upload/video_01.jpg" controls preload="none">
+            <video ng-hide="previewCtrl.noChapitre" class="videoplayer" poster="assets/upload/video_01.jpg" controls preload="none">
               <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
               <source type="video/mp4" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.mp4"
               />
@@ -20,6 +21,10 @@
               />
               <!-- Optional: Add subtitles for each language -->
             </video>
+              <div class="post-media" ng-show="previewCtrl.noChapitre">
+                <iframe ng-src="{{previewCtrl.createdcourse.detailscours.lien | trustAsResourceUrl}}" width="500" height="281" frameborder="0"
+                  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              </div>
           </div>
           <!-- end media -->
 
@@ -27,7 +32,7 @@
             <h3><a href="single.html" title=""> {{previewCtrl.createdcourse.detailscours.titrecours}} </a></h3>
             <div class="post-sharing">
               <ul class="list-inline">
-                <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="hidden-xs">Share on Facebook</span></a></li>
+                <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="hidden-xs">Share on Facebook </span></a></li>
                 <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i> <span class="hidden-xs">Tweet on Twitter</span></a></li>
                 <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
               </ul>
@@ -36,8 +41,7 @@
           </div>
           <!-- end single-course-title -->
 
-          <hr class="invis">
-
+          <hr class="invis">  
           <div class="course-single-desc clearfix">
             <div class="big-title">
               <h2 class="related-title">
@@ -51,7 +55,7 @@
 
           <hr class="invis">
 
-          <div class="course-table clearfix">
+          <div class="course-table clearfix" ng-hide="previewCtrl.noChapitre">
             <div class="big-title">
               <h2 class="related-title">
                 <span>Course Lessons</span>
@@ -248,8 +252,10 @@
         </div>
         <!-- end big-title -->
         <div class="post-media">
-          <iframe width="560" height="315" ng-src="{{previewCtrl.createdcourse.detailscours.lien | trustAsResourceUrl}}"  frameborder="0" allowfullscreen>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis nostrum accusantium consectetur illum vero dolor veniam ut aspernatur aut. Nam adipisci tempore voluptatum harum suscipit blanditiis atque possimus natus qui.
+          <iframe width="560" height="315" ng-src="{{previewCtrl.createdcourse.detailscours.lien | trustAsResourceUrl}}" frameborder="0"
+            allowfullscreen>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis nostrum accusantium consectetur illum vero dolor veniam
+            ut aspernatur aut. Nam adipisci tempore voluptatum harum suscipit blanditiis atque possimus natus qui.
           </iframe>
         </div>
       </div>

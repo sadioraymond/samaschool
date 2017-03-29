@@ -8,7 +8,7 @@
     <!-- end big-title -->
 
     <div id="owl-shop" class="carousel-widget">
-      <div class="carousel-item">
+      <div class="carousel-item" ng-repeat="cour in vm.lit">
         <div class="shop-item">
           <div class="post-media entry">
             <div class="ribbon-wrapper-green">
@@ -58,101 +58,6 @@
         <!-- end shop-item -->
       </div>
       <!-- end carousel-item -->
-
-      <div class="carousel-item">
-        <div class="shop-item">
-          <div class="post-media entry">
-            <img src="assets/upload/course_02.jpg" alt="" class="img-responsive">
-            <div class="magnifier">
-              <div class="shop-bottom clearfix">
-                <a href="course-checkout.html" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                <a ui-sref="courseSinglePage" title="Full Preview"><i class="fa fa-search"></i></a>
-              </div>
-           
-            </div>
-          
-          </div>
-         
-          <div class="shop-desc">
-            <div class="shop-price clearfix">
-              <div class="pull-left">
-                <div class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-            
-              </div>
-           
-              <div class="pull-right">
-                <small>$55.00</small>
-              </div>
-          
-            </div>
-            <h3><a ui-sref="courseSinglePage" title="">Learning WordPress Content Management System</a></h3>
-          </div>
-
-          <div class="large-post-meta">
-            <span class="avatar"><a href="member-profile.html"><img src="assets/upload/avatar_01.png" alt="" class="img-circle"> Jenny DOE</a></span>
-            <small>&#124;</small>
-            <span><a ui-sref="courseSinglePage"><i class="fa fa-clock-o"></i> 1 Month</a></span>
-            <small class="hidden-xs">&#124;</small>
-            <span class="hidden-xs"><a ui-sref="courseSinglePage"><i class="fa fa-graduation-cap"></i> 63 Students</a></span>
-          </div>
-          
-        </div>
-       
-      </div>
-      
-
-      <div class="carousel-item">
-        <div class="shop-item">
-          <div class="post-media entry">
-            <img src="assets/upload/course_03.jpg" alt="" class="img-responsive">
-            <div class="magnifier">
-              <div class="shop-bottom clearfix">
-                <a href="course-checkout.html" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                <a ui-sref="courseSinglePage" title="Full Preview"><i class="fa fa-search"></i></a>
-              </div>
-             
-            </div>
-        
-          </div>
-       
-          <div class="shop-desc">
-            <div class="shop-price clearfix">
-              <div class="pull-left">
-                <div class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-        
-              </div>
-           
-              <div class="pull-right">
-                <small>$57.00</small>
-              </div>
-              
-            </div>
-            <h3><a ui-sref="courseSinglePage" title="">How to write a 10-finger keyboard with Laptop</a></h3>
-          </div>
-
-          <div class="large-post-meta">
-            <span class="avatar"><a href="member-profile.html"><img src="assets/upload/avatar_03.png" alt="" class="img-circle"> John DOE</a></span>
-            <small>&#124;</small>
-            <span><a ui-sref="courseSinglePage"><i class="fa fa-clock-o"></i> 3 Month</a></span>
-            <small class="hidden-xs">&#124;</small>
-            <span class="hidden-xs"><a ui-sref="courseSinglePage"><i class="fa fa-graduation-cap"></i> 66 Students</a></span>
-          </div>
-      
-        </div>
-       
-      </div>
      
     </div>
     <!-- end carousel-widget -->

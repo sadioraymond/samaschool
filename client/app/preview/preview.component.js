@@ -8,6 +8,7 @@ import routes from './preview.routes';
 export class PreviewComponent {
   jsFonctions;
   coursProvider;
+  noChapitre;
   /*@ngInject*/
   constructor(jsFonctions, coursProvider) {
     this.message = 'Hello';
@@ -15,7 +16,7 @@ export class PreviewComponent {
     this.coursProvider = coursProvider;
     this.createdcourse = {};
   }
-  $onInit() { 
+  $onInit() {
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
@@ -24,8 +25,13 @@ export class PreviewComponent {
         }, 0);
       });
     this.createdcourse = this.coursProvider.createdCourse;
-    console.info(this.createdcourse)
-    console.info(this.createdcourse.objChap)
+    console.info('le cours preview', this.createdcourse)
+    console.info(this.createdcourse.nbChap)
+    if (this.createdcourse.nbChap === 0) {
+      this.noChapitre = true;
+    } else {
+      this.noChapitre = false;
+    }
   }
 }
 

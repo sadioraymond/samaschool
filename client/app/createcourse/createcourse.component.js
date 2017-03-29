@@ -168,7 +168,6 @@ export class CreatecourseComponent {
         'visibility': 'visible',
         'animation-name': 'slideInLeft'
       }
-      console.info(this.nbChap);
       this.objetCours.nbChap = this.nbChap;
       for (let c = 0; c < this.nbChap; c++) {
         this.titrech = this.titreChap[c];
@@ -185,7 +184,7 @@ export class CreatecourseComponent {
       this.objetCours.objChap = this.objChap;
       console.log('le cours ', this.objetCours);
     }
-    if (this.urlvideo != "" && this.stateProgress == 50 && !this.firstPart && !this.secondPart && this.directpublish) {
+    if (this.urlvideo != "" && this.stateProgress == 50 && !this.firstPart && !this.secondPart) {
       this.firstPart = false;
       this.secondPart = false;
       this.thirdPart = false;
@@ -196,11 +195,12 @@ export class CreatecourseComponent {
         'visibility': 'visible',
         'animation-name': 'slideInLeft'
       }
+      this.objetCours.nbChap = this.nbChap;
       this.objetCours.detailscours = {
         'titrecours': this.titreCours,
         'objectifcours': this.objectifCours,
         'heure': this.nbh,
-        'lien': this.urlvideo
+        'lien': this.lienVideoCours
       };
       console.log('le cours ', this.objetCours);
     }
@@ -480,11 +480,6 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
       console.log('Les Classes du profss', $ctrl.listClasseUsers);
     });
   }
-//   $ctrl.check = function(id) {
-//     consol
-//   }
-
-  console.error($ctrl.selectedClass)
 }
 
 CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth", "classeProvider"];
