@@ -108,7 +108,7 @@ export function coursProviderService($http, $q) {
         return liste;
 
     }
-    this.ajoutCours = function(titre, description, date, sous_cat, user, status, nbheures, act, classes) {
+    this.ajoutCours = function(titre, description, date, sous_cat, user, status, nbheures, act, classes, lienVideo, contenu) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -121,6 +121,11 @@ export function coursProviderService($http, $q) {
             actif: act
         }).then(function(data) {
             console.log("Bakhna");
+            $http.post('/api/fichiers', {
+                cours: data.data._id,
+                link: lienVideo,
+                contenu: contenu
+            });
             for (let j = 0; j < classes.length; j++) {
                 $http.post('/api/suivi_cours_classes', {
                     publication: data.data._id,

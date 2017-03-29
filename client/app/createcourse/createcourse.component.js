@@ -133,7 +133,7 @@ export class CreatecourseComponent {
             this.coursProvider.objetCours.tab = this.objetCours.objChap;
             this.coursProvider.objetCours.taille = this.nbChap;
         }
-        if (this.urlvideo != "" && this.stateProgress == 50 && !this.firstPart && !this.secondPart && this.directpublish) {
+        if (this.urlvideo != "" && this.stateProgress == 50 && !this.firstPart && !this.secondPart) {
             this.firstPart = false;
             this.secondPart = false;
             this.thirdPart = false;
@@ -145,11 +145,14 @@ export class CreatecourseComponent {
                 'animation-name': 'slideInLeft'
             }
             this.objetCours.nbChap = this.nbChap;
+            this.coursProvider.objetCours.contenuCours = this.contenuCours;
+            this.coursProvider.objetCours.lienVideo = this.lienVideoCours;
             this.objetCours.detailscours = {
                 'titrecours': this.titreCours,
                 'objectifcours': this.objectifCours,
                 'heure': this.nbh,
-                'lien': this.urlvideo
+                'lien': this.lienVideoCours,
+                'contenuCours': this.contenuCours
             };
             console.log('le cours ', this.objetCours);
         }
@@ -372,9 +375,15 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     };
     $ctrl.ok = function() {
         $uibModalInstance.close($ctrl.selected.item);
-        coursProvider.ajoutCours2(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, coursProvider.objetCours.tab, coursProvider.objetCours.taille, $ctrl.activite, $ctrl.selection);
-        console.log('khol li', coursProvider.objetCours);
-        console.log('verif', $ctrl.selection);
+        if (coursProvider.objetCours.tab) {
+            coursProvider.ajoutCours2(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, coursProvider.objetCours.tab, coursProvider.objetCours.taille, $ctrl.activite, $ctrl.selection);
+            console.log('khol li', coursProvider.objetCours.taille);
+            console.log('verif', $ctrl.selection);
+        } else {
+            console.log('Amoul dara');
+            coursProvider.ajoutCours(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, status, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.selection, coursProvider.objetCours.lienVideo, coursProvider.objetCours.contenuCours);
+        }
+
 
     };
 
@@ -399,44 +408,44 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     }
 
     $ctrl.getClasseByUser = function(user) {
-            console.log('etape 1')
-            console.log(user)
-            classeProvider.getClasseByUser(user).then(list => {
-                console.log('etape 2')
-                $ctrl.listClasseUser = list;
-                if ($ctrl.listClasseUser.length == 0) {
-                    console.log('Liste Vide');
-                } else {
-                    console.log('Les Classes du prof', $ctrl.listClasseUser);
+        console.log('etape 1')
+        console.log(user)
+        classeProvider.getClasseByUser(user).then(list => {
+            console.log('etape 2')
+            $ctrl.listClasseUser = list;
+            if ($ctrl.listClasseUser.length == 0) {
+                console.log('Liste Vide');
+            } else {
+                console.log('Les Classes du prof', $ctrl.listClasseUser);
+            }
+            for (let i = 0; i < $ctrl.listClasseUser.length; i++) {
+                for (let j = 0; j < $ctrl.listClasseUser[i].length; j++) {
+                    if ($ctrl.listClasseUsers.length == 0) {
+                        $ctrl.listClasseUsers.push($ctrl.listClasseUser[i][j].etablissement);
+                    } else {
+                        if (!$ctrl.verify($ctrl.listClasseUsers, $ctrl.listClasseUser[i][j].etablissement._id)) {
+                            $ctrl.listClasseUsers.push($ctrl.listClasseUser[i][j].etablissement);
+                        }
+                    }
                 }
+            }
+            var l;
+            for (let k = 0; k < $ctrl.listClasseUsers.length; k++) {
+                l = 0;
+                var userClass = {};
                 for (let i = 0; i < $ctrl.listClasseUser.length; i++) {
                     for (let j = 0; j < $ctrl.listClasseUser[i].length; j++) {
-                        if ($ctrl.listClasseUsers.length == 0) {
-                            $ctrl.listClasseUsers.push($ctrl.listClasseUser[i][j].etablissement);
-                        } else {
-                            if (!$ctrl.verify($ctrl.listClasseUsers, $ctrl.listClasseUser[i][j].etablissement._id)) {
-                                $ctrl.listClasseUsers.push($ctrl.listClasseUser[i][j].etablissement);
-                            }
+                        if ($ctrl.verif($ctrl.listClasseUsers[k], $ctrl.listClasseUser[i][j].etablissement._id)) {
+                            userClass[`${l}`] = $ctrl.listClasseUser[i][j].classe;
+                            l++;
                         }
                     }
                 }
-                var l;
-                for (let k = 0; k < $ctrl.listClasseUsers.length; k++) {
-                    l = 0;
-                    var userClass = {};
-                    for (let i = 0; i < $ctrl.listClasseUser.length; i++) {
-                        for (let j = 0; j < $ctrl.listClasseUser[i].length; j++) {
-                            if ($ctrl.verif($ctrl.listClasseUsers[k], $ctrl.listClasseUser[i][j].etablissement._id)) {
-                                userClass[`${l}`] = $ctrl.listClasseUser[i][j].classe;
-                                l++;
-                            }
-                        }
-                    }
-                    $ctrl.listClasseUsers[k].classe = userClass;
-                }
-                console.log('Les Classes du profss', $ctrl.listClasseUsers);
-            });
-        }
+                $ctrl.listClasseUsers[k].classe = userClass;
+            }
+            console.log('Les Classes du profss', $ctrl.listClasseUsers);
+        });
+    }
 }
 
 CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth", "classeProvider"];
