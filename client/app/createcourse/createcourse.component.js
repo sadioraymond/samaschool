@@ -144,6 +144,7 @@ export class CreatecourseComponent {
                 'visibility': 'visible',
                 'animation-name': 'slideInLeft'
             }
+            this.objetCours.nbChap = this.nbChap;
             this.objetCours.detailscours = {
                 'titrecours': this.titreCours,
                 'objectifcours': this.objectifCours,
@@ -234,7 +235,6 @@ export class CreatecourseComponent {
             }
             return;
         }
-
     }
     addCour() {
 
@@ -437,11 +437,6 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
                 console.log('Les Classes du profss', $ctrl.listClasseUsers);
             });
         }
-        //   $ctrl.check = function(id) {
-        //     consol
-        //   }
-
-    console.error($ctrl.selectedClass)
 }
 
 CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth", "classeProvider"];
