@@ -89,7 +89,7 @@ export function show(req, res) {
 }
 
 //Get Most Popular School
-export function GetMostPopularSchool(req, res) {
+export function getMostPopularSchool(req, res) {
     DetailUser.find().exec()
         .then(list => {
             var tab = [];
