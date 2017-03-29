@@ -67,7 +67,7 @@ function handleError(res, statusCode) {
         res.status(statusCode).send(err);
     };
 }
-
+// Verify if an element exist in array
 function verify(tab, element) {
     for (let i = 0; i < tab.length; i++) {
         if (tab[i].toString() == element.toString()) {
@@ -76,7 +76,6 @@ function verify(tab, element) {
     }
     return false;
 }
-
 // Gets a list of Courss
 export function index(req, res) {
     var cou = "Cours";
@@ -85,6 +84,7 @@ export function index(req, res) {
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
+//Add Brouillon
 export function brouillon(req, res) {
     var cou = "Cours";
     var act = false;
@@ -139,9 +139,7 @@ export function getCoursPlusSuivi(req, res) {
 
 
 }
-
 //Cours les plus récents
-
 export function getCoursRecents(req, res) {
     Cours.find().exec()
         .then(list => {
