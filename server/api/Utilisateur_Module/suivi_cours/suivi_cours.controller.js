@@ -62,14 +62,12 @@ function handleError(res, statusCode) {
         res.status(statusCode).send(err);
     };
 }
-
 // Gets a list of SuiviCourss
 export function index(req, res) {
     return SuiviCours.find().populate('user').populate('publication').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
-
 // Gets a single SuiviCours from the DB
 export function show(req, res) {
     return SuiviCours.findById(req.params.id).exec()
@@ -77,7 +75,6 @@ export function show(req, res) {
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
-
 // Liste des users qui suivent un cours
 export function getUserByCours(req, res) {
     SuiviCours.find({ publication: req.params.cr }).populate('user').exec()
@@ -90,8 +87,6 @@ export function getUserByCours(req, res) {
         })
 
 }
-
-
 // Liste des cours suivis par un user
 export function getCoursByUser(req, res) {
     SuiviCours.find({ user: req.params.us }).populate('publication').exec()
@@ -104,16 +99,12 @@ export function getCoursByUser(req, res) {
         })
 
 }
-
-
-
 // Creates a new SuiviCours in the DB
 export function create(req, res) {
     return SuiviCours.create(req.body)
         .then(respondWithResult(res, 201))
         .catch(handleError(res));
 }
-
 // Upserts the given SuiviCours in the DB at the specified ID
 export function upsert(req, res) {
     if (req.body._id) {
@@ -124,7 +115,6 @@ export function upsert(req, res) {
     .then(respondWithResult(res))
         .catch(handleError(res));
 }
-
 // Updates an existing SuiviCours in the DB
 export function patch(req, res) {
     if (req.body._id) {
