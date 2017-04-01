@@ -65,6 +65,8 @@
 
 @import 'createcourse/createcourse.css';
 
+@import 'directives/courses/courses.css';
+
 @import 'etablissementPages/etablissementPages.css';
 
 @import 'main/main.css';

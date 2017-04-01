@@ -62,8 +62,11 @@ import CreatecourseComponent from './createcourse/createcourse.component';
 import PreviewComponent from './preview/preview.component';
 import './app.css';
 
+// ---------- directives -----------
+import coursesDirective from './directives/courses/courses.directive';
+
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider
+    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective
   ])
   .config(routeConfig)
   .run(function ($rootScope, $location, Auth) {
@@ -103,7 +106,35 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
         });
       }
     }
+  })
+  .directive('delayedModel', function () {
+    return {
+      scope: {
+        model: '=delayedModel'
+      },
+      link: function (scope, element, attrs) {
+
+        element.val(scope.model);
+
+        scope.$watch('model', function (newVal, oldVal) {
+          if (newVal !== oldVal) {
+            element.val(scope.model);
+          }
+        });
+
+        var timeout;
+        element.on('load keyup paste search', function () {
+          clearTimeout(timeout);
+          timeout = setTimeout( () => {
+            scope.model = element[0].value;
+            element.val(scope.model);
+            scope.$apply();
+          }, attrs.delay || 500);
+        });
+      }
+    };
   });
+
 
 angular.element(document)
   .ready(() => {

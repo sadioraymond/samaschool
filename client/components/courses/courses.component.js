@@ -23,10 +23,13 @@ export class coursesComponent {
   obj11 = {};
   obj12 = {};
   obj13 = {};
+  tableauCours = [];
   constructor(jsFonctions, coursProvider) {
+    this.LesCoursRecent = [];
     this.message = 'World';
     this.jsFonctions = jsFonctions;
     this.coursProvider = coursProvider;
+
   }
 
   $onInit() {
@@ -38,12 +41,20 @@ export class coursesComponent {
     //       //   this.getClasseByUser(this.getcurrentUser()._id);
     //     }, 0);
     //   });
-    this.lit = [this.obj1, this.obj2, this.obj3, this.obj4, this.obj5, this.obj6, this.obj7, this.obj8, this.obj9, this.obj10, this.obj11, this.obj12, this.obj13];
- 
+    //  lii moy liste bi diaar si provider bi mom mo doxoul
     this.coursProvider.getCoursRecents().then(list => {
       this.LesCoursRecent = list;
-      console.log('LesCoursRecent', this.LesCoursRecent);
+      // console.log('LesCoursRecent', this.LesCoursRecent);
     });
+    this.loading = this.coursProvider.loading;
+    // setTimeout(() => {
+      // lii ben liste leu pour tester et ca marche
+      this.lit = [this.obj1, this.obj2, this.obj3, this.obj4, this.obj5, this.obj6, this.obj7, this.obj8, this.obj9, this.obj10, this.obj11, this.obj12, this.obj13];
+      this.LesCoursRecent.map(x => {
+        this.tableauCours.push(x);
+      console.log('les cours', this.tableauCours);
+      });
+    // }, 500);
   }
 }
 coursesComponent.$inject = ["jsFonctions", "coursProvider"];
