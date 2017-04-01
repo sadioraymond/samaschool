@@ -22,8 +22,7 @@
               <!-- Optional: Add subtitles for each language -->
             </video>
               <div class="post-media" ng-show="previewCtrl.noChapitre">
-                <iframe ng-src="{{previewCtrl.createdcourse.detailscours.lien | trustAsResourceUrl}}" width="500" height="281" frameborder="0"
-                  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                <iframe ng-src="{{previewCtrl.createdcourse.detailscours.lien | trustAsResourceUrl}}" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
               </div>
           </div>
           <!-- end media -->
@@ -49,7 +48,9 @@
               </h2>
             </div>
             <!-- end big-title -->
+          <p>
             {{previewCtrl.createdcourse.detailscours.objectifcours}}
+          </p>
           </div>
           <!-- end post-padding -->
 
