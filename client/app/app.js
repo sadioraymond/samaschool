@@ -11,7 +11,7 @@ import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 // import ngMessages from 'angular-messages';
 // import ngValidationMatch from 'angular-validation-match';
-
+import '../../node_modules/angular-loading-bar/src/loading-bar';
 
 import {
   routeConfig
@@ -66,9 +66,13 @@ import './app.css';
 import coursesDirective from './directives/courses/courses.directive';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective
+    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective, 'angular-loading-bar', 'cfp.loadingBar'
   ])
   .config(routeConfig)
+  .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+    cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Custom Loading Message...</div>';
+  }])
   .run(function ($rootScope, $location, Auth) {
     'ngInject';
     // Redirect to login if route requires auth and you're not logged in
@@ -125,7 +129,7 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
         var timeout;
         element.on('load keyup paste search', function () {
           clearTimeout(timeout);
-          timeout = setTimeout( () => {
+          timeout = setTimeout(() => {
             scope.model = element[0].value;
             element.val(scope.model);
             scope.$apply();
