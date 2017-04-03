@@ -5,7 +5,21 @@ const angular = require('angular');
 export function chapitreProviderService($http, $q) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
+    this.getChapitreByCours = function(cours) {
+        console.log('okkokokokokokokoko')
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/chapitres/cours/' + cours, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
 
+        });
+        liste = deferred.promise;
+        return liste;
+
+    }
 }
 
 export default angular.module('samaschoolApp.chapitreProvider', [])
