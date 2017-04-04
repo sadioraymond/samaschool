@@ -1,10 +1,10 @@
 'use strict';
 const angular = require('angular');
 export function Controller(coursProvider) {
-  coursProvider.getCoursRecents().then(list => {
-    this.LesCoursRecent = list;
-    console.log('LesCoursRecent directive', this.LesCoursRecent);
-  });
+  // coursProvider.getCoursRecents().then(list => {
+  //   this.LesCoursRecent = list;
+  //   console.log('LesCoursRecent directive', this.LesCoursRecent);
+  // });
   this.tabl = ['title', 'body'];
   this.customer = {
     name: 'Naomi',
