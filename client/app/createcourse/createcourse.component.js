@@ -28,6 +28,9 @@ export class CreatecourseComponent {
   objetCours = {};
   listSouscatBycat;
   titreChap = [];
+  objectifChap = [];
+  contenuChap = [];
+  lienVideoChap = [];
   objChap = {};
   getcurrentUser;
   currentdate = new Date();
@@ -45,9 +48,19 @@ export class CreatecourseComponent {
   listClasseUser;
   listClasseUsers = [];
   boolCoursAModifie = false;
-  constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth, classeProvider, $stateParams) {
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth, classeProvider, $stateParams, chapitreProvider) {
     this.params = $stateParams;
     this.coursProvider = coursProvider;
+    this.jsFonctions = jsFonctions;
+    this.categorieProvider = categorieProvider;
+    this.souscategorieProvider = souscategorieProvider;
+    this.classeProvider = classeProvider;
+    this.chapitreProvider = chapitreProvider;
+    this.message = 'Hello';
+    this.firstPart = true;
+    this.directpublish = false;
+    this.getcurrentUser = Auth.getCurrentUserSync;
+    this.datetime = this.currentdate.getFullYear() + "-" + (this.currentdate.getMonth() + 1) + "-" + this.currentdate.getDate();
     console.log('param =>', this.params)
     if (this.params.id !== "") {
       this.coursProvider.FindById(this.params.id).then(list => {
@@ -56,20 +69,11 @@ export class CreatecourseComponent {
           console.log('Liste Vide');
         } else {
           // console.log('Les  cat', this.listSousCat);
-          console.info('le cours a modifié', this.coursAModifie);
+          console.info('le cours a modifié =>', this.coursAModifie);
           // $log.info('les sous cat ', this.listSousCat);
         }
       });
     }
-    this.jsFonctions = jsFonctions;
-    this.categorieProvider = categorieProvider;
-    this.souscategorieProvider = souscategorieProvider;
-    this.classeProvider = classeProvider;
-    this.message = 'Hello';
-    this.firstPart = true;
-    this.directpublish = false;
-    this.getcurrentUser = Auth.getCurrentUserSync;
-    this.datetime = this.currentdate.getFullYear() + "-" + (this.currentdate.getMonth() + 1) + "-" + this.currentdate.getDate();
   }
   getSousCatByCategorie(id) {
     this.souscategorieProvider.getSousCatByCategorie(id).then(list => {
@@ -119,6 +123,26 @@ export class CreatecourseComponent {
         img.style.background = 'url(' + this.coursAModifie.images + ') center center no-repeat';
         img.style.backgroundSize = 'cover';
         this.image = this.coursAModifie.images;
+        this.chapitreProvider.getChapitreByCours(this.coursAModifie._id).then(list => {
+          this.chapitreCoursAModifie = list;
+          if (this.chapitreCoursAModifie.length == 0) {
+            console.log('Liste Vide chap', this.chapitreCoursAModifie);
+          } else {
+            // console.log('Les  cat', this.listSousCat);
+            console.info('les chapitre du cours a modifié', this.chapitreCoursAModifie, 'et nombre ', this.chapitreCoursAModifie.length);
+            // $log.info('les sous cat ', this.listSousCat);
+            this.nbChap = this.chapitreCoursAModifie.length;
+            this.GenerateFields();
+            this.chapitreCoursAModifie.map((x, index) => {
+              setTimeout(() => {
+                this.titreChap[index] = x.libelle;
+                this.objectifChap[index] = "ici l'objectif chapitre ";
+                this.contenuChap[index] = "ici contenu chapitre";
+                this.lienVideoChap[index] = "ici lien video chapitre";
+              }, 800);
+            });
+          }
+        });
       }
     }, 1000);
     this.noPlan = false;
@@ -134,6 +158,7 @@ export class CreatecourseComponent {
         // $log.info('les cat ', this.listCat);
       }
     });
+
     this.souscategorieProvider.listSousCategorie().then(list => {
       this.listSousCat = list;
       if (this.listSousCat.length == 0) {
@@ -144,6 +169,7 @@ export class CreatecourseComponent {
         // $log.info('les sous cat ', this.listSousCat);
       }
     });
+
     var fichier = document.querySelector('#imageCours');
     var thi = this;
     fichier.addEventListener('change', inputfiles, false);
@@ -249,6 +275,7 @@ export class CreatecourseComponent {
       this.coursProvider.objetCours.description = this.objetCours.detailscours.objectifcours;
       this.coursProvider.objetCours.nbheures = this.objetCours.detailscours.heure;
     }
+    // first step
     if (this.selectedIdsCat && this.stateProgress === 0) {
       this.firstPart = false;
       this.secondPart = true;
@@ -527,7 +554,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     });
   }
 }
-CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth", "classeProvider", "$stateParams"];
+CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth", "classeProvider", "$stateParams", "chapitreProvider"];
 ModalDemoCtrl.$inject = ["$uibModal", "$log", "$document"];
 ModalInstanceCtrl.$inject = ["$uibModalInstance", "items", "userProvider", "classeProvider", "Auth", "coursProvider"];
 export default angular.module('samaschoolApp.createcourse', [uiRouter])
