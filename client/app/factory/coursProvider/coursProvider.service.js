@@ -136,7 +136,10 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             }
         });
     }
-
+    this.uploadImage = function() {
+        var deferred = $q.defer();
+        $http.post('/api/courss/image', {});
+    }
     this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act, classes) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
@@ -204,7 +207,6 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             });
         }
     }
-    this.chapitreCoursAModifie = {};
 }
 
 export default angular.module('samaschoolApp.coursProvider', ['cfp.loadingBar'])
