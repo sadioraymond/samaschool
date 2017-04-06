@@ -138,6 +138,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
     }
     this.uploadImage = function() {
         var deferred = $q.defer();
+        console.log('2');
         $http.post('/api/courss/image', {});
     }
     this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act, classes) {

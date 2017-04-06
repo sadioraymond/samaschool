@@ -77,21 +77,6 @@ function verify(tab, element) {
     return false;
 }
 
-//Upload Image
-export function uploadImage(req, res) {
-    var widgetId = req.body.widgetId;
-    var width = req.body.width;
-    var myFile = req.file;
-
-    var originalname = myFile.originalname; //nom de l'image dans l'ordinateur du user
-    var filename = myFile.filename; //nouveau nom de l'image dans le dossier de sauvegarde
-    var path = myFile.path; //chemin complet de l'upload
-    var destination = myFile.destination; //destination de l'image
-    var size = myFile.size;
-    var mimetype = myFile.mimetype;
-    res.send(myFile);
-}
-
 // Gets a list of Courss
 export function index(req, res) {
     var cou = "Cours";

@@ -63,7 +63,7 @@
                             <!--end  categorie-->
                             <div ng-show="createcourseCtrl.secondPart" class="row text-center">
                                 <div class="col-md-8 col-md-offset-2 contact_form">
-                                    <form id="createcourseform" class="row" name="createcourseform" method="post" action="/api/courss/image" enctype="multipart/form-data">
+                                    <form id="createcourseform" class="row" name="createcourseform" method="post" action="/createcourse" enctype="multipart/form-data">
                                         <!--<div class="col-md-8">-->
                                         <div class="form-group">
                                             <label for="titre">Titre du cours</label>
@@ -90,7 +90,7 @@
                                             <div id="imageSection" style="height: 150px; width: 300px; border: 3px dotted cornflowerblue;"></div>
                                             <!--</div>-->
                                         </div>
-                                        <button type="submit">Upload Image</button>
+                                        <button type="submit" name="myFile">Upload Image</button>
                                         <!--</div>-->
                                     </form>
                                 </div>
