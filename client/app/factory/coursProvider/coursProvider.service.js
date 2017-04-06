@@ -1,8 +1,7 @@
 'use strict';
 const angular = require('angular');
-
 /*@ngInject*/
-export function coursProviderService($http, $q) {
+export function coursProviderService($http, $q, cfpLoadingBar) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     this.listeCouu = null;
     this.createdCourse = {};
@@ -103,6 +102,8 @@ export function coursProviderService($http, $q) {
             liste = list.data;
             deferred.resolve(liste);
 
+        }).finally(function() {
+            cfpLoadingBar.complete();
         });
         liste = deferred.promise;
         return liste;
@@ -135,7 +136,10 @@ export function coursProviderService($http, $q) {
             }
         });
     }
-
+    this.uploadImage = function() {
+        var deferred = $q.defer();
+        $http.post('/api/courss/image', {});
+    }
     this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act, classes) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
@@ -175,8 +179,36 @@ export function coursProviderService($http, $q) {
         });
     }
     this.objetCours = {};
+    this.params;
+    this.modifierCours = function(id, titre, description, date, sous_cat, user, nbheures, act) {
+        var deferred = $q.defer();
+        $http.put('/api/courss/' + id, {
+            titre: titre,
+            description: description,
+            date_creation: date,
+            sous_categorie: sous_cat,
+            user: user,
+            nbheures: nbheures,
+            actif: act
+        }).then(function() {
+            console.log("Modifié bi Bakhna");
+        });
+    }
+    this.modifierChapitre = function(tab, taille) {
+        var deferred = $q.defer();
+        console.log('khol', tab);
+        console.log('taille bi', taille);
+        for (let i = 0; i < taille; i++) {
+            $http.put('/api/chapitres/' + tab[`${i}`].id_chap, {
+                libelle: tab[`${i}`].titre,
+                objectif: tab[`${i}`].objectif
+            }).then(function() {
+                console.log("Modifié bi Bakhna");
+            });
+        }
+    }
 }
 
-export default angular.module('samaschoolApp.coursProvider', [])
+export default angular.module('samaschoolApp.coursProvider', ['cfp.loadingBar'])
     .service('coursProvider', coursProviderService)
     .name;

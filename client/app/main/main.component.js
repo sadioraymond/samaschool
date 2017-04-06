@@ -29,8 +29,10 @@ export class MainController {
   listeEtablissementPlussuivi;
   listProfSchool;
   /*@ngInject*/
-  constructor($http, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider) {
+  constructor($http, $q, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, cfpLoadingBar) {
     this.$http = $http;
+    this.$q = $q;
+    this.cfpLoadingBar = cfpLoadingBar;
     this.socket = socket;
     this.coursProvider = coursProvider;
     this.classeProvider = classeProvider;
@@ -83,11 +85,23 @@ export class MainController {
     });
   }
   $onInit() {
-    console.log('VERSION ANGULAR', angular.version.full)
-    this.coursProvider.getCoursRecents().then(list => {
-      this.LesCoursRecent = list;
-      console.log('LesCoursRecent directive', this.LesCoursRecent);
+    this.deferred = this.$q.defer();
+    this.liste = [];
+    this.$http.get('/api/courss/recents', {
+      cache: true
+    }).then((list) => {
+      this.liste = list.data;
+      console.log("list", this.liste);
+      this.deferred.resolve(this.liste);
+
+    }).finally(() => {
+      this.cfpLoadingBar.complete();
     });
+    console.log('VERSION ANGULAR', angular.version.full)
+    // this.coursProvider.getCoursRecents().then(list => {
+    //   this.LesCoursRecent = list;
+    //   console.log('LesCoursRecent directive', this.LesCoursRecent);
+    // });
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
@@ -176,8 +190,12 @@ export class MainController {
   }
 
 }
-export default angular.module('samaschoolApp.main', [uiRouter])
+export default angular.module('samaschoolApp.main', [uiRouter, 'angular-loading-bar'])
   .config(routing)
+  .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+    cfpLoadingBarProvider.spinnerTemplate = '<div> lorem.... <span class="fa fa-spinner">Custom Loading Message...</div>';
+  }])
   .component('main', {
     template: require('./main.html'),
     controller: MainController

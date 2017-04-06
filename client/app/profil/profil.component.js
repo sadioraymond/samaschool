@@ -12,12 +12,12 @@ export class ProfilComponent {
   categorieProvider;
   etablissementProvider;
   suiviCoursProvider;
-  
+
   // Les variables
   listCat;
   selectedCount = 0;
   stateProgress = 0;
-   listSousCat;
+  listSousCat;
   LIs = [];
   obj = {};
   elementCard = [];
@@ -29,8 +29,8 @@ export class ProfilComponent {
   getCurrentUser: Function;
   LesEtabIncrit;
 
-//les booleen pour cacher ou montrer des div
-   profil = true;
+  //les booleen pour cacher ou montrer des div
+  profil = true;
   contact = true;
   etablissement = false;
   course = false;
@@ -43,7 +43,7 @@ export class ProfilComponent {
   lesCoursSuivis;
 
   /*@ngInject*/
-  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider) {
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider) {
     this.message = 'Hello';
     this.jsFonctions = jsFonctions;
     this.sousCategorieProvider = souscategorieProvider;
@@ -51,6 +51,7 @@ export class ProfilComponent {
     this.getCurrentUser = Auth.getCurrentUserSync;
     this.etablissementProvider = etablissementProvider;
     this.suiviCoursProvider = suiviCoursProvider;
+    this.coursProvider = coursProvider;
 
   }
   getSousCatByCategorie(id) {
@@ -68,18 +69,18 @@ export class ProfilComponent {
         }, 0);
       });
 
-// Liste des categorie au chargement de la page
+    // Liste des categorie au chargement de la page
     this.categorieProvider.listCategorie().then(list => {
       this.listCat = list;
       if (this.listCat.length == 0) {
         console.log('Liste Vide');
       } else {
         console.log('Les Categories', this.listCat);
-        
+
       }
     });
 
-// Liste des sous catégories au chargement de la page
+    // Liste des sous catégories au chargement de la page
     this.sousCategorieProvider.listSousCategorie().then(list => {
       this.listSousCat = list;
       if (this.listSousCat.length == 0) {
@@ -91,28 +92,31 @@ export class ProfilComponent {
       }
     });
 
-//Liste des Etablissements où le User est inscrit au chargement de la page
-   setTimeout(() => {
-       
-    this.etablissementProvider.getEtabByUser(this.getCurrentUser()._id).then(list => {
-      this.LesEtabIncrit = list;
-      console.log('les etablissements', list);
-    })
-     }, 1000);
-     
-// Liste des cours suivis par le User
     setTimeout(() => {
-       
-    this.suiviCoursProvider.getCoursByUser(this.getCurrentUser()._id).then(list => {
-      this.lesCoursSuivis = list;
-      console.log('les cours', list);
-    })
-     }, 1000);
+      //Liste des Etablissements où le User est inscrit au chargement de la page
+      this.etablissementProvider.getEtabByUser(this.getCurrentUser()._id).then(list => {
+        this.LesEtabIncrit = list;
+        console.log('les etablissements', list);
+      });
+      // Liste des cours suivis par le User
+
+        this.suiviCoursProvider.getCoursByUser(this.getCurrentUser()._id).then(list => {
+        this.lesCoursSuivis = list;
+        console.log('les cours tout court', list);
+      });
+
+
+      // Liste des cours crées par le profil
+      this.coursProvider.getCoursByProf(this.getCurrentUser()._id).then(list => {
+        this.lesCoursCrees = list;
+        console.log('les cours crees', this.lesCoursCrees);
+      });
+    }, 1000);
 
   }
-  
-  
-  
+
+
+
   doActive(e) {
     this.LIs = document.querySelectorAll('#ss_sidebar > li');
     for (var i = 0; i < this.LIs.length; i++) {
@@ -171,113 +175,6 @@ export class ProfilComponent {
     // }
     // console.log(this.selectedCount)
   }
-  nextClick() {
-    if (this.titreChap && this.objectifChap && !this.numberError && this.stateProgress == 50 && this.firstPart != true && this.secondPart != true && this.nbChap) {
-      console.log('next next');
-      this.firstPart = false;
-      this.secondPart = false;
-      this.thirdPart = false;
-      this.fourthPart = true;
-      this.stateProgress = 75;
-      this.styleProgress = {
-        'width': `${this.stateProgress}%`,
-        'visibility': 'visible',
-        'animation-name': 'slideInLeft'
-      }
-      console.info(this.nbChap);
-      this.objetCours.nbChap = this.nbChap;
-      for (let c = 0; c < this.nbChap; c++) {
-        // var element = array[c];
-        console.log('ooooo', this.titreChap[c]);
-
-        this.objChap[c] = [
-          this.titreChap[c],
-          this.objectifChap[c]
-        ];
-      }
-      this.objetCours.objChap = this.objChap;
-      console.log('le cours ', this.objetCours);
-    }
-    if (this.titreCours && this.objectifCours && !this.numberError && this.titreCours.length >= 3 && this.objectifCours.length >= 5 && this.stateProgress == 25 && this.firstPart != true) {
-      console.log('next next');
-      this.firstPart = false;
-      this.secondPart = false;
-      this.thirdPart = true;
-      this.fourthPart = false;
-      this.stateProgress = 50;
-      this.styleProgress = {
-        'width': `${this.stateProgress}%`,
-        'visibility': 'visible',
-        'animation-name': 'slideInLeft'
-      }
-      this.objetCours.detailscours = {
-        'titrecours': this.titreCours,
-        'objectifcours': this.objectifCours
-      };
-      console.log('le cours ', this.objetCours);
-    }
-    if (this.selectedId && this.selectedIdsCat && this.stateProgress === 0) {
-      console.log(this.selectedId)
-      this.firstPart = false;
-      this.secondPart = true;
-      this.thirdPart = false;
-      this.fourthPart = false;
-      this.stateProgress = 25;
-      this.styleProgress = {
-        'width': `${this.stateProgress}%`,
-        'visibility': 'visible',
-        'animation-name': 'slideInLeft'
-      }
-      this.objetCours.sousCategorie = this.selectedIdsCat;
-      console.log(this.objetCours.sousCategorie)
-    } else {
-      console.log('next no this.selectedCount === 1 && this.stateProgress === 0 ');
-    }
-
-  }
-  prevClick() {
-    if (this.stateProgress === 25) {
-      this.firstPart = true;
-      this.thirdPart = false;
-      this.secondPart = false;
-      this.fourthPart = false;
-      this.stateProgress = 0;
-      this.styleProgress = {
-        'width': `${this.stateProgress}%`,
-        'visibility': 'visible',
-        'animation-name': 'slideInLeft'
-      }
-      this.selectedCount = 1;
-      return;
-    }
-    if (this.stateProgress === 50) {
-      this.firstPart = false;
-      this.thirdPart = false;
-      this.secondPart = true;
-      this.fourthPart = false;
-      this.stateProgress = 25;
-      this.styleProgress = {
-        'width': `${this.stateProgress}%`,
-        'visibility': 'visible',
-        'animation-name': 'slideInLeft'
-      }
-      return;
-    }
-    if (this.stateProgress === 75) {
-      this.firstPart = false;
-      this.thirdPart = true;
-      this.secondPart = false;
-      this.fourthPart = false;
-      this.stateProgress = 50;
-      this.styleProgress = {
-        'width': `${this.stateProgress}%`,
-        'visibility': 'visible',
-        'animation-name': 'slideInLeft'
-      }
-      return;
-    }
-
-  }
   selectedVal() {
     this.getSousCatByCategorie(this.selectedId);
     // this.showSCat = true;
@@ -320,7 +217,7 @@ export class ProfilComponent {
   }
 }
 
-ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth","etablissementProvider","suiviCoursProvider"];
+ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider"];
 export default angular.module('samaschoolApp.profil', [uiRouter])
   .config(routes)
   .component('profil', {
