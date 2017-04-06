@@ -1,14 +1,14 @@
 'use strict';
 
-describe('Component: recentPosts', function() {
+describe('Component: formations', function() {
   // load the component's module
-  beforeEach(module('samaschoolApp.recentPosts'));
+  beforeEach(module('samaschoolApp.formations'));
 
-  var recentPostsComponent;
+  var formationsComponent;
 
   // Initialize the component and a mock scope
   beforeEach(inject(function($componentController) {
-    recentPostsComponent = $componentController('recentPosts', {});
+    formationsComponent = $componentController('formations', {});
   }));
 
   it('should ...', function() {
