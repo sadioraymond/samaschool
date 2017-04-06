@@ -83,7 +83,10 @@ export class CreatecourseComponent {
             console.log('Les Sous Catégories de la Categorie', this.listSouscatBycat);
         });
     }
-
+    uploadImage() {
+        console.log('1');
+        this.coursProvider.uploadImage();
+    }
     $onInit() {
         angular.element(document)
             .ready(() => {
