@@ -8,22 +8,20 @@
   </div>
 
 </section>
-<!--<div id="loading-bar-container"></div>-->
 
 <statistics></statistics>
 
-<!--<courses list="$ctrl.liste"></courses>-->
 <section class="section bgw">
   <div class="container">
     <div class="big-title">
       <h2 class="related-title">
-        <span>Recent Courses</span>
+        <span>Recent Courses  <div id="loading-bar-container"></div></span>
       </h2>
     </div>
-    <div id="loading-bar-container"></div>
     <!-- end big-title -->
+   
     <div id="owl-shop" class="carousel-widget">
-      <div class="carousel-item" ng-init="$ctrl.liste" ng-repeat="course in $ctrl.liste">
+      <div ng-show="$ctrl.show" class="carousel-item" ng-repeat="course in $ctrl.liste">
         <div class="shop-item">
           <div class="post-media entry">
             <div class="ribbon-wrapper-green">
@@ -91,13 +89,8 @@
   </div>
   <!-- end container -->
 </section>
-
 <!-- end section -->
 
-<!-- end section -->
-
-
-<!-- SLIDER -->
 
 
 <teachers></teachers>
@@ -127,6 +120,3 @@
   </div>
 </section>
 <!-- end section -->
-
-
-<script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>

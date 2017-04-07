@@ -1,4 +1,3 @@
-
 /*@import '~bootstrap/dist/css/bootstrap.css';*/
 
 
@@ -54,8 +53,8 @@
 
 #loading-bar .bar {
   background: #33ba3a;
-  height: 15px;
-  position: relative;
+  /*height: 15px;*/
+  color: red;
 }
 
 
@@ -91,3 +90,5 @@
 @import '../components/oauth-buttons/oauth-buttons.css';
 
 /* endinject */
+
+@import '../../node_modules/angular-loading-bar/src/loading-bar.css';
