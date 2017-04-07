@@ -76,6 +76,7 @@ function verify(tab, element) {
     }
     return false;
 }
+
 // Gets a list of Courss
 export function index(req, res) {
     var cou = "Cours";

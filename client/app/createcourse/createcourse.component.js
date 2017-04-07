@@ -83,7 +83,10 @@ export class CreatecourseComponent {
             console.log('Les Sous Catégories de la Categorie', this.listSouscatBycat);
         });
     }
-
+    uploadImage() {
+        console.log('1');
+        this.coursProvider.uploadImage();
+    }
     $onInit() {
         angular.element(document)
             .ready(() => {
@@ -120,7 +123,7 @@ export class CreatecourseComponent {
                 // 2em partie
                 this.titreCours = this.coursAModifie.titre;
                 this.objectifCours = this.coursAModifie.description;
-                this.nbh = 1;
+                this.nbh = this.coursAModifie.nbheures;
                 var img = document.querySelector('#imageSection');
                 img.style.background = 'url(' + this.coursAModifie.images + ') center center no-repeat';
                 img.style.backgroundSize = 'cover';
@@ -487,7 +490,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     };
     $ctrl.ok = function() {
         $uibModalInstance.close($ctrl.selected.item);
-        if (coursProvider.params == "") {
+        if (!coursProvider.params) {
             if (coursProvider.objetCours.tab) {
                 coursProvider.ajoutCours2(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, coursProvider.objetCours.tab, coursProvider.objetCours.taille, $ctrl.activite, $ctrl.selection);
                 console.log('khol li', coursProvider.objetCours.taille);

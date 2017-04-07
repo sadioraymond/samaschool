@@ -99,10 +99,12 @@ export class ProfilComponent {
         console.log('les etablissements', list);
       });
       // Liste des cours suivis par le User
-      this.suiviCoursProvider.getCoursByUser(this.getCurrentUser()._id).then(list => {
+
+        this.suiviCoursProvider.getCoursByUser(this.getCurrentUser()._id).then(list => {
         this.lesCoursSuivis = list;
-        console.log('les cours', list);
+        console.log('les cours tout court', list);
       });
+
 
       // Liste des cours crées par le profil
       this.coursProvider.getCoursByProf(this.getCurrentUser()._id).then(list => {

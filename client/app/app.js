@@ -35,7 +35,9 @@ import etablissements from '../components/etablissements/etablissements.componen
 import banner from '../components/banner/banner.component';
 import annonces from '../components/annonces/annonces.component';
 import sousCategories from '../components/sousCategories/sousCategories.component';
-
+import recentCours from '../components/recentCours/recentCours.component';
+import formations from '../components/formations/formations.component';
+import notreEquipe from '../components/notreEquipe/notreEquipe.component';
 import coursProvider from '../app/factory/coursProvider/coursProvider.service';
 import etablissementProvider from '../app/factory/etablissementProvider/etablissementProvider.service';
 import classeProvider from '../app/factory/classeProvider/classeProvider.service';
@@ -69,7 +71,7 @@ import coursesDirective from './directives/courses/courses.directive';
 
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective, 'angular-loading-bar'
+    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective,recentCours,formations,notreEquipe, 'angular-loading-bar', 'cfp.loadingBar'
   ])
   .config(routeConfig)
   .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
@@ -82,7 +84,7 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
     $rootScope.$on('$stateChangeStart', function (event, next) {
       Auth.isLoggedIn(function (loggedIn) {
         if (next.authenticate && !loggedIn) {
-          $location.path('/login');
+          $location.path('/');
         }
       });
     });
