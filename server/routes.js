@@ -20,7 +20,7 @@ var storage = multer.diskStorage({
         cb(null, dir);
     },
     filename: function(req, file, cb) {
-            cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+            cb(null, req.params.id)
         } //path.extname(file.originalname) permet d'obtenir l'extension du fichier
 });
 
@@ -29,7 +29,7 @@ var upload = multer({
 });
 export default function(app) {
     // Insert routes below
-    app.post('/createcourse', upload.single('myFile'), function uploadImage(req, res) {
+    app.post('/createcourse/:id', upload.single('myFile'), function uploadImage(req, res) {
         var widgetId = req.body.widgetId;
         var width = req.body.width;
         var myFile = req.file;
