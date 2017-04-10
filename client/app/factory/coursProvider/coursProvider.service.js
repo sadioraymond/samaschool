@@ -121,7 +121,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
 
     }
 
-    this.ajoutCours = function(titre, description, date, sous_cat, user, status, nbheures, act, classes, lienVideo, contenu) {
+    this.ajoutCours = function(titre, description, date, sous_cat, user, status, nbheures, act, classes, lienVideo, contenu, images) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -131,6 +131,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             user: user,
             status: status,
             nbheures: nbheures,
+            images: images,
             actif: act
         }).then(function(data) {
             console.log("Bakhna");
@@ -148,7 +149,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             }
         });
     }
-    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act, classes) {
+    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act, classes, images) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -157,6 +158,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             sous_categorie: sous_cat,
             user: user,
             nbheures: nbheures,
+            images: images,
             actif: act
         }).then(function(data) {
             console.log("Cours bi Bakhna");
