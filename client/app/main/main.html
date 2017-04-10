@@ -21,7 +21,7 @@
     <!-- end big-title -->
    
     <div id="owl-shop" class="carousel-widget">
-      <div ng-show="$ctrl.show" class="carousel-item" ng-repeat="course in $ctrl.liste">
+      <div class="carousel-item" ng-repeat="course in $ctrl.LesCoursRecent">
         <div class="shop-item">
           <div class="post-media entry">
             <div class="ribbon-wrapper-green">
@@ -31,7 +31,7 @@
             <div class="magnifier">
               <div class="shop-bottom clearfix">
                 <a href="course-checkout.html" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                <a ui-sref="courseSinglePage" title="Full Preview"><i class="fa fa-search"></i></a>
+                <a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie, idCours:course._id})" title="Full Preview"><i class="fa fa-search"></i></a>
               </div>
               <!-- end shop-bottom -->
             </div>
@@ -56,7 +56,7 @@
               </div>
               <!-- end right -->
             </div>
-            <h3><a ui-sref="courseSinglePage" title="">{{course.titre}}</a></h3>
+            <h3><a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie, idCours:course._id})" title="">{{course.titre}}</a></h3>
           </div>
 
           <div class="large-post-meta">

@@ -4,7 +4,7 @@ export default function($stateProvider) {
   'ngInject';
   $stateProvider
     .state('courseSinglePage', {
-      url: '/courseSinglePage',
+      url: '/singleCourse/:sousDomaine/:idCours',
       template: '<course-single-page></course-single-page>'
     });
 }
