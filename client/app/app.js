@@ -77,13 +77,13 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
     'ngInject';
     // Redirect to login if route requires auth and you're not logged in
 
-    $rootScope.$on('$stateChangeStart', function (event, next) {
-      Auth.isLoggedIn(function (loggedIn) {
-        if (next.authenticate && !loggedIn) {
-          $location.path('/');
-        }
-      });
-    });
+    // $rootScope.$on('$stateChangeStart', function (event, next) {
+    //   Auth.isLoggedIn(function (loggedIn) {
+    //     if (next.authenticate && !loggedIn) {
+    //       $location.path('/');
+    //     }
+    //   });
+    // });
   })
   .directive('cleditor', function () {
     return {
