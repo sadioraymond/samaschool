@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-revolution": "^1.0.0"
+    "angular-revolution": "^1.0.0",
+    "angular-http-loader": "^0.1.7"
   }
 }

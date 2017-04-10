@@ -5,6 +5,9 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     this.listeCouu = null;
     this.createdCourse = {};
+    this.show = "";
+    this.show = false;
+    this.chapitreCoursAModifie = {};
     this.listCours = function() {
         var deferred = $q.defer();
         var liste = [];
@@ -63,6 +66,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
         return liste;
 
     }
+
     this.getCoursByProf = function(prof) {
         var deferred = $q.defer();
         var liste = [];
@@ -78,6 +82,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
         return liste;
 
     }
+
     this.GetCoursProfInSchool = function(prof) {
         var deferred = $q.defer();
         var liste = [];
@@ -93,9 +98,11 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
         return liste;
 
     }
+
     this.getCoursRecents = function() {
         var deferred = $q.defer();
         var liste = [];
+        this.show = false;
         $http.get('/api/courss/recents', {
             cache: true
         }).then(function(list) {
@@ -103,13 +110,18 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             deferred.resolve(liste);
 
         }).finally(function() {
-            cfpLoadingBar.complete();
+            cfpLoadingBar.start()
+            setTimeout(function() {
+                cfpLoadingBar.complete();
+                this.show = true;
+            }, 3000);
         });
         liste = deferred.promise;
         return liste;
 
     }
-    this.ajoutCours = function(titre, description, date, sous_cat, user, status, nbheures, act, classes, lienVideo, contenu) {
+
+    this.ajoutCours = function(titre, description, date, sous_cat, user, status, nbheures, act, classes, lienVideo, contenu, images) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -119,6 +131,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             user: user,
             status: status,
             nbheures: nbheures,
+            images: images,
             actif: act
         }).then(function(data) {
             console.log("Bakhna");
@@ -136,8 +149,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             }
         });
     }
-
-    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act, classes) {
+    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act, classes, images) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -146,6 +158,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             sous_categorie: sous_cat,
             user: user,
             nbheures: nbheures,
+            images: images,
             actif: act
         }).then(function(data) {
             console.log("Cours bi Bakhna");
@@ -204,9 +217,8 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             });
         }
     }
-    this.chapitreCoursAModifie = {};
 }
 
-export default angular.module('samaschoolApp.coursProvider', ['cfp.loadingBar'])
+export default angular.module('samaschoolApp.coursProvider', ['angular-loading-bar'])
     .service('coursProvider', coursProviderService)
     .name;

@@ -85,18 +85,25 @@ export class MainController {
     });
   }
   $onInit() {
-    this.deferred = this.$q.defer();
-    this.liste = [];
+    // this.show = this.coursProvider.show;
+    var deferred = this.$q.defer();
+    var liste = [];
+    this.show = false;
     this.$http.get('/api/courss/recents', {
       cache: true
     }).then((list) => {
       this.liste = list.data;
-      console.log("list", this.liste);
-      this.deferred.resolve(this.liste);
+      deferred.resolve(this.liste);
 
     }).finally(() => {
-      this.cfpLoadingBar.complete();
+      this.cfpLoadingBar.start()
+      setTimeout(() => {
+        this.cfpLoadingBar.complete();
+        this.show = true;
+      }, 3000);
     });
+    this.liste = deferred.promise;
+    // return liste;
     console.log('VERSION ANGULAR', angular.version.full)
     // this.coursProvider.getCoursRecents().then(list => {
     //   this.LesCoursRecent = list;
@@ -192,10 +199,6 @@ export class MainController {
 }
 export default angular.module('samaschoolApp.main', [uiRouter, 'angular-loading-bar'])
   .config(routing)
-  .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
-    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
-    cfpLoadingBarProvider.spinnerTemplate = '<div> lorem.... <span class="fa fa-spinner">Custom Loading Message...</div>';
-  }])
   .component('main', {
     template: require('./main.html'),
     controller: MainController
