@@ -65,7 +65,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of Fichiers
 export function index(req, res) {
-    return Fichier.find().exec()
+    return Fichier.find().populate('cours').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));
 }

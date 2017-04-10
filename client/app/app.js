@@ -12,7 +12,6 @@ import uiBootstrap from 'angular-ui-bootstrap';
 // import ngMessages from 'angular-messages';
 // import ngValidationMatch from 'angular-validation-match';
 import '../../node_modules/angular-loading-bar/src/loading-bar';
-
 import {
   routeConfig
 } from './app.config';
@@ -36,7 +35,9 @@ import etablissements from '../components/etablissements/etablissements.componen
 import banner from '../components/banner/banner.component';
 import annonces from '../components/annonces/annonces.component';
 import sousCategories from '../components/sousCategories/sousCategories.component';
-
+import recentCours from '../components/recentCours/recentCours.component';
+import formations from '../components/formations/formations.component';
+import notreEquipe from '../components/notreEquipe/notreEquipe.component';
 import coursProvider from '../app/factory/coursProvider/coursProvider.service';
 import etablissementProvider from '../app/factory/etablissementProvider/etablissementProvider.service';
 import classeProvider from '../app/factory/classeProvider/classeProvider.service';
@@ -57,21 +58,24 @@ import EtablissementPagesComponent from './etablissementPages/etablissementPages
 import userProvider from '../app/factory/userProvider/userProvider.service';
 import categorieProvider from '../app/factory/categorieProvider/categorieProvider.service';
 import souscategorieProvider from '../app/factory/souscategorieProvider/souscategorieProvider.service';
-import CreatecourseComponent from './createcourse/createcourse.component';
 
+import CreatecourseComponent from './createcourse/createcourse.component';
 import PreviewComponent from './preview/preview.component';
 import './app.css';
 
 // ---------- directives -----------
 import coursesDirective from './directives/courses/courses.directive';
 
+// ----------------------------
+
+
+
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective, 'angular-loading-bar', 'cfp.loadingBar'
+    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective,recentCours,formations,notreEquipe, 'angular-loading-bar', 'cfp.loadingBar'
   ])
   .config(routeConfig)
   .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
-    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
-    cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Custom Loading Message...</div>';
+    cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Loading...</div>';
   }])
   .run(function ($rootScope, $location, Auth) {
     'ngInject';
@@ -110,33 +114,6 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
         });
       }
     }
-  })
-  .directive('delayedModel', function () {
-    return {
-      scope: {
-        model: '=delayedModel'
-      },
-      link: function (scope, element, attrs) {
-
-        element.val(scope.model);
-
-        scope.$watch('model', function (newVal, oldVal) {
-          if (newVal !== oldVal) {
-            element.val(scope.model);
-          }
-        });
-
-        var timeout;
-        element.on('load keyup paste search', function () {
-          clearTimeout(timeout);
-          timeout = setTimeout(() => {
-            scope.model = element[0].value;
-            element.val(scope.model);
-            scope.$apply();
-          }, attrs.delay || 500);
-        });
-      }
-    };
   });
 
 

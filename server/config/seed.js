@@ -25,6 +25,7 @@ import Categorie from '../api/Utilisateur_Module/categorie/categorie.model';
 import suivi from '../api/Etablissement_Module/suivi/suivi.model';
 import Type from '../api/Utilisateur_Module/type_fichier/type_fichier.model';
 import exercice from '../api/Utilisateur_Module/exercice/exercice.model';
+import Fichier from '../api/Utilisateur_Module/fichier/fichier.model';
 import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
@@ -2106,6 +2107,12 @@ export default function seedDatabaseIfNeeded() {
                     })
                     .then(() => console.log('finished populating exercice:'))
                     .catch(err => console.log('error populating exercice:', err));
+            });
+        Fichier.find({}).remove()
+            .then(() => {
+                Fichier.create()
+                    .then(() => console.log('finished populating Fichier'))
+                    .catch(err => console.log('error populating Fichier', err));
             });
     }
 }
