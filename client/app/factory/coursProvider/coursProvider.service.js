@@ -121,7 +121,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
 
     }
 
-    this.ajoutCours = function(titre, description, date, sous_cat, user, status, nbheures, act, classes, lienVideo, contenu, images) {
+    this.ajoutCours = function(titre, description, date, sous_cat, user, nbheures, act, classes, lienVideo, contenu, images) {
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -129,17 +129,13 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             date_creation: date,
             sous_categorie: sous_cat,
             user: user,
-            status: status,
             nbheures: nbheures,
             images: images,
-            actif: act
+            actif: act,
+            link: lienVideo,
+            contenu: contenu
         }).then(function(data) {
             console.log("Bakhna");
-            $http.post('/api/fichiers', {
-                cours: data.data._id,
-                link: lienVideo,
-                contenu: contenu
-            });
             for (let j = 0; j < classes.length; j++) {
                 $http.post('/api/suivi_cours_classes', {
                     publication: data.data._id,
@@ -190,7 +186,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
     }
     this.objetCours = {};
     this.params;
-    this.modifierCours = function(id, titre, description, date, sous_cat, user, nbheures, act) {
+    this.modifierCours = function(id, titre, description, date, sous_cat, user, nbheures, act, images) {
         var deferred = $q.defer();
         $http.put('/api/courss/' + id, {
             titre: titre,
@@ -199,7 +195,10 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             sous_categorie: sous_cat,
             user: user,
             nbheures: nbheures,
-            actif: act
+            images: images,
+            actif: act,
+            /* link: lienVideo,
+             contenu: contenu*/
         }).then(function() {
             console.log("Modifié bi Bakhna");
         });
