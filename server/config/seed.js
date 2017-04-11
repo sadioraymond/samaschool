@@ -1538,9 +1538,7 @@ export default function seedDatabaseIfNeeded() {
                         user: "58b03802d98ff60ec2777f93",
                         nbheures: 8,
                         images: "images (1).jpg",
-                        actif: true,
-                        link: `nec mauris blandit mattis. Cras eget nisi dictum augue malesuada malesuada. Integer id magna et ipsum`,
-                        contenu: `eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo,`
+                        actif: true
                     }, {
                         _id: 4,
                         titre: `Aenean massa. Integer vitae nibh. Donec est mauris, rhoncus id, mollis nec,`,
@@ -1550,9 +1548,7 @@ export default function seedDatabaseIfNeeded() {
                         user: "58b03802d98ff60ec2777f93",
                         nbheures: 9,
                         images: "images (2).jpg",
-                        actif: true,
-                        link: `primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt.`,
-                        contenu: `eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi`
+                        actif: true
                     }, {
                         _id: 5,
                         titre: `convallis convallis dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce`,
@@ -1562,9 +1558,7 @@ export default function seedDatabaseIfNeeded() {
                         user: "58b03802d98ff60ec2777f94",
                         nbheures: 9,
                         images: "images (7).jpg",
-                        actif: true,
-                        link: `consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis`,
-                        contenu: `mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue,`
+                        actif: true
                     }, {
                         _id: 6,
                         titre: `dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat`,
@@ -1574,9 +1568,7 @@ export default function seedDatabaseIfNeeded() {
                         user: "58b03802d98ff60ec2777f94",
                         nbheures: 5,
                         images: "images (11).jpg",
-                        actif: true,
-                        link: `Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc`,
-                        contenu: `habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices`
+                        actif: true
                     }, {
                         _id: 7,
                         titre: `vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat`,
@@ -1586,9 +1578,7 @@ export default function seedDatabaseIfNeeded() {
                         user: "58b03802d98ff60ec2777f94",
                         nbheures: 3,
                         images: "images (12).png",
-                        actif: true,
-                        link: `ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus`,
-                        contenu: `ligula. Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed eget lacus. Mauris non dui nec urna suscipit nonummy. Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus ornare. Fusce mollis. Duis sit`
+                        actif: true
                     }, {
                         _id: 8,
                         titre: `odio semper cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim`,
@@ -1598,9 +1588,7 @@ export default function seedDatabaseIfNeeded() {
                         user: "58b03802d98ff60ec2777f94",
                         nbheures: 8,
                         images: "téléchargement.jpg",
-                        actif: true,
-                        link: `nibh sit amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In`,
-                        contenu: `hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim.`
+                        actif: true
                     }, {
                         _id: 9,
                         titre: `Nulla tempor augue ac ipsum. Phasellus vitae mauris sit amet lorem semper auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus.`,
