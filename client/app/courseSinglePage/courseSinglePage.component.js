@@ -11,10 +11,12 @@ export class CourseSinglePageComponent {
   $stateParams;
   souscategorieProvider;
   chapitreProvider;
+  userProvider;
   /*@ngInject*/
-  constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider) {
+  constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider, userProvider) {
     // setTimeout(() => {
     this.$stateParams = $stateParams;
+    this.userProvider = userProvider;
     console.log('param =>', this.$stateParams)
     // }, 50);
     this.message = 'Hello';
@@ -38,6 +40,10 @@ export class CourseSinglePageComponent {
     this.coursProvider.FindById(this.$stateParams.idCours).then(list => {
       this.LeCours = list;
       console.log('objet cours =>>', this.LeCours);
+        this.userProvider.findById(this.LeCours.user).then(list => {
+          this.Leprof = list;
+          console.log('Le prof qui a cree le cours =>>', this.Leprof);
+        });
     });
     this.chapitreProvider.getChapitreByCours(this.$stateParams.idCours).then(list => {
       this.LesChapitres = list;
@@ -50,7 +56,7 @@ export class CourseSinglePageComponent {
   }
 }
 
-CourseSinglePageComponent.$inject = ["jsFonctions", "coursProvider", "$stateParams", "souscategorieProvider", "chapitreProvider"];
+CourseSinglePageComponent.$inject = ["jsFonctions", "coursProvider", "$stateParams", "souscategorieProvider", "chapitreProvider", "userProvider"];
 export default angular.module('samaschoolApp.courseSinglePage', [uiRouter])
   .config(routes)
   .component('courseSinglePage', {
