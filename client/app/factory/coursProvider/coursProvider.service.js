@@ -217,6 +217,22 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             });
         }
     }
+
+    this.getCoursBySousCat = function(scat) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/courss/sousCat/' + scat, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
 }
 
 export default angular.module('samaschoolApp.coursProvider', ['angular-loading-bar'])

@@ -18,7 +18,7 @@ export class CoursesPagesComponent {
   tousLesCours;
   lesCategories;
   lesSousCategories;
-  tab = [];
+  lesCoursBySousCat;
   // id récupéré à partir du ng-model de la premiere liste déroulante
   selectedId;
   // booleen pour cacher ou montrer la liste des sous categories
@@ -44,10 +44,6 @@ export class CoursesPagesComponent {
 
 
     // Avoir la liste de tous les coursau chargement de la page
-    setTimeout(() => {
-      this.tab = ["jh", "hkj", "jkl", "hj", "mmmm", "zzzz"];
-
-    }, 50);
     this.coursProvider.listCours().then(list => {
       this.tousLesCours = list;
       console.log('les cours', list);
@@ -72,6 +68,20 @@ export class CoursesPagesComponent {
 
 
     this.sousCatVisible = true;
+  }
+
+  transfertSousCat(id){
+    this.souscategorieProvider.getSousCatByCategorie(id).then(list => {
+      this.lesSousCategories = list;
+
+    })
+  }
+
+  sousCatClick(scat){
+    this.coursProvider.getCoursBySousCat(scat).then(list => {
+      this.lesCoursBySousCat = list;
+      console.log('les cours par sous cat', list);
+    })
   }
 
 
