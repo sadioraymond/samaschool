@@ -20,6 +20,21 @@ export function chapitreProviderService($http, $q) {
         return liste;
 
     }
+    this.getFichierByChapitre = function(chapitre) {
+        console.log('okkokokokokokokoko')
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/fichiers/chapitre/' + chapitre, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+        return liste;
+
+    }
 }
 
 export default angular.module('samaschoolApp.chapitreProvider', [])

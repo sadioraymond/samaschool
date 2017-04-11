@@ -1923,7 +1923,7 @@ export default function seedDatabaseIfNeeded() {
                         _id: 20,
                         libelle: "elit pede, malesuada vel,",
                         objectif: `auris a nunc. In at pede. Cras vulputate velit eu sem.`,
-                        cours: 4
+                        cours: 6
                     })
                     .then(() => console.log('finished populating Chapitre'))
                     .catch(err => console.log('error populating Chapitre', err));
@@ -2168,7 +2168,107 @@ export default function seedDatabaseIfNeeded() {
             });
         Fichier.find({}).remove()
             .then(() => {
-                Fichier.create()
+                Fichier.create({
+                        _id: 1,
+                        chapitre: 1,
+                        link: "aliquet libero. Integer in magna. Phasellus",
+                        contenu: `tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam.`
+                    }, {
+                        _id: 2,
+                        chapitre: 5,
+                        link: "egestas ligula. Nullam feugiat",
+                        contenu: `In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse`
+                    }, {
+                        _id: 3,
+                        chapitre: 8,
+                        link: "eu dolor egestas",
+                        contenu: `lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus`
+                    }, {
+                        _id: 4,
+                        chapitre: 11,
+                        link: "id, libero.",
+                        contenu: `sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique neque venenatis lacus. Etiam bibendum fermentum metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla`
+                    }, {
+                        _id: 5,
+                        chapitre: 12,
+                        link: "sagittis.",
+                        contenu: `orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse`
+                    }, {
+                        _id: 6,
+                        chapitre: 19,
+                        link: "penatibus et magnis dis",
+                        contenu: `quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce aliquam, enim nec tempus scelerisque, lorem ipsum sodales purus, in molestie tortor nibh sit amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor,`
+                    }, {
+                        _id: 7,
+                        chapitre: 20,
+                        link: "Aliquam adipiscing lobortis risus. In mi",
+                        contenu: `Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor`
+                    }, {
+                        _id: 8,
+                        chapitre: 3,
+                        link: "magnis",
+                        contenu: `semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse`
+                    }, {
+                        _id: 9,
+                        chapitre: 13,
+                        link: "mauris erat eget ipsum.",
+                        contenu: `vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis`
+                    }, {
+                        _id: 10,
+                        chapitre: 15,
+                        link: "feugiat non, lobortis quis, pede.",
+                        contenu: `vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus fermentum convallis ligula. Donec luctus aliquet`
+                    }, {
+                        _id: 11,
+                        chapitre: 17,
+                        link: "orci, consectetuer euismod est arcu ac",
+                        contenu: `fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy`
+                    }, {
+                        _id: 12,
+                        chapitre: 18,
+                        link: "Morbi non sapien molestie orci",
+                        contenu: `amet ante. Vivamus non lorem vitae odio sagittis semper. Nam tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec`
+                    }, {
+                        _id: 13,
+                        chapitre: 6,
+                        link: "ultrices iaculis odio. Nam interdum",
+                        contenu: `ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod`
+                    }, {
+                        _id: 14,
+                        chapitre: 9,
+                        link: "Fusce",
+                        contenu: `ligula. Donec luctus aliquet odio. Etiam ligula tortor, dictum eu, placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem`
+                    }, {
+                        _id: 15,
+                        chapitre: 14,
+                        link: "imperdiet nec, leo. Morbi",
+                        contenu: `et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet`
+                    }, {
+                        _id: 16,
+                        chapitre: 16,
+                        link: "aliquet, metus urna convallis erat,",
+                        contenu: `Nunc ut erat. Sed nunc est, mollis non, cursus non,`
+                    }, {
+                        _id: 17,
+                        chapitre: 7,
+                        link: "ullamcorper, nisl arcu iaculis enim, sit",
+                        contenu: `dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in`
+                    }, {
+                        _id: 18,
+                        chapitre: 10,
+                        link: "et magnis dis parturient",
+                        contenu: `mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse`
+                    }, {
+                        _id: 19,
+                        chapitre: 2,
+                        link: "vulputate, posuere vulputate, lacus. Cras",
+                        contenu: `diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet`
+                    }, {
+                        _id: 20,
+                        chapitre: 4,
+                        link: "lobortis quam a felis ullamcorper viverra.",
+                        contenu: `Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt,`
+                    })
                     .then(() => console.log('finished populating Fichier'))
                     .catch(err => console.log('error populating Fichier', err));
             });

@@ -65,7 +65,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of Fichiers
 export function index(req, res) {
-    return Fichier.find().populate('cours').exec()
+    return Fichier.find().populate('chapitre').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
@@ -73,6 +73,13 @@ export function index(req, res) {
 // Gets a single Fichier from the DB
 export function show(req, res) {
     return Fichier.findById(req.params.id).exec()
+        .then(handleEntityNotFound(res))
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+}
+// Gets Fichier By Chapitre
+export function getFichierByChapitre(req, res) {
+    return Fichier.find({ chapitre: req.params.id }).populate('chapitre').exec()
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
         .catch(handleError(res));
