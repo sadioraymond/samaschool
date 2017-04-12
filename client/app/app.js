@@ -68,7 +68,8 @@ import './app.css';
 import coursesDirective from './directives/courses/courses.directive';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective,recentCours,formations,notreEquipe, 'angular-loading-bar', 'cfp.loadingBar'
+
+    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective, recentCours, formations, notreEquipe, 'angular-loading-bar', 'cfp.loadingBar'
 
   ])
   .config(routeConfig)
@@ -114,34 +115,38 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
       }
     }
   })
-  .directive('delayedModel', function () {
+
+  .directive("owlCarousel", function () {
     return {
-      scope: {
-        model: '=delayedModel'
-      },
-      link: function (scope, element, attrs) {
-
-        element.val(scope.model);
-
-        scope.$watch('model', function (newVal, oldVal) {
-          if (newVal !== oldVal) {
-            element.val(scope.model);
+      restrict: 'E',
+      transclude: false,
+      link: function (scope) {
+        scope.initCarousel = function (element) {
+          // provide any default options you want
+          var defaultOptions = {};
+          var customOptions = scope.$eval($(element).attr('data-options'));
+          // combine the two options objects
+          for (var key in customOptions) {
+            defaultOptions[key] = customOptions[key];
           }
-        });
-
-        var timeout;
-        element.on('load keyup paste search', function () {
-          clearTimeout(timeout);
-          timeout = setTimeout(() => {
-            scope.model = element[0].value;
-            element.val(scope.model);
-            scope.$apply();
-          }, attrs.delay || 500);
-        });
+          // init carousel
+          $(element).owlCarousel(defaultOptions);
+        };
       }
     };
-  });
-
+  })
+  .directive('owlCarouselItem', [function () {
+    return {
+      restrict: 'A',
+      transclude: false,
+      link: function (scope, element) {
+        // wait for the last item in the ng-repeat then call init
+        if (scope.$last) {
+          scope.initCarousel(element.parent());
+        }
+      }
+    };
+  }]);
 
 angular.element(document)
   .ready(() => {
