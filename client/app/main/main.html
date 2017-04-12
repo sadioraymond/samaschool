@@ -27,7 +27,7 @@
             <div class="ribbon-wrapper-green">
               <div class="ribbon-green">Featured</div>
             </div>
-            <img ng-src="../../assets/upload/Cours/{{course.images}}" alt="" class="img-responsive">
+            <img ng-src="../../assets/upload/Cours/{{course.images}}" alt="" class="img-responsive" style="height: 250px">
             <div class="magnifier">
               <div class="shop-bottom clearfix">
                 <a href="course-checkout.html" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
@@ -56,7 +56,7 @@
               </div>
               <!-- end right -->
             </div>
-            <h3><a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie, idCours:course._id})" title="">{{course.titre}}</a></h3>
+            <h3><a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie, idCours:course._id})" title="">{{course.titre | limitTo:60}}</a></h3>
           </div>
 
           <div class="large-post-meta">
