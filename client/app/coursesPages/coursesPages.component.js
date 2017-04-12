@@ -19,8 +19,11 @@ export class CoursesPagesComponent {
   lesCategories;
   lesSousCategories;
   lesCoursBySousCat;
+  lesCoursRecents;
+
   // id récupéré à partir du ng-model de la premiere liste déroulante
   selectedId;
+
   // booleen pour cacher ou montrer la liste des sous categories
   sousCatVisible = false;
 
@@ -43,23 +46,26 @@ export class CoursesPagesComponent {
       });
 
 
-    // Avoir la liste de tous les coursau chargement de la page
+// Avoir la liste de tous les cour sau chargement de la page
     this.coursProvider.listCours().then(list => {
       this.tousLesCours = list;
       console.log('les cours', list);
     })
 
 
-
-
-    // Avoir toutes les categories au chargement de la page
+// Avoir toutes les categories au chargement de la page
     this.categorieProvider.listCategorie().then(list => {
       this.lesCategories = list;
+    })
+// Avoir les cours recents au chargement de la page
+    this.coursProvider.getCoursRecents().then(list => {
+      this.lesCoursRecents = list;
+      console.log('les cours recents', list);
     })
 
   }
 
-  // peermet d'avoir la liste des sous categories pour une categorie
+// permet d'avoir la liste des sous categories pour une categorie
   selectedCategorie() {
     this.souscategorieProvider.getSousCatByCategorie(this.selectedId).then(list => {
       this.lesSousCategories = list;
@@ -70,6 +76,7 @@ export class CoursesPagesComponent {
     this.sousCatVisible = true;
   }
 
+//permet d'avoir les sous categorie par catégorie
   transfertSousCat(id){
     this.souscategorieProvider.getSousCatByCategorie(id).then(list => {
       this.lesSousCategories = list;
@@ -77,10 +84,10 @@ export class CoursesPagesComponent {
     })
   }
 
+// permet d'avoir les cours par sous catégorie
   sousCatClick(scat){
     this.coursProvider.getCoursBySousCat(scat).then(list => {
       this.lesCoursBySousCat = list;
-      console.log('les cours par sous cat', list);
     })
   }
 
