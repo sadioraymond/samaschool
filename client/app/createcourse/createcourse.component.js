@@ -49,6 +49,7 @@ export class CreatecourseComponent {
     listClasseUser;
     listClasseUsers = [];
     boolCoursAModifie = false;
+    FichierAmodifier = [];
     constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth, classeProvider, $stateParams, chapitreProvider) {
         this.params = $stateParams;
         this.coursProvider = coursProvider;
@@ -125,9 +126,11 @@ export class CreatecourseComponent {
                 this.objectifCours = this.coursAModifie.description;
                 this.nbh = this.coursAModifie.nbheures;
                 var img = document.querySelector('#imageSection');
-                img.style.background = 'url(' + this.coursAModifie.images + ') center center no-repeat';
+                var ur = `../../assets/upload/Cours/${this.coursAModifie.images}`;
+                img.style.background = 'url(' + ur + ') center center no-repeat';
                 img.style.backgroundSize = 'cover';
                 this.image = this.coursAModifie.images;
+                this.coursProvider.objetCours.url = ur;
                 this.chapitreProvider.getChapitreByCours(this.coursAModifie._id).then(list => {
                     this.chapitreCoursAModifie = list;
                     if (this.chapitreCoursAModifie.length == 0) {
@@ -143,8 +146,16 @@ export class CreatecourseComponent {
                                 this.idChap[index] = x._id;
                                 this.titreChap[index] = x.libelle;
                                 this.objectifChap[index] = x.objectif;
-                                this.contenuChap[index] = "ici contenu chapitre";
-                                this.lienVideoChap[index] = "ici lien video chapitre";
+                                console.log('kho');
+                                setTimeout(() => {
+                                    this.chapitreProvider.getFichierByChapitre(x._id).then(list => {
+                                        this.FichierAmodifier = list;
+                                        console.log('khol li', this.FichierAmodifier);
+                                        this.contenuChap[index] = this.FichierAmodifier[0].contenu;
+                                        this.lienVideoChap[index] = this.FichierAmodifier[0].link;
+                                    });
+                                }, 1000)
+
                             }, 800);
                         });
 
@@ -211,6 +222,7 @@ export class CreatecourseComponent {
     }
     nextClick() {
         console.log('User bi', this.getcurrentUser());
+
         if (this.titreChap && this.objectifChap && this.contenuChap && !this.numberError && this.stateProgress == 50 && this.firstPart != true && this.secondPart != true && this.nbChap) {
             console.log('next next');
             this.firstPart = false;
@@ -261,7 +273,10 @@ export class CreatecourseComponent {
                 'heure': this.nbh,
                 'lien': this.lienVideoCours
             };
+            this.coursProvider.objetCours.lienVideo = this.lienVideoCours;
+            this.coursProvider.objetCours.contenuCours = this.contenuCours;
             console.log('le cours ', this.objetCours);
+
         }
         if (this.titreCours && this.objectifCours && !this.numberError && this.titreCours.length >= 3 && this.objectifCours.length >= 5 && this.stateProgress == 25 && this.firstPart != true) {
             console.log('next next');
@@ -414,7 +429,7 @@ export class CreatecourseComponent {
         this.categ.id = categorie._id;
         this.categ.libelle = categorie.libelle;
         this.selectedId = true;
-        console.log(this.categ)
+        console.log(this.categ);
         this.getSousCatByCategorie(this.categ.id);
     }
     selectedSCateg(sousCategorie) {
@@ -498,18 +513,23 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
         $uibModalInstance.close($ctrl.selected.item);
         if (!coursProvider.params) {
             if (coursProvider.objetCours.tab) {
-                coursProvider.ajoutCours2(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, coursProvider.objetCours.tab, coursProvider.objetCours.taille, $ctrl.activite, $ctrl.selection, $ctrl.parametre);
+                console.log('Amoul dara', $ctrl.getcurrentUser()._id);
+                coursProvider.ajoutCours2(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, coursProvider.objetCours.tab, coursProvider.objetCours.taille, $ctrl.activite, $ctrl.selection, $ctrl.parametre);
                 console.log('khol li', coursProvider.objetCours.taille);
                 console.log('verif', $ctrl.selection);
             } else {
-                console.log('Amoul dara');
-                coursProvider.ajoutCours(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, status, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.selection, coursProvider.objetCours.lienVideo, coursProvider.objetCours.contenuCours, $ctrl.parametre);
+                console.log('Amoul dara', $ctrl.getcurrentUser()._id);
+                console.log('khol li ni', coursProvider.objetCours.lienVideo);
+                console.log('khol li ni 1', coursProvider.objetCours.contenuCours);
+                coursProvider.ajoutCours(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.selection, coursProvider.objetCours.lienVideo, coursProvider.objetCours.contenuCours, $ctrl.parametre);
             }
         } else {
             console.log('Teste la wone');
             console.log('khol ko', coursProvider.params);
             console.log('li lane la', coursProvider.objetCours);
-            coursProvider.modifierCours(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, $ctrl.activite);
+            console.log('url bi', this.coursProvider.objetCours.url);
+            fs.unlink(this.coursProvider.objetCours.url);
+            coursProvider.modifierCours(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre);
             coursProvider.modifierChapitre(coursProvider.objetCours.tab, coursProvider.objetCours.taille);
             // console.log('waw', coursProvider.objetCours.tab);
         }

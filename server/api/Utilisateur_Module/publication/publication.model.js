@@ -19,8 +19,7 @@ exports.Modele = function() {
         user: {
             type: mongoose.Schema.ObjectId,
             ref: 'User'
-        },
-        status: String
+        }
     }, { collection: 'Publication', discriminatorKey: 'Genre' });
     registerEvents(PublicationSchema);
     PublicationSchema.plugin(autoIncrement.plugin, 'Publication');

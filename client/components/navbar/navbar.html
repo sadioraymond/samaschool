@@ -178,11 +178,11 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-shopping-bag"></i> <sup>2</sup></a>
               <ul class="dropdown-menu">
 
-                <li><a ui-sref="profil"><i class="fa fa-user fa-2x" aria-hidden="true"></i> Blog List Layout</a></li>
+                <li><a ui-sref="profil"><i class="fa fa-user fa-2x" aria-hidden="true"></i> Profil</a></li>
 
-                <li><a ui-sref="createcourse">Creat course</a></li>
+                <li><a ui-sref="createcourse"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Creat course</a></li>
 
-                <li><a ui-sref="logout">Log-out</a></li>
+                <li><a ui-sref="logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Deconnexion</a></li>
               </ul>
             </li>
             <li ng-if="!$ctrl.isLoggedIn()" class="cartmenu" ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo"><a ng-click="$ctrl.open()"><i class="fa fa-sign-in" aria-hidden="true"></i> </a></li>
