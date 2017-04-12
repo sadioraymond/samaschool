@@ -6,9 +6,8 @@ var autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(mongoose);
 var FichierSchema = new mongoose.Schema({
     _id: Number,
-    cours: {
+    chapitre: {
         type: Number,
-        ref: 'Cours',
         ref: 'Chapitre'
     },
     link: String,

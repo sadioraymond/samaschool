@@ -12,7 +12,6 @@ import uiBootstrap from 'angular-ui-bootstrap';
 // import ngMessages from 'angular-messages';
 // import ngValidationMatch from 'angular-validation-match';
 import '../../node_modules/angular-loading-bar/src/loading-bar';
-
 import {
   routeConfig
 } from './app.config';
@@ -59,34 +58,36 @@ import EtablissementPagesComponent from './etablissementPages/etablissementPages
 import userProvider from '../app/factory/userProvider/userProvider.service';
 import categorieProvider from '../app/factory/categorieProvider/categorieProvider.service';
 import souscategorieProvider from '../app/factory/souscategorieProvider/souscategorieProvider.service';
-import CreatecourseComponent from './createcourse/createcourse.component';
 
+import CreatecourseComponent from './createcourse/createcourse.component';
 import PreviewComponent from './preview/preview.component';
 import './app.css';
 
 // ---------- directives -----------
 import coursesDirective from './directives/courses/courses.directive';
 
+// ----------------------------
+
+
+
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
     uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective,recentCours,formations,notreEquipe, 'angular-loading-bar', 'cfp.loadingBar'
-
   ])
   .config(routeConfig)
   .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
-    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
-    cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Custom Loading Message...</div>';
+    cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Loading...</div>';
   }])
   .run(function ($rootScope, $location, Auth) {
     'ngInject';
     // Redirect to login if route requires auth and you're not logged in
 
-    $rootScope.$on('$stateChangeStart', function (event, next) {
-      Auth.isLoggedIn(function (loggedIn) {
-        if (next.authenticate && !loggedIn) {
-          $location.path('/');
-        }
-      });
-    });
+    // $rootScope.$on('$stateChangeStart', function (event, next) {
+    //   Auth.isLoggedIn(function (loggedIn) {
+    //     if (next.authenticate && !loggedIn) {
+    //       $location.path('/');
+    //     }
+    //   });
+    // });
   })
   .directive('cleditor', function () {
     return {
@@ -113,33 +114,6 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
         });
       }
     }
-  })
-  .directive('delayedModel', function () {
-    return {
-      scope: {
-        model: '=delayedModel'
-      },
-      link: function (scope, element, attrs) {
-
-        element.val(scope.model);
-
-        scope.$watch('model', function (newVal, oldVal) {
-          if (newVal !== oldVal) {
-            element.val(scope.model);
-          }
-        });
-
-        var timeout;
-        element.on('load keyup paste search', function () {
-          clearTimeout(timeout);
-          timeout = setTimeout(() => {
-            scope.model = element[0].value;
-            element.val(scope.model);
-            scope.$apply();
-          }, attrs.delay || 500);
-        });
-      }
-    };
   });
 
 
