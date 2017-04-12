@@ -85,6 +85,7 @@ export class MainController {
     });
   }
   $onInit() {
+<<<<<<< HEAD
     this.deferred = this.$q.defer();
     this.liste = [];
     this.$http.get('/api/courss/recents', {
@@ -97,11 +98,32 @@ export class MainController {
     }).finally(() => {
       this.cfpLoadingBar.complete();
     });
-    console.log('VERSION ANGULAR', angular.version.full)
-    // this.coursProvider.getCoursRecents().then(list => {
-    //   this.LesCoursRecent = list;
-    //   console.log('LesCoursRecent directive', this.LesCoursRecent);
+=======
+    // this.show = this.coursProvider.show;
+    // var deferred = this.$q.defer();
+    // var liste = [];
+    // this.show = false;
+    // this.$http.get('/api/courss/recents', {
+    //   cache: true
+    // }).then((list) => {
+    //   this.liste = list.data;
+    //   deferred.resolve(this.liste);
+
+    // }).finally(() => {
+    //   this.cfpLoadingBar.start()
+    //   setTimeout(() => {
+    //     this.cfpLoadingBar.complete();
+    //     this.show = true;
+    //   }, 3000);
     // });
+    // this.liste = deferred.promise;
+    // return liste;
+>>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
+    console.log('VERSION ANGULAR', angular.version.full)
+    this.coursProvider.getCoursRecents().then(list => {
+      this.LesCoursRecent = list;
+      console.log('LesCoursRecent directive', this.LesCoursRecent);
+    });
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
@@ -188,7 +210,7 @@ export class MainController {
     });
 
   }
-
+test(){console.info('okko')}
 }
 export default angular.module('samaschoolApp.main', [uiRouter, 'angular-loading-bar'])
   .config(routing)

@@ -4,6 +4,10 @@ var express = require('express');
 var controller = require('./cours.controller');
 
 var router = express.Router();
+<<<<<<< HEAD
+=======
+
+>>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
 router.get('/', controller.index);
 router.get('/brouillon', controller.brouillon);
 router.get('/recents', controller.getCoursRecents);

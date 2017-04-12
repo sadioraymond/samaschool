@@ -9,8 +9,8 @@
         <div class="post-media clearfix">
           <video class="videoplayer" poster="assets/upload/video_01.jpg" controls preload="none">
             <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
-            <source type="video/mp4" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.mp4"
-            />
+            <!--<source type="video/mp4" src="assets/upload/video_01_SS.mp4"
+            />-->
             <!-- WebM/VP8 for Firefox4, Opera, and Chrome -->
             <source type="video/webm" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.webm"
             />
@@ -23,7 +23,7 @@
         <!-- end media -->
 
         <div class="single-course-title text-center">
-          <h3><a href="single.html" title="">Learning Web Design and Web Development in 22 Days </a></h3>
+          <h3><a href="single.html" title=""> {{courseCtrl.LeCours.titre}} </a></h3>
           <div class="post-sharing">
             <ul class="list-inline">
               <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="hidden-xs">Share on Facebook</span></a></li>
@@ -63,10 +63,10 @@
 
         <hr class="invis">
 
-        <div class="course-table clearfix">
+        <div class="course-table clearfix" ng-if="courseCtrl.LesChapitres.length > 0">
           <div class="big-title">
             <h2 class="related-title">
-              <span>Course Lessons</span>
+              <span>Programme</span>
             </h2>
           </div>
           <!-- end big-title -->
@@ -74,45 +74,15 @@
             <thead>
               <tr>
                 <th>Type</th>
-                <th>Lesson Title</th>
+                <th>Titre</th>
                 <th>Time</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr ng-repeat="chapitre in courseCtrl.LesChapitres">
                 <td><i class="fa fa-play-circle"></i></td>
-                <td><a href="#">Introduction</a></td>
+                <td><a href="#">{{chapitre.libelle}}</a></td>
                 <td>12 Min</td>
-              </tr>
-              <tr>
-                <td><i class="fa fa-music"></i></td>
-                <td>Lesson One - What is Photoshop</td>
-                <td>20 Min</td>
-              </tr>
-              <tr>
-                <td><i class="fa fa-play-circle"></i></td>
-                <td>Lesson Two - How to Use Tools</td>
-                <td>41 Min</td>
-              </tr>
-              <tr>
-                <td><i class="fa fa-music"></i></td>
-                <td>Lesson Three - Creating First Homepage</td>
-                <td>15 Min</td>
-              </tr>
-              <tr>
-                <td><i class="fa fa-play-circle"></i></td>
-                <td>Lesson Four - Understanding Colors</td>
-                <td>29 Min</td>
-              </tr>
-              <tr>
-                <td><i class="fa fa-play-circle"></i></td>
-                <td>Lesson Five - International Sizes</td>
-                <td>31 Min</td>
-              </tr>
-              <tr>
-                <td><i class="fa fa-question-circle"></i></td>
-                <td><a href="course-quiz.html">Quiz Time - Your First Quiz</a></td>
-                <td>31 Min</td>
               </tr>
             </tbody>
           </table>
@@ -220,7 +190,7 @@
 
       <div id="sidebar" class="col-md-4 col-sm-12">
         <div class="post-media clearfix">
-          <img src="assets/upload/small_course_08.jpg" alt="" class="img-responsive">
+          <img ng-src="{{courseCtrl.LeCours.images}}" alt="" class="img-responsive">
         </div>
         <!-- end post-media -->
         <div class="widget custom-widget course-pricing clearfix">
@@ -247,7 +217,7 @@
             </form>
 
             <div class="course-meta clearfix">
-              <p class="course-category">Category : <a href="course-list.html">Graphic Design</a></p>
+              <p class="course-category">Domaine : <a href="course-list.html">{{courseCtrl.souscat.libelle}}</a></p>
               <hr>
               <div class="rating">
                 <p>Reviews : &nbsp;
@@ -261,9 +231,9 @@
               <hr>
               <p class="course-time">Perriod : 12 Month </p>
               <hr>
-              <p class="course-instructors">Instructor :
+              <p class="course-instructors">Professeur :
                 <!--<a href="#" title=""><img src="assets/upload/student_01.png" class="img-circle" alt=""> -->
-                John DOE</a>
+                {{courseCtrl.Leprof.name}}</a>
               </p>
               <hr>
               <p class="course-forum">Course Forum : <a href="#" title="">Web Designers</a></p>

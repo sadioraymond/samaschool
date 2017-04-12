@@ -6,10 +6,45 @@
 
 import errors from './components/errors';
 import path from 'path';
+<<<<<<< HEAD
+=======
+var multer = require('multer');
+var mkdirp = require('mkdirp');
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        //cb(null, '../../test')
+        var dir = 'client/assets/upload/Cours/' + '/';
+        mkdirp(dir, function(err) {
+            if (err) {
+                console.error(err);
+            }
+        });
+        cb(null, dir);
+    },
+    filename: function(req, file, cb) {
+            cb(null, req.params.id)
+        } //path.extname(file.originalname) permet d'obtenir l'extension du fichier
+});
+>>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
 
 export default function(app) {
     // Insert routes below
+<<<<<<< HEAD
     app.use('/api/exercices', require('./api/Utilisateur_Module/exercice'));            
+=======
+    app.post('/createcourse/:id', upload.single('myFile'), function uploadImage(req, res) {
+        var widgetId = req.body.widgetId;
+        var width = req.body.width;
+        var myFile = req.file;
+        var originalname = myFile.originalname; //nom de l'image dans l'ordinateur du user
+        var filename = myFile.filename; //nouveau nom de l'image dans le dossier de sauvegarde
+        var path = myFile.path; //chemin complet de l'upload
+        var destination = myFile.destination; //destination de l'image
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
+    });
+    app.use('/api/exercices', require('./api/Utilisateur_Module/exercice'));
+>>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
     app.use('/api/type_fichiers', require('./api/Utilisateur_Module/type_fichier'));
     app.use('/api/fichiers', require('./api/Utilisateur_Module/fichier'));
     app.use('/api/suivis', require('./api/Etablissement_Module/suivi'));

@@ -25,6 +25,19 @@ export function userProviderService($http, $q) {
     return liste;
 
   }
+  this.findById = function (id) {
+    var deferred = $q.defer();
+    var liste = [];
+    $http.get('/api/users/' + id, {
+      cache: true
+    }).then(function (list) {
+      liste = list.data;
+      deferred.resolve(liste);
+
+    });
+    liste = deferred.promise;
+    return liste;
+  }
   this.isProf = function (id) {
     var deferred = $q.defer();
     var liste = [];

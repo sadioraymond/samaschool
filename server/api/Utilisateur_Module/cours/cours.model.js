@@ -8,7 +8,9 @@ var PublicationSchema = ParentModele.Modele();
 var CoursSchema = PublicationSchema.extend({
     nbheures: Number,
     images: String,
-    actif: Boolean
+    actif: Boolean,
+    link: String,
+    contenu: String
 });
 
 registerEvents(CoursSchema);
