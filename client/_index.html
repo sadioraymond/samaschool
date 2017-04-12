@@ -53,8 +53,9 @@
   <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-
+  <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css'
+    media='all' />
+  
 </head>
 
 <body>
@@ -83,6 +84,7 @@
   <!--<navbar></navbar>
     <div ui-view=""></div>
     <footer></footer>-->
+    <!--<div id="loading-bar-container"></div>-->
 
   <!--Body teachme-->
   <!-- PRELOADER -->
@@ -95,9 +97,9 @@
 
   <!-- START SITE -->
   <div id="wrapper">
+
     <navbar></navbar>
     <div ui-view=""></div>
-    <!--<div ng-http-loader template="loader.html"></div>-->
     <bottom-footer></bottom-footer>
 
   </div>
@@ -106,7 +108,8 @@
   <div class="dmtop">Scroll to Top</div>
   <!-- END SITE -->
 
-  <!--<script type="text/javascript" src="../bower_components/angular-http-loader/app/package/js/angular-http-loader.js"></script>-->
+
+
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/bootstrap.js"></script>
   <!--/*<script src="assets/js/plugins.js"></script>*/-->
