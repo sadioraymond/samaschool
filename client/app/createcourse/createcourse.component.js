@@ -494,16 +494,16 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     coursProvider.objetCours.date = $ctrl.datetime;
     coursProvider.objetCours.user = $ctrl.getcurrentUser()._id;
     coursProvider.objetCours.act = $ctrl.activite;
-    $ctrl.toggleSelection = function toggleSelection(value) {     
-        var idx = $ctrl.selection.indexOf(value);       // is currently selected
-             
-        if (idx > -1) {       
-            $ctrl.selection.splice(idx, 1);     
-        }       // is newly selected
-             
-        else {       
-            $ctrl.selection.push(value);     
-        }   
+    $ctrl.toggleSelection = function toggleSelection(value) {     
+        var idx = $ctrl.selection.indexOf(value);       // is currently selected
+             
+        if (idx > -1) {       
+            $ctrl.selection.splice(idx, 1);     
+        }       // is newly selected
+             
+        else {       
+            $ctrl.selection.push(value);     
+        }   
     };
     $ctrl.ok = function() {
         //soumission du formulaire

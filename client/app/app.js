@@ -12,6 +12,7 @@ import uiBootstrap from 'angular-ui-bootstrap';
 // import ngMessages from 'angular-messages';
 // import ngValidationMatch from 'angular-validation-match';
 import '../../node_modules/angular-loading-bar/src/loading-bar';
+
 import {
   routeConfig
 } from './app.config';
@@ -58,24 +59,23 @@ import EtablissementPagesComponent from './etablissementPages/etablissementPages
 import userProvider from '../app/factory/userProvider/userProvider.service';
 import categorieProvider from '../app/factory/categorieProvider/categorieProvider.service';
 import souscategorieProvider from '../app/factory/souscategorieProvider/souscategorieProvider.service';
-
 import CreatecourseComponent from './createcourse/createcourse.component';
+
 import PreviewComponent from './preview/preview.component';
 import './app.css';
 
 // ---------- directives -----------
 import coursesDirective from './directives/courses/courses.directive';
 
-// ----------------------------
-
-
-
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective,recentCours,formations,notreEquipe, 'angular-loading-bar', 'cfp.loadingBar'
+
+    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective, recentCours, formations, notreEquipe, 'angular-loading-bar', 'cfp.loadingBar'
+
   ])
   .config(routeConfig)
   .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
-    cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Loading...</div>';
+    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+    cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Custom Loading Message...</div>';
   }])
   .run(function ($rootScope, $location, Auth) {
     'ngInject';
@@ -114,8 +114,39 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
         });
       }
     }
-  });
+  })
 
+  .directive("owlCarousel", function () {
+    return {
+      restrict: 'E',
+      transclude: false,
+      link: function (scope) {
+        scope.initCarousel = function (element) {
+          // provide any default options you want
+          var defaultOptions = {};
+          var customOptions = scope.$eval($(element).attr('data-options'));
+          // combine the two options objects
+          for (var key in customOptions) {
+            defaultOptions[key] = customOptions[key];
+          }
+          // init carousel
+          $(element).owlCarousel(defaultOptions);
+        };
+      }
+    };
+  })
+  .directive('owlCarouselItem', [function () {
+    return {
+      restrict: 'A',
+      transclude: false,
+      link: function (scope, element) {
+        // wait for the last item in the ng-repeat then call init
+        if (scope.$last) {
+          scope.initCarousel(element.parent());
+        }
+      }
+    };
+  }]);
 
 angular.element(document)
   .ready(() => {

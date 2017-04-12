@@ -1,10 +1,11 @@
-<section class="section bgw">
+<section class="section bgw" ng-controller="MainController">
   <div class="container">
     <div class="big-title">
       <h2 class="related-title">
         <span>Recent Courses</span>
       </h2>
     </div>
+    <div id="loading-bar-container"></div>
     <!-- end big-title -->
     <div id="owl-shop" class="carousel-widget">
       <div class="carousel-item" ng-repeat="course in list">
