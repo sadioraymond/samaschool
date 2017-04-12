@@ -4,13 +4,9 @@
     <div style="margin: 3em;" class="text-center image-center hidden-xs">
       <img src="assets/upload/device_02.png" alt="" class="img-responsive wow fadeInUp" style="display: block;">
     </div>
-
   </div>
-
 </section>
-
 <statistics></statistics>
-
 <section class="section bgw">
   <div class="container">
     <div class="big-title">
@@ -19,8 +15,7 @@
       </h2>
     </div>
     <!-- end big-title -->
-   
-    <div id="owl-shop" class="carousel-widget">
+    <!--<div id="owl-shop" class="carousel-widget">
       <div class="carousel-item" ng-repeat="course in $ctrl.LesCoursRecent">
         <div class="shop-item">
           <div class="post-media entry">
@@ -33,11 +28,11 @@
                 <a href="course-checkout.html" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
                 <a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie, idCours:course._id})" title="Full Preview"><i class="fa fa-search"></i></a>
               </div>
-              <!-- end shop-bottom -->
+              
             </div>
-            <!-- end magnifier -->
+        
           </div>
-          <!-- end post-media -->
+         
           <div class="shop-desc">
             <div class="shop-price clearfix">
               <div class="pull-left">
@@ -48,17 +43,16 @@
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                 </div>
-                <!-- end rating -->
+           
               </div>
-              <!-- end left -->
+              
               <div class="pull-right">
                 <small>$100.00</small>
               </div>
-              <!-- end right -->
+            
             </div>
             <h3><a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie, idCours:course._id})" title="">{{course.titre}}</a></h3>
           </div>
-
           <div class="large-post-meta">
             <span class="avatar"><a href="member-profile.html"><img src="assets/upload/avatar_02.png" alt="" class="img-circle"> Amanda DOE</a></span>
             <small>&#124;</small>
@@ -66,16 +60,53 @@
             <small class="hidden-xs">&#124;</small>
             <span class="hidden-xs"><a ui-sref="courseSinglePage"><i class="fa fa-graduation-cap"></i> 12 Students</a></span>
           </div>
-          <!-- end meta -->
         </div>
-        <!-- end shop-item -->
       </div>
-      <!-- end carousel-item -->
-    </div>
+    </div>-->
+    <data-owl-carousel class="owl-carousel" data-options="{navigation: true, pagination: false, rewindNav : false}">
+      <div owl-carousel-item="" ng-repeat="course in $ctrl.LesCoursRecent" class="item">
+        <div class="shop-item">
+          <div class="post-media entry">
+            <div class="ribbon-wrapper-green">
+              <div class="ribbon-green">Featured</div>
+            </div>
+            <img ng-src="../../assets/upload/Cours/{{course.images}}" alt="" class="img-responsive">
+            <div class="magnifier">
+              <div class="shop-bottom clearfix">
+                <a href="course-checkout.html" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                <a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie, idCours:course._id})" title="Full Preview"><i class="fa fa-search"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="shop-desc">
+            <div class="shop-price clearfix">
+              <div class="pull-left">
+                <div class="rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+              </div>
+              <div class="pull-right">
+                <small>$100.00</small>
+              </div>
+            </div>
+            <h3><a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie, idCours:course._id})" title="">{{course.titre}}</a></h3>
+          </div>
+          <div class="large-post-meta">
+            <span class="avatar"><a href="member-profile.html"><img src="assets/upload/avatar_02.png" alt="" class="img-circle"> Amanda DOE</a></span>
+            <small>&#124;</small>
+            <span><a ui-sref="courseSinglePage"><i class="fa fa-clock-o"></i> 2 Month</a></span>
+            <small class="hidden-xs">&#124;</small>
+            <span class="hidden-xs"><a ui-sref="courseSinglePage"><i class="fa fa-graduation-cap"></i> 12 Students</a></span>
+          </div>
+        </div>
+      </div>
+    </data-owl-carousel>
     <!-- end carousel-widget -->
-
     <div class="clearfix"></div>
-
     <div class="row">
       <div class="col-md-12">
         <div class="all-buttons text-center">
@@ -90,16 +121,8 @@
   <!-- end container -->
 </section>
 <!-- end section -->
-
-
-
 <teachers></teachers>
-
 <etablissements></etablissements>
-
-
-
-
 <!--<section class="welcomebox-wrapper">
   <div class="container">
     <div class="welcomebox m900">
@@ -109,14 +132,14 @@
           <p>Welcome to Teachme creative site template for learning websites and companies.</p>
         </div>
         <!-- end col -->
-        <!--<div class="col-md-4 col-sm-4 col-xs-12 text-right">
+<!--<div class="col-md-4 col-sm-4 col-xs-12 text-right">
           <a ui-sref="register" class="btn btn-default">Create Account</a>
         </div>-->
-        <!-- end col -->
-      <!--</div>-->
-      <!-- end row -->
-    <!--</div>-->
-    <!-- end callout -->
-  <!--</div>-->
+<!-- end col -->
+<!--</div>-->
+<!-- end row -->
+<!--</div>-->
+<!-- end callout -->
+<!--</div>-->
 <!--</section>-->
 <!-- end section -->
