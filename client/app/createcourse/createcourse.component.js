@@ -49,6 +49,7 @@ export class CreatecourseComponent {
     listClasseUser;
     listClasseUsers = [];
     boolCoursAModifie = false;
+    FichierAmodifier = [];
     constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth, classeProvider, $stateParams, chapitreProvider) {
         this.params = $stateParams;
         this.coursProvider = coursProvider;
@@ -145,8 +146,16 @@ export class CreatecourseComponent {
                                 this.idChap[index] = x._id;
                                 this.titreChap[index] = x.libelle;
                                 this.objectifChap[index] = x.objectif;
-                                this.contenuChap[index] = "ici contenu chapitre";
-                                this.lienVideoChap[index] = "ici lien video chapitre";
+                                console.log('kho');
+                                setTimeout(() => {
+                                    this.chapitreProvider.getFichierByChapitre(x._id).then(list => {
+                                        this.FichierAmodifier = list;
+                                        console.log('khol li', this.FichierAmodifier);
+                                        this.contenuChap[index] = this.FichierAmodifier[0].contenu;
+                                        this.lienVideoChap[index] = this.FichierAmodifier[0].link;
+                                    });
+                                }, 1000)
+
                             }, 800);
                         });
 
@@ -420,7 +429,7 @@ export class CreatecourseComponent {
         this.categ.id = categorie._id;
         this.categ.libelle = categorie.libelle;
         this.selectedId = true;
-        console.log(this.categ)
+        console.log(this.categ);
         this.getSousCatByCategorie(this.categ.id);
     }
     selectedSCateg(sousCategorie) {
