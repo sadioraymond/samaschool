@@ -1443,6 +1443,16 @@ export default function seedDatabaseIfNeeded() {
                         publication: 3,
                         classe: 8,
                         date: "2015-09-28"
+                    }, {
+                        _id: 15,
+                        publication: 4,
+                        classe: 3,
+                        date: "2015-09-28"
+                    }, {
+                        _id: 16,
+                        publication: 3,
+                        classe: 7,
+                        date: "2015-09-28"
                     })
                     .then(() => console.log('finished populating Suivi cours: classe'))
                     .catch(err => console.log('error populating Suivi cours: classe', err));
@@ -1498,6 +1508,16 @@ export default function seedDatabaseIfNeeded() {
                         _id: 10,
                         user: "58b03802d98ff60ec2777f93",
                         classe: 4,
+                        annee: "2016-2017"
+                    }, {
+                        _id: 11,
+                        user: "58b03802d98ff60ec2777f93",
+                        classe: 3,
+                        annee: "2016-2017"
+                    }, {
+                        _id: 12,
+                        user: "58b03802d98ff60ec2777f93",
+                        classe: 7,
                         annee: "2016-2017"
                     })
                     .then(() => console.log('finished populating Année Académique'))
