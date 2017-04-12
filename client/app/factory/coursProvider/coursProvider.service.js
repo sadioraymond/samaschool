@@ -197,7 +197,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
                 }).then(function(datas) {
                     console.log("Chapitre yi Bakhnagnou");
                     $http.post('/api/fichiers', {
-                        cours: datas.data._id,
+                        chapitre: datas.data._id,
                         link: tab[`${i}`].lienVideo,
                         contenu: tab[`${i}`].contenu
                     }).then(function() {
