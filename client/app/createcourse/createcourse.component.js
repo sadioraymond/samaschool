@@ -84,14 +84,10 @@ export class CreatecourseComponent {
             console.log('Les Sous Catégories de la Categorie', this.listSouscatBycat);
         });
     }
-<<<<<<< HEAD
-
-=======
     uploadImage() {
         console.log('1');
         this.coursProvider.uploadImage();
     }
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
     $onInit() {
         angular.element(document)
             .ready(() => {
@@ -130,17 +126,11 @@ export class CreatecourseComponent {
                 this.objectifCours = this.coursAModifie.description;
                 this.nbh = this.coursAModifie.nbheures;
                 var img = document.querySelector('#imageSection');
-<<<<<<< HEAD
-                img.style.background = 'url(' + this.coursAModifie.images + ') center center no-repeat';
-                img.style.backgroundSize = 'cover';
-                this.image = this.coursAModifie.images;
-=======
                 var ur = `../../assets/upload/Cours/${this.coursAModifie.images}`;
                 img.style.background = 'url(' + ur + ') center center no-repeat';
                 img.style.backgroundSize = 'cover';
                 this.image = this.coursAModifie.images;
                 this.coursProvider.objetCours.url = ur;
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
                 this.chapitreProvider.getChapitreByCours(this.coursAModifie._id).then(list => {
                     this.chapitreCoursAModifie = list;
                     if (this.chapitreCoursAModifie.length == 0) {
@@ -185,264 +175,6 @@ export class CreatecourseComponent {
                 // }
                 // $log.info('les cat ', this.listCat);
             }
-<<<<<<< HEAD
-        });
-
-        this.souscategorieProvider.listSousCategorie().then(list => {
-            this.listSousCat = list;
-            if (this.listSousCat.length == 0) {
-                console.log('Liste Vide');
-            } else {
-                // console.log('Les  cat', this.listSousCat);
-                console.info('les Sous catégories ', this.listSousCat);
-                // $log.info('les sous cat ', this.listSousCat);
-            }
-        });
-
-        var fichier = document.querySelector('#imageCours');
-        var thi = this;
-        fichier.addEventListener('change', inputfiles, false);
-
-        function inputfiles(e) {
-            propfichier(e.target.files);
-            console.log('target', e.target.files);
-        }
-
-        function propfichier(arg) {
-            var fichier = arg[0]
-            if (fichier.type.indexOf('image') > -1) {
-                var lecteur = new FileReader();
-                lecteur.onload = function(e) {
-                    console.log('log', e);
-                    var img = document.querySelector('#imageSection');
-                    img.style.background = 'url(' + e.target.result + ') center center no-repeat';
-                    img.style.backgroundSize = 'cover';
-                    thi.image = e.target.result;
-                    // console.log('ki kan la', e.target.result);
-                }
-                lecteur.readAsDataURL(fichier);
-                console.log('bandi bi', fichier);
-
-
-            } else {
-                alert('Ce n\'est pas une image');
-            }
-        }
-    }
-    nextClick() {
-        console.log('User bi', this.getcurrentUser());
-        if (this.titreChap && this.objectifChap && this.contenuChap && !this.numberError && this.stateProgress == 50 && this.firstPart != true && this.secondPart != true && this.nbChap) {
-            console.log('next next');
-            this.firstPart = false;
-            this.secondPart = false;
-            this.thirdPart = false;
-            this.fourthPart = true;
-            this.stateProgress = 75;
-            this.styleProgress = {
-                'width': `${this.stateProgress}%`,
-                'visibility': 'visible',
-                'animation-name': 'slideInLeft'
-            }
-            console.info(this.nbChap);
-            this.objetCours.nbChap = this.nbChap;
-            for (let c = 0; c < this.nbChap; c++) {
-                this.titrech = this.titreChap[c];
-                this.objectifch = this.objectifChap[c];
-                this.contenuch = this.contenuChap[c];
-                this.lienVideoch = this.lienVideoChap[c];
-                this.objChap[`${c}`] = {
-                    'id_chap': this.idChap[c],
-                    'titre': this.titrech,
-                    'objectif': this.objectifch,
-                    'contenu': this.contenuch,
-                    'lienVideo': this.lienVideoch,
-                };
-            }
-            this.objetCours.objChap = this.objChap;
-            console.log('le cours ', this.objetCours);
-            this.coursProvider.objetCours.tab = this.objetCours.objChap;
-            this.coursProvider.objetCours.taille = this.nbChap;
-        }
-        if (this.lienVideoCours != "" && this.stateProgress == 50 && !this.firstPart && !this.secondPart) {
-            this.firstPart = false;
-            this.secondPart = false;
-            this.thirdPart = false;
-            this.fourthPart = true;
-            this.stateProgress = 75;
-            this.styleProgress = {
-                'width': `${this.stateProgress}%`,
-                'visibility': 'visible',
-                'animation-name': 'slideInLeft'
-            }
-            this.objetCours.nbChap = this.nbChap;
-            this.objetCours.detailscours = {
-                'titrecours': this.titreCours,
-                'objectifcours': this.objectifCours,
-                'heure': this.nbh,
-                'lien': this.lienVideoCours
-            };
-            console.log('le cours ', this.objetCours);
-        }
-        if (this.titreCours && this.objectifCours && !this.numberError && this.titreCours.length >= 3 && this.objectifCours.length >= 5 && this.stateProgress == 25 && this.firstPart != true) {
-            console.log('next next');
-            this.firstPart = false;
-            this.secondPart = false;
-            this.thirdPart = true;
-            this.fourthPart = false;
-            this.stateProgress = 50;
-            this.styleProgress = {
-                'width': `${this.stateProgress}%`,
-                'visibility': 'visible',
-                'animation-name': 'slideInLeft'
-            }
-            this.objetCours.detailscours = {
-                'titrecours': this.titreCours,
-                'objectifcours': this.objectifCours,
-                'heure': this.nbh
-            };
-            console.log('le cours ', this.objetCours);
-            this.coursProvider.objetCours.titre = this.objetCours.detailscours.titrecours;
-            this.coursProvider.objetCours.description = this.objetCours.detailscours.objectifcours;
-            this.coursProvider.objetCours.nbheures = this.objetCours.detailscours.heure;
-        }
-        // first step
-        if (this.selectedIdsCat && this.stateProgress === 0) {
-            this.firstPart = false;
-            this.secondPart = true;
-            this.thirdPart = false;
-            this.fourthPart = false;
-            this.stateProgress = 25;
-            this.styleProgress = {
-                'width': `${this.stateProgress}%`,
-                'visibility': 'visible',
-                'animation-name': 'slideInLeft'
-            }
-            this.objetCours.sousCategorie = this.sCateg.id;
-            console.log(this.objetCours.sousCategorie);
-            this.coursProvider.objetCours.sous_cat = this.objetCours.sousCategorie;
-        } else {
-            console.log('cant go next => cat souscat <=');
-        }
-
-    }
-    prevClick() {
-        if (this.stateProgress === 25) {
-            this.firstPart = true;
-            this.thirdPart = false;
-            this.secondPart = false;
-            this.fourthPart = false;
-            this.stateProgress = 0;
-            this.styleProgress = {
-                'width': `${this.stateProgress}%`,
-                'visibility': 'visible',
-                'animation-name': 'slideInLeft'
-            }
-            this.selectedCount = 1;
-            return;
-        }
-        if (this.stateProgress === 50) {
-            this.firstPart = false;
-            this.thirdPart = false;
-            this.secondPart = true;
-            this.fourthPart = false;
-            this.stateProgress = 25;
-            this.styleProgress = {
-                'width': `${this.stateProgress}%`,
-                'visibility': 'visible',
-                'animation-name': 'slideInLeft'
-            }
-            return;
-        }
-        if (this.stateProgress === 75) {
-            this.firstPart = false;
-            this.thirdPart = true;
-            this.secondPart = false;
-            this.fourthPart = false;
-            this.stateProgress = 50;
-            this.styleProgress = {
-                'width': `${this.stateProgress}%`,
-                'visibility': 'visible',
-                'animation-name': 'slideInLeft'
-            }
-            return;
-        }
-    }
-    addCour() {
-
-        /* this.coursProvider.ajoutcours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);*/
-        //  window.location.reload();
-    }
-    addBrouillon() {
-        console.log('Date bi', this.datetime);
-        this.activite = false;
-        this.coursProvider.ajoutCours2(this.objetCours.detailscours.titrecours, this.objetCours.detailscours.objectifcours, this.datetime, this.objetCours.sousCategorie, this.getcurrentUser()._id, this.objetCours.detailscours.heure, this.objetCours.objChap, this.nbChap, this.activite);
-    }
-    verifyNumber() {
-        if (this.nbh) {
-            if (this.nbh < 1 || this.nbh > 99) {
-                this.numberError = true;
-            } else {
-                this.numberError = false;
-            }
-        }
-    }
-    verifyNumberChap() {
-        if (this.nbChap) {
-            if (this.nbChap < 1 || this.nbChap > 20) {
-                this.numberChapError = true;
-            } else {
-                this.numberChapError = false;
-            }
-        }
-    }
-    GenerateFields() {
-        this.noPlan = false;
-        if (this.nbChap == 0) {
-            this.listChap = [];
-            this.noPlan = true;
-        } else if (this.nbChap < 0 || this.nbChap > 10) {
-            this.listChap = [];
-            this.numberChapError = true;
-        } else {
-            this.noPlan = false;
-            this.numberChapError = false;
-            this.listChap = [];
-            for (let i = 0; i < this.nbChap; i++) {
-                this.listChap.push(i);
-                console.log(this.listChap)
-            }
-        }
-    }
-    delChap(indexTab) {
-        this.listChap.splice(indexTab, 1);
-        console.log(this.listChap)
-    }
-    publish() {
-        this.coursProvider.createdCourse = this.objetCours;
-        console.log('course added !!!')
-    }
-    directPublish() {
-            this.directpublish = true;
-        }
-        // pour dropdown des Categories
-    selectedCateg(categorie) {
-        console.log(categorie)
-        console.log(this.categ)
-        this.sCateg.id = "";
-        this.sCateg.libelle = "selectionner le sous domaine";
-        this.selectedIdsCat = false;
-        this.categ.id = categorie._id;
-        this.categ.libelle = categorie.libelle;
-        this.selectedId = true;
-        console.log(this.categ)
-        this.getSousCatByCategorie(this.categ.id);
-    }
-    selectedSCateg(sousCategorie) {
-        this.sCateg.id = sousCategorie._id;
-        this.sCateg.libelle = sousCategorie.libelle;
-        this.selectedIdsCat = true;
-    }
-=======
         });
 
         this.souscategorieProvider.listSousCategorie().then(list => {
@@ -705,7 +437,6 @@ export class CreatecourseComponent {
         this.sCateg.libelle = sousCategorie.libelle;
         this.selectedIdsCat = true;
     }
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
 
     ouvreDialogue() {
         $('#imageCours').click();
@@ -763,29 +494,18 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     coursProvider.objetCours.date = $ctrl.datetime;
     coursProvider.objetCours.user = $ctrl.getcurrentUser()._id;
     coursProvider.objetCours.act = $ctrl.activite;
-    $ctrl.toggleSelection = function toggleSelection(value) {     
-        var idx = $ctrl.selection.indexOf(value);       // is currently selected
-             
-        if (idx > -1) {       
-            $ctrl.selection.splice(idx, 1);     
-        }       // is newly selected
-             
-        else {       
-            $ctrl.selection.push(value);     
-        }   
+    $ctrl.toggleSelection = function toggleSelection(value) {     
+        var idx = $ctrl.selection.indexOf(value);       // is currently selected
+             
+        if (idx > -1) {       
+            $ctrl.selection.splice(idx, 1);     
+        }       // is newly selected
+             
+        else {       
+            $ctrl.selection.push(value);     
+        }   
     };
     $ctrl.ok = function() {
-<<<<<<< HEAD
-        $uibModalInstance.close($ctrl.selected.item);
-        if (!coursProvider.params) {
-            if (coursProvider.objetCours.tab) {
-                coursProvider.ajoutCours2(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, coursProvider.objetCours.tab, coursProvider.objetCours.taille, $ctrl.activite, $ctrl.selection);
-                console.log('khol li', coursProvider.objetCours.taille);
-                console.log('verif', $ctrl.selection);
-            } else {
-                console.log('Amoul dara');
-                coursProvider.ajoutCours(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, status, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.selection, coursProvider.objetCours.lienVideo, coursProvider.objetCours.contenuCours);
-=======
         //soumission du formulaire
         $ctrl.parametre = coursProvider.objetCours.titre + '-' + Date.now() + '.' + coursProvider.objetCours.images;
         document.querySelector("#createcourseform").action = `/createcourse/${$ctrl.parametre}`;
@@ -802,19 +522,14 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
                 console.log('khol li ni', coursProvider.objetCours.lienVideo);
                 console.log('khol li ni 1', coursProvider.objetCours.contenuCours);
                 coursProvider.ajoutCours(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.selection, coursProvider.objetCours.lienVideo, coursProvider.objetCours.contenuCours, $ctrl.parametre);
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
             }
         } else {
             console.log('Teste la wone');
             console.log('khol ko', coursProvider.params);
             console.log('li lane la', coursProvider.objetCours);
-<<<<<<< HEAD
-            coursProvider.modifierCours(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, $ctrl.activite);
-=======
             console.log('url bi', this.coursProvider.objetCours.url);
             fs.unlink(this.coursProvider.objetCours.url);
             coursProvider.modifierCours(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre);
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
             coursProvider.modifierChapitre(coursProvider.objetCours.tab, coursProvider.objetCours.taille);
             // console.log('waw', coursProvider.objetCours.tab);
         }

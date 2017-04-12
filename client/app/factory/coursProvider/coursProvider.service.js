@@ -5,12 +5,9 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     this.listeCouu = null;
     this.createdCourse = {};
-<<<<<<< HEAD
-=======
     this.show = "";
     this.show = false;
     this.chapitreCoursAModifie = {};
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
     this.listCours = function() {
         var deferred = $q.defer();
         var liste = [];
@@ -69,10 +66,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
         return liste;
 
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
     this.getCoursByProf = function(prof) {
         var deferred = $q.defer();
         var liste = [];
@@ -88,10 +82,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
         return liste;
 
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
     this.GetCoursProfInSchool = function(prof) {
         var deferred = $q.defer();
         var liste = [];
@@ -107,17 +98,11 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
         return liste;
 
     }
-<<<<<<< HEAD
-    this.getCoursRecents = function() {
-        var deferred = $q.defer();
-        var liste = [];
-=======
 
     this.getCoursRecents = function() {
         var deferred = $q.defer();
         var liste = [];
         this.show = false;
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
         $http.get('/api/courss/recents', {
             cache: true
         }).then(function(list) {
@@ -125,26 +110,18 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             deferred.resolve(liste);
 
         }).finally(function() {
-<<<<<<< HEAD
-            cfpLoadingBar.complete();
-=======
             cfpLoadingBar.start()
             setTimeout(function() {
                 cfpLoadingBar.complete();
                 this.show = true;
             }, 3000);
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
         });
         liste = deferred.promise;
         return liste;
 
     }
-<<<<<<< HEAD
-    this.ajoutCours = function(titre, description, date, sous_cat, user, status, nbheures, act, classes, lienVideo, contenu) {
-=======
 
     this.ajoutCours = function(titre, description, date, sous_cat, user, nbheures, act, classes, lienVideo, contenu, images) {
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -168,15 +145,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             }
         });
     }
-<<<<<<< HEAD
-    this.uploadImage = function() {
-        var deferred = $q.defer();
-        $http.post('/api/courss/image', {});
-    }
-    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act, classes) {
-=======
     this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act, classes, images) {
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
         var deferred = $q.defer();
         $http.post('/api/courss', {
             titre: titre,
@@ -247,12 +216,24 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             });
         }
     }
+
+    this.getCoursBySousCat = function(scat) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/courss/sousCat/' + scat, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
 }
 
-<<<<<<< HEAD
-export default angular.module('samaschoolApp.coursProvider', ['cfp.loadingBar'])
-=======
 export default angular.module('samaschoolApp.coursProvider', ['angular-loading-bar'])
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
     .service('coursProvider', coursProviderService)
     .name;

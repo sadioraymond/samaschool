@@ -2,12 +2,11 @@
  * Main application routes
  */
 
+
 'use strict';
 
 import errors from './components/errors';
 import path from 'path';
-<<<<<<< HEAD
-=======
 var multer = require('multer');
 var mkdirp = require('mkdirp');
 var storage = multer.diskStorage({
@@ -25,13 +24,12 @@ var storage = multer.diskStorage({
             cb(null, req.params.id)
         } //path.extname(file.originalname) permet d'obtenir l'extension du fichier
 });
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
 
+var upload = multer({
+    storage: storage
+});
 export default function(app) {
     // Insert routes below
-<<<<<<< HEAD
-    app.use('/api/exercices', require('./api/Utilisateur_Module/exercice'));            
-=======
     app.post('/createcourse/:id', upload.single('myFile'), function uploadImage(req, res) {
         var widgetId = req.body.widgetId;
         var width = req.body.width;
@@ -44,7 +42,6 @@ export default function(app) {
         var mimetype = myFile.mimetype;
     });
     app.use('/api/exercices', require('./api/Utilisateur_Module/exercice'));
->>>>>>> d27d24c6ce8727393c89010fe59b8e94f189db88
     app.use('/api/type_fichiers', require('./api/Utilisateur_Module/type_fichier'));
     app.use('/api/fichiers', require('./api/Utilisateur_Module/fichier'));
     app.use('/api/suivis', require('./api/Etablissement_Module/suivi'));
