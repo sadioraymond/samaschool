@@ -9,8 +9,8 @@
         <div class="post-media clearfix">
           <video class="videoplayer" poster="assets/upload/video_01.jpg" controls preload="none">
             <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
-            <source type="video/mp4" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.mp4"
-            />
+            <!--<source type="video/mp4" src="assets/upload/video_01_SS.mp4"
+            />-->
             <!-- WebM/VP8 for Firefox4, Opera, and Chrome -->
             <source type="video/webm" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.webm"
             />
@@ -217,7 +217,7 @@
             </form>
 
             <div class="course-meta clearfix">
-              <p class="course-category">Category : <a href="course-list.html">{{courseCtrl.souscat.libelle}}</a></p>
+              <p class="course-category">Domaine : <a href="course-list.html">{{courseCtrl.souscat.libelle}}</a></p>
               <hr>
               <div class="rating">
                 <p>Reviews : &nbsp;
@@ -231,9 +231,9 @@
               <hr>
               <p class="course-time">Perriod : 12 Month </p>
               <hr>
-              <p class="course-instructors">Instructor :
+              <p class="course-instructors">Professeur :
                 <!--<a href="#" title=""><img src="assets/upload/student_01.png" class="img-circle" alt=""> -->
-                John DOE</a>
+                {{courseCtrl.Leprof.name}}</a>
               </p>
               <hr>
               <p class="course-forum">Course Forum : <a href="#" title="">Web Designers</a></p>
