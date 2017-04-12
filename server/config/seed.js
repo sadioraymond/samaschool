@@ -36,6 +36,7 @@ export default function seedDatabaseIfNeeded() {
                         _id: "58b03802d98ff60ec2777f8c",
                         provider: 'local',
                         name: 'Test User',
+                        username: 'Test',
                         email: 'test@example.com',
                         password: 'test'
                     }, {
@@ -43,46 +44,55 @@ export default function seedDatabaseIfNeeded() {
                         provider: 'local',
                         role: 'admin',
                         name: 'Admin',
+                        username: 'Admin',
                         email: 'admin@example.com',
                         password: 'admin'
                     }, {
                         _id: "58b03802d98ff60ec2777f8e",
                         name: "Selma",
+                        username: "Selma",
                         email: "selma@example.com",
                         password: "Passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f8f",
                         name: "Lilah",
+                        username: "Lilah",
                         email: "lilah@example.com",
                         password: "Passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f90",
                         name: "Sebastian",
+                        username: "Sebastian",
                         email: "sebastian@example.com",
                         password: "Passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f91",
                         name: "Pach",
+                        username: "Pach",
                         email: "pach@example.com",
                         password: "Passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f92",
                         name: "chico",
+                        username: "chico",
                         email: "chico@example.com",
                         password: "Passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f93",
                         name: "raymond",
+                        username: "ray",
                         email: "ray@example.com",
                         password: "Passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f94",
                         name: "kain",
+                        username: "kain",
                         email: "kain@kain.com",
                         password: "passer"
                     }, {
                         _id: "58b03802d98ff60ec2777f95",
                         name: "Illiana",
+                        username: "Illiana",
                         email: "illiana@example.com",
                         password: "Passer"
                     })
