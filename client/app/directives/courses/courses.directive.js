@@ -5,6 +5,12 @@ export function Controller(coursProvider) {
   //   this.LesCoursRecent = list;
   //   console.log('LesCoursRecent directive', this.LesCoursRecent);
   // });
+  this.tabl = ['title', 'body'];
+  this.customer = {
+    name: 'Naomi',
+    address: '1600 Amphitheatre'
+  };
+  console.log('okkkokokoko')
 }
 Controller.$inject = ["coursProvider"];
 export default angular.module('samaschoolApp.courses', [])
@@ -16,11 +22,7 @@ export default angular.module('samaschoolApp.courses', [])
       scope: {
         list: '=list'
       },
-      link: function (scope, element, attrs) {
-        element.on('load', function(){
-            console.info('linnkk');
-        });
-      }
+      link: function (scope, element, attrs) {}
     };
   })
   .name;
