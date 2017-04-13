@@ -232,6 +232,12 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
         return liste;
 
     }
+     this.deletepicture = function(image) {
+          var deferred = $q.defer();
+        $http.get('/api/courss/deletepicture/' + image, {
+            cache: true
+        });
+    }
 }
 
 export default angular.module('samaschoolApp.coursProvider', ['angular-loading-bar'])

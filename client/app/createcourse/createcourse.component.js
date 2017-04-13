@@ -527,8 +527,9 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
             console.log('Teste la wone');
             console.log('khol ko', coursProvider.params);
             console.log('li lane la', coursProvider.objetCours);
-            console.log('url bi', this.coursProvider.objetCours.url);
-            fs.unlink(this.coursProvider.objetCours.url);
+            console.log('url bi', coursProvider.objetCours.url);
+            coursProvider.deletepicture(coursProvider.objetCours.url);
+            //coursProvider.deletepicture(coursProvider.objetCours.url);
             coursProvider.modifierCours(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre);
             coursProvider.modifierChapitre(coursProvider.objetCours.tab, coursProvider.objetCours.taille);
             // console.log('waw', coursProvider.objetCours.tab);

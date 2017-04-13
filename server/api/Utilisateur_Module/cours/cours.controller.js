@@ -17,7 +17,7 @@ import Profil from '../profil/profil.model';
 import SuiviCours from '../suivi_cours/suivi_cours.model';
 import Classe from '../../Etablissement_Module/detail_classe/detail_classe.model';
 import Suivi from '../../Etablissement_Module/suivi_cours_classe/suivi_cours_classe.model';
-
+var fs = require('fs');
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
     return function(entity) {
@@ -77,6 +77,12 @@ function verify(tab, element) {
     return false;
 }
 
+//delete a Picture
+
+export function deletePicture(images){
+    console.log('url bi', images);
+    fs.unlinkSync(images);
+}
 // Gets a list of Courss
 export function index(req, res) {
     var cou = "Cours";
