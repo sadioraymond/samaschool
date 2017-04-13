@@ -77,6 +77,8 @@ export class CreatecourseComponent {
                 }
             });
         }
+        this.jsFonctions.pluginScript();
+        this.jsFonctions.otherScript();
     }
     getSousCatByCategorie(id) {
         this.souscategorieProvider.getSousCatByCategorie(id).then(list => {
@@ -99,7 +101,8 @@ export class CreatecourseComponent {
             });
         // Pour la modification du cours crée => categorie et sous categorie
         setTimeout(() => {
-            if (this.coursAModifie._id === "") {
+            console.log('cours a modifiee =>>', this.coursAModifie)
+            if (typeof this.coursAModifie === 'undefined') {
                 this.boolCoursAModifie = false;
                 this.categ.id = "";
                 this.categ.libelle = "selectionner le domaine";
@@ -135,8 +138,12 @@ export class CreatecourseComponent {
                     this.chapitreCoursAModifie = list;
                     if (this.chapitreCoursAModifie.length == 0) {
                         console.log('Liste Vide chap', this.chapitreCoursAModifie);
+                        this.nbChap = this.chapitreCoursAModifie.length;
+                        this.GenerateFields();
+                        this.lienVideoCours = this.coursAModifie.link;
+                        this.contenuCours = this.coursAModifie.contenu;
                     } else {
-                        // console.log('Les  cat', this.listSousCat);
+                        // Cas ou il ya chapitre dans le cours
                         console.info('les chapitre du cours a modifié', this.chapitreCoursAModifie, 'et nombre ', this.chapitreCoursAModifie.length);
                         // $log.info('les sous cat ', this.listSousCat);
                         this.nbChap = this.chapitreCoursAModifie.length;
@@ -494,16 +501,15 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     coursProvider.objetCours.date = $ctrl.datetime;
     coursProvider.objetCours.user = $ctrl.getcurrentUser()._id;
     coursProvider.objetCours.act = $ctrl.activite;
-    $ctrl.toggleSelection = function toggleSelection(value) {     
-        var idx = $ctrl.selection.indexOf(value);       // is currently selected
-             
-        if (idx > -1) {       
-            $ctrl.selection.splice(idx, 1);     
-        }       // is newly selected
-             
-        else {       
-            $ctrl.selection.push(value);     
-        }   
+    $ctrl.toggleSelection = function toggleSelection(value) {
+        var idx = $ctrl.selection.indexOf(value); // is currently selected
+
+        if (idx > -1) {
+            $ctrl.selection.splice(idx, 1);
+        } // is newly selected
+        else {
+            $ctrl.selection.push(value);
+        }
     };
     $ctrl.ok = function() {
         //soumission du formulaire
@@ -527,9 +533,8 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
             console.log('Teste la wone');
             console.log('khol ko', coursProvider.params);
             console.log('li lane la', coursProvider.objetCours);
-            console.log('url bi', coursProvider.objetCours.url);
-            coursProvider.deletepicture(coursProvider.objetCours.url);
-            //coursProvider.deletepicture(coursProvider.objetCours.url);
+            console.log('url bi', this.coursProvider.objetCours.url);
+            fs.unlink(this.coursProvider.objetCours.url);
             coursProvider.modifierCours(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser._id, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre);
             coursProvider.modifierChapitre(coursProvider.objetCours.tab, coursProvider.objetCours.taille);
             // console.log('waw', coursProvider.objetCours.tab);

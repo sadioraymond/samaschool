@@ -106,4 +106,4 @@ export default angular.module('samaschoolApp.coursesPages', [uiRouter])
     controller: CoursesPagesComponent,
     controllerAs: 'vm'
   })
-  .name;
+.name;
