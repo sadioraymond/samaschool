@@ -47,7 +47,7 @@
                   </div>
                   <!-- end right -->
                 </div>
-                <h3><a ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie, idCours:cours._id})" title=""> {{cours.titre|limitTo:70}} </a></h3>
+                <h3><a ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie, idCours:cours._id})" title=""> {{cours.titre|limitTo 70}} </a></h3>
               </div>
             </div>
             <!-- end shop-item -->
@@ -99,7 +99,7 @@
                   </div>
                   <!-- end right -->
                 </div>
-                <h3><a ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie, idCours:cours._id})" title=""> {{cours.titre |  70}} </a></h3>
+                <h3><a ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie, idCours:cours._id})" title=""> {{cours.titre | limitTo 70}} </a></h3>
               </div>
             </div>
             <!-- end shop-item -->
@@ -115,7 +115,7 @@
                 <li class="cartmenu dropdown hasmenu" ng-repeat="cat in vm.lesCategories" ng-mouseenter="vm.transfertSousCat(cat._id)">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{cat.libelle}} <span>5 </span></a>
                   <ul class="dropdown-menu">
-                    <li ng-repeat="scat in vm.lesSousCategories" ng-click="vm.sousCatClick(scat._id)">{{scat.libelle | :15}}</li>
+                    <li ng-repeat="scat in vm.lesSousCategories" ng-click="vm.sousCatClick(scat._id)">{{scat.libelle | limitTo:15}}</li>
                   </ul>
                 </li>
               </ul>
