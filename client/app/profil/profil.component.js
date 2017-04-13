@@ -44,7 +44,7 @@ export class ProfilComponent {
   userData;
 
   /*@ngInject*/
-  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams) {
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state) {
     this.message = 'Hello';
     this.jsFonctions = jsFonctions;
     this.sousCategorieProvider = souscategorieProvider;
@@ -55,7 +55,10 @@ export class ProfilComponent {
     this.coursProvider = coursProvider;
     this.userProvider = userProvider;
     this.$stateParams = $stateParams;
+    this.$state = $state;
     console.log('param ==>>', this.$stateParams)
+    this.jsFonctions.pluginScript();
+    this.jsFonctions.otherScript();
   }
   getSousCatByCategorie(id) {
     this.sousCategorieProvider.getSousCatByCategorie(id).then(list => {
@@ -70,16 +73,18 @@ export class ProfilComponent {
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
 
-        }, 2000);
+        }, 0);
       });
 
     // donnees du user de la page actuelle
     this.userProvider.findByUsername(this.$stateParams.username).then(list => {
-      this.userData = list[0];
-      if (this.userData.length == 0) {
+      this.userDatas = list;
+      if (this.userDatas.length == 0) {
         console.log('Liste Vide');
+        this.$state.go('main');
       } else {
-        console.log('La page du user ==>>', this.userData);
+        console.log('La page du user ==>>', this.userDatas);
+        this.userData = this.userDatas[0]
 
       }
     });
@@ -232,7 +237,7 @@ export class ProfilComponent {
   }
 }
 
-ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider", "userProvider", "$stateParams"];
+ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider", "userProvider", "$stateParams", "$state"];
 export default angular.module('samaschoolApp.profil', [uiRouter])
   .config(routes)
   .component('profil', {

@@ -64,6 +64,19 @@ export function show(req, res, next) {
 }
 
 /**
+ + * Get a single user By username
+ + */
+ export function getuserbyusername(req, res, next) {
+     return User.find({ username: req.params.id }).exec()
+         .then(user => {
+             if (!user) {
+                 return res.status(404).end();
+             }
+             res.json(user);
+         })
+         .catch(err => next(err));
+  }
+/**
  * Deletes a user
  * restriction: 'admin'
  */
@@ -74,6 +87,7 @@ export function destroy(req, res) {
     })
     .catch(handleError(res));
 }
+
 
 /**
  * Change a users password
@@ -97,6 +111,8 @@ export function changePassword(req, res) {
       }
     });
 }
+
+
 
 /**
  * Get my info
