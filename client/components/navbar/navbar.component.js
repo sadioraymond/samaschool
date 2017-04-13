@@ -23,20 +23,16 @@ export class NavbarComponent {
     this.isAdmin = Auth.isAdminSync;
     this.getCurrentUser = Auth.getCurrentUserSync;
     this.userProvider = userProvider;
-   
-   
+  }
 
-  }
-  $onInit() {
-     
-  }
+  $onInit() {}
   showMsg() {
     this.test = true;
     // document.querySelector('#topbar_msg').click();
     // angular.element('#topbar_msg').triggerHandler('click');
     return this.userProvider.msg;
   }
-  con(){
+  con() {
     // this.fegn = true;
     $('#topbar_msg').fadeOut(6000);
     // return this.fegn;
@@ -47,12 +43,13 @@ export class NavbarComponent {
       setTimeout(() => {
         this.test = false;
       }, 2000);
-    }else{
+    } else {
       console.log('ttttttt')
     }
   }
 
 }
+
 export function ModalDemoCtrl($uibModal, $log, $document) {
   var $ctrl = this;
   $ctrl.items = ['item1', 'item2', 'item3'];
@@ -85,6 +82,7 @@ export function ModalDemoCtrl($uibModal, $log, $document) {
     });
   };
 }
+
 export function ModalInstanceCtrl($uibModalInstance, items, userProvider) {
   var $ctrl = this;
   $ctrl.items = items;

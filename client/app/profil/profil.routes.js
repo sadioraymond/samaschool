@@ -4,7 +4,7 @@ export default function($stateProvider) {
   'ngInject';
   $stateProvider
     .state('profil', {
-      url: '/profil',
+      url: '/profil/:username',
       template: '<profil></profil>'
     });
 }
