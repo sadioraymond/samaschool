@@ -101,7 +101,7 @@ export class CreatecourseComponent {
       });
     // Pour la modification du cours crée => categorie et sous categorie
     setTimeout(() => {
-        console.log('cours a modifiee =>>', this.coursAModifie)
+      console.log('cours a modifiee =>>', this.coursAModifie)
       if (typeof this.coursAModifie === 'undefined') {
         this.boolCoursAModifie = false;
         this.categ.id = "";
@@ -138,8 +138,12 @@ export class CreatecourseComponent {
           this.chapitreCoursAModifie = list;
           if (this.chapitreCoursAModifie.length == 0) {
             console.log('Liste Vide chap', this.chapitreCoursAModifie);
+            this.nbChap = this.chapitreCoursAModifie.length;
+            this.GenerateFields();
+            this.lienVideoCours = this.coursAModifie.link;
+            this.contenuCours = this.coursAModifie.contenu;
           } else {
-            // console.log('Les  cat', this.listSousCat);
+            // Cas ou il ya chapitre dans le cours
             console.info('les chapitre du cours a modifié', this.chapitreCoursAModifie, 'et nombre ', this.chapitreCoursAModifie.length);
             // $log.info('les sous cat ', this.listSousCat);
             this.nbChap = this.chapitreCoursAModifie.length;
