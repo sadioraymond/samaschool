@@ -38,6 +38,19 @@ export function userProviderService($http, $q) {
     liste = deferred.promise;
     return liste;
   }
+  this.findByUsername = function (username) {
+    var deferred = $q.defer();
+    var liste = [];
+    $http.get('/api/users/username/' + username, {
+      cache: true
+    }).then(function (list) {
+      liste = list.data;
+      deferred.resolve(liste);
+
+    });
+    liste = deferred.promise;
+    return liste;
+  }
   this.isProf = function (id) {
     var deferred = $q.defer();
     var liste = [];

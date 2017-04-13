@@ -41,9 +41,10 @@ export class ProfilComponent {
   thirdPart = false;
   fourthPart = false;
   lesCoursSuivis;
+  userData;
 
   /*@ngInject*/
-  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider) {
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams) {
     this.message = 'Hello';
     this.jsFonctions = jsFonctions;
     this.sousCategorieProvider = souscategorieProvider;
@@ -52,7 +53,9 @@ export class ProfilComponent {
     this.etablissementProvider = etablissementProvider;
     this.suiviCoursProvider = suiviCoursProvider;
     this.coursProvider = coursProvider;
-
+    this.userProvider = userProvider;
+    this.$stateParams = $stateParams;
+    console.log('param ==>>', this.$stateParams)
   }
   getSousCatByCategorie(id) {
     this.sousCategorieProvider.getSousCatByCategorie(id).then(list => {
@@ -66,8 +69,20 @@ export class ProfilComponent {
         setTimeout(() => {
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
-        }, 0);
+
+        }, 2000);
       });
+
+    // donnees du user de la page actuelle
+    this.userProvider.findByUsername(this.$stateParams.username).then(list => {
+      this.userData = list[0];
+      if (this.userData.length == 0) {
+        console.log('Liste Vide');
+      } else {
+        console.log('La page du user ==>>', this.userData);
+
+      }
+    });
 
     // Liste des categorie au chargement de la page
     this.categorieProvider.listCategorie().then(list => {
@@ -93,21 +108,21 @@ export class ProfilComponent {
     });
 
     setTimeout(() => {
+      console.log('id ==>>', this.userData._id)
       //Liste des Etablissements où le User est inscrit au chargement de la page
-      this.etablissementProvider.getEtabByUser(this.getCurrentUser()._id).then(list => {
+      this.etablissementProvider.getEtabByUser(this.userData._id).then(list => {
         this.LesEtabIncrit = list;
         console.log('les etablissements', list);
       });
-      // Liste des cours suivis par le User
 
-        this.suiviCoursProvider.getCoursByUser(this.getCurrentUser()._id).then(list => {
+      // Liste des cours suivis par le User
+      this.suiviCoursProvider.getCoursByUser(this.userData._id).then(list => {
         this.lesCoursSuivis = list;
         console.log('les cours tout court', list);
       });
 
-
       // Liste des cours crées par le profil
-      this.coursProvider.getCoursByProf(this.getCurrentUser()._id).then(list => {
+      this.coursProvider.getCoursByProf(this.userData._id).then(list => {
         this.lesCoursCrees = list;
         console.log('les cours crees', this.lesCoursCrees);
       });
@@ -217,7 +232,7 @@ export class ProfilComponent {
   }
 }
 
-ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider"];
+ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider", "userProvider", "$stateParams"];
 export default angular.module('samaschoolApp.profil', [uiRouter])
   .config(routes)
   .component('profil', {
