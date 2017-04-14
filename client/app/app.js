@@ -122,8 +122,27 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
       transclude: false,
       link: function (scope) {
         scope.initCarousel = function (element) {
+          // console.error('elm =>', element.attr('id'))
+          // if (element.attr('id') == 'owl-courses') {
           // provide any default options you want
-          var defaultOptions = {};
+          var defaultOptions = {
+            loop: true,
+            margin: 30,
+            nav: true,
+            dots: false,
+            responsive: {
+              0: {
+                items: 1
+              },
+              600: {
+                items: 2
+              },
+              1000: {
+                items: 3
+              }
+            }
+          };
+          // }
           var customOptions = scope.$eval($(element).attr('data-options'));
           // combine the two options objects
           for (var key in customOptions) {

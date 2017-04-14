@@ -15,6 +15,7 @@ export class PreviewComponent {
     this.jsFonctions = jsFonctions;
     this.coursProvider = coursProvider;
     this.createdcourse = {};
+    
   }
   $onInit() {
     angular.element(document)

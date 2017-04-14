@@ -50,8 +50,17 @@ export class CreatecourseComponent {
   listClasseUsers = [];
   boolCoursAModifie = false;
   FichierAmodifier = [];
-  constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth, classeProvider, $stateParams, chapitreProvider) {
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth, classeProvider, $stateParams, chapitreProvider, $state, $location) {
+    this.$state = $state;
     this.params = $stateParams;
+    //check if the user is logged-in
+    Auth.isLoggedIn(function (loggedIn) {
+      if (!loggedIn) {
+        //if the user is not logged  Redirect to login
+        event.preventDefault();
+        $location.path('/');
+      }
+    });
     this.coursProvider = coursProvider;
     this.jsFonctions = jsFonctions;
     this.categorieProvider = categorieProvider;
@@ -63,13 +72,20 @@ export class CreatecourseComponent {
     this.directpublish = false;
     this.getcurrentUser = Auth.getCurrentUserSync;
     this.datetime = this.currentdate.getFullYear() + "-" + (this.currentdate.getMonth() + 1) + "-" + this.currentdate.getDate();
-    console.log('param =>', this.params)
+
+    console.log('param =>', this.params, this.getcurrentUser())
+    // Preparation de l'objet cours a modifier si c'est le cas
     if (this.params.id !== "") {
       this.coursProvider.params = this.params.id;
       this.coursProvider.FindById(this.params.id).then(list => {
+        // console.error('lis', list)
         this.coursAModifie = list;
-        if (this.coursAModifie.length == 0) {
-          console.log('Liste Vide');
+        if (!this.coursAModifie._id) {
+          console.log('Liste Vide ');
+          // this.$state.go("main");
+          // setTimeout(() => {
+          $location.path(`/`);
+          // }, 1000);
         } else {
           // console.log('Les  cat', this.listSousCat);
           console.info('le cours a modifié =>', this.coursAModifie);
@@ -101,8 +117,8 @@ export class CreatecourseComponent {
       });
     // Pour la modification du cours crée => categorie et sous categorie
     setTimeout(() => {
-      console.log('cours a modifiee =>>', this.coursAModifie)
-      if (typeof this.coursAModifie === 'undefined') {
+      console.log('cours a modifiee =>>', typeof this.coursAModifie._id)
+      if (typeof this.coursAModifie._id == 'undefined') {
         this.boolCoursAModifie = false;
         this.categ.id = "";
         this.categ.libelle = "selectionner le domaine";
@@ -137,15 +153,15 @@ export class CreatecourseComponent {
         this.chapitreProvider.getChapitreByCours(this.coursAModifie._id).then(list => {
           this.chapitreCoursAModifie = list;
           if (this.chapitreCoursAModifie.length == 0) {
+            // Cas ou il n'y a pas de chapitres dans le cours
             console.log('Liste Vide chap', this.chapitreCoursAModifie);
             this.nbChap = this.chapitreCoursAModifie.length;
             this.GenerateFields();
             this.lienVideoCours = this.coursAModifie.link;
             this.contenuCours = this.coursAModifie.contenu;
           } else {
-            // Cas ou il ya chapitre dans le cours
+            // Cas ou il ya des chapitres dans le cours
             console.info('les chapitre du cours a modifié', this.chapitreCoursAModifie, 'et nombre ', this.chapitreCoursAModifie.length);
-            // $log.info('les sous cat ', this.listSousCat);
             this.nbChap = this.chapitreCoursAModifie.length;
             this.GenerateFields();
             this.chapitreCoursAModifie.map((x, index) => {
@@ -173,26 +189,10 @@ export class CreatecourseComponent {
     this.noPlan = false;
     this.categorieProvider.listCategorie().then(list => {
       this.listCat = list;
-      if (this.listCat.length == 0) {
-        console.log('Liste Vide');
-      } else {
-        console.log('Les Categories', this.listCat);
-        // for (let i = 0; i < this.listCat.length; i++) {
-        //   this.getSousCatByCategorie(this.listCat[i]._id);
-        // }
-        // $log.info('les cat ', this.listCat);
-      }
     });
 
     this.souscategorieProvider.listSousCategorie().then(list => {
       this.listSousCat = list;
-      if (this.listSousCat.length == 0) {
-        console.log('Liste Vide');
-      } else {
-        // console.log('Les  cat', this.listSousCat);
-        console.info('les Sous catégories ', this.listSousCat);
-        // $log.info('les sous cat ', this.listSousCat);
-      }
     });
 
     var fichier = document.querySelector('#imageCours');
@@ -604,7 +604,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     });
   }
 }
-CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth", "classeProvider", "$stateParams", "chapitreProvider"];
+CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth", "classeProvider", "$stateParams", "chapitreProvider", "$state", "$location"];
 ModalDemoCtrl.$inject = ["$uibModal", "$log", "$document"];
 ModalInstanceCtrl.$inject = ["$uibModalInstance", "items", "userProvider", "classeProvider", "Auth", "coursProvider"];
 export default angular.module('samaschoolApp.createcourse', [uiRouter])
