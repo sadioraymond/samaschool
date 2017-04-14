@@ -44,7 +44,17 @@ export class ProfilComponent {
   userData;
 
   /*@ngInject*/
-  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state) {
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state, $location) {
+    this.$stateParams = $stateParams;
+    this.$state = $state;
+    //check if the user is logged-in
+    Auth.isLoggedIn(function (loggedIn) {
+      if (!loggedIn) {
+        //if the user is not logged  Redirect to login
+        event.preventDefault();
+        $location.path('/');
+      }
+    });
     this.message = 'Hello';
     this.jsFonctions = jsFonctions;
     this.sousCategorieProvider = souscategorieProvider;
@@ -54,8 +64,6 @@ export class ProfilComponent {
     this.suiviCoursProvider = suiviCoursProvider;
     this.coursProvider = coursProvider;
     this.userProvider = userProvider;
-    this.$stateParams = $stateParams;
-    this.$state = $state;
     console.log('param ==>>', this.$stateParams)
     this.jsFonctions.pluginScript();
     this.jsFonctions.otherScript();
@@ -237,7 +245,7 @@ export class ProfilComponent {
   }
 }
 
-ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider", "userProvider", "$stateParams", "$state"];
+ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider", "userProvider", "$stateParams", "$state", "$location"];
 export default angular.module('samaschoolApp.profil', [uiRouter])
   .config(routes)
   .component('profil', {
