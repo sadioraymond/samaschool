@@ -5,7 +5,7 @@
       <img src="assets/upload/device_03.png" alt="" class="img-responsive wow fadeInUp" style="display: block;">
     </div>
     <div class="row">
-      <div id="post-content" class="col-md-8 col-sm-12 single-course">
+      <div id="post-content" class="col-md-9 col-sm-12 single-course">
         <div class="post-media clearfix">
           <video class="videoplayer" poster="assets/upload/video_01.jpg" controls preload="none">
             <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
@@ -23,7 +23,7 @@
         <!-- end media -->
 
         <div class="single-course-title text-center">
-          <h3><a href="single.html" title=""> {{courseCtrl.LeCours.titre}} </a></h3>
+          <h3><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie, idCours:courseCtrl.LeCours._id, idChap: ''})" title=""> {{courseCtrl.LeCours.titre}} </a></h3>
           <div class="post-sharing">
             <ul class="list-inline">
               <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="hidden-xs">Share on Facebook</span></a></li>
@@ -37,27 +37,18 @@
 
         <hr class="invis">
 
-        <div class="course-single-desc clearfix">
+        <div ng-hide="courseCtrl.LesChapitres.length > 0 && !courseCtrl.$stateParams.idChap" class="course-single-desc clearfix">
           <div class="big-title">
             <h2 class="related-title">
-              <span>Course Description</span>
+              <span ng-if="courseCtrl.LesChapitres.length > 0 && courseCtrl.$stateParams.idChap">{{courseCtrl.LeChapitre.libelle}}</span>
+              <span ng-if="courseCtrl.LesChapitres.length < 1"> Cours</span>
             </h2>
           </div>
           <!-- end big-title -->
-
-          <p>Morbi congue leo et est sodales consequat a quis est. Nunc aliquam ut massa et accumsan. Donec cursus pretium porta.
-            Maecenas vehicula pellentesque eros, non consectetur massa finibus quis. Ut ut rhoncus purus. Donec varius ultricies
-            dapibus. Aliquam facilisis lacus purus, sit amet maximus lectus auctor et. Nam vehicula eget leo sed gravida.</p>
-
-          <p>In dignissim feugiat gravida. <em>Proin feugiat quam sed gravida fringilla.</em> Proin quis mauris ut magna fringilla
-            vulputate quis non ante. Integer bibendum velit dui. Sed consequat nisi id convallis eleifend. Proin rhoncus
-            dapibus vulputate. Phasellus eget fringilla justo. Aliquam erat volutpat. <a href="#">Praesent lorem nisi</a>            vehicula fringilla rutrum facilisis, tempus sed ipsum. Mauris commodo mattis ante, at consequat lectus blandit
-            nec. Nulla facilisi. Phasellus aliquet est ac faucibus iaculis. <strong>Sed non lorem in quam placerat</strong>            facilisis nec eu quam. Etiam at tincidunt felis, et posuere eros. Nulla dictum id enim vitae fermentum. Phasellus
-            eget fringilla justo. Aliquam erat volutpat. <a href="#">Praesent lorem nisi</a> vehicula fringilla rutrum fc
-            faucibus iaculis. <strong>Sed non lorem in quam placerat</strong> facilisis nec eu quam. Etiam at tincidunt felis
-            vehicula fringillacilisis, tempus sed ipsum. Mauris commodo mattis ante, at consequat lectus blandit nec. Nulla
-            facilisi. Phasellus aliquet est ac faucibus iaculis. <strong>Sed non lorem in quam placerat</strong> facilisis
-            nec eu quam. Etiam at tincidunt felis, et posuere eros. Nulla dictum id enim vitae fermentum.</p>
+          <p ng-if="courseCtrl.LesChapitres.length < 1">{{courseCtrl.LeCours.contenu}}</p> <br>
+          <p ng-if="courseCtrl.LesChapitres.length > 0 && courseCtrl.$stateParams.idChap"> 
+            {{courseCtrl.LeChapitre.contenuChap.contenu}}
+          </p>
         </div>
         <!-- end post-padding -->
 
@@ -81,13 +72,13 @@
             <tbody>
               <tr ng-repeat="chapitre in courseCtrl.LesChapitres">
                 <td><i class="fa fa-play-circle"></i></td>
-                <td><a href="#">{{chapitre.libelle}}</a></td>
-                <td>12 Min</td>
+                <td><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie, idCours:courseCtrl.LeCours._id, idChap:chapitre._id})">{{chapitre.libelle}}</a></td>
+                <td>{{$index + 1}}</td>
               </tr>
             </tbody>
           </table>
 
-          <a href="#" class="btn btn-primary btn-block btn-lg btn-square">Join the Course</a>
+          <a href="#" class="btn btn-primary btn-block btn-lg btn-square">Suivre ce cours</a>
 
         </div>
         <!-- end course-table -->
@@ -188,7 +179,7 @@
       </div>
       <!-- end col -->
 
-      <div id="sidebar" class="col-md-4 col-sm-12">
+      <div id="sidebar" class="col-md-3 col-sm-12">
         <div class="post-media clearfix">
           <img ng-src="../../assets/upload/Cours/{{courseCtrl.LeCours.images}}" alt="" class="img-responsive">
         </div>

@@ -1,329 +1,332 @@
 <section class="section litpadtop bgw">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12 nopad">
-                <div class="member-cover  ">
-                    <img src="assets/upload/member-cover_2.jpg" alt="" class="img-responsive" style="height: 500px; width:1300px">
-                    <div class="lightoverlay overlay"></div>
-                    <div class="authorbox">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12">
-                                <div class="clearfix">
-                                    <div class="avatar-author">
-                                        <a href="author.html">
-                                            <img alt="" src="assets/upload/404.jpeg" class="img-responsive">
-                                        </a>
-                                    </div>
-                                    <div class="author-title desc">
-                                        <h4><a href="member-profile.html">{{profilCtrl.userData.name}}</a></h4>
-                                        <a class="authorlink" href="https://showwp.com">https://showwp.com</a>
-                                        <ul class="list-inline social-small">
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-                    </div>
-                    <!-- end authorbox -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 nopad">
+        <div class="member-cover  ">
+          <img src="assets/upload/member-cover_2.jpg" alt="" class="img-responsive" style="height: 500px; width:1300px">
+          <div class="lightoverlay overlay"></div>
+          <div class="authorbox">
+            <div class="row">
+              <div class="col-sm-12 col-md-12">
+                <div class="clearfix">
+                  <div class="avatar-author">
+                    <a href="author.html">
+                      <img alt="" src="assets/upload/404.jpeg" class="img-responsive">
+                    </a>
+                  </div>
+                  <div class="author-title desc">
+                    <h4><a href="member-profile.html">{{profilCtrl.userData.name}}</a></h4>
+                    <a class="authorlink" href="https://showwp.com">https://showwp.com</a>
+                    <ul class="list-inline social-small">
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                  </div>
                 </div>
-                <!-- end cover -->
+              </div>
+              <!-- end col -->
             </div>
+            <!-- end row -->
+          </div>
+          <!-- end authorbox -->
         </div>
-        <!-- end row -->
+        <!-- end cover -->
+      </div>
     </div>
+    <!-- end row -->
+  </div>
 
-    <div class="container">
-        <div class="row">
-            <div id="sidebar" class="col-md-3 col-sm-12 page-left-sidebar">
-                <div class="widget clearfix">
-                    <div class="member-profile">
-                        <div class="big-title">
-                            <h2 class="related-title">
-                                <span>Activity</span>
-                            </h2>
-                        </div>
-                        <!-- end big-title -->
-                        <div class="member-desc clearfix">
-                            <ul id="ss_sidebar">
-                                <li class="active"><a href="" ng-click="profilCtrl.profilClick(); profilCtrl.doActive($event)" class="profilClass">Profil</a></li>
-                                <li><a href="" ng-click="profilCtrl.etablissementClick(); profilCtrl.doActive($event)" class="etabClass">Etablissements<span> {{profilCtrl.LesEtabIncrit.length}} </span> </a></li>
-                                <li><a href="" ng-click="profilCtrl.courseClick(); profilCtrl.doActive($event)" class="coursesClass">Courses <span> {{profilCtrl.lesCoursSuivis.length}} </span></a></li>
-                                <!--<li><a href="member-achievements.html">Achievements <span>6</span></a></li>-->
-                                <li><a href="">Forum Topics <span>33</span></a></li>
-                                <li><a href="">Friends <span>8</span></a></li>
-                                <li><a href="">-Messages <span>5</span></a></li>
-                                <li><a href="">-Edit Profile</a></li>
-                            </ul>
-                            <!-- end ul -->
-                            <hr>
-                            <button type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Follow Me</button>
-                        </div>
-                        <!-- end team-desc -->
-                    </div>
-                    <!-- end team-member -->
-                </div>
+  <div class="container">
+    <div class="row">
+      <div id="sidebar" class="col-md-3 col-sm-12 page-left-sidebar">
+        <div class="widget clearfix">
+          <div class="member-profile">
+            <div class="big-title">
+              <h2 class="related-title">
+                <span>Activity</span>
+              </h2>
             </div>
-            <!-- end right -->
-
-            <div ng-show="profilCtrl.profil" id="sidebar1" class="col-md-6 col-sm-12">
-                <div class="widget clearfix">
-                    <div class="member-profile">
-                        <div class="big-title">
-                            <h2 class="related-title">
-                                <span>About {{profilCtrl.userData.name}}</span>
-                            </h2>
-                        </div>
-                        <!-- end big-title -->
-
-                        <p>Howdy, welcome to the my profile, we build professional responsive and retina ready template for online learning websites! With our professional course pages, you can earn money from your online courses. Join us today! Create and
-                            share outstanding quiz's, ask questions and get answer from your awesome clients!</p>
-
-                        <p>Lorem Ipsum has been the industry's standard dummy text ever since the, when an unknown printer took Lorem Ipsum has been the industry's standard dummy text ever since the, when an unknown printer took. With our professional course
-                            pages, you can earn money from your online courses. Join us today! Create and share outstanding quiz's, ask questions and get answer from your awesome clients!</p>
-
-                    </div>
-                    <!-- end team-member -->
-                </div>
+            <!-- end big-title -->
+            <div class="member-desc clearfix">
+              <ul id="ss_sidebar">
+                <li class="active"><a ng-click="profilCtrl.profilClick(); profilCtrl.doActive($event)" class="profilClass">Profil</a></li>
+                <li><a ng-click="profilCtrl.etablissementClick(); profilCtrl.doActive($event)" class="etabClass">Etablissements<span> {{profilCtrl.LesEtabIncrit.length}} </span> </a></li>
+                <li><a ng-click="profilCtrl.courseClick(); profilCtrl.doActive($event)" class="coursesClass">Courses <span> {{profilCtrl.lesCoursSuivis.length}} </span></a></li>
+                <!--<li><a href="member-achievements.html">Achievements <span>6</span></a></li>-->
+                <li><a href="">Forum Topics <span>33</span></a></li>
+                <li><a href="">Friends <span>8</span></a></li>
+                <li><a href="">-Messages <span>5</span></a></li>
+                <li><a href="">-Edit Profile</a></li>
+              </ul>
+              <!-- end ul -->
+              <hr>
+              <button type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Follow Me</button>
             </div>
-            <!-- end right -->
+            <!-- end team-desc -->
+          </div>
+          <!-- end team-member -->
+        </div>
+      </div>
+      <!-- end right -->
 
-            <div ng-show="profilCtrl.etablissement" id="sidebar1" class="col-md-9 col-sm-12">
-                <div class="widget clearfix">
-                    <div class="member-profile">
-                        <div class="big-title">
-                            <h2 class="related-title">
-                                <span>Etablissements inscrit</span>
-                            </h2>
-                        </div>
-                        <!-- end big-title -->
-
-                        <div class="row profile-badges">
-                            <div class="col-md-6 col-sm-12 wow fadeIn" ng-repeat="etab in profilCtrl.LesEtabIncrit">
-                                <div class="boxes text-left service-first withcircle withborder leftservice">
-                                    <i class="fa fa-user-plus alignleft"></i>
-
-                                    <h3> {{etab.libelle}} </h3>
-                                    <p> {{etab.adresse}} </p>
-                                    <p> {{etab.email}} </p>
-                                    <p> {{etab.tel}} </p>
-                                </div>
-                                <!-- end box -->
-                            </div>
-                        </div>
-                        <!-- end col -->
-
-                        <div class="big-title">
-                            <h2 class="related-title">
-                                <span>Etablissements suivi</span>
-                            </h2>
-                        </div>
-                        <div class="row profile-badges">
-                            <div class="col-md-6 col-sm-12 wow fadeIn">
-                                <div class="boxes text-left service-first withcircle withborder leftservice">
-                                    <i class="fa fa-birthday-cake alignleft"></i>
-                                    <h3>3+ Years of Membership</h3>
-                                    <p>Professional responsive and retina ready template for online learning websites!</p>
-                                </div>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-md-6 col-sm-12 wow fadeIn">
-                                <div class="boxes text-left service-first withcircle withborder leftservice">
-                                    <i class="fa fa-pencil alignleft"></i>
-                                    <h3>Contribute Teachme Blog</h3>
-                                    <p>Professional responsive and retina ready template for online learning websites!</p>
-                                </div>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-md-6 col-sm-12 wow fadeIn">
-                                <div class="boxes text-left service-first withcircle withborder leftservice">
-                                    <i class="fa fa-pencil alignleft"></i>
-                                    <h3>Contribute Teachme Blog</h3>
-                                    <p>Professional responsive and retina ready template for online learning websites!</p>
-                                </div>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-md-6 col-sm-12 wow fadeIn">
-                                <div class="boxes text-left service-first withcircle withborder leftservice">
-                                    <i class="fa fa-comments-o alignleft"></i>
-                                    <h3>Forum Moderator</h3>
-                                    <p>Professional responsive and retina ready template for online learning websites!</p>
-                                </div>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-md-6 col-sm-12 wow fadeIn">
-                                <div class="boxes text-left service-first withcircle withborder leftservice">
-                                    <i class="fa fa-code alignleft"></i>
-                                    <h3>Help to the development site</h3>
-                                    <p>Professional responsive and retina ready template for online learning websites!</p>
-                                </div>
-                            </div>
-                            <!-- end box -->
-
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-                    </div>
-                    <!-- end team-member -->
-                </div>
+      <div ng-show="profilCtrl.profil" id="sidebar1" class="col-md-6 col-sm-12">
+        <div class="widget clearfix">
+          <div class="member-profile">
+            <div class="big-title">
+              <h2 class="related-title">
+                <span>About {{profilCtrl.userData.name}}</span>
+              </h2>
             </div>
-            <!-- end right -->
+            <!-- end big-title -->
 
-            <div ng-show="profilCtrl.course" id="sidebar1" class="col-md-9 col-sm-12">
-                <!--<div ng-if="profilCtrl.createCourseLink" class="row" style="margin-bottom: 2em;">
+            <p>Howdy, welcome to the my profile, we build professional responsive and retina ready template for online learning
+              websites! With our professional course pages, you can earn money from your online courses. Join us today! Create
+              and share outstanding quiz's, ask questions and get answer from your awesome clients!</p>
+
+            <p>Lorem Ipsum has been the industry's standard dummy text ever since the, when an unknown printer took Lorem Ipsum
+              has been the industry's standard dummy text ever since the, when an unknown printer took. With our professional
+              course pages, you can earn money from your online courses. Join us today! Create and share outstanding quiz's,
+              ask questions and get answer from your awesome clients!</p>
+
+          </div>
+          <!-- end team-member -->
+        </div>
+      </div>
+      <!-- end right -->
+
+      <div ng-show="profilCtrl.etablissement" id="sidebar1" class="col-md-9 col-sm-12">
+        <div class="widget clearfix">
+          <div class="member-profile">
+            <div class="big-title">
+              <h2 class="related-title">
+                <span>Etablissements inscrit</span>
+              </h2>
+            </div>
+            <!-- end big-title -->
+
+            <div class="row profile-badges">
+              <div class="col-md-6 col-sm-12 wow fadeIn" ng-repeat="etab in profilCtrl.LesEtabIncrit">
+                <div class="boxes text-left service-first withcircle withborder leftservice">
+                  <i class="fa fa-user-plus alignleft"></i>
+
+                  <h3> {{etab.libelle}} </h3>
+                  <p> {{etab.adresse}} </p>
+                  <p> {{etab.email}} </p>
+                  <p> {{etab.tel}} </p>
+                </div>
+                <!-- end box -->
+              </div>
+            </div>
+            <!-- end col -->
+
+            <div class="big-title">
+              <h2 class="related-title">
+                <span>Etablissements suivi</span>
+              </h2>
+            </div>
+            <div class="row profile-badges">
+              <div class="col-md-6 col-sm-12 wow fadeIn">
+                <div class="boxes text-left service-first withcircle withborder leftservice">
+                  <i class="fa fa-birthday-cake alignleft"></i>
+                  <h3>3+ Years of Membership</h3>
+                  <p>Professional responsive and retina ready template for online learning websites!</p>
+                </div>
+              </div>
+              <!-- end col -->
+
+              <div class="col-md-6 col-sm-12 wow fadeIn">
+                <div class="boxes text-left service-first withcircle withborder leftservice">
+                  <i class="fa fa-pencil alignleft"></i>
+                  <h3>Contribute Teachme Blog</h3>
+                  <p>Professional responsive and retina ready template for online learning websites!</p>
+                </div>
+              </div>
+              <!-- end col -->
+
+              <div class="col-md-6 col-sm-12 wow fadeIn">
+                <div class="boxes text-left service-first withcircle withborder leftservice">
+                  <i class="fa fa-pencil alignleft"></i>
+                  <h3>Contribute Teachme Blog</h3>
+                  <p>Professional responsive and retina ready template for online learning websites!</p>
+                </div>
+              </div>
+              <!-- end col -->
+
+              <div class="col-md-6 col-sm-12 wow fadeIn">
+                <div class="boxes text-left service-first withcircle withborder leftservice">
+                  <i class="fa fa-comments-o alignleft"></i>
+                  <h3>Forum Moderator</h3>
+                  <p>Professional responsive and retina ready template for online learning websites!</p>
+                </div>
+              </div>
+              <!-- end col -->
+
+              <div class="col-md-6 col-sm-12 wow fadeIn">
+                <div class="boxes text-left service-first withcircle withborder leftservice">
+                  <i class="fa fa-code alignleft"></i>
+                  <h3>Help to the development site</h3>
+                  <p>Professional responsive and retina ready template for online learning websites!</p>
+                </div>
+              </div>
+              <!-- end box -->
+
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- end team-member -->
+        </div>
+      </div>
+      <!-- end right -->
+
+      <div ng-show="profilCtrl.course" id="sidebar1" class="col-md-9 col-sm-12">
+        <!--<div ng-if="profilCtrl.createCourseLink" class="row" style="margin-bottom: 2em;">
           <div class="col-md-4">
             <button ng-click="profilCtrl.createCourseClick()" type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Demarrer Ici pour creer un cours</button>
           </div>
         </div>-->
-                <div class="widget clearfix">
-                    <div class="member-profile">
-                        <div class="big-title">
-                            <h2 class="related-title">
-                                <span>Cours actifs</span>
-                            </h2>
-                        </div>
-                        <!-- end big-title -->
-
-
-                        <div class="postpager liststylepost membercourses">
-                            <ul class="pager">
-                                <li ng-repeat="cours in profilCtrl.lesCoursSuivis">
-                                    <div class="post">
-                                        <a href="course-single.html">
-                                            <img alt="" ng-src="../../assets/upload/Cours/{{cours.images}}" class="img-responsive alignleft"style="height: 80px; width:80px">
-                                            <h4> {{cours.titre|limitTo:70}} </h4>
-                                            <small> {{cours.description|limitTo:40}} </small>
-                                        </a>
-                                        &nbsp;-&nbsp;
-                                        <small>Expires : 22 June 2016</small>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <!-- end postpager -->
-
-                        <hr class="invis">
-                        <br>
-
-                        <div class="big-title">
-                            <h2 class="related-title">
-                                <span>Expired Courses</span>
-                            </h2>
-                        </div>
-                        <!-- end big-title -->
-
-                        <div class="postpager liststylepost membercourses">
-                            <ul class="pager">
-                                <li>
-                                    <div class="post">
-                                        <a href="course-single.html">
-                                            <img alt="" src="assets/upload/pager_01.png" class="img-responsive alignleft"style="height: 80px; width:80px">
-                                            <h4>Learning Professional English in 20 Days</h4>
-                                            <small>View Course</small> &nbsp;-&nbsp;
-                                            <small>Expired : &nbsp;Join the Course</small>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="post">
-                                        <a href="course-single.html">
-                                            <img alt="" src="assets/upload/pager_02.png" class="img-responsive alignleft">
-                                            <h4>Selecting Material Design and Color Palette</h4>
-                                            <small>View Course</small> &nbsp;-&nbsp;
-                                            <small>Expired : &nbsp;Join the Course</small>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="post">
-                                        <a href="course-single.html">
-                                            <img alt="" src="assets/upload/pager_03.jpg" class="img-responsive alignleft">
-                                            <h4>Getting Starting Web Design and Web Development</h4>
-                                            <small>View Course</small> &nbsp;-&nbsp;
-                                            <small>Expired : &nbsp;Join the Course</small>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- end postpager -->
-                        <hr class="invis">
-                        <br>
-
-                        <div class="big-title">
-                            <h2 class="related-title">
-                                <span>Cours crées</span>
-                            </h2>
-                        </div>
-                        <!-- end big-title -->
-
-
-                        <div class="postpager liststylepost membercourses">
-                            <ul class="pager">
-                                <li ng-repeat="cours in profilCtrl.lesCoursCrees">
-                                    <div class="post">
-                                        <a href="course-single.html">
-                                            <img alt="" ng-src="../../assets/upload/Cours/{{cours.images}}" class="img-responsive alignleft" style="height: 80px; width:80px">
-                                            <h4> {{cours.titre|limitTo:70}} </h4>
-                                        </a>
-                                        <small> Sous Categorie </small> &nbsp;-&nbsp;
-                                        <small>Crée : {{cours.date_creation | date:'medium'}}</small>&nbsp;-&nbsp;
-                                        <small><a ui-sref="createcourse({id: cours._id})"> <i class="fa fa-pencil" aria-hidden="true"></i></a></small>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <!-- end postpager -->
-
-                    </div>
-                    <!-- end team-member -->
-                </div>
+        <div class="widget clearfix">
+          <div class="member-profile">
+            <div class="big-title">
+              <h2 class="related-title">
+                <span>Cours actifs</span>
+              </h2>
             </div>
-            <!-- end right -->
+            <!-- end big-title -->
 
 
-            <div ng-show="profilCtrl.contact" id="sidebar2" class="col-md-3 col-sm-12 mob30">
-                <div class="widget clearfix">
-                    <div class="member-profile">
-                        <div class="big-title">
-                            <h2 class="related-title">
-                                <span>Contact</span>
-                            </h2>
-                        </div>
-                        <!-- end big-title -->
+            <div class="postpager liststylepost membercourses">
+              <ul class="pager">
+                <li ng-repeat="cours in profilCtrl.lesCoursSuivis">
+                  <div class="post">
+                    <a ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie, idCours:cours._id})">
+                      <img alt="" ng-src="../../assets/upload/Cours/{{cours.images}}" class="img-responsive alignleft" style="height: 80px; width:80px">
+                      <h4> {{cours.titre|limitTo:70}} </h4>
+                      <small> {{cours.description|limitTo:40}} </small>
+                    </a>
+                    &nbsp;-&nbsp;
+                    <small>Expires : 22 June 2016</small>
+                  </div>
+                </li>
 
-                        <div class="loginform">
-                            <form class="row">
-                                <div class="col-md-12">
-                                    <input type="text" name="name" class="form-control" placeholder="Name">
-                                    <input type="email" name="email" class="form-control" placeholder="Email">
-                                    <input type="text" name="name" class="form-control" placeholder="Phone">
-                                    <textarea class="form-control" name="comments" rows="6" placeholder="Your Bio"></textarea>
-                                    <button type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Contact</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- end team-member -->
-                </div>
+              </ul>
             </div>
-            <!-- end right -->
+            <!-- end postpager -->
 
+            <hr class="invis">
+            <br>
+
+            <div class="big-title">
+              <h2 class="related-title">
+                <span>Expired Courses</span>
+              </h2>
+            </div>
+            <!-- end big-title -->
+
+            <div class="postpager liststylepost membercourses">
+              <ul class="pager">
+                <li>
+                  <div class="post">
+                    <a href="course-single.html">
+                      <img alt="" src="assets/upload/pager_01.png" class="img-responsive alignleft" style="height: 80px; width:80px">
+                      <h4>Learning Professional English in 20 Days</h4>
+                      <small>View Course</small> &nbsp;-&nbsp;
+                      <small>Expired : &nbsp;Join the Course</small>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div class="post">
+                    <a href="course-single.html">
+                      <img alt="" src="assets/upload/pager_02.png" class="img-responsive alignleft">
+                      <h4>Selecting Material Design and Color Palette</h4>
+                      <small>View Course</small> &nbsp;-&nbsp;
+                      <small>Expired : &nbsp;Join the Course</small>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div class="post">
+                    <a href="course-single.html">
+                      <img alt="" src="assets/upload/pager_03.jpg" class="img-responsive alignleft">
+                      <h4>Getting Starting Web Design and Web Development</h4>
+                      <small>View Course</small> &nbsp;-&nbsp;
+                      <small>Expired : &nbsp;Join the Course</small>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- end postpager -->
+            <hr class="invis">
+            <br>
+
+            <div class="big-title">
+              <h2 class="related-title">
+                <span>Cours crées</span>
+              </h2>
+            </div>
+            <!-- end big-title -->
+
+
+            <div class="postpager liststylepost membercourses">
+              <ul class="pager">
+                <li ng-repeat="cours in profilCtrl.lesCoursCrees">
+                  <div class="post">
+                    <a ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie, idCours:cours._id})">
+                      <img alt="" ng-src="../../assets/upload/Cours/{{cours.images}}" class="img-responsive alignleft" style="height: 80px; width:80px">
+                      <h4> {{cours.titre|limitTo:70}} </h4>
+                    </a>
+                    <small> Sous Categorie </small> &nbsp;-&nbsp;
+                    <small>Crée : {{cours.date_creation | date:'medium'}}</small>&nbsp;-&nbsp;
+                    <small><a ui-sref="createcourse({id: cours._id})"> <i class="fa fa-pencil" aria-hidden="true"></i></a></small>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+            <!-- end postpager -->
+
+          </div>
+          <!-- end team-member -->
         </div>
-        <!-- end row -->
+      </div>
+      <!-- end right -->
+
+
+      <div ng-show="profilCtrl.contact" id="sidebar2" class="col-md-3 col-sm-12 mob30">
+        <div class="widget clearfix">
+          <div class="member-profile">
+            <div class="big-title">
+              <h2 class="related-title">
+                <span>Contact</span>
+              </h2>
+            </div>
+            <!-- end big-title -->
+
+            <div class="loginform">
+              <form class="row">
+                <div class="col-md-12">
+                  <input type="text" name="name" class="form-control" placeholder="Name">
+                  <input type="email" name="email" class="form-control" placeholder="Email">
+                  <input type="text" name="name" class="form-control" placeholder="Phone">
+                  <textarea class="form-control" name="comments" rows="6" placeholder="Your Bio"></textarea>
+                  <button type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Contact</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- end team-member -->
+        </div>
+      </div>
+      <!-- end right -->
+
     </div>
-    <!-- end container -->
-    </div>
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+  </div>
 </section>
 <!-- end section -->
 
