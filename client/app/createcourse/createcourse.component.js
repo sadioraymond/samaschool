@@ -53,14 +53,6 @@ export class CreatecourseComponent {
   constructor(jsFonctions, categorieProvider, souscategorieProvider, coursProvider, Auth, classeProvider, $stateParams, chapitreProvider, $state, $location) {
     this.$state = $state;
     this.params = $stateParams;
-    //check if the user is logged-in
-    Auth.isLoggedIn(function (loggedIn) {
-      if (!loggedIn) {
-        //if the user is not logged  Redirect to login
-        event.preventDefault();
-        $location.path('/');
-      }
-    });
     this.coursProvider = coursProvider;
     this.jsFonctions = jsFonctions;
     this.categorieProvider = categorieProvider;
@@ -72,19 +64,25 @@ export class CreatecourseComponent {
     this.directpublish = false;
     this.getcurrentUser = Auth.getCurrentUserSync;
     this.datetime = this.currentdate.getFullYear() + "-" + (this.currentdate.getMonth() + 1) + "-" + this.currentdate.getDate();
-
-    console.log('param =>', this.params, this.getcurrentUser())
+    //check if the user is logged-in
+    Auth.isLoggedIn(function (loggedIn) {
+      if (!loggedIn) {
+        //if the user is not logged  Redirect to login
+        event.preventDefault();
+        $location.path('/');
+      }
+    });
+    console.log('param =>', this.params)
     // Preparation de l'objet cours a modifier si c'est le cas
     if (this.params.id !== "") {
       this.coursProvider.params = this.params.id;
       this.coursProvider.FindById(this.params.id).then(list => {
-        // console.error('lis', list)
         this.coursAModifie = list;
         if (!this.coursAModifie._id) {
           console.log('Liste Vide ');
-          // this.$state.go("main");
+          this.$state.go("main");
           // setTimeout(() => {
-          $location.path(`/`);
+          // $location.path(`/`);
           // }, 1000);
         } else {
           // console.log('Les  cat', this.listSousCat);
@@ -93,8 +91,8 @@ export class CreatecourseComponent {
         }
       });
     }
-    this.jsFonctions.pluginScript();
-    this.jsFonctions.otherScript();
+    // this.jsFonctions.pluginScript();
+    // this.jsFonctions.otherScript();
   }
   getSousCatByCategorie(id) {
     this.souscategorieProvider.getSousCatByCategorie(id).then(list => {

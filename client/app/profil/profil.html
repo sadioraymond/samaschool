@@ -56,8 +56,8 @@
                 <!--<li><a href="member-achievements.html">Achievements <span>6</span></a></li>-->
                 <li><a href="">Forum Topics <span>33</span></a></li>
                 <li><a href="">Friends <span>8</span></a></li>
-                <li ng-show="profilCtrl.permissionProfil"><a href="">-Messages <span>5</span></a></li>
-                <li ng-show="profilCtrl.permissionProfil"><a href="">-Edit Profile</a></li>
+                <li ng-show="profilCtrl.privateLink"><a href="">-Messages <span>5</span></a></li>
+                <li ng-show="profilCtrl.privateLink"><a href="">-Edit Profile</a></li>
               </ul>
               <!-- end ul -->
               <hr>
@@ -280,7 +280,7 @@
                     </a>
                     <small> Sous Categorie </small> &nbsp;-&nbsp;
                     <small>Crée : {{cours.date_creation | date:'medium'}}</small>&nbsp;-&nbsp;
-                    <small ng-show="profilCtrl.permissionProfil && profilCtrl.privateLink"><a ui-sref="createcourse({id: cours._id})"> <i class="fa fa-pencil" aria-hidden="true"></i></a></small>
+                    <small ng-show="profilCtrl.privateLink"><a ui-sref="createcourse({id: cours._id})"> <i class="fa fa-pencil" aria-hidden="true"></i></a></small>
                   </div>
                 </li>
 

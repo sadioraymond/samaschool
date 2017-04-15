@@ -59,20 +59,6 @@ export class ProfilComponent {
     this.suiviCoursProvider = suiviCoursProvider;
     this.coursProvider = coursProvider;
     this.userProvider = userProvider;
-    //check if the user is logged-in
-    // this.permissionProfil = Auth.isLoggedInSync();
-    // console.error('perm', this.permissionProfil)
-    Auth.isLoggedIn((loggedIn) => {
-      if (!loggedIn) {
-        //if the user is not logged  Redirect to login
-        // event.preventDefault();
-        // $location.path('/');
-        this.permissionProfil = false;
-      } else {
-        this.permissionProfil = true;
-
-      }
-    });
     console.log('param ==>>', this.$stateParams);
     this.jsFonctions.pluginScript();
     this.jsFonctions.otherScript();
