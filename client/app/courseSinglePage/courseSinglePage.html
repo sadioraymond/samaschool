@@ -45,9 +45,9 @@
             </h2>
           </div>
           <!-- end big-title -->
-          <p ng-if="courseCtrl.LesChapitres.length < 1">{{courseCtrl.LeCours.contenu}}</p> <br>
-          <p ng-if="courseCtrl.LesChapitres.length > 0 && courseCtrl.$stateParams.idChap"> 
-            {{courseCtrl.LeChapitre.contenuChap.contenu}}
+          <p ng-if="courseCtrl.LesChapitres.length < 1" ng-bind-html="courseCtrl.LeCours.contenu"></p> <br>
+          <p ng-if="courseCtrl.LesChapitres.length > 0 && courseCtrl.$stateParams.idChap" ng-bind-html="courseCtrl.LeChapitre.contenuChap.contenu"> 
+            
           </p>
         </div>
         <!-- end post-padding -->
