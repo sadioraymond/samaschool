@@ -37,7 +37,7 @@
                 <!--end progressbar-->
                 <!-- categories -->
                 <div ng-show="createcourseCtrl.firstPart" class="row text-center">
-                    <!--Dropdown des sous categories:-->
+                  <!--Dropdown des sous categories:-->
                   <div class="col-md-6">
                     <label for="categorie">Categories </label>
                     <!-- Single button -->
@@ -129,7 +129,8 @@
                           </div>
                           <div class="form-group">
                             <label for="contenuChap">Contenu du chapitre</label>
-                            <textarea class="form-control" id="contenuChap" ng-model="createcourseCtrl.contenuChap[chap]"></textarea>
+                            <!--<textarea ck-editor class="form-control" id="contenuChap" ng-model="createcourseCtrl.contenuChap[chap]"></textarea>-->
+                            <div class="form-control" id="contenuChap"  ckeditor="createcourseCtrl.options" ng-model="createcourseCtrl.contenuChap[chap]"></div>
                           </div>
                           <div class="form-group">
                             <label for="lienVideoChap">lien video</label>
