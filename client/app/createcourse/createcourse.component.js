@@ -121,8 +121,8 @@ export class CreatecourseComponent {
       });
     // Pour la modification du cours crée => categorie et sous categorie
     setTimeout(() => {
-      console.log('cours a modifiee =>>', typeof this.coursAModifie._id)
-      if (typeof this.coursAModifie._id == 'undefined') {
+      // console.log('cours a modifiee =>>', typeof this.coursAModifie._id)
+      if ( this.params.id === '') {
         this.boolCoursAModifie = false;
         this.categ.id = "";
         this.categ.libelle = "selectionner le domaine";
