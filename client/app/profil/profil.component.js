@@ -42,19 +42,14 @@ export class ProfilComponent {
   fourthPart = false;
   lesCoursSuivis;
   userData;
+  permissionProfil: boolean;
+  privateLink: boolean;
 
   /*@ngInject*/
   constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state, $location) {
     this.$stateParams = $stateParams;
     this.$state = $state;
-    //check if the user is logged-in
-    Auth.isLoggedIn(function (loggedIn) {
-      if (!loggedIn) {
-        //if the user is not logged  Redirect to login
-        event.preventDefault();
-        $location.path('/');
-      }
-    });
+    this.Auth = Auth;
     this.message = 'Hello';
     this.jsFonctions = jsFonctions;
     this.sousCategorieProvider = souscategorieProvider;
@@ -64,7 +59,21 @@ export class ProfilComponent {
     this.suiviCoursProvider = suiviCoursProvider;
     this.coursProvider = coursProvider;
     this.userProvider = userProvider;
-    console.log('param ==>>', this.$stateParams)
+    //check if the user is logged-in
+    // this.permissionProfil = Auth.isLoggedInSync();
+    // console.error('perm', this.permissionProfil)
+    Auth.isLoggedIn((loggedIn) => {
+      if (!loggedIn) {
+        //if the user is not logged  Redirect to login
+        // event.preventDefault();
+        // $location.path('/');
+        this.permissionProfil = false;
+      } else {
+        this.permissionProfil = true;
+
+      }
+    });
+    console.log('param ==>>', this.$stateParams);
     this.jsFonctions.pluginScript();
     this.jsFonctions.otherScript();
   }
@@ -80,7 +89,6 @@ export class ProfilComponent {
         setTimeout(() => {
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
-
         }, 0);
       });
 
@@ -89,15 +97,39 @@ export class ProfilComponent {
       this.userDatas = list;
       if (this.userDatas.length == 0) {
         console.log('Liste Vide');
+        this.userData = "";
         this.$state.go('main');
       } else {
         console.log('La page du user ==>>', this.userDatas);
         this.userData = this.userDatas[0]
+        // le user courant ??
+        if (this.userData.username === this.getCurrentUser().name) {
+          this.privateLink = true;
+        } else {
+          this.privateLink = false;
+        }
+        //Liste des Etablissements où le User est inscrit au chargement de la page
+        this.etablissementProvider.getEtabByUser(this.userData._id).then(list => {
+          this.LesEtabIncrit = list;
+          console.log('les etablissements', list);
+        });
+
+        // Liste des cours suivis par le User
+        this.suiviCoursProvider.getCoursByUser(this.userData._id).then(list => {
+          this.lesCoursSuivis = list;
+          console.log('les cours tout court', list);
+        });
+
+        // Liste des cours crées par le profil
+        this.coursProvider.getCoursByProf(this.userData._id).then(list => {
+          this.lesCoursCrees = list;
+          console.log('les cours crees', this.lesCoursCrees);
+        });
 
       }
     });
 
-    // Liste des categorie au chargement de la page
+    // Liste des categories au chargement de la page
     this.categorieProvider.listCategorie().then(list => {
       this.listCat = list;
       if (this.listCat.length == 0) {
@@ -119,27 +151,6 @@ export class ProfilComponent {
         // $log.info('les sous cat ', this.listSousCat);
       }
     });
-
-    setTimeout(() => {
-      console.log('id ==>>', this.userData._id)
-      //Liste des Etablissements où le User est inscrit au chargement de la page
-      this.etablissementProvider.getEtabByUser(this.userData._id).then(list => {
-        this.LesEtabIncrit = list;
-        console.log('les etablissements', list);
-      });
-
-      // Liste des cours suivis par le User
-      this.suiviCoursProvider.getCoursByUser(this.userData._id).then(list => {
-        this.lesCoursSuivis = list;
-        console.log('les cours tout court', list);
-      });
-
-      // Liste des cours crées par le profil
-      this.coursProvider.getCoursByProf(this.userData._id).then(list => {
-        this.lesCoursCrees = list;
-        console.log('les cours crees', this.lesCoursCrees);
-      });
-    }, 1000);
 
   }
 
