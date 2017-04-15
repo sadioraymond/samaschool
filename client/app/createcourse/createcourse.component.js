@@ -93,6 +93,12 @@ export class CreatecourseComponent {
     }
     // this.jsFonctions.pluginScript();
     // this.jsFonctions.otherScript();
+    // Editor options. 
+    this.options = {
+      language: 'en',
+      allowedContent: true,
+      entities: false
+    };
   }
   getSousCatByCategorie(id) {
     this.souscategorieProvider.getSousCatByCategorie(id).then(list => {
