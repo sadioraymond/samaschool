@@ -46,6 +46,9 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             liste = list.data;
             deferred.resolve(liste);
 
+        }, function(error) {
+            liste = error.data;
+            deferred.resolve(liste);
         });
         liste = deferred.promise;
         return liste;
@@ -78,8 +81,8 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
 
         });
         liste = deferred.promise;
-
         return liste;
+
 
     }
 
@@ -231,12 +234,6 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
 
         return liste;
 
-    }
-     this.deletepicture = function(image) {
-          var deferred = $q.defer();
-        $http.get('/api/courss/deletepicture/' + image, {
-            cache: true
-        });
     }
 }
 

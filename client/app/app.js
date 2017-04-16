@@ -17,6 +17,9 @@ import {
   routeConfig
 } from './app.config';
 
+// ckeditor ------------
+import '../../bower_components/angular-ckeditor/angular-ckeditor.min.js';
+
 import _Auth from '../components/auth/auth.module';
 import account from './account';
 import admin from './admin';
@@ -69,7 +72,7 @@ import coursesDirective from './directives/courses/courses.directive';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
 
-    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective, recentCours, formations, notreEquipe, 'angular-loading-bar', 'cfp.loadingBar'
+    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective, recentCours, formations, notreEquipe, 'angular-loading-bar', 'cfp.loadingBar', 'ckeditor'
 
   ])
   .config(routeConfig)
@@ -89,41 +92,33 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
     //   });
     // });
   })
-  .directive('cleditor', function () {
-    return {
-      require: '?ngModel',
-      link: function (scope, elm, attr, ngModel) {
-
-        if (!ngModel) return;
-
-        ngModel.$render = function () {
-          elm.val(ngModel.$viewValue).blur();
-        };
-
-
-
-        elm.cleditor().change(function () {
-          var value = elm.val();
-
-          if (!scope.$$phase) {
-            scope.$apply(function () {
-              ngModel.$setViewValue(value);
-
-            });
-          }
-        });
-      }
-    }
-  })
-
   .directive("owlCarousel", function () {
     return {
       restrict: 'E',
       transclude: false,
       link: function (scope) {
         scope.initCarousel = function (element) {
+          // console.error('elm =>', element.attr('id'))
+          // if (element.attr('id') == 'owl-courses') {
           // provide any default options you want
-          var defaultOptions = {};
+          var defaultOptions = {
+            loop: true,
+            margin: 30,
+            nav: true,
+            dots: false,
+            responsive: {
+              0: {
+                items: 1
+              },
+              600: {
+                items: 2
+              },
+              1000: {
+                items: 3
+              }
+            }
+          };
+          // }
           var customOptions = scope.$eval($(element).attr('data-options'));
           // combine the two options objects
           for (var key in customOptions) {

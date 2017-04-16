@@ -38,6 +38,8 @@ export default class LoginController {
           password: this.user.password
         })
         .then(() => {
+          // ===>>>> Permet de repasser par le constructeur de la page concernée <<<======
+          this.$state.reload();
           this.userProvider.msg = true;
           // document.querySelector('#topbar_msg').click();
           setTimeout(() => {
@@ -45,7 +47,6 @@ export default class LoginController {
             // angular.element('#topbar_msg').triggerHandler('click');
           }, 500);
           // Logged in, redirect to home
-          // this.$state.go('main');
         })
         .catch(err => {
           this.errors.login = err.message;
