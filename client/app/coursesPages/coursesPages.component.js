@@ -50,13 +50,9 @@ export class CoursesPagesComponent {
 
 
   $onInit() {
-    this.categ.id = 0;
-    this.categ.libelle = "Domaine";
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
-          this.categ.id = 0;
-          this.categ.libelle = "Domaine";
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
         }, 0);
@@ -125,6 +121,8 @@ export class CoursesPagesComponent {
         this.lesSousCategories = list;
       })
     }, 0);
+    this.scateg.id = 0;
+    this.scateg.libelle = "Sous Domaine";
   }
 
   // filtre si une sous categorie est clickés
@@ -132,7 +130,10 @@ export class CoursesPagesComponent {
     this.coursProvider.getCoursBySousCat(scat._id).then(list => {
       this.lesCoursBySousCat = list;
       this.choixList = this.lesCoursBySousCat;
-    })
+    });
+    this.scateg.id = scat._id;
+    this.scateg.libelle = scat.libelle;
+
   }
 }
 
