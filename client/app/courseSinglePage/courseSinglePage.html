@@ -70,9 +70,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="chapitre in courseCtrl.LesChapitres">
+              <tr ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie, idCours:courseCtrl.LeCours._id, idChap:chapitre._id})" ui-sref-active="doActive" ng-repeat="chapitre in courseCtrl.LesChapitres">
                 <td><i class="fa fa-play-circle"></i></td>
-                <td><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie, idCours:courseCtrl.LeCours._id, idChap:chapitre._id})">{{chapitre.libelle}}</a></td>
+                <td>{{chapitre.libelle | uppercase}}</td>
                 <td>{{$index + 1}}</td>
               </tr>
             </tbody>
