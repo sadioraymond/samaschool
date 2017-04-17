@@ -3,8 +3,8 @@
 export default function($stateProvider) {
   'ngInject';
   $stateProvider
-    .state('etablissementPages', {
-      url: '/etablissementPages',
+    .state('etablissement', {
+      url: '/etablissement/:id',
       template: '<etablissement-pages></etablissement-pages>'
     });
 }

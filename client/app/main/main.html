@@ -11,23 +11,23 @@
   <div class="container">
     <div class="big-title">
       <h2 class="related-title">
-        <span>Recent Courses  <div id="loading-bar-container"></div></span>
+        <span>Recent Courses</span>
       </h2>
     </div>
     <!-- end big-title -->
-    
+
     <data-owl-carousel class="owl-carousel" data-options="{navigation: true, pagination: false, rewindNav : false}">
       <div owl-carousel-item="" ng-repeat="course in $ctrl.LesCoursRecent" class="item">
         <div class="shop-item">
           <div class="post-media entry">
-            <div class="ribbon-wrapper-green">
-              <!--<div class="ribbon-green">Featured</div>-->
-            </div>
+            <!--<div class="ribbon-wrapper-green">
+              <div class="ribbon-green">Featured</div>
+            </div>-->
             <img ng-src="../../assets/upload/Cours/{{course.images}}" alt="" class="img-responsive" style="height: 200px ">
             <div class="magnifier">
               <div class="shop-bottom clearfix">
-                <a href="course-checkout.html" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
-                <a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie, idCours:course._id})" title="Full Preview"><i class="fa fa-search"></i></a>
+                <a href="course-checkout.html" title="Suivre"><i class="fa fa-shopping-cart"></i></a>
+                <a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie, idCours:course._id})" title="Visualiser"><i class="fa fa-search"></i></a>
               </div>
             </div>
           </div>
@@ -46,15 +46,14 @@
                 <small>$100.00</small>
               </div>
             </div>
-            <h3><a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie, idCours:course._id})" title="">{{course.titre | limitTo: 60}}</a></h3>
-
+            <h3><a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie, idCours:course._id})" title="{{course.description}}">{{course.titre | limitTo: 60}}</a></h3>
           </div>
           <div class="large-post-meta">
             <span class="avatar"><a href="member-profile.html"><img src="assets/upload/avatar_02.png" alt="" class="img-circle"> Amanda DOE</a></span>
             <small>&#124;</small>
-            <span><a ui-sref="courseSinglePage"><i class="fa fa-clock-o"></i> 2 Month</a></span>
+            <span><a><i class="fa fa-clock-o"></i> 2 Month</a></span>
             <small class="hidden-xs">&#124;</small>
-            <span class="hidden-xs"><a ui-sref="courseSinglePage"><i class="fa fa-graduation-cap"></i> 12 Students</a></span>
+            <span class="hidden-xs"><a><i class="fa fa-graduation-cap"></i> 12 Students</a></span>
           </div>
         </div>
       </div>
