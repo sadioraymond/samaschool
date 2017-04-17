@@ -3,15 +3,33 @@ const angular = require('angular');
 
 export class etablissementsComponent {
   /*@ngInject*/
-  constructor() {
-    this.message = 'World';
+  LesEtablissements: Array;
+  constructor(etablissementProvider, jsFonctions) {
+    this.etablissementProvider = etablissementProvider;
+    this.jsFonctions = jsFonctions;
+  }
+  $onInit() {
+    // angular.element(document)
+    //   .ready(() => {
+    //     setTimeout(() => {
+    //       this.jsFonctions.pluginScript();
+    //       this.jsFonctions.otherScript();
+    //     }, 0);
+    //   });
+    this.etablissementProvider.listeEtablissement().then(list => {
+      this.LesEtablissements = list;
+      console.log('les LesEtablissements =>>', this.LesEtablissements);
+    });
   }
 }
 
+etablissementsComponent.$inject = ["etablissementProvider", "jsFonctions"];
 export default angular.module('samaschoolApp.etablissements', [])
   .component('etablissements', {
     template: require('./etablissements.html'),
-    bindings: { message: '<' },
+    bindings: {
+      message: '<'
+    },
     controller: etablissementsComponent
   })
   .name;
