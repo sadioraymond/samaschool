@@ -122,7 +122,7 @@ export class CreatecourseComponent {
         // Pour la modification du cours crée => categorie et sous categorie
         setTimeout(() => {
             // console.log('cours a modifiee =>>', typeof this.coursAModifie._id)
-            if (this.params.id === '') {
+            if (this.params.id == "") {
                 this.boolCoursAModifie = false;
                 this.categ.id = "";
                 this.categ.libelle = "selectionner le domaine";
@@ -232,9 +232,9 @@ export class CreatecourseComponent {
         }
     }
     nextClick() {
-        console.log('User bi', this.getcurrentUser());
-
-        if (this.titreChap && this.objectifChap && this.contenuChap && !this.numberError && this.stateProgress == 50 && this.firstPart != true && this.secondPart != true && this.nbChap) {
+        // console.log('User bi', this.getcurrentUser());
+        // 3em partie avec chapitre
+        if (this.titreChap && this.objectifChap && this.contenuChap && !this.numberError && this.stateProgress == 50 && this.firstPart != true && this.secondPart != true && this.nbChap > 0) {
             console.log('next next');
             this.firstPart = false;
             this.secondPart = false;
@@ -266,7 +266,9 @@ export class CreatecourseComponent {
             this.coursProvider.objetCours.tab = this.objetCours.objChap;
             this.coursProvider.objetCours.taille = this.nbChap;
         }
-        if (this.lienVideoCours != "" && this.stateProgress == 50 && !this.firstPart && !this.secondPart) {
+        // 3em partie sans chapitre
+        if (this.nbChap == 0 && this.lienVideoCours && this.contenuCours && this.stateProgress == 50 && !this.firstPart && !this.secondPart) {
+            console.log('contenu', this.contenuCours.length)
             this.firstPart = false;
             this.secondPart = false;
             this.thirdPart = false;
