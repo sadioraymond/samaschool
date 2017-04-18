@@ -131,7 +131,7 @@ export class CreatecourseComponent {
                 this.sCateg.libelle = "selectionner le sous domaine";
             } else {
                 // 1ere partie
-                this.souscategorieProvider.getSousCatById(this.coursAModifie.sous_categorie).then(list => {
+                this.souscategorieProvider.getSousCatById(this.coursAModifie.sous_categorie._id).then(list => {
                     this.souscat = list;
                     console.log('La Sous Catégorie', this.souscat);
                     this.selectedId = true;
