@@ -10,6 +10,7 @@ var EtablissementSchema = new mongoose.Schema({
     adresse: String,
     tel: String,
     email: String,
+    images: String,
 });
 EtablissementSchema.plugin(autoIncrement.plugin, 'Etablissement');
 registerEvents(EtablissementSchema);

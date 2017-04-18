@@ -18,6 +18,7 @@ import SuiviCours from '../suivi_cours/suivi_cours.model';
 import Classe from '../../Etablissement_Module/detail_classe/detail_classe.model';
 import Suivi from '../../Etablissement_Module/suivi_cours_classe/suivi_cours_classe.model';
 var fs = require('fs');
+
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
     return function(entity) {
@@ -79,7 +80,7 @@ function verify(tab, element) {
 
 //delete a Picture
 
-export function deletePicture(images){
+export function deletePicture(images) {
     console.log('url bi', images);
     fs.unlinkSync(images);
 }
@@ -87,7 +88,7 @@ export function deletePicture(images){
 export function index(req, res) {
     var cou = "Cours";
     var act = true;
-    return Cours.find({ Genre: cou }).populate('sous_categorie').exec()
+    return Cours.find({ Genre: cou }).populate('sous_categorie').populate('user').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
@@ -95,13 +96,13 @@ export function index(req, res) {
 export function brouillon(req, res) {
     var cou = "Cours";
     var act = false;
-    return Cours.find({ actif: act }).populate('sous_categorie').exec()
+    return Cours.find({ actif: act }).populate('sous_categorie').populate('user').exec()
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
 // Gets a single Cours from the DB
 export function show(req, res) {
-    return Cours.findById(req.params.id).exec()
+    return Cours.findById(req.params.id).populate('sous_categorie').populate('user').exec()
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
         .catch(handleError(res));
@@ -113,42 +114,50 @@ export function getCoursPlusSuivi(req, res) {
     Cours.find({ Genre: cou }).exec()
         .then(list => {
             var tabCours = [];
+            var tabCoursyi = [];
             var cpt = 0;
             var tampon;
             list.map(li => {
-                SuiviCours.find({ publication: li._id }).populate('publication').exec()
+                SuiviCours.find({ publication: li._id }).exec()
                     .then(nb => {
                         var ben = {};
                         nb.forEach(function(e) {
-                            ben.cours = e.publication
+                            tabCoursyi.push(e.publication);
                         });
-                        ben.nb_suiv = nb.length;
-                        tabCours.push(ben);
-                        cpt++;
-                        if (cpt == list.length) {
-                            for (let j = 0; j < tabCours.length - 1; j++) {
-                                for (let k = j + 1; k < tabCours.length; k++) {
-                                    if (tabCours[j].nb_suiv < tabCours[k].nb_suiv) {
-                                        tampon = tabCours[j];
-                                        tabCours[j] = tabCours[k];
-                                        tabCours[k] = tampon;
+                        for (let i = 0; i < tabCoursyi.length; i++) {
+                            Cours.findById(tabCoursyi[i]).populate('sous_categorie').populate('user').exec(function(err, couryyi) {
+                                ben.cours = couryyi;
+                                /*console.log('li', e.publication._id);
+                                ben.cours = e.publication;*/
+                                ben.nb_suiv = nb.length;
+                                tabCours.push(ben);
+                                cpt++;
+                                if (cpt == list.length) {
+                                    for (let j = 0; j < tabCours.length - 1; j++) {
+                                        for (let k = j + 1; k < tabCours.length; k++) {
+                                            if (tabCours[j].nb_suiv < tabCours[k].nb_suiv) {
+                                                tampon = tabCours[j];
+                                                tabCours[j] = tabCours[k];
+                                                tabCours[k] = tampon;
+                                            }
+                                        }
                                     }
+                                    return res.json(tabCours);
                                 }
-                            }
-                            return res.json(tabCours);
+                            });
                         }
 
-                    })
+                    });
 
-            })
+            });
 
-        })
+        });
 
 
 }
 //Cours les plus récents
 export function getCoursRecents(req, res) {
-    Cours.find().exec()
+    Cours.find().populate('sous_categorie').populate('user').exec()
         .then(list => {
             var tab = [];
             var tampon;
@@ -182,7 +191,7 @@ export function getCoursByProf(req, res) {
         if (err) { return handleError(res, err); }
         userss.forEach(function(element) {
             if (element.profil === 3) {
-                Cours.find({ user: req.params.id }).exec(function(err, courss) {
+                Cours.find({ user: req.params.id }).populate('sous_categorie').populate('user').exec(function(err, courss) {
                     if (err) { return handleError(res, err); }
                     console.log('Cours yi', courss);
                     return res.json(courss);
@@ -203,7 +212,7 @@ export function getCoursByEtablissement(req, res) {
         if (err) { return handleError(res, err); }
         userss.forEach(function(element) {
             if (element.profil === 4) {
-                Cours.find({ user: req.params.etab }).exec(function(err, courss) {
+                Cours.find({ user: req.params.etab }).populate('sous_categorie').populate('user').exec(function(err, courss) {
                     if (err) { return handleError(res, err); }
                     console.log('Cours yi', courss);
                     return res.json(courss);
@@ -220,7 +229,7 @@ export function getCoursByEtablissement(req, res) {
 
 // Gets all Cours related to a SousCategorie
 export function getCoursBySousCat(req, res) {
-    return Cours.find({ sous_categorie: req.params.scat }).populate('sous_categorie').exec()
+    return Cours.find({ sous_categorie: req.params.scat }).populate('sous_categorie').populate('user').exec()
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
         .catch(handleError(res));
