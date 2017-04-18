@@ -166,14 +166,7 @@ export class MainController {
         }
       }
     });
-    this.profilProvider.ProfesseurPlusSuivi().then(list => {
-      this.listProfplussuivi = list;
-      if (this.listProfplussuivi.length == 0) {
-        // console.log('Aucun Professeur');
-      } else {
-        console.log('Les professeurs les plus suivi sont', this.listProfplussuivi);
-      }
-    });
+   
 
   }
 }
