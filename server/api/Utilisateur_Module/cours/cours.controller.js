@@ -127,8 +127,6 @@ export function getCoursPlusSuivi(req, res) {
                         for (let i = 0; i < tabCoursyi.length; i++) {
                             Cours.findById(tabCoursyi[i]).populate('sous_categorie').populate('user').exec(function(err, couryyi) {
                                 ben.cours = couryyi;
-                                /*console.log('li', e.publication._id);
-                                ben.cours = e.publication;*/
                                 ben.nb_suiv = nb.length;
                                 tabCours.push(ben);
                                 cpt++;
