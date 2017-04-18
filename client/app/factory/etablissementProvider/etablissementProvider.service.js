@@ -77,6 +77,21 @@ export function etablissementProviderService($http, $q) {
         return liste;
 
     }
+    this.getProfInEtablissement = function(school) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/etablissements/prof/' + school, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
 }
 
 
