@@ -34,10 +34,10 @@ export class CourseSinglePageComponent {
           this.jsFonctions.otherScript();
         }, 0);
       });
-    this.souscategorieProvider.getSousCatById(this.$stateParams.sousDomaine).then(list => {
-      this.souscat = list;
-      console.log('La Sous Catégorie', this.souscat);
-    });
+    // this.souscategorieProvider.getSousCatById(this.$stateParams.sousDomaine).then(list => {
+    //   this.souscat = list;
+    //   console.log('La Sous Catégorie', this.souscat);
+    // });
     // Recuperation du cours en passant l'url
     this.coursProvider.FindById(this.$stateParams.idCours).then(list => {
       this.LeCours = list;
@@ -67,10 +67,10 @@ export class CourseSinglePageComponent {
             }
         });
       }
-      this.userProvider.findById(this.LeCours.user).then(list => {
-        this.Leprof = list;
-        console.log('Le prof qui a cree le cours =>>', this.Leprof);
-      });
+      // this.userProvider.findById(this.LeCours.user).then(list => {
+      //   this.Leprof = list;
+      //   console.log('Le prof qui a cree le cours =>>', this.Leprof);
+      // });
     });
 
   }
