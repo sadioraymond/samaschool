@@ -30,6 +30,7 @@ export default angular.module('samaschoolApp.etablissements', [])
     bindings: {
       message: '<'
     },
-    controller: etablissementsComponent
+    controller: etablissementsComponent,
+    controllerAs: 'vm'
   })
   .name;
