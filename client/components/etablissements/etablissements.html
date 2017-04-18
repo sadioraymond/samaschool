@@ -8,42 +8,20 @@
 <section class="section paralbackground parallax" style="background-image:url('assets/upload/ss_slider_03.jpg');" data-img-width="2400"
   data-img-height="1594" data-diff="100">
   <div class="overlay"></div>
-<div class="container">
-  <div id="owl-client" class="clients m20">
-    <div class="client-logo">
-      <a href="#"><img src="assets/upload/ucad.jpg" alt="" class="img-responsive" style="height: 90px; width: 200px"></a>
+<data-owl-carousel class="owl-carousel" data-options="{navigation: true, pagination: false, rewindNav : false}">
+  <div owl-carousel-item="" ng-repeat="etab in vm.LesEtablissements" id="owl-client" class="clients m20">
+    <div class="client-logo" >
+      <a href="#"><img src="assets/upload/Etablissement/{{etab.images}}" alt="" class="img-responsive" style="height: 90px; width: 200px"></a>
       <!--<h4>John DEO</h4>
       <small>Envato.com</small>-->
     </div>
+    
+    
     <!-- end logo -->
 
-    <div class="client-logo">
-      <a ui-sref="etablissement({id:1})"><img src="assets/upload/Logo_université_AHB.png" alt="" class="img-responsive" style="height: 90px; width: 200px"></a>
-
-    </div>
-    <!-- end logo -->
-
-    <div class="client-logo">
-      <a href="#"><img src="assets/upload/ugb.png" alt="" class="img-responsive" style="height: 90px; width: 200px"></a>
-    </div>
-    <!-- end logo -->
-
-    <div class="client-logo">
-      <a href="#"><img src="assets/upload/logo-green.png" alt="" class="img-responsive"></a>
-    </div>
-    <!-- end logo -->
-
-    <div class="client-logo">
-      <a href="#"><img src="assets/upload/client_05.png" alt="" class="img-responsive"></a>
-    </div>
-    <!-- end logo -->
-
-    <div class="client-logo">
-      <a href="#"><img src="assets/upload/client_06.png" alt="" class="img-responsive"></a>
-    </div>
-    <!-- end logo -->
+   
   </div>
   <!-- end row -->
-</div>
+</data-owl-carousel>
 <!-- end container -->
 </section>z
