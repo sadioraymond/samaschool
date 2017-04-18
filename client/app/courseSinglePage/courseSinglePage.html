@@ -23,7 +23,7 @@
         <!-- end media -->
 
         <div class="single-course-title text-center">
-          <h3><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie, idCours:courseCtrl.LeCours._id, idChap: ''})"
+          <h3><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
               title=""> {{courseCtrl.LeCours.titre}} </a></h3>
           <div class="post-sharing">
             <ul class="list-inline">
@@ -71,7 +71,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr style="cursor: pointer;" ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie, idCours:courseCtrl.LeCours._id, idChap:chapitre._id})"
+              <tr style="cursor: pointer;" ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap:chapitre._id})"
                 ui-sref-active="doActive" ng-repeat="chapitre in courseCtrl.LesChapitres">
                 <td><i class="fa fa-play-circle"></i></td>
                 <td>{{chapitre.libelle | uppercase}}</td>
@@ -205,11 +205,11 @@
               <input type="submit" value="Suivre ce cours" class="btn btn-primary btn-block" />
 
               <div class="course-meta clearfix">
-                <p class="course-category">Domaine: <a> {{courseCtrl.souscat.libelle}}</a></p>
+                <p class="course-category">Domaine: <a> {{courseCtrl.LeCours.sous_categorie.libelle}}</a></p>
                 <hr>
                 <p class="course-instructors">Professeur :
-                  <!--<a href="#" title=""><img src="assets/upload/student_01.png" class="img-circle" alt=""> -->
-                  {{courseCtrl.Leprof.name}}</a>
+                  <a ui-sref="profil({username:courseCtrl.LeCours.user.username})" title="{{courseCtrl.LeCours.user.username}}"><img width="30px" height="30px" ng-src="assets/upload/User/{{courseCtrl.LeCours.user.images}}" class="img-circle" alt=""> 
+                  {{courseCtrl.LeCours.user.username}}</a>
                 </p>
                 <hr>
                 <!--<p class="course-time">Perriod : 12 Month </p>
