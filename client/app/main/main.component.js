@@ -95,7 +95,7 @@ export class MainController {
         setTimeout(() => {
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
-        }, 0);
+        }, 500);
       });
 
     this.coursProvider.listCours().then(list => {

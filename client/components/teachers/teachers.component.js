@@ -16,8 +16,8 @@ export class teachersComponent {
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
-          this.jsFonctions.pluginScript();
-          this.jsFonctions.otherScript();
+          // this.jsFonctions.pluginScript();
+          // this.jsFonctions.otherScript();
         }, 500);
       });
     this.profilProvider.ProfesseurPlusSuivi().then(list => {
