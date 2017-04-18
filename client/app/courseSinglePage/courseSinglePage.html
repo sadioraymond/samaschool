@@ -23,7 +23,8 @@
         <!-- end media -->
 
         <div class="single-course-title text-center">
-          <h3><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie, idCours:courseCtrl.LeCours._id, idChap: ''})" title=""> {{courseCtrl.LeCours.titre}} </a></h3>
+          <h3><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie, idCours:courseCtrl.LeCours._id, idChap: ''})"
+              title=""> {{courseCtrl.LeCours.titre}} </a></h3>
           <div class="post-sharing">
             <ul class="list-inline">
               <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="hidden-xs">Share on Facebook</span></a></li>
@@ -46,8 +47,8 @@
           </div>
           <!-- end big-title -->
           <p ng-if="courseCtrl.LesChapitres.length < 1" ng-bind-html="courseCtrl.LeCours.contenu"></p> <br>
-          <p ng-if="courseCtrl.LesChapitres.length > 0 && courseCtrl.$stateParams.idChap" ng-bind-html="courseCtrl.LeChapitre.contenuChap.contenu"> 
-            
+          <p ng-if="courseCtrl.LesChapitres.length > 0 && courseCtrl.$stateParams.idChap" ng-bind-html="courseCtrl.LeChapitre.contenuChap.contenu">
+
           </p>
         </div>
         <!-- end post-padding -->
@@ -70,7 +71,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie, idCours:courseCtrl.LeCours._id, idChap:chapitre._id})" ui-sref-active="doActive" ng-repeat="chapitre in courseCtrl.LesChapitres">
+              <tr style="cursor: pointer;" ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie, idCours:courseCtrl.LeCours._id, idChap:chapitre._id})"
+                ui-sref-active="doActive" ng-repeat="chapitre in courseCtrl.LesChapitres">
                 <td><i class="fa fa-play-circle"></i></td>
                 <td>{{chapitre.libelle | uppercase}}</td>
                 <td>{{$index + 1}}</td>
@@ -180,38 +182,18 @@
       <!-- end col -->
 
       <div id="sidebar" class="col-md-3 col-sm-12">
-        <div class="post-media clearfix">
-          <img ng-src="../../assets/upload/Cours/{{courseCtrl.LeCours.images}}" alt="" class="img-responsive">
-        </div>
-        <!-- end post-media -->
-        <div class="widget custom-widget course-pricing clearfix">
-          <div class="customwidget text-left w40">
-            <h3 class="widget-title text-center"><sup>$</sup>120.00</h3>
-            <h4 class="text-center">90 Days Money Back Guarantee</h4>
-            <hr>
-            <form>
-              <div class="checkbox checkbox-warning">
-                <input id="checkbox2" type="checkbox" class="styled" checked>
-                <label for="checkbox2">
-                                            Web Design Course (Extra $20.00)
-                                        </label>
-              </div>
-
-              <div class="checkbox checkbox-warning">
-                <input id="checkbox3" type="checkbox" class="styled">
-                <label for="checkbox3">
-                                            Search Engine Optimization (Extra $30.00)
-                                        </label>
-              </div>
-
-              <input type="submit" value="Join Course" class="btn btn-primary btn-block" />
-            </form>
-
-            <div class="course-meta clearfix">
-              <p class="course-category">Domaine : <a href="course-list.html">{{courseCtrl.souscat.libelle}}</a></p>
+        <div class="row">
+          <div class="post-media clearfix">
+            <img ng-src="../../assets/upload/Cours/{{courseCtrl.LeCours.images}}" alt="" class="img-responsive">
+          </div>
+          <!-- end post-media -->
+          <div class="widget custom-widget course-pricing clearfix">
+            <div class="customwidget text-left w40">
+              <h4 class="text-center">{{courseCtrl.LeCours.titre}}</h4>
+              <!--<h4 class="text-center">90 Days Money Back Guarantee</h4>-->
               <hr>
               <div class="rating">
-                <p>Reviews : &nbsp;
+                <p>Note : &nbsp;
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
@@ -220,20 +202,91 @@
               </div>
               <!-- end rating -->
               <hr>
-              <p class="course-time">Perriod : 12 Month </p>
-              <hr>
-              <p class="course-instructors">Professeur :
-                <!--<a href="#" title=""><img src="assets/upload/student_01.png" class="img-circle" alt=""> -->
-                {{courseCtrl.Leprof.name}}</a>
-              </p>
-              <hr>
-              <p class="course-forum">Course Forum : <a href="#" title="">Web Designers</a></p>
+              <input type="submit" value="Suivre ce cours" class="btn btn-primary btn-block" />
+
+              <div class="course-meta clearfix">
+                <p class="course-category">Domaine: <a> {{courseCtrl.souscat.libelle}}</a></p>
+                <hr>
+                <p class="course-instructors">Professeur :
+                  <!--<a href="#" title=""><img src="assets/upload/student_01.png" class="img-circle" alt=""> -->
+                  {{courseCtrl.Leprof.name}}</a>
+                </p>
+                <hr>
+                <!--<p class="course-time">Perriod : 12 Month </p>
+                <hr>-->
+                <p class="course-time">Durée : {{courseCtrl.LeCours.nbheures}}h</p>
+                <!--<p class="course-forum">Course Forum : <a href="#" title="">Web Designers</a></p>-->
+              </div>
+              <!-- end meta -->
             </div>
-            <!-- end meta -->
+            <!-- end newsletter -->
           </div>
-          <!-- end newsletter -->
+          <!-- end widget -->
         </div>
-        <!-- end widget -->
+        <!--Les cours a recommander-->
+        <div class="row">
+          <div class="widget clearfix">
+            <div class="big-title">
+              <h2 class="related-title">
+                <span>Voir aussi</span>
+              </h2>
+            </div>
+            <!-- end big-title -->
+
+            <div class="postpager liststylepost">
+              <ul class="pager">
+                <li>
+                  <div class="post">
+                    <a href="course-single.html">
+                      <img alt="" src="assets/upload/pager_01.png" class="img-responsive alignleft">
+                      <h4>Learning Professional English in 20 Days</h4>
+                      <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div class="post">
+                    <a href="course-single.html">
+                      <img alt="" src="assets/upload/pager_02.png" class="img-responsive alignleft">
+                      <h4>Selecting Material Design and Color Palette</h4>
+                      <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div class="post">
+                    <a href="course-single.html">
+                      <img alt="" src="assets/upload/pager_03.jpg" class="img-responsive alignleft">
+                      <h4>Getting Starting Web Design and Web Development</h4>
+                      <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- end postpager -->
+          </div>
+          <!-- end widget -->
+
+        </div>
       </div>
       <!-- end col -->
     </div>

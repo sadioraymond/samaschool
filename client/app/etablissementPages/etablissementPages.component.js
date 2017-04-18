@@ -7,9 +7,13 @@ import routes from './etablissementPages.routes';
 
 export class EtablissementPagesComponent {
   /*@ngInject*/
-  constructor(jsFonctions) {
+  // variables globales
+  Letablissement;
+  constructor(jsFonctions, $stateParams, etablissementProvider) {
     this.jsFonctions = jsFonctions;
-    this.message = 'Hello';
+    this.$stateParams = $stateParams;
+    console.log('param etablissement =>', this.$stateParams)
+    this.etablissementProvider = etablissementProvider;
   }
   $onInit() {
     angular.element(document)
@@ -19,9 +23,14 @@ export class EtablissementPagesComponent {
           this.jsFonctions.otherScript();
         }, 0);
       });
+    // recuperation de l'etablissement en cours
+    this.etablissementProvider.FindEtabByID(this.$stateParams.id).then(etablissement => {
+      this.Letablissement = etablissement;
+      console.log(`l'etablissement =>>`, this.Letablissement);
+    });
   }
 }
-EtablissementPagesComponent.$inject = ["jsFonctions"];
+EtablissementPagesComponent.$inject = ["jsFonctions", "$stateParams", "etablissementProvider"];
 export default angular.module('samaschoolApp.etablissementPages', [uiRouter])
   .config(routes)
   .component('etablissementPages', {
