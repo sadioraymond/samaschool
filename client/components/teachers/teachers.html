@@ -6,176 +6,47 @@
     </div>
     <!-- end section-title -->
     <div class="row team-wrapper">
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="team-member">
-          <div class="post-media entry">
-            <img src="assets/upload/Mr_niass.jpg" alt="" class="img-responsive" style="height: 250px">
-            <div class="magnifier">
-              <div class="shop-bottom clearfix">
-                <a href="#" title=""><i class="fa fa-facebook"></i></a>
-                <a href="#" title=""><i class="fa fa-twitter"></i></a>
-                <a href="#" title=""><i class="fa fa-linkedin"></i></a>
-                <a href="#" title=""><i class="fa fa-google-plus"></i></a>
-              </div>
-              <!-- end shop-bottom -->
-            </div>
-            <!-- end magnifier -->
-          </div>
-          <!-- end post-media -->
-          <div class="team-desc">
-            <a ui-sref="profil">
-              <h4>Baye Niass</h4>
-            </a>
-            <small>Developer teacher</small>
-            <p>Lorem ipsum m dolor sit amet, consectetur adipiing elit.dolor sit amet, consectetur adipiing elit.</p>
-          </div>
-          <!-- end team-desc -->
-
-          <div class="skills text-left">
-            <p>Web Design</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="100"><span>100</span></div>
-            </div>
-            <p>Web Development</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="87"><span>87</span></div>
-            </div>
-            <p>SEO Marketing</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="78"><span>78</span></div>
-            </div>
-          </div>
-          <!-- end skills -->
-        </div>
-        <!-- end team-member -->
-      </div>
       <!-- end col -->
-
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="team-member">
-          <div class="post-media entry">
-            <img src="assets/upload/Mr_lo.jpg" alt="" class="img-responsive" style="height: 250px">
-            <div class="magnifier">
-              <div class="shop-bottom clearfix">
-                <a href="#" title=""><i class="fa fa-facebook"></i></a>
-                <a href="#" title=""><i class="fa fa-twitter"></i></a>
-                <a href="#" title=""><i class="fa fa-linkedin"></i></a>
-                <a href="#" title=""><i class="fa fa-google-plus"></i></a>
+      <data-owl-carousel class="owl-carousel" data-options="{navigation: true, pagination: false, rewindNav : true}">
+        <div owl-carousel-item="" ng-repeat="prof in vm.LesProfsPlusSuivis" class="item">
+            <div class="team-member">
+              <div class="post-media entry">
+                <img src="assets/upload/User/{{prof.professeur.images}}" alt="" class="img-responsive" style="height: 250px">
+                <div class="magnifier">
+                  <div class="shop-bottom clearfix">
+                    <a href="#" title=""><i class="fa fa-facebook"></i></a>
+                    <a href="#" title=""><i class="fa fa-twitter"></i></a>
+                    <a href="#" title=""><i class="fa fa-linkedin"></i></a>
+                    <a href="#" title=""><i class="fa fa-google-plus"></i></a>
+                  </div>
+                  <!-- end shop-bottom -->
+                </div>
+                <!-- end magnifier -->
               </div>
-              <!-- end shop-bottom -->
-            </div>
-            <!-- end magnifier -->
-          </div>
-          <!-- end post-media -->
-          <div class="team-desc">
-            <h4>Mr Lo</h4>
-            <small>Network Teacher</small>
-            <p>Consectetur adipiing elit.dolor sit amet, consectetur adipiing lorem ipsum m dolor sit amet elit.</p>
-          </div>
-          <!-- end team-desc -->
-          <div class="skills text-left">
-            <p>Web Design</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="98"><span>98</span></div>
-            </div>
-            <p>Web Development</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="100"><span>100</span></div>
-            </div>
-            <p>SEO Marketing</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="66"><span>66</span></div>
-            </div>
-          </div>
-          <!-- end skills -->
-        </div>
-        <!-- end team-member -->
-      </div>
-      <!-- end col -->
-
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="team-member">
-          <div class="post-media entry">
-            <img src="assets/upload/Mr_samb.jpg" alt="" class="img-responsive"style="height: 250px">
-            <div class="magnifier">
-              <div class="shop-bottom clearfix">
-                <a href="#" title=""><i class="fa fa-facebook"></i></a>
-                <a href="#" title=""><i class="fa fa-twitter"></i></a>
-                <a href="#" title=""><i class="fa fa-linkedin"></i></a>
-                <a href="#" title=""><i class="fa fa-google-plus"></i></a>
+              <!-- end post-media -->
+              <div class="team-desc">
+                <a ui-sref="profil({username: prof.professeur.username})">
+                  <h4> {{ prof.professeur.name }} </h4>
+                </a>
+                <small>Developer teacher</small>
+                <p>Lorem ipsum m dolor sit amet, consectetur adipiing elit.dolor sit amet, consectetur adipiing elit.</p>
               </div>
-              <!-- end shop-bottom -->
-            </div>
-            <!-- end magnifier -->
-          </div>
-          <!-- end post-media -->
-          <div class="team-desc">
-            <h4>Kara Sambe</h4>
-            <small>Graphic Designer</small>
-            <p>Adipiing consectetur adipiing elit.dolor sit amet, consectetur lorem ipsum m dolor sit amet elit.</p>
-          </div>
-          <!-- end team-desc -->
-          <div class="skills text-left">
-            <p>Web Design</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="66"><span>66</span></div>
-            </div>
-            <p>Web Development</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="99"><span>99</span></div>
-            </div>
-            <p>SEO Marketing</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="78"><span>78</span></div>
-            </div>
-          </div>
-          <!-- end skills -->
-        </div>
-        <!-- end team-member -->
-      </div>
-      <!-- end col -->
-
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="team-member">
-          <div class="post-media entry">
-            <img src="assets/upload/Mr_der.jpg" alt="" class="img-responsive" style="height: 250px">
-            <div class="magnifier">
-              <div class="shop-bottom clearfix">
-                <a href="#" title=""><i class="fa fa-facebook"></i></a>
-                <a href="#" title=""><i class="fa fa-twitter"></i></a>
-                <a href="#" title=""><i class="fa fa-linkedin"></i></a>
-                <a href="#" title=""><i class="fa fa-google-plus"></i></a>
+              <!-- end team-desc -->
+              <div class="skills text-left">
+                <p>Followers</p>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" data-transitiongoal="100"><span> {{ prof.nbfois}} </span></div>
+                </div>
+                
+                
+                
               </div>
-              <!-- end shop-bottom -->
+              <!-- end skills -->
             </div>
-            <!-- end magnifier -->
-          </div>
-          <!-- end post-media -->
-          <div class="team-desc">
-            <h4>Mr der</h4>
-            <small>Algorithm Teacher</small>
-            <p>Dolor consectetur adipiing elit.dolor sit amet, consectetur adipiing lorem ipsum m sit amet elit.</p>
-          </div>
-          <!-- end team-desc -->
-          <div class="skills text-left">
-            <p>Web Design</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="87"><span>87</span></div>
-            </div>
-            <p>Web Development</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="66"><span>66</span></div>
-            </div>
-            <p>SEO Marketing</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="86"><span>86</span></div>
-            </div>
-          </div>
-          <!-- end skills -->
+            <!-- end team-member -->
+  
         </div>
-        <!-- end team-member -->
-      </div>
-      <!-- end col -->
+      </data-owl-carousel>
     </div>
     <!-- end row -->
   </div>
