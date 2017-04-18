@@ -106,6 +106,7 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
             margin: 30,
             nav: true,
             dots: false,
+            autoplay: true,
             responsive: {
               0: {
                 items: 1
