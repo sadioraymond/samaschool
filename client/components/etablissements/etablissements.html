@@ -1,4 +1,3 @@
-
 <section class="section bgw">
   <div class="section-title text-center">
     <h3 class="hidden-xs">ETABLISSEMENTS</h3>
@@ -8,20 +7,20 @@
 <section class="section paralbackground parallax" style="background-image:url('assets/upload/ss_slider_03.jpg');" data-img-width="2400"
   data-img-height="1594" data-diff="100">
   <div class="overlay"></div>
-<data-owl-carousel class="owl-carousel" data-options="{nav: false, pagination: false, rewindNav : false}">
-  <div owl-carousel-item="" ng-repeat="etab in vm.LesEtablissements" id="owl-client" class="clients m20">
-    <div class="client-logo" >
-      <a ui-sref="etablissement({id: etab._id})"><img src="assets/upload/Etablissement/{{etab.images}}" alt="" class="img-responsive" style="height: 90px; width: 200px"></a>
-      <!--<h4>John DEO</h4>
+  <data-owl-carousel id="owl-etablissements" class="owl-carousel" data-options="{nav: false, pagination: false, rewindNav : false}">
+    <div owl-carousel-item="" ng-repeat="etab in vm.LesEtablissements" class="clients m20">
+      <div class="client-logo">
+        <a ui-sref="etablissement({id: etab._id})"><img src="assets/upload/Etablissement/{{etab.images}}" alt="" class="img-responsive" style="height: 90px; width: 200px"></a>
+        <!--<h4>John DEO</h4>
       <small>Envato.com</small>-->
-    </div>
-    
-    
-    <!-- end logo -->
+      </div>
 
-   
-  </div>
-  <!-- end row -->
-</data-owl-carousel>
-<!-- end container -->
+
+      <!-- end logo -->
+
+
+    </div>
+    <!-- end row -->
+  </data-owl-carousel>
+  <!-- end container -->
 </section>z

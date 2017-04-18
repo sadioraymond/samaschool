@@ -9,13 +9,13 @@ export class etablissementsComponent {
     this.jsFonctions = jsFonctions;
   }
   $onInit() {
-    // angular.element(document)
-    //   .ready(() => {
-    //     setTimeout(() => {
-    //       this.jsFonctions.pluginScript();
-    //       this.jsFonctions.otherScript();
-    //     }, 0);
-    //   });
+    angular.element(document)
+      .ready(() => {
+        setTimeout(() => {
+          // this.jsFonctions.pluginScript();
+          // this.jsFonctions.otherScript();
+        }, 500);
+      });
     this.etablissementProvider.listeEtablissement().then(list => {
       this.LesEtablissements = list;
       console.log('les LesEtablissements =>>', this.LesEtablissements);
