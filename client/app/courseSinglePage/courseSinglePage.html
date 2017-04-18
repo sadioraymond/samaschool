@@ -208,8 +208,9 @@
                 <p class="course-category">Domaine: <a> {{courseCtrl.LeCours.sous_categorie.libelle}}</a></p>
                 <hr>
                 <p class="course-instructors">Professeur :
-                  <a ui-sref="profil({username:courseCtrl.LeCours.user.username})" title="{{courseCtrl.LeCours.user.username}}"><img width="30px" height="30px" ng-src="assets/upload/User/{{courseCtrl.LeCours.user.images}}" class="img-circle" alt=""> 
-                  {{courseCtrl.LeCours.user.username}}</a>
+                  <a ui-sref="profil({username:courseCtrl.LeCours.user.username})" title="{{courseCtrl.LeCours.user.username}}"><img width="30px" height="30px" ng-src="assets/upload/User/{{courseCtrl.LeCours.user.images}}" class="img-circle"
+                      alt=""> {{courseCtrl.LeCours.user.username}}
+                  </a>
                 </p>
                 <hr>
                 <!--<p class="course-time">Perriod : 12 Month </p>
@@ -235,41 +236,11 @@
 
             <div class="postpager liststylepost">
               <ul class="pager">
-                <li>
+                <li ng-repeat="otherCours in courseCtrl.LesCoursDeLaSousCategorie | limitTo: 3">
                   <div class="post">
-                    <a href="course-single.html">
-                      <img alt="" src="assets/upload/pager_01.png" class="img-responsive alignleft">
-                      <h4>Learning Professional English in 20 Days</h4>
-                      <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
-                    </a>
-                  </div>
-                </li>
-                <li>
-                  <div class="post">
-                    <a href="course-single.html">
-                      <img alt="" src="assets/upload/pager_02.png" class="img-responsive alignleft">
-                      <h4>Selecting Material Design and Color Palette</h4>
-                      <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
-                    </a>
-                  </div>
-                </li>
-                <li>
-                  <div class="post">
-                    <a href="course-single.html">
-                      <img alt="" src="assets/upload/pager_03.jpg" class="img-responsive alignleft">
-                      <h4>Getting Starting Web Design and Web Development</h4>
+                    <a ui-sref="courseSinglePage({sousDomaine:otherCours.sous_categorie._id, idCours:otherCours._id, idChap: ''})">
+                      <img alt="poster du cours {{otherCours.titre}}" ng-src="assets/upload/Cours/{{otherCours.images}}" class="img-responsive alignleft">
+                      <h4>{{otherCours.titre | limitTo: 40}}</h4>
                       <div class="rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
