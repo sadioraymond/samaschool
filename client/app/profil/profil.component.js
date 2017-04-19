@@ -140,7 +140,13 @@ export class ProfilComponent {
 
   }
 
-
+  // 
+  showDialog() {
+    $('#selectPP').click();
+  }
+  khol(){
+    console.error('errrrrr', this.khol)
+  }
 
   doActive(e) {
     this.LIs = document.querySelectorAll('#ss_sidebar > li');
