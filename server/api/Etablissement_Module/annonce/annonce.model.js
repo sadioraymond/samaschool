@@ -10,7 +10,8 @@ var AnnonceSchema = new mongoose.Schema({
     etablissement: {
         type: Number,
         ref: 'Etablissement'
-    }
+    },
+    images: String
 });
 AnnonceSchema.plugin(autoIncrement.plugin, 'Annonce');
 registerEvents(AnnonceSchema);
