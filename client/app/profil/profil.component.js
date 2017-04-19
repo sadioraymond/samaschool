@@ -89,7 +89,7 @@ export class ProfilComponent {
         console.log('La page du user ==>>', this.userDatas);
         this.userData = this.userDatas[0]
         // le user courant ??
-        if (this.userData.username === this.getCurrentUser().name) {
+        if (this.userData.username === this.getCurrentUser().username) {
           this.privateLink = true;
         } else {
           this.privateLink = false;
@@ -140,7 +140,13 @@ export class ProfilComponent {
 
   }
 
-
+  // 
+  showDialog() {
+    $('#selectPP').click();
+  }
+  khol(){
+    console.error('errrrrr', this.khol)
+  }
 
   doActive(e) {
     this.LIs = document.querySelectorAll('#ss_sidebar > li');

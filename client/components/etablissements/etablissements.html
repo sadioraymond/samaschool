@@ -9,10 +9,11 @@
   <div class="overlay"></div>
   <data-owl-carousel id="owl-etablissements" class="owl-carousel" data-options="{nav: false, pagination: false, rewindNav : false}">
     <div owl-carousel-item="" ng-repeat="etab in vm.LesEtablissements" class="clients m20">
-      <div class="client-logo">
-        <a ui-sref="etablissement({id: etab._id})"><img src="assets/upload/Etablissement/{{etab.images}}" alt="" class="img-responsive" style="height: 90px; width: 200px"></a>
-        <!--<h4>John DEO</h4>
-      <small>Envato.com</small>-->
+      <div class="testi-item client-logo">
+        <a ui-sref="etablissement({id: etab._id})"><img src="assets/upload/Etablissement/{{etab.images}}" alt="" class="img-responsive" style="height: 90px; width: 200px;">
+          <h4 style="text-align: center; background-color: transparent;">{{etab.libelle}}</h4>
+          <!--<small style="text-align: center;">Envato.com</small>-->
+        </a>
       </div>
 
 
@@ -23,4 +24,4 @@
     <!-- end row -->
   </data-owl-carousel>
   <!-- end container -->
-</section>z
+</section>

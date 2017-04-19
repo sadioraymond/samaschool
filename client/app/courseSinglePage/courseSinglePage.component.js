@@ -12,7 +12,8 @@ export class CourseSinglePageComponent {
   souscategorieProvider;
   chapitreProvider;
   userProvider;
-  LesChapitres = [];
+  LesChapitres: Array;
+  LeCours: Array;
   /*@ngInject*/
   constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider, userProvider) {
     // setTimeout(() => {
@@ -47,24 +48,24 @@ export class CourseSinglePageComponent {
         // Recuperation des chapitres en passant l'url
         this.chapitreProvider.getChapitreByCours(this.$stateParams.idCours).then(list => {
           this.LesChapitres = list;
-            console.info('les chapitre du cours =>>', this.LesChapitres, 'et nombre ', this.LesChapitres.length);
-            // si un chapitre est choisi
-            // recherche du chapitre choisi
-            if(this.$stateParams.idChap){
-              this.LesChapitres.map((chapitre) => {
-                if(chapitre._id == this.$stateParams.idChap){
-                  this.LeChapitre = chapitre;
-                  console.log('le chapitre ===>>> ', this.LeChapitre);
+          console.info('les chapitre du cours =>>', this.LesChapitres, 'et nombre ', this.LesChapitres.length);
+          // si un chapitre est choisi
+          // recherche du chapitre choisi
+          if (this.$stateParams.idChap) {
+            this.LesChapitres.map((chapitre) => {
+              if (chapitre._id == this.$stateParams.idChap) {
+                this.LeChapitre = chapitre;
+                console.log('le chapitre ===>>> ', this.LeChapitre);
 
-                  // recuperation du contenu du chapitre
-                  this.chapitreProvider.getFichierByChapitre(chapitre._id).then(list => {
-                    this.LeContenuDuChapitre = list[0];
-                    console.info('le contenu du chapitre du cours =>>', this.LeContenuDuChapitre);
-                    this.LeChapitre.contenuChap = this.LeContenuDuChapitre;
-                  });
-                }
-              });
-            }
+                // recuperation du contenu du chapitre
+                this.chapitreProvider.getFichierByChapitre(chapitre._id).then(list => {
+                  this.LeContenuDuChapitre = list[0];
+                  console.info('le contenu du chapitre du cours =>>', this.LeContenuDuChapitre);
+                  this.LeChapitre.contenuChap = this.LeContenuDuChapitre;
+                });
+              }
+            });
+          }
         });
       }
       // this.userProvider.findById(this.LeCours.user).then(list => {
@@ -73,6 +74,20 @@ export class CourseSinglePageComponent {
       // });
     });
 
+    // Recuperation des autres cours de la sous Catégorie
+    setTimeout(() => {
+      this.coursProvider.getCoursBySousCat(this.LeCours.sous_categorie._id).then(list => {
+        this.LesCoursDeLaSousCategorie = list;
+        // suppression du cours qui est déja afficher
+        this.LesCoursDeLaSousCategorie.map((x, i) => {
+          if(x._id === this.LeCours._id){
+            console.info('ok 1', i);
+            this.LesCoursDeLaSousCategorie.splice(i, 1);
+          }
+        });
+        console.log('LesCoursDeLaSousCategorie ==>>', this.LesCoursDeLaSousCategorie);
+      });
+    }, 50);
   }
 }
 

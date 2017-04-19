@@ -11,7 +11,15 @@
                 <div class="clearfix">
                   <div class="avatar-author">
                     <a>
-                      <img alt="photo profil de {{profilCtrl.userData.username}}" src="assets/upload/User/{{profilCtrl.userData.images}}" class="img-responsive">
+                      <div class="post-media entry">
+                        <img alt="photo profil de {{profilCtrl.userData.username}}" ng-src="assets/upload/User/{{profilCtrl.userData.images}}" class="img-responsive">
+                        <div class="magnifier" ng-show="profilCtrl.privateLink">
+                          <div class="shop-bottom clearfix">
+                            <a ng-click="profilCtrl.showDialog()" title="Changer la photo"><i class="fa fa-wrench"></i></a>
+                            <input ng-change="profilCtrl.khol()" ng-model="profilCtrl.khol" type="file" style="display:none;" id="selectPP">
+                          </div>
+                        </div>
+                      </div>
                     </a>
                   </div>
                   <div class="author-title desc">
