@@ -235,6 +235,20 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
         return liste;
 
     }
+    this.getCoursByProfAndSchool = function(prof, school) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/courss/coursprof/' + prof + '/' + school, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+    }
 }
 
 export default angular.module('samaschoolApp.coursProvider', ['angular-loading-bar'])
