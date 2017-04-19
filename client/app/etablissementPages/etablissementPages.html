@@ -10,13 +10,23 @@
       <div class="row">
         <div class="col-md-4" style="margin-top: -90px; margin-left: 100px; margin-right: -150px;">
           <div class="avatar-author">
-            <a href="author.html">
-              <img alt="" src="assets/upload/Logo_université_AHB.png" class="img-responsive" style="height: 170px; width: 160px; border: 1px solid black; background-size: cover;">
+            <a>
+              <!--<img alt="" ng-src="assets/upload/Etablissement/{{etabCtrl.Letablissement.images}}" class="img-responsive" style="height: 170px; width: 160px; border: 1px solid black; background-size: cover;">-->
+              <div class="entry">
+                <img id="imgTagEtab" alt="Icone etablissement" ng-src="assets/upload/Etablissement/{{etabCtrl.Letablissement.images}}"
+                  class="img-responsive" style="height: 170px; width: 160px; border: 1px solid black; background-size: cover;">
+                <div class="magnifier">
+                  <div class="shop-bottom clearfix">
+                    <a ng-click="etabCtrl.showDialog()" title="Changer la photo"><i class="fa fa-wrench"></i></a>
+                    <input type="file" style="display:none;" id="selectPPEtab">
+                  </div>
+                </div>
+              </div>
             </a>
           </div>
         </div>
         <div class="col-md-6">
-          <h2>Université Amadou Hâmpaté Bâ <small> est la 1ère Université privée promotionnelle à s'engager dans la lutte contre le chômage, des jeunes diplômés de l'enseignement supérieur, en application du système LMD.
+          <h2>{{etabCtrl.Letablissement.libelle}} <small> est la 1ère Université privée promotionnelle à s'engager dans la lutte contre le chômage, des jeunes diplômés de l'enseignement supérieur, en application du système LMD.
               </small></h2>
         </div>
       </div>
@@ -184,4 +194,3 @@
   <div id="map"></div>
 </div>-->
 <!-- end section -->
-

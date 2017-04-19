@@ -70,6 +70,30 @@ export class ProfilComponent {
     });
   }
   $onInit() {
+    var fichier = document.querySelector('#selectPP');
+    fichier.addEventListener('change', propFichier, false);
+
+    function propFichier(e) {
+      // propfichier(e.target.files);
+      let fichier = e.target.files[0]
+      if (fichier.type.indexOf('image') > -1) {
+        var lecteur = new FileReader();
+        lecteur.onload = function (e) {
+          console.log('log', e);
+          let imgTag = document.querySelector('#imgTag');
+          imgTag.setAttribute('src', e.target.result);
+          imgTag.setAttribute('ng-src', '');
+          console.log('tag', imgTag);
+        }
+        lecteur.readAsDataURL(fichier);
+        console.log('bandi bi', fichier);
+
+
+      } else {
+        alert('Ce n\'est pas une image');
+      }
+      // console.log('target', e.target.files);
+    }
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
@@ -143,9 +167,6 @@ export class ProfilComponent {
   // 
   showDialog() {
     $('#selectPP').click();
-  }
-  khol(){
-    console.error('errrrrr', this.khol)
   }
 
   doActive(e) {

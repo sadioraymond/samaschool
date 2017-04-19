@@ -16,6 +16,30 @@ export class EtablissementPagesComponent {
     this.etablissementProvider = etablissementProvider;
   }
   $onInit() {
+    var fichier = document.querySelector('#selectPPEtab');
+    fichier.addEventListener('change', propFichier, false);
+
+    function propFichier(e) {
+      // propfichier(e.target.files);
+      let fichier = e.target.files[0]
+      if (fichier.type.indexOf('image') > -1) {
+        var lecteur = new FileReader();
+        lecteur.onload = function (e) {
+          console.log('log', e);
+          let imgTagEtab = document.querySelector('#imgTagEtab');
+          imgTagEtab.setAttribute('src', e.target.result);
+          imgTagEtab.setAttribute('ng-src', '');
+          console.log('tag', imgTagEtab);
+        }
+        lecteur.readAsDataURL(fichier);
+        console.log('bandi bi', fichier);
+
+
+      } else {
+        alert('Ce n\'est pas une image');
+      }
+      // console.log('target', e.target.files);
+    }
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
@@ -29,6 +53,9 @@ export class EtablissementPagesComponent {
       console.log(`l'etablissement =>>`, this.Letablissement);
     });
   }
+  showDialog() {
+    $('#selectPPEtab').click();
+  }
 }
 EtablissementPagesComponent.$inject = ["jsFonctions", "$stateParams", "etablissementProvider"];
 export default angular.module('samaschoolApp.etablissementPages', [uiRouter])
@@ -36,6 +63,6 @@ export default angular.module('samaschoolApp.etablissementPages', [uiRouter])
   .component('etablissementPages', {
     template: require('./etablissementPages.html'),
     controller: EtablissementPagesComponent,
-    controllerAs: 'etablissementPagesCtrl'
+    controllerAs: 'etabCtrl'
   })
   .name;
