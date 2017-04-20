@@ -46,7 +46,7 @@ export class ProfilComponent {
   privateLink: boolean;
 
   /*@ngInject*/
-  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state, $location, ouvreDialog) {
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state, $location) {
     this.$stateParams = $stateParams;
     this.$state = $state;
     this.Auth = Auth;
@@ -60,7 +60,6 @@ export class ProfilComponent {
     this.coursProvider = coursProvider;
     this.userProvider = userProvider;
     console.log('param ==>>', this.$stateParams);
-    this.ouvreDialog = ouvreDialog;
     this.jsFonctions.pluginScript();
     this.jsFonctions.otherScript();
   }
@@ -71,12 +70,30 @@ export class ProfilComponent {
     });
   }
   $onInit() {
-    // modification de PP
     var fichier = document.querySelector('#selectPP');
-    fichier.addEventListener('change',  (e) => {
-      this.ouvreDialog.uploadFile(e, "imgTag");
-    }, false);
+    fichier.addEventListener('change', propFichier, false);
 
+    function propFichier(e) {
+      // propfichier(e.target.files);
+      let fichier = e.target.files[0]
+      if (fichier.type.indexOf('image') > -1) {
+        var lecteur = new FileReader();
+        lecteur.onload = function (e) {
+          console.log('log', e);
+          let imgTag = document.querySelector('#imgTag');
+          imgTag.setAttribute('src', e.target.result);
+          imgTag.setAttribute('ng-src', '');
+          console.log('tag', imgTag);
+        }
+        lecteur.readAsDataURL(fichier);
+        console.log('bandi bi', fichier);
+
+
+      } else {
+        alert('Ce n\'est pas une image');
+      }
+      // console.log('target', e.target.files);
+    }
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
@@ -252,7 +269,7 @@ export class ProfilComponent {
   }
 }
 
-ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider", "userProvider", "$stateParams", "$state", "$location", "ouvreDialog"];
+ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider", "userProvider", "$stateParams", "$state", "$location"];
 export default angular.module('samaschoolApp.profil', [uiRouter])
   .config(routes)
   .component('profil', {
