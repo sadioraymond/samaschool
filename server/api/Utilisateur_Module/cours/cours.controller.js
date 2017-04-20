@@ -80,16 +80,6 @@ function verify(tab, element) {
     return false;
 }
 
-// Verify if an element exist in array
-function verifys(tab, element) {
-    for (let i = 0; i < tab.length; i++) {
-        if (tab[i] == element) {
-            return true;
-        }
-    }
-    return false;
-}
-
 //delete a Picture
 
 export function deletePicture(images) {
