@@ -21,6 +21,7 @@ export default angular.module('samaschoolApp.annonces', [])
   .component('annonces', {
     template: require('./annonces.html'),
     bindings: { message: '<' },
-    controller: annoncesComponent
+    controller: annoncesComponent,
+    controllerAs: 'vm'
   })
   .name;

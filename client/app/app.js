@@ -103,7 +103,7 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
           // console.error('elm =>', element.attr('id'))
           // if (element.attr('id') == 'owl-courses') {
           // provide any default options you want
-          var coursesOptions = {
+          var defaultOptions = {
             loop: true,
             margin: 30,
             nav: true,
@@ -121,66 +121,14 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
               }
             }
           };
-          var profsOptions = {
-            loop: true,
-            margin: 30,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            responsive: {
-              0: {
-                items: 1
-              },
-              400: {
-                items: 2
-              },
-              800: {
-                items: 3
-              },
-              1000: {
-                items: 4
-              }
-            }
-          };
-          var etablissementsOptions = {
-            loop: true,
-            margin: 30,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            responsive: {
-              0: {
-                items: 1
-              },
-              600: {
-                items: 2
-              },
-              1000: {
-                items: 4
-              }
-            }
-          };
           // }
           var customOptions = scope.$eval($(element).attr('data-options'));
           // combine the two options objects
           for (var key in customOptions) {
-            coursesOptions[key] = customOptions[key];
+            defaultOptions[key] = customOptions[key];
           }
-          for (var key in customOptions) {
-            profsOptions[key] = customOptions[key];
-          }
-          for (var key in customOptions) {
-            etablissementsOptions[key] = customOptions[key];
-          }
-
           // init carousel
-          if (element.attr('id') === "owl-courses") {
-            $(element).owlCarousel(coursesOptions);
-          } else if (element.attr('id') === "owl-etablissements") {
-            $(element).owlCarousel(etablissementsOptions);
-          } else if (element.attr('id') === "owl-profs") {
-            $(element).owlCarousel(profsOptions);
-          }
+          $(element).owlCarousel(defaultOptions);
         };
       }
     };
@@ -196,7 +144,7 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
         }
       }
     };
-  }]);
+}]);
 
 angular.element(document)
   .ready(() => {
