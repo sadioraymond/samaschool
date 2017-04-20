@@ -9,11 +9,13 @@ export class EtablissementPagesComponent {
   /*@ngInject*/
   // variables globales
   Letablissement;
-  constructor(jsFonctions, $stateParams, etablissementProvider) {
+  LesAnnoncesParEtab;
+  constructor(jsFonctions, $stateParams, etablissementProvider,annonceProvider) {
     this.jsFonctions = jsFonctions;
     this.$stateParams = $stateParams;
     console.log('param etablissement =>', this.$stateParams)
     this.etablissementProvider = etablissementProvider;
+    this.annonceProvider = annonceProvider;
   }
   $onInit() {
     var fichier = document.querySelector('#selectPPEtab');
@@ -47,17 +49,25 @@ export class EtablissementPagesComponent {
           this.jsFonctions.otherScript();
         }, 0);
       });
+
     // recuperation de l'etablissement en cours
     this.etablissementProvider.FindEtabByID(this.$stateParams.id).then(etablissement => {
       this.Letablissement = etablissement;
       console.log(`l'etablissement =>>`, this.Letablissement);
     });
+
+    //récupération des annonces par rapoort à létablissemnent en cours
+    this.annonceProvider.getAnnonceByEtab(this.$stateParams.id).then(annonces => {
+      this.LesAnnoncesParEtab = annonces;
+      console.log('Les annonces =>', annonces);
+    });
+
   }
   showDialog() {
     $('#selectPPEtab').click();
   }
 }
-EtablissementPagesComponent.$inject = ["jsFonctions", "$stateParams", "etablissementProvider"];
+EtablissementPagesComponent.$inject = ["jsFonctions", "$stateParams", "etablissementProvider","annonceProvider"];
 export default angular.module('samaschoolApp.etablissementPages', [uiRouter])
   .config(routes)
   .component('etablissementPages', {
