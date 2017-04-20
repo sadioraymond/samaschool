@@ -6,7 +6,6 @@
       <hr>
     </div>
     <!-- end section-title -->
-
     <div class="row services-wrapper">
       <div class="col-md-3 col-sm-6">
         <div class="boxes text-center service-first">
@@ -17,7 +16,6 @@
         <!-- end box -->
       </div>
       <!-- end col -->
-
       <div class="col-md-3 col-sm-6">
         <div class="boxes services">
           <div class="entry">
@@ -39,7 +37,6 @@
         <!-- end box -->
       </div>
       <!-- end col -->
-
       <div class="col-md-3 col-sm-6">
         <div class="boxes services">
           <div class="entry">
@@ -69,13 +66,11 @@
             de près d'un demi siècle au service de l'Ecole sénégalaise mérite aujourd'hui, au moment où son nouvel établissement,
             l'UNIVERSITÉ AMADOU HAMPATHE BA DE DAKAR, a ouvert officiellement ses portes en Octobre 2006, nos encouragements
             et nos souhaits de chance et de réussite dans cette nouvelle étape de sa contribution au développement du Sénégal.-->
-
           </p>
         </div>
         <!-- end box -->
       </div>
       <!-- end col -->
-
       <div class="col-md-3 col-sm-6">
         <div class="boxes services">
           <div class="entry">
@@ -119,74 +114,25 @@
 <section class="section bgd btop">
   <div class="row-fluid">
     <div class="container">
-      <div id="owl-annonces" class="carousel-widget nav-center text-center">
-        <div class="carousel-item">
+      <data-owl-carousel class="owl-carousel nav-center text-center" data-options="{center: true, items: 1, navigation: true, pagination: false, rewindNav : false}">
+        <div owl-carousel-item="" ng-repeat="annonce in vm.LesAnnoncesParEtab" class="item">
           <div class="row">
-            <div class="col-md-6 myimg3"></div>
+            
+            <!--JE NE COMPRENDS COMMMENT L IMAGE EST MISE JE VOUS LAISSE FAIRE SA-->
+            <div class="col-md-6 myimg3"></div> 
+      
             <div class="col-md-6 col-md-offset-6">
               <div class="about-module wpa">
                 <h4>LEARN ANYTHING FROM ANYWHERE</h4>
-
                 <h3>Professional Course Builder</h3>
-
-                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-                  in some form, by injected humour, or randomised believable. Sufferede foshumour, or randomised..</p>
-
-
-                <p>But the majority have suffered alteration in some form, by injected humour, or randomised believable. Suffered
-                  alteration in some form, by injected humour, or randomised..</p>
-
+                <p> {{ annonce.contenu }} </p>
                 <a href="#" class="btn btn-primary btn-square">START HERE</a>
               </div>
               <!-- end about-module -->
-            </div>
+            
           </div>
         </div>
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col-md-6 myimg"></div>
-            <div class="col-md-6 col-md-offset-6">
-              <div class="about-module wpa">
-                <h4>LEARN ANYTHING FROM ANYWHERE</h4>
-
-                <h3>Professional Course Builder</h3>
-
-                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-                  in some form, by injected humour, or randomised believable. Sufferede foshumour, or randomised..</p>
-
-
-                <p>But the majority have suffered alteration in some form, by injected humour, or randomised believable. Suffered
-                  alteration in some form, by injected humour, or randomised..</p>
-
-                <a href="#" class="btn btn-primary btn-square">START HERE</a>
-              </div>
-              <!-- end about-module -->
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col-md-6 myimg4"></div>
-            <div class="col-md-6 col-md-offset-6">
-              <div class="about-module wpa">
-                <h4>LEARN ANYTHING FROM ANYWHERE</h4>
-
-                <h3>Professional Course Builder</h3>
-
-                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-                  in some form, by injected humour, or randomised believable. Sufferede foshumour, or randomised..</p>
-
-
-                <p>But the majority have suffered alteration in some form, by injected humour, or randomised believable. Suffered
-                  alteration in some form, by injected humour, or randomised..</p>
-
-                <a href="#" class="btn btn-primary btn-square">START HERE</a>
-              </div>
-              <!-- end about-module -->
-            </div>
-          </div>
-        </div>
-      </div>
+      </data-owl-carousel>
       <!--end of row-->
     </div>
     <!-- end container -->
