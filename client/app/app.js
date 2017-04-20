@@ -53,7 +53,7 @@ import jsFonctions from '../app/factory/jsFonctions/jsFonctions.service';
 import chapitreProvider from '../app/factory/chapitreProvider/chapitreProvider.service';
 import suiviCoursProvider from '../app/factory/suivi_coursProvider/suivi_coursProvider.service';
 import annonceProvider from '../app/factory/annonceProvider/annonceProvider.service';
-// import ouvreDialog from '../app/factory/ouvreDialog/ouvreDialog.service';
+import ouvreDialogProvider from '../app/factory/ouvreDialogProvider/ouvreDialogProvider.service';
 
 
 // ------ Les routes -------
@@ -74,7 +74,7 @@ import './app.css';
 import coursesDirective from './directives/courses/courses.directive';
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective, recentCours, formations, notreEquipe, 'angular-loading-bar', 'cfp.loadingBar', 'ckeditor',annonceProvider
+    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, coursesDirective, recentCours, formations, notreEquipe, 'angular-loading-bar', 'cfp.loadingBar', 'ckeditor', annonceProvider, ouvreDialogProvider
 
   ])
   .config(routeConfig)
@@ -144,7 +144,7 @@ angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
         }
       }
     };
-}]);
+  }]);
 
 angular.element(document)
   .ready(() => {
