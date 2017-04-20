@@ -9,38 +9,18 @@ export class EtablissementPagesComponent {
   /*@ngInject*/
   // variables globales
   Letablissement;
-  constructor(jsFonctions, $stateParams, etablissementProvider, ouvreDialog) {
-   this.jsFonctions = jsFonctions;
+  constructor(jsFonctions, $stateParams, etablissementProvider, ouvreDialogProvider) {
+    this.jsFonctions = jsFonctions;
     this.$stateParams = $stateParams;
     console.log('param etablissement =>', this.$stateParams)
     this.etablissementProvider = etablissementProvider;
-    this.ouvreDialog = ouvreDialog;
+    this.ouvreDialogProvider = ouvreDialogProvider;
   }
   $onInit() {
     var fichier = document.querySelector('#selectPPEtab');
-    fichier.addEventListener('change', propFichier, false);
-
-    function propFichier(e) {
-      // propfichier(e.target.files);
-      let fichier = e.target.files[0]
-      if (fichier.type.indexOf('image') > -1) {
-        var lecteur = new FileReader();
-        lecteur.onload = function (e) {
-          console.log('log', e);
-          let imgTagEtab = document.querySelector('#imgTagEtab');
-          imgTagEtab.setAttribute('src', e.target.result);
-          imgTagEtab.setAttribute('ng-src', '');
-          console.log('tag', imgTagEtab);
-        }
-        lecteur.readAsDataURL(fichier);
-        console.log('bandi bi', fichier);
-
-
-      } else {
-        alert('Ce n\'est pas une image');
-      }
-      // console.log('target', e.target.files);
-    }
+    fichier.addEventListener('change', (e) => {
+      this.ouvreDialogProvider.uploadFile(e, "imgTagEtab");
+    });
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
@@ -62,7 +42,7 @@ export class EtablissementPagesComponent {
     $('#selectPPEtab').click();
   }
 }
-EtablissementPagesComponent.$inject = ["jsFonctions", "$stateParams", "etablissementProvider", "ouvreDialog"];
+EtablissementPagesComponent.$inject = ["jsFonctions", "$stateParams", "etablissementProvider", "ouvreDialogProvider"];
 export default angular.module('samaschoolApp.etablissementPages', [uiRouter])
   .config(routes)
   .component('etablissementPages', {
