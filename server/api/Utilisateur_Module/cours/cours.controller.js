@@ -84,7 +84,7 @@ function verify(tab, element) {
 
 export function deletePicture(images) {
     console.log('url bi', images);
-    fs.unlinkSync(images);
+    fs.unlink(images);
 }
 // Gets a list of Courss
 export function index(req, res) {
@@ -209,7 +209,6 @@ export function getCoursByProf(req, res) {
                     if (err) {
                         return handleError(res, err);
                     }
-                    console.log('Cours yi', courss);
                     return res.json(courss);
                 });
             } else {
