@@ -244,18 +244,18 @@ export function getCoursByProfAndSchool(req, res) {
                         publication: tab[i]
                     }).populate('publication').exec(function(err, cp) {
                         cp.forEach(function(eleme) {
-                            var cou = [];
+                           // var cou = {};
                             Detail.find({ classe: eleme.classe }).populate('classe').populate('etablissement').exec().then(li => {
                                 li.forEach(function(el) {
                                     var save = {};
-                                    cou.push(eleme.publication);
-                                    save.cours = cou;
+                                    //cou.push(eleme.publication);
+                                    save.cours = eleme.publication;
                                     console.log('?', req.params.ids);
                                     console.log('!', el.etablissement._id);
                                     if (el.etablissement._id == req.params.ids) {
-                                        save.detail = el;
+                                        var il = el;
                                     }
-                                    if (save.detail) {
+                                    if (il) {
                                         tabs.push(save);
                                     }
                                     cpt++;
