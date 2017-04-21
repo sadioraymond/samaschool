@@ -12,7 +12,8 @@
                   <div class="avatar-author">
                     <a>
                       <div class="post-media entry">
-                        <img id="imgTag" alt="photo profil de {{profilCtrl.userData.username}}" ng-src="assets/upload/User/{{profilCtrl.userData.images}}" class="img-responsive">
+                        <img id="imgTag" alt="photo profil de {{profilCtrl.userData.username}}" ng-src="assets/upload/User/{{profilCtrl.userData.images}}"
+                          class="img-responsive">
                         <div class="magnifier" ng-show="profilCtrl.privateLink">
                           <div class="shop-bottom clearfix">
                             <a ng-click="profilCtrl.showDialog()" title="Changer la photo"><i class="fa fa-wrench"></i></a>
@@ -78,7 +79,7 @@
       </div>
       <!-- end right -->
 
-      <div ng-show="profilCtrl.profil" id="sidebar1" class="col-md-6 col-sm-12">
+      <div ng-show="profilCtrl.profil" id="sidebar1" class="col-md-7 col-sm-12">
         <div class="widget clearfix">
           <div class="member-profile">
             <div class="big-title">
@@ -115,7 +116,7 @@
 
             <div class="row profile-badges">
               <div class="col-md-6 col-sm-12 wow fadeIn" ng-repeat="etab in profilCtrl.LesEtabIncrit">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
+                <div ui-sref="etablissement({id: etab._id})" class="boxes text-left service-first withcircle withborder leftservice">
                   <i class="fa fa-user-plus alignleft"></i>
 
                   <h3> {{etab.libelle}} </h3>
@@ -196,105 +197,112 @@
         </div>-->
         <div class="widget clearfix">
           <div class="member-profile">
-            <div class="big-title">
-              <h2 class="related-title">
-                <span>Cours actifs</span>
-              </h2>
+            <!--les cours suivis-->
+            <div ng-if="profilCtrl.lesCoursSuivis && profilCtrl.lesCoursSuivis.length > 0">
+              <div class="big-title">
+                <h2 class="related-title">
+                  <span>Cours actifs</span>
+                </h2>
+              </div>
+              <!-- end big-title -->
+
+
+              <div class="postpager liststylepost membercourses">
+                <ul class="pager">
+                  <li ng-repeat="cours in profilCtrl.lesCoursSuivis">
+                    <div class="post">
+                      <a ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie, idCours:cours._id})">
+                        <img alt="" ng-src="../../assets/upload/Cours/{{cours.images}}" class="img-responsive alignleft" style="height: 80px; width:80px">
+                        <h4> {{cours.titre|limitTo:70}} </h4>
+                        <small> {{cours.description|limitTo:40}} </small>
+                      </a>
+                      &nbsp;-&nbsp;
+                      <small>Expires : 22 June 2016</small>
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+              <!-- end postpager -->
+
+              <hr class="invis">
+              <br>
             </div>
-            <!-- end big-title -->
+            <!--les cours expirés-->
+            <div ng-if="profilCtrl.lesCoursExpires && profilCtrl.lesCoursExpires.length > 0">
+              <div class="big-title">
+                <h2 class="related-title">
+                  <span>Expired Courses</span>
+                </h2>
+              </div>
+              <!-- end big-title -->
 
-
-            <div class="postpager liststylepost membercourses">
-              <ul class="pager">
-                <li ng-repeat="cours in profilCtrl.lesCoursSuivis">
-                  <div class="post">
-                    <a ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie, idCours:cours._id})">
-                      <img alt="" ng-src="../../assets/upload/Cours/{{cours.images}}" class="img-responsive alignleft" style="height: 80px; width:80px">
-                      <h4> {{cours.titre|limitTo:70}} </h4>
-                      <small> {{cours.description|limitTo:40}} </small>
-                    </a>
-                    &nbsp;-&nbsp;
-                    <small>Expires : 22 June 2016</small>
-                  </div>
-                </li>
-
-              </ul>
+              <div class="postpager liststylepost membercourses">
+                <ul class="pager">
+                  <li>
+                    <div class="post">
+                      <a href="course-single.html">
+                        <img alt="" src="assets/upload/pager_01.png" class="img-responsive alignleft" style="height: 80px; width:80px">
+                        <h4>Learning Professional English in 20 Days</h4>
+                        <small>View Course</small> &nbsp;-&nbsp;
+                        <small>Expired : &nbsp;Join the Course</small>
+                      </a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="post">
+                      <a href="course-single.html">
+                        <img alt="" src="assets/upload/pager_02.png" class="img-responsive alignleft">
+                        <h4>Selecting Material Design and Color Palette</h4>
+                        <small>View Course</small> &nbsp;-&nbsp;
+                        <small>Expired : &nbsp;Join the Course</small>
+                      </a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="post">
+                      <a href="course-single.html">
+                        <img alt="" src="assets/upload/pager_03.jpg" class="img-responsive alignleft">
+                        <h4>Getting Starting Web Design and Web Development</h4>
+                        <small>View Course</small> &nbsp;-&nbsp;
+                        <small>Expired : &nbsp;Join the Course</small>
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <!-- end postpager -->
+              <hr class="invis">
+              <br>
             </div>
-            <!-- end postpager -->
+            <!--les cours crées-->
+            <div ng-if="profilCtrl.lesCoursCrees && profilCtrl.lesCoursCrees.length > 0">
+              <div class="big-title">
+                <h2 class="related-title">
+                  <span>Cours crées</span>
+                </h2>
+              </div>
+              <!-- end big-title -->
 
-            <hr class="invis">
-            <br>
 
-            <div class="big-title">
-              <h2 class="related-title">
-                <span>Expired Courses</span>
-              </h2>
+              <div class="postpager liststylepost membercourses">
+                <ul class="pager">
+                  <li ng-repeat="cours in profilCtrl.lesCoursCrees">
+                    <div class="post">
+                      <a ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie._id, idCours:cours._id})">
+                        <img alt="" ng-src="../../assets/upload/Cours/{{cours.images}}" class="img-responsive alignleft" style="height: 80px; width:80px">
+                        <h4> {{cours.titre|limitTo:70}} </h4>
+                      </a>
+                      <small> Sous Categorie </small> &nbsp;-&nbsp;
+                      <small>Crée : {{cours.date_creation | date:'medium'}}</small>&nbsp;-&nbsp;
+                      <small ng-show="profilCtrl.privateLink"><a ui-sref="createcourse({id: cours._id})"> <i class="fa fa-pencil" aria-hidden="true"></i></a></small>
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+              <!-- end postpager -->
             </div>
-            <!-- end big-title -->
-
-            <div class="postpager liststylepost membercourses">
-              <ul class="pager">
-                <li>
-                  <div class="post">
-                    <a href="course-single.html">
-                      <img alt="" src="assets/upload/pager_01.png" class="img-responsive alignleft" style="height: 80px; width:80px">
-                      <h4>Learning Professional English in 20 Days</h4>
-                      <small>View Course</small> &nbsp;-&nbsp;
-                      <small>Expired : &nbsp;Join the Course</small>
-                    </a>
-                  </div>
-                </li>
-                <li>
-                  <div class="post">
-                    <a href="course-single.html">
-                      <img alt="" src="assets/upload/pager_02.png" class="img-responsive alignleft">
-                      <h4>Selecting Material Design and Color Palette</h4>
-                      <small>View Course</small> &nbsp;-&nbsp;
-                      <small>Expired : &nbsp;Join the Course</small>
-                    </a>
-                  </div>
-                </li>
-                <li>
-                  <div class="post">
-                    <a href="course-single.html">
-                      <img alt="" src="assets/upload/pager_03.jpg" class="img-responsive alignleft">
-                      <h4>Getting Starting Web Design and Web Development</h4>
-                      <small>View Course</small> &nbsp;-&nbsp;
-                      <small>Expired : &nbsp;Join the Course</small>
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <!-- end postpager -->
-            <hr class="invis">
-            <br>
-
-            <div class="big-title">
-              <h2 class="related-title">
-                <span>Cours crées</span>
-              </h2>
-            </div>
-            <!-- end big-title -->
-
-
-            <div class="postpager liststylepost membercourses">
-              <ul class="pager">
-                <li ng-repeat="cours in profilCtrl.lesCoursCrees">
-                  <div class="post">
-                    <a ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie, idCours:cours._id})">
-                      <img alt="" ng-src="../../assets/upload/Cours/{{cours.images}}" class="img-responsive alignleft" style="height: 80px; width:80px">
-                      <h4> {{cours.titre|limitTo:70}} </h4>
-                    </a>
-                    <small> Sous Categorie </small> &nbsp;-&nbsp;
-                    <small>Crée : {{cours.date_creation | date:'medium'}}</small>&nbsp;-&nbsp;
-                    <small ng-show="profilCtrl.privateLink"><a ui-sref="createcourse({id: cours._id})"> <i class="fa fa-pencil" aria-hidden="true"></i></a></small>
-                  </div>
-                </li>
-
-              </ul>
-            </div>
-            <!-- end postpager -->
 
           </div>
           <!-- end team-member -->
@@ -303,7 +311,7 @@
       <!-- end right -->
 
 
-      <div ng-show="profilCtrl.contact" id="sidebar2" class="col-md-3 col-sm-12 mob30">
+      <div ng-show="profilCtrl.contact" id="sidebar2" class="col-md-2 col-sm-12 mob30">
         <div class="widget clearfix">
           <div class="member-profile">
             <div class="big-title">
