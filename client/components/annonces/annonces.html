@@ -125,7 +125,7 @@
           </div>
           <div class="row">
             <!--JE NE COMPRENDS COMMMENT L IMAGE EST MISE JE VOUS LAISSE FAIRE SA-->
-            <div class="col-md-6 myimg" ng-style="{'background':'url(assets/upload/Etablissement/{{annonce.images}})'}">
+            <div id="ab{{annonce._id}}" class="col-md-6 myimg" ng-style="{'background':'url(assets/upload/Etablissement/{{annonce.images}})'}">
               <a ng-if="vm.modifyAnnonce && vm.slider === $index" ng-click="vm.ouvreDialog()" style="margin-top: 5em;" class="btn btn-primary btn-square" title="Prendre une photo"><i class="fa fa-upload"></i></a>
               <input style="display: none;" type="file" id="a">
             </div>

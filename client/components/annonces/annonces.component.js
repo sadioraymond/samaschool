@@ -28,7 +28,7 @@ export class annoncesComponent {
           var lecteur = new FileReader();
           lecteur.onload = (e) => {
             // console.log('log', e);
-            let img = document.querySelector(`.myimg`);
+            let img = document.querySelector(`#ab4`);
             img.setAttribute('ng-style', '');
             img.setAttribute('style', `background: url(${e.target.result})`);
             console.log('imgtag', img);
