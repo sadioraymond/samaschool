@@ -114,28 +114,43 @@
 <section class="section bgd btop">
   <div class="row-fluid">
     <div class="container">
-      <data-owl-carousel class="owl-carousel nav-center text-center" data-options="{center: true, items: 1, navigation: true, pagination: false, rewindNav : false}">
+      <data-owl-carousel class="owl-carousel nav-center text-center" data-options="{center: true, items: 1, navigation: true, pagination: false, rewindNav : false, autoplay:false}">
         <div owl-carousel-item="" ng-repeat="annonce in vm.LesAnnoncesParEtab" class="item">
+          <div class="row" style="margin-top: -1em; float: right; padding: 1em;">
+            <!--<div class="col-md-2 col-md-offset-10">-->
+            <a class="btn btn-primary btn-square" ng-click="" title="Ajouter une annonce"><i class="fa fa-plus"></i></a>
+            <a class="btn btn-primary btn-square" ng-click="vm.slider= {'index': $index, 'idAnnonce': annonce._id}; vm.modifyAnnonceClick(annonce)" title="Modifier l'annonce"><i class="fa fa-wrench"></i></a>
+            <a class="btn btn-primary btn-square" ng-click="" title="Supprimer l'annonce"><i class="fa fa-trash"></i></a>
+            <!--</div>-->
+          </div>
           <div class="row">
-            
-            <!--JE NE COMPRENDS COMMMENT L IMAGE EST MISE JE VOUS LAISSE FAIRE SA-->
-            <div class="col-md-6 myimg3"></div> 
-      
-            <div class="col-md-6 col-md-offset-6">
+            <div id="myimg{{annonce._id}}" class="col-md-6 myimg" ng-style="{'background':'url(assets/upload/Etablissement/{{annonce.images}})'}">
+              <a ng-if="vm.modifyAnnonce && vm.slider.index === $index" ng-click="vm.ouvreDialog()" style="margin-top: 5em;" class="btn btn-primary btn-square" title="Prendre une photo"><i class="fa fa-upload"></i></a>
+              <input style="display: none;" type="file" id="a">
+            </div>
+
+            <div class="col-md-6 col-md-offset-6" ng-if="!vm.modifyAnnonce || vm.slider.index !== $index">
               <div class="about-module wpa">
-                <h4>LEARN ANYTHING FROM ANYWHERE</h4>
+                <h4>Titre</h4>
                 <h3>Professional Course Builder</h3>
                 <p> {{ annonce.contenu }} </p>
-                <a href="#" class="btn btn-primary btn-square">START HERE</a>
+                <!--<a href="#" class="btn btn-primary btn-square">START HERE</a>-->
               </div>
               <!-- end about-module -->
-            
-          </div>
-        </div>
+            </div>
+            <div class="col-md-6 col-md-offset-6" ng-if="vm.modifyAnnonce && vm.slider.index === $index">
+              <div class="about-module wpa">
+                <input ng-model="vm.titreAnnonceAModifier" type="text" id="titreAnnone" class="form-control" placeholder="Titre">
+                <textarea ng-model="vm.descriptionAnnonceAModifier" class="form-control" id="description" rows="6" placeholder="Description de l'annone"></textarea>
+                <button type="submit" value="SEND" id="submit" class="btn btn-primary"> Valider</button>
+              </div>
+              <!-- end modification -->
+
+            </div>
       </data-owl-carousel>
       <!--end of row-->
-    </div>
-    <!-- end container -->
-  </div>
-  <!-- end row fluid -->
+      </div>
+      <!-- end container -->
+      </div>
+      <!-- end row fluid -->
 </section>
