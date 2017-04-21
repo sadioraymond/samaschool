@@ -104,11 +104,9 @@ export function getProfInEtablissement(req, res) {
         list.map(etablis => {
             Dprofil.find({ user: etablis.user }).populate('user').exec().then(li => {
                 li.forEach(function(element) {
-                    var prof = {};
-                    prof = li;
                     if (element.profil == 3) {
                         console.log('fi')
-                        etab.push(prof);
+                        etab.push(li);
                     }
                     cpt++;
                     if (cpt == list.length) {
