@@ -28,6 +28,13 @@ var storage = multer.diskStorage({
 var upload = multer({
     storage: storage
 });
+var fs = require('fs');
+  var rep = 'client/assets/upload/Cours/' + '/';
+        mkdirp(rep, function(err) {
+            if (err) {
+                console.error(err);
+            }
+        });
 export default function(app) {
     // Insert routes below
     app.post('/createcourse/:id', upload.single('myFile'), function uploadImage(req, res) {
@@ -41,6 +48,13 @@ export default function(app) {
         var size = myFile.size;
         var mimetype = myFile.mimetype;
     });
+    app.get('/deletepicture/:images',function deletePicture(req,res) {
+        //var chemin=rep+req.params.images;
+       console.log('url bi', rep);
+    console.log('tourou image bi', req.params.images);
+    fs.unlinkSync( rep + req.params.images);
+});
+
     app.use('/api/exercices', require('./api/Utilisateur_Module/exercice'));
     app.use('/api/type_fichiers', require('./api/Utilisateur_Module/type_fichier'));
     app.use('/api/fichiers', require('./api/Utilisateur_Module/fichier'));
