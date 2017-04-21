@@ -123,9 +123,9 @@
             <a class="btn btn-primary btn-square" ng-click="" title="Supprimer l'annonce"><i class="fa fa-trash"></i></a>
             <!--</div>-->
           </div>
-          <div class="row">
-            <div id="myimg{{annonce._id}}" class="col-md-6 myimg" ng-style="{'background':'url(assets/upload/Etablissement/{{annonce.images}})'}">
-              <a ng-if="vm.modifyAnnonce && vm.slider.index === $index" ng-click="vm.ouvreDialog()" style="margin-top: 5em;" class="btn btn-primary btn-square" title="Prendre une photo"><i class="fa fa-upload"></i></a>
+          <div class="row" style="height: 400px;">
+            <div id="myimg{{annonce._id}}" class="col-md-6 myimg" ng-style="{'background':'url(assets/upload/Etablissement/{{annonce.images}}) no-repeat center center', 'background-size': 'cover'}">
+              <a ng-if="vm.modifyAnnonce && vm.slider.index === $index" ng-click="vm.ouvreDialog()" style="margin-top: 10em;" class="btn btn-primary btn-square" title="Prendre une photo"><i class="fa fa-upload"></i></a>
               <input style="display: none;" type="file" id="a">
             </div>
 
@@ -141,7 +141,7 @@
             <div class="col-md-6 col-md-offset-6" ng-if="vm.modifyAnnonce && vm.slider.index === $index">
               <div class="about-module wpa">
                 <input ng-model="vm.titreAnnonceAModifier" type="text" id="titreAnnone" class="form-control" placeholder="Titre">
-                <textarea ng-model="vm.descriptionAnnonceAModifier" class="form-control" id="description" rows="6" placeholder="Description de l'annone"></textarea>
+                <textarea ng-model="vm.descriptionAnnonceAModifier" class="form-control" id="description" rows="10" placeholder="Description de l'annone"></textarea>
                 <button type="submit" value="SEND" id="submit" class="btn btn-primary"> Valider</button>
               </div>
               <!-- end modification -->

@@ -30,13 +30,13 @@ export class annoncesComponent {
             // console.log('log', e);
             let img = document.querySelector(`#myimg${this.slider.idAnnonce}`);
             img.setAttribute('ng-style', '');
-            img.setAttribute('style', `background: url(${e.target.result})`);
+            img.setAttribute('style', `background: url(${e.target.result}) center center no-repeat; background-size: cover`);
             console.log('imgtag', img);
-            // console.log('ready', lecteur.readyState);
+            console.log('ready', lecteur.readyState);
           }
           lecteur.readAsDataURL(fichier);
           console.log('bandi bi', fichier);
-          // console.log('readystate', lecteur.readyState);
+          console.log('readystate', lecteur.readyState);
         } else {
           alert('Ce n\'est pas une image');
         }
@@ -53,11 +53,15 @@ export class annoncesComponent {
     $('#a').click();
   }
   modifyAnnonceClick(annonce) {
-    console.log('annonce =>', annonce)
-    console.log('slide =>', this.slider)
-    this.modifyAnnonce = true;
-    this.titreAnnonceAModifier = "Le titre de l'annonce";
-    this.descriptionAnnonceAModifier = annonce.contenu;
+    if (!this.modifyAnnonce) {
+      console.log('annonce =>', annonce)
+      console.log('slide =>', this.slider)
+      this.modifyAnnonce = true;
+      this.titreAnnonceAModifier = "Le titre de l'annonce";
+      this.descriptionAnnonceAModifier = annonce.contenu;
+    }else{
+      this.modifyAnnonce = false;
+    }
   }
 
 }
