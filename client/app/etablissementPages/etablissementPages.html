@@ -1,196 +1,143 @@
 <section class="section paralbackground banner" style="background-image:url('assets/upload/profil_uahb.jpg'); height: 500px; border-bottom: 4px solid #fff"
   data-img-width="2400" data-img-height="907" data-diff="100">
   <div class="overlay"></div>
-</section>
-<!-- end section -->
-
-<div class="page-title bgg">
-  <div class="container clearfix">
-    <div class="title-area pull-left">
-      <div class="row">
-        <div class="col-md-4" style="margin-top: -90px; margin-left: 100px; margin-right: -150px;">
-          <div class="avatar-author">
-            <a>
-              <!--<img alt="" ng-src="assets/upload/Etablissement/{{etabCtrl.Letablissement.images}}" class="img-responsive" style="height: 170px; width: 160px; border: 1px solid black; background-size: cover;">-->
-              <div class="entry entry1">
-                <img id="imgTagEtab" alt="Icone etablissement" ng-src="assets/upload/Etablissement/{{etabCtrl.Letablissement.images}}"
-                  class="img-responsive" style="height: 170px; width: 160px; border: 1px solid black; background-size: cover;">
-                <div class="magnifier">
-                  <div class="shop-bottom clearfix">
-                    <a ng-click="etabCtrl.showDialog()" title="Changer la photo"><i class="fa fa-wrench"></i></a>
-                    <input type="file" style="display:none;" id="selectPPEtab">
-                  </div>
+  </section>
+  <!-- end section -->
+  <div class="page-title bgg">
+    <div class="container clearfix">
+      <div class="title-area pull-left">
+        <div class="row">
+          <div class="col-md-4" style="margin-top: -90px; margin-left: 100px; margin-right: -150px;">
+            <div class="avatar-author">
+              <a>
+                <!--<img alt="" ng-src="assets/upload/Etablissement/{{etabCtrl.Letablissement.images}}" class="img-responsive" style="height: 170px; width: 160px; border: 1px solid black; background-size: cover;">-->
+                <div class="entry entry1">
+                  <img id="imgTagEtab" alt="Icone etablissement" ng-src="assets/upload/Etablissement/{{etabCtrl.Letablissement.images}}" class="img-responsive"
+                    style="height: 170px; width: 160px; border: 1px solid black; background-size: cover;">
+                    <div class="magnifier">
+                      <div class="shop-bottom clearfix">
+                        <a ng-click="etabCtrl.showDialog()" title="Changer la photo"><i class="fa fa-wrench"></i></a>
+                        <input type="file" style="display:none;" id="selectPPEtab">
+                      </div>
+                    </div>
                 </div>
-              </div>
-            </a>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h2>{{etabCtrl.Letablissement.libelle}} <small> est la 1ère Université privée promotionnelle à s'engager dans la lutte contre le chômage, des jeunes diplômés de l'enseignement supérieur, en application du système LMD.
+              </small></h2>
           </div>
         </div>
-        <div class="col-md-6">
-          <h2>{{etabCtrl.Letablissement.libelle}} <small> est la 1ère Université privée promotionnelle à s'engager dans la lutte contre le chômage, des jeunes diplômés de l'enseignement supérieur, en application du système LMD.
-              </small></h2>
+      </div>
+      <!-- /.pull-left -->
+    </div>
+  </div>
+  <!-- end page-title -->
+  <annonces></annonces>
+  <recent-cours></recent-cours>
+  <formations></formations>
+  <section class="section bgw">
+    <div class="section-title-2 text-center">
+      <h2>NOS PROFESSEURS</h2>
+      <p class="lead">Nous construisons des parcours incroyables ! Ne manquez pas de nous rejoindre aujourd'hui !</p>
+      <hr>
+    </div>
+  </section>
+  <section class="section paralbackground parallax" style="background-image:url('assets/upload/UAHB_2.jpg');" data-img-width="2400"
+    data-img-height="1594" data-diff="100">
+    <div class="overlay"></div>
+    <div class="container">
+      <data-owl-carousel class="owl-carousel text-center" data-options="{items: 2, nav: false, pagination: false, rewindNav : false}">
+        <div owl-carousel-item="" ng-repeat="prof in etabCtrl.LesProfs" class="testi-item">
+            <img src="assets/upload/User/{{prof[0].user.images}}" alt="" class="img-circle" style="height: 50px; width: 50px">
+            <h4> {{ prof[0].user.name }} </h4>
+            <small>Envato.com</small>
+            <p class="lead">The Hair cutting and styling with 25 years of experience Barberie offers you unlimited service. Our barber education
+              and training separates us from most of the other options that men have in Chicago..</p>
         </div>
-      </div>
-
-    </div>
-    <!-- /.pull-left -->
-  </div>
-</div>
-<!-- end page-title -->
-
-
-
-<annonces></annonces>
-
-<recent-cours></recent-cours>
-
-<formations></formations>
-
-
-<section class="section bgw">
-  <div class="section-title-2 text-center">
-    <h2>NOS PROFESSEURS</h2>
-    <p class="lead">Nous construisons des parcours incroyables ! Ne manquez pas de nous rejoindre aujourd'hui !</p>
-    <hr>
-  </div>
-</section>
-
-<section class="section paralbackground parallax" style="background-image:url('assets/upload/UAHB_2.jpg');" data-img-width="2400"
-  data-img-height="1594" data-diff="100">
-  <div class="overlay"></div>
-  <div class="container">
-    <div id="owl-testimonial" class="text-center">
-      <div class="testi-item">
-        <img src="assets/upload/Mr_lo.jpg" alt="" class="img-circle" style="height: 50px; width: 50px">
-        <h4>Massamba Lô</h4>
-        <small>Envato.com</small>
-        <p class="lead">The Hair cutting and styling with 25 years of experience Barberie offers you unlimited service. Our barber education
-          and training separates us from most of the other options that men have in Chicago..</p>
-      </div>
-      <!-- end item -->
-
-      <div class="testi-item">
-        <img src="assets/upload/Mr_niass.jpg" alt="" class="img-circle" style="height: 50px; width: 50px">
-        <h4>Baye Niass</h4>
-        <small>Envato.com</small>
-        <p class="lead">The Hair cutting and styling with 25 years of experience Barberie offers you unlimited service. Our barber education
-          and training separates us from most of the other options that men have in Chicago..</p>
-      </div>
-      <!-- end item -->
-
-      <div class="testi-item">
-        <img src="assets/upload/Mr_der.jpg" alt="" class="img-circle" style="height: 50px; width: 50px">
-        <h4>Moustapha Der</h4>
-        <small>Envato.com</small>
-        <p class="lead">The Hair cutting and styling with 25 years of experience Barberie offers you unlimited service. Our barber education
-          and training separates us from most of the other options that men have in Chicago..</p>
-      </div>
-      <!-- end item -->
-
-      <div class="testi-item">
-        <img src="assets/upload/Mr_samb.jpg" alt="" class="img-circle" style="height: 50px; width: 50px">
-        <h4>Kara Samb</h4>
-        <small>Envato.com</small>
-        <p class="lead">The Hair cutting and styling with 25 years of experience Barberie offers you unlimited service. Our barber education
-          and training separates us from most of the other options that men have in Chicago..</p>
-      </div>
-      <!-- end item -->
-
-    </div>
-    <!-- end relative -->
-
-    <!--<div id="owl-client" class="clients m20">
+      </data-owl-carousel>
+      <!-- end relative -->
+      <!--<div id="owl-client" class="clients m20">
       <div class="client-logo">
         <a href="#"><img src="assets/upload/client_01.png" alt="" class="img-responsive"></a>
       </div>-->
-    <!-- end logo -->
-
-    <!--<div class="client-logo">
+      <!-- end logo -->
+      <!--<div class="client-logo">
         <a href="#"><img src="assets/upload/client_02.png" alt="" class="img-responsive"></a>
       </div>-->
-    <!-- end logo -->
-
-    <!--<div class="client-logo">
+      <!-- end logo -->
+      <!--<div class="client-logo">
         <a href="#"><img src="assets/upload/client_03.png" alt="" class="img-responsive"></a>
       </div>-->
-    <!-- end logo -->
-
-
-
-
-
-    <!--</div>-->
-    <!-- end row -->
-  </div>
-  <!-- end container -->
-</section>
-
-
-<!-- end section -->
-
-
-<!-- end googlemap -->
-<notre-equipe></notre-equipe>
-<section class="section bgw">
-  <div class="container">
-
-    <div class="section-title-2 text-center">
-      <h2>CONTACT DETAILS</h2>
-      <p class="lead">For your pre-sale questions, please use form below</p>
-      <hr>
+      <!-- end logo -->
+      <!--</div>-->
+      <!-- end row -->
     </div>
-    <!-- end section-title -->
-
-    <div class="row">
-      <div class="col-md-5">
-        <div class="widget">
-          <p>If you need help before, during or after your purchase, this is the place to be. Please use below contact details
-            for all your pre-sale questions, contact questions.</p>
+    <!-- end container -->
+    </section>
+    <!-- end section -->
+    <!-- end googlemap -->
+    <notre-equipe></notre-equipe>
+    <section class="section bgw">
+      <div class="container">
+        <div class="section-title-2 text-center">
+          <h2>CONTACT DETAILS</h2>
+          <p class="lead">For your pre-sale questions, please use form below</p>
           <hr>
-          <ul class="contact-details">
-            <li><i class="fa fa-link"></i> <a href="#">www.yoursite.com</a></li>
-            <li><i class="fa fa-envelope-o"></i> <a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
-            <li><i class="fa fa-phone"></i> +90 123 45 67</li>
-            <li><i class="fa fa-fax"></i> +90 123 45 68</li>
-            <li><i class="fa fa-home"></i> Envato INC 22 Elizabeth St.</li>
-          </ul>
-          <hr>
-          <div class="social-icons">
-            <ul class="list-inline">
-              <li class="facebook"><a data-toggle="tooltip" data-placement="top" title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-              <li class="google"><a data-toggle="tooltip" data-placement="top" title="Google Plus" href="#"><i class="fa fa-google-plus"></i></a></li>
-              <li class="twitter"><a data-toggle="tooltip" data-placement="top" title="Twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-              <li class="linkedin"><a data-toggle="tooltip" data-placement="top" title="Linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-              <li class="pinterest"><a data-toggle="tooltip" data-placement="top" title="Pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
-              <li class="skype"><a data-toggle="tooltip" data-placement="top" title="Skype" href="#"><i class="fa fa-skype"></i></a></li>
-              <li class="vimeo"><a data-toggle="tooltip" data-placement="top" title="Vimeo" href="#"><i class="fa fa-vimeo"></i></a></li>
-              <li class="youtube"><a data-toggle="tooltip" data-placement="top" title="Youtube" href="#"><i class="fa fa-youtube"></i></a></li>
-            </ul>
-          </div>
-          <!-- end social icons -->
         </div>
-        <!-- end widget -->
-      </div>
-      <div class="col-md-7">
-        <div class="contact_form">
-          <div id="message"></div>
-          <form id="contactform" class="row" action="contact.php" name="contactform" method="post">
-            <div class="col-md-12">
-              <input type="text" name="name" id="name" class="form-control" placeholder="Name">
-              <input type="text" name="email" id="email" class="form-control" placeholder="Email">
-              <input type="text" name="name" id="phone" class="form-control" placeholder="Phone">
-              <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Message Below"></textarea>
-              <button type="submit" value="SEND" id="submit" class="btn btn-primary"> Send Form</button>
+        <!-- end section-title -->
+        <div class="row">
+          <div class="col-md-5">
+            <div class="widget">
+              <p>If you need help before, during or after your purchase, this is the place to be. Please use below contact details
+                for all your pre-sale questions, contact questions.</p>
+              <hr>
+              <ul class="contact-details">
+                <li><i class="fa fa-link"></i> <a href="#">www.yoursite.com</a></li>
+                <li><i class="fa fa-envelope-o"></i> <a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
+                <li><i class="fa fa-phone"></i> +90 123 45 67</li>
+                <li><i class="fa fa-fax"></i> +90 123 45 68</li>
+                <li><i class="fa fa-home"></i> Envato INC 22 Elizabeth St.</li>
+              </ul>
+              <hr>
+              <div class="social-icons">
+                <ul class="list-inline">
+                  <li class="facebook"><a data-toggle="tooltip" data-placement="top" title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                  <li class="google"><a data-toggle="tooltip" data-placement="top" title="Google Plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+                  <li class="twitter"><a data-toggle="tooltip" data-placement="top" title="Twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                  <li class="linkedin"><a data-toggle="tooltip" data-placement="top" title="Linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                  <li class="pinterest"><a data-toggle="tooltip" data-placement="top" title="Pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
+                  <li class="skype"><a data-toggle="tooltip" data-placement="top" title="Skype" href="#"><i class="fa fa-skype"></i></a></li>
+                  <li class="vimeo"><a data-toggle="tooltip" data-placement="top" title="Vimeo" href="#"><i class="fa fa-vimeo"></i></a></li>
+                  <li class="youtube"><a data-toggle="tooltip" data-placement="top" title="Youtube" href="#"><i class="fa fa-youtube"></i></a></li>
+                </ul>
+              </div>
+              <!-- end social icons -->
             </div>
-          </form>
+            <!-- end widget -->
+          </div>
+          <div class="col-md-7">
+            <div class="contact_form">
+              <div id="message"></div>
+              <form id="contactform" class="row" action="contact.php" name="contactform" method="post">
+                <div class="col-md-12">
+                  <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                  <input type="text" name="email" id="email" class="form-control" placeholder="Email">
+                  <input type="text" name="name" id="phone" class="form-control" placeholder="Phone">
+                  <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Message Below"></textarea>
+                  <button type="submit" value="SEND" id="submit" class="btn btn-primary"> Send Form</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- end col -->
         </div>
+        <!-- end row -->
       </div>
-      <!-- end col -->
-    </div>
-    <!-- end row -->
-  </div>
-  <!-- end container -->
-</section>
-<!--<div class="googlemap">
+      <!-- end container -->
+    </section>
+    <!--<div class="googlemap">
   <div id="map"></div>
 </div>-->
-<!-- end section -->
+    <!-- end section -->
