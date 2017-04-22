@@ -187,21 +187,56 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             }
         });
     }
+    this.ajoutChapitre = function(id, tab, taille) {
+        var deferred = $q.defer();
+            console.log("Cours bi Bakhna");
+            for (let i = 0; i < taille; i++) {
+                $http.post('/api/chapitres', {
+                    libelle: tab[`${i}`].titre,
+                    objectif: tab[`${i}`].objectif,
+                    cours: id
+                }).then(function(datas) {
+                    console.log("Chapitre yi Bakhnagnou");
+                    $http.post('/api/fichiers', {
+                        chapitre: datas.data._id,
+                        link: tab[`${i}`].lienVideo,
+                        contenu: tab[`${i}`].contenu
+                    }).then(function() {
+                        console.log("Fichiers yi Bakhnagnou");
+                    });
+                });
+            }
+    }
     this.objetCours = {};
     this.params;
-    this.modifierCours = function(id, titre, description, date, sous_cat, user, nbheures, act, images) {
+    this.modifierCours = function(id, titre, description, date, sous_cat, nbheures, act, images) {
         var deferred = $q.defer();
         $http.put('/api/courss/' + id, {
             titre: titre,
             description: description,
             date_creation: date,
             sous_categorie: sous_cat,
-            user: user,
             nbheures: nbheures,
             images: images,
             actif: act,
-            /* link: lienVideo,
+             /*link: lienVideo,
              contenu: contenu*/
+        }).then(function() {
+            console.log("Modifié bi Bakhna");
+        });
+    }
+      this.modifierCou = function(id, titre, description, date, sous_cat, nbheures, act, images, lienVideo, contenu) {
+        var deferred = $q.defer();
+        $http.put('/api/courss/' + id, {
+            titre: titre,
+            description: description,
+            date_creation: date,
+            sous_categorie: sous_cat,
+            nbheures: nbheures,
+            images: images,
+            actif: act,
+            link: lienVideo,
+            contenu: contenu
         }).then(function() {
             console.log("Modifié bi Bakhna");
         });
@@ -219,7 +254,27 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             });
         }
     }
-
+      this.modifierFichier = function(tab, taille) {
+        var deferred = $q.defer();
+        console.log('khol', tab);
+        console.log('taille bi', taille);
+        for (let i = 0; i < taille; i++) {
+            $http.put('/api/fichiers/' + tab[`${i}`].idFichier, {
+                link: tab[`${i}`].lienVideo,
+                contenu: tab[`${i}`].contenu
+            }).then(function() {
+                console.log("Modifié bi Bakhna");
+            });
+        }
+    }
+      this.deleteFichier = function(images) {
+        var deferred = $q.defer();
+        console.log('image bi', images)
+            $http.get('/deletepicture/' + images, {
+            }).then(function() {
+                console.log("Image bi dégne na");
+            });
+    }
     this.getCoursBySousCat = function(scat) {
         var deferred = $q.defer();
         var liste = [];
