@@ -28,6 +28,9 @@ export class EtablissementPagesComponent {
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
         }, 0);
+        setTimeout(() => {
+          this.jsFonctions.mapjs();
+        }, 2000);
       });
 
     // recuperation de l'etablissement en cours
