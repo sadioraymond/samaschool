@@ -116,8 +116,8 @@
 
             <div class="row profile-badges">
               <div class="col-md-6 col-sm-12 wow fadeIn" ng-repeat="etab in profilCtrl.LesEtabIncrit">
-                <div ui-sref="etablissement({id: etab._id})" class="boxes text-left service-first withcircle withborder leftservice">
-                  <i class="fa fa-user-plus alignleft"></i>
+                <div ui-sref="etablissement({id: etab._id})" class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 250px;">
+                  <img width="80px" alt="photo profil de {{etab.libelle}}" ng-src="assets/upload/Etablissement/{{etab.images}}" class="img-responsive img-circle alignleft">
 
                   <h3> {{etab.libelle}} </h3>
                   <p> {{etab.adresse}} </p>
@@ -136,7 +136,7 @@
             </div>
             <div class="row profile-badges">
               <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
+                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-birthday-cake alignleft"></i>
                   <h3>3+ Years of Membership</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
@@ -145,7 +145,7 @@
               <!-- end col -->
 
               <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
+                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-pencil alignleft"></i>
                   <h3>Contribute Teachme Blog</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
@@ -154,7 +154,7 @@
               <!-- end col -->
 
               <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
+                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-pencil alignleft"></i>
                   <h3>Contribute Teachme Blog</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
@@ -163,7 +163,7 @@
               <!-- end col -->
 
               <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
+                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-comments-o alignleft"></i>
                   <h3>Forum Moderator</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
@@ -172,7 +172,7 @@
               <!-- end col -->
 
               <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
+                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-code alignleft"></i>
                   <h3>Help to the development site</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
