@@ -14,6 +14,7 @@ export class EtablissementPagesComponent {
     datetime;
     im;
     ima;
+    LesProfs;
     constructor(jsFonctions, $stateParams, etablissementProvider, ouvreDialogProvider) {
         this.jsFonctions = jsFonctions;
         this.$stateParams = $stateParams;
@@ -52,7 +53,13 @@ export class EtablissementPagesComponent {
             this.Letablissement = etablissement;
             console.log(`l'etablissement =>>`, this.Letablissement);
         });
+        // Les profs d'un établissement
+        // TODO: reglage du bug, le nom du prof par souvent
+        this.etablissementProvider.getProfInEtablissement(this.$stateParams.id).then(profs => {
+            this.LesProfs = profs;
+            console.log(`les Profs=>>`, profs);
 
+        })
 
 
     }
