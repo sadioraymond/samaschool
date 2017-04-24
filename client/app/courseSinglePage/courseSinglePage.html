@@ -1,0 +1,268 @@
+<banner></banner>
+<section class="section bgw">
+  <div class="container">
+    <div style="margin: 4em;" class="text-center image-center hidden-xs">
+      <img src="assets/upload/device_03.png" alt="" class="img-responsive wow fadeInUp" style="display: block;">
+    </div>
+    <div class="row">
+      <div id="post-content" class="col-md-9 col-sm-12 single-course">
+        <div class="post-media clearfix">
+          <video class="videoplayer" poster="assets/upload/video_01.jpg" controls preload="none">
+            <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
+            <source type="video/mp4" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.mp4"
+            />
+            <!-- WebM/VP8 for Firefox4, Opera, and Chrome -->
+            <source type="video/webm" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.webm"
+            />
+            <!-- Ogg/Vorbis for older Firefox and Opera versions -->
+            <source type="video/ogg" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.ogv"
+            />
+            <!-- Optional: Add subtitles for each language -->
+          </video>
+        </div>
+        <!-- end media -->
+
+        <div class="single-course-title text-center">
+          <h3><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
+              title=""> {{courseCtrl.LeCours.titre}} </a></h3>
+          <div class="post-sharing">
+            <ul class="list-inline">
+              <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="hidden-xs">Share on Facebook</span></a></li>
+              <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i> <span class="hidden-xs">Tweet on Twitter</span></a></li>
+              <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+          </div>
+          <!-- end post-sharing -->
+        </div>
+        <!-- end single-course-title -->
+
+        <hr class="invis">
+
+        <div ng-hide="courseCtrl.LesChapitres.length > 0 && !courseCtrl.$stateParams.idChap" class="course-single-desc clearfix">
+          <div class="big-title">
+            <h2 class="related-title">
+              <span ng-if="courseCtrl.LesChapitres.length > 0 && courseCtrl.$stateParams.idChap">{{courseCtrl.LeChapitre.libelle}}</span>
+              <span ng-if="courseCtrl.LesChapitres.length < 1"> Cours</span>
+            </h2>
+          </div>
+          <!-- end big-title -->
+          <p ng-if="courseCtrl.LesChapitres.length < 1" ng-bind-html="courseCtrl.LeCours.contenu"></p> <br>
+          <p ng-if="courseCtrl.LesChapitres.length > 0 && courseCtrl.$stateParams.idChap" ng-bind-html="courseCtrl.LeChapitre.contenuChap.contenu">
+
+          </p>
+        </div>
+        <!-- end post-padding -->
+
+        <hr class="invis">
+
+        <div class="course-table clearfix" ng-if="courseCtrl.LesChapitres.length > 0">
+          <div class="big-title">
+            <h2 class="related-title">
+              <span>Programme</span>
+            </h2>
+          </div>
+          <!-- end big-title -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Titre</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="cursor: pointer;" ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap:chapitre._id})"
+                ui-sref-active="doActive" ng-repeat="chapitre in courseCtrl.LesChapitres">
+                <td><i class="fa fa-play-circle"></i></td>
+                <td>{{chapitre.libelle | uppercase}}</td>
+                <td>{{$index + 1}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <a href="#" class="btn btn-primary btn-block btn-lg btn-square">Suivre ce cours</a>
+
+        </div>
+        <!-- end course-table -->
+
+        <hr class="invis1">
+
+        <div class="single-content comment-wrapper clearfix">
+          <div class="related-posts">
+            <div class="big-title">
+              <h2 class="related-title">
+                <span>2 Student Review</span>
+              </h2>
+            </div>
+            <!-- end big-title -->
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel">
+                  <div class="panel-body comments">
+                    <ul class="media-list">
+                      <li class="media">
+                        <div class="comment">
+                          <a href="#" class="pull-left">
+                            <img src="assets/upload/avatar_02.png" alt="" class="img-circle">
+                          </a>
+                          <div class="media-body">
+                            <strong class="text-success">Jana Cova</strong>
+                            <span class="text-muted">
+                                                                <small class="text-muted">12 days ago</small></span>
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet.
+                            </p>
+                            <a href="#" class="btn btn-primary btn-sm">Reply</a>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </li>
+                      <li class="media">
+                        <div class="comment">
+                          <a href="#" class="pull-left">
+                            <img src="assets/upload/avatar_01.png" alt="" class="img-circle">
+                          </a>
+                          <div class="media-body">
+                            <strong class="text-success">Johnatan Smarty</strong>
+                            <span class="text-muted">
+                                                                <small class="text-muted">1 month ago</small></span>
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                            </p>
+                            <a href="#" class="btn btn-primary btn-sm">Reply</a>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end postpager -->
+        </div>
+        <!-- end content -->
+
+        <div class="single-content comment-wrapper">
+          <div class="clearfix">
+            <div class="big-title">
+              <h2 class="related-title">
+                <span>Leave a Review</span>
+              </h2>
+            </div>
+            <!-- end big-title -->
+
+            <div class="contact_form">
+              <form class="row">
+                <div class="col-md-4 col-sm-12">
+                  <input type="text" class="form-control" placeholder="Your name">
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <input type="email" class="form-control" placeholder="Your Email">
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <input type="text" class="form-control" placeholder="Website">
+                </div>
+                <div class="col-md-12 col-sm-12">
+                  <textarea class="form-control" placeholder="Message goes here"></textarea>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                  <input type="submit" value="Send Comment" class="btn btn-primary" />
+                </div>
+              </form>
+            </div>
+            <!-- end commentform -->
+          </div>
+          <!-- end postpager -->
+        </div>
+        <!-- end content -->
+      </div>
+      <!-- end col -->
+
+      <div id="sidebar" class="col-md-3 col-sm-12">
+        <div class="row">
+          <div class="post-media clearfix">
+            <img ng-src="../../assets/upload/Cours/{{courseCtrl.LeCours.images}}" alt="" class="img-responsive">
+          </div>
+          <!-- end post-media -->
+          <div class="widget custom-widget course-pricing clearfix">
+            <div class="customwidget text-left w40">
+              <h4 class="text-center">{{courseCtrl.LeCours.titre}}</h4>
+              <!--<h4 class="text-center">90 Days Money Back Guarantee</h4>-->
+              <hr>
+              <div class="rating">
+                <p>Note : &nbsp;
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-o"></i>
+              </div>
+              <!-- end rating -->
+              <hr>
+              <input type="submit" value="Suivre ce cours" class="btn btn-primary btn-block" />
+
+              <div class="course-meta clearfix">
+                <p class="course-category">Domaine: <a> {{courseCtrl.LeCours.sous_categorie.libelle}}</a></p>
+                <hr>
+                <p class="course-instructors">Professeur :
+                  <a ui-sref="profil({username:courseCtrl.LeCours.user.username})" title="{{courseCtrl.LeCours.user.username}}"><img width="30px" height="30px" ng-src="assets/upload/User/{{courseCtrl.LeCours.user.images}}" class="img-circle"
+                      alt=""> {{courseCtrl.LeCours.user.username}}
+                  </a>
+                </p>
+                <hr>
+                <!--<p class="course-time">Perriod : 12 Month </p>
+                <hr>-->
+                <p class="course-time">Durée : {{courseCtrl.LeCours.nbheures}}h</p>
+                <!--<p class="course-forum">Course Forum : <a href="#" title="">Web Designers</a></p>-->
+              </div>
+              <!-- end meta -->
+            </div>
+            <!-- end newsletter -->
+          </div>
+          <!-- end widget -->
+        </div>
+        <!--Les cours a recommander-->
+        <div class="row">
+          <div class="widget clearfix">
+            <div class="big-title">
+              <h2 class="related-title">
+                <span>Voir aussi</span>
+              </h2>
+            </div>
+            <!-- end big-title -->
+
+            <div class="postpager liststylepost">
+              <ul class="pager">
+                <li ng-repeat="otherCours in courseCtrl.LesCoursDeLaSousCategorie | limitTo: 3">
+                  <div class="post">
+                    <a ui-sref="courseSinglePage({sousDomaine:otherCours.sous_categorie._id, idCours:otherCours._id, idChap: ''})">
+                      <img alt="poster du cours {{otherCours.titre}}" ng-src="assets/upload/Cours/{{otherCours.images}}" class="img-responsive alignleft" style="height: 60px; width: 60px">
+                      <h4>{{otherCours.titre | limitTo: 40}}</h4>
+                      <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- end postpager -->
+          </div>
+          <!-- end widget -->
+
+        </div>
+      </div>
+      <!-- end col -->
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+</section>
+<!-- end section -->

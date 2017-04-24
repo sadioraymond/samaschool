@@ -1,0 +1,88 @@
+<banner></banner>
+<section class="section bgw">
+  <div class="container">
+    <div class="row">
+      <nav class="portfolio-filter clearfix text-center">
+        <ul>
+          <li><a class="btn btn-default" ng-click="vm.allCourse()">Tous les Cours</a></li>
+          <li><a class="btn btn-default" ng-click="vm.recentsCourse()">Les plus récents</a></li>
+          <!--<li><a class="btn btn-default">Catégories</a></li>-->
+          <!--CATEGORIES-->
+          <div class="btn-group" uib-dropdown is-open="false">
+            <button ng-model="vm.categ.id" id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+                      {{vm.categ.libelle | limitTo:23}} 
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+              <li role="menuitem" ng-repeat="cat in vm.lesCategories" ng-click="vm.selectedCateg(cat)"><a href="#">{{cat.libelle}}</a></li>
+            </ul>
+          </div>
+          <!--Sous CATEGORIES-->
+          <div class="btn-group" uib-dropdown is-open="false" ng-if="vm.categ.id > 0">
+            <button ng-model="vm.scateg.id" id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+                      {{vm.scateg.libelle | limitTo:23}} 
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+              <li role="menuitem" ng-repeat="scat in vm.lesSousCategories" ng-click="vm.sousCategCourse(scat)"><a href="#">{{scat.libelle}}</a></li>
+            </ul>
+          </div>
+        </ul>
+      </nav>
+    </div>
+    <div class="row course-grid">
+      <div class="col-md-offset-4 col-md-4 col-sm-4 col-xs-6 wow fadeIn" ng-if="vm.lesCoursBySousCat.length === 0">
+        <h1>Cette catégorie ne contient pas de cours</h1>
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-6 wow fadeIn" ng-repeat="cours in vm.choixList">
+        <div class="shop-item course-v2">
+          <div class="post-media entry">
+            <!--<div class="ribbon-wrapper-green">
+              <div class="ribbon-green">Featured</div>
+            </div>-->
+            <img ng-src="assets/upload/Cours/{{cours.images}}" alt="" class="img-responsive" style="height: 200px">
+            <div class="magnifier">
+              <div class="shop-bottom clearfix">
+                <a title="Suivre"><i class="fa fa-shopping-cart"></i></a>
+                <a ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie._id, idCours:cours._id})" title="Visualiser"><i class="fa fa-search"></i></a>
+              </div>
+              <!-- end shop-bottom -->
+              <div class="large-post-meta">
+                <span class="avatar"><a ui-sref="profil({username: cours.user.username})"><img ng-src="assets/upload/User/{{cours.user.images}}" alt="photo profil de {{cours.user.username}}" class="img-circle"> {{cours.user.username}}</a></span>
+                <small>&#124;</small>
+                <span><a href="course-single.html"><i class="fa fa-clock-o"></i> 2 Month</a></span>
+                <small class="hidden-xs">&#124;</small>
+                <span class="hidden-xs"><a href="course-single.html"><i class="fa fa-graduation-cap"></i> 12 Students</a></span>
+              </div>
+              <!-- end meta -->
+            </div>
+            <!-- end magnifier -->
+          </div>
+          <!-- end post-media -->
+          <div class="shop-desc">
+            <div class="shop-price clearfix">
+              <div class="pull-left">
+                <div class="rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <!-- end rating -->
+              </div>
+              <!-- end left -->
+              <div class="pull-right">
+                <small>{{cours.sous_categorie.libelle | limitTo: 25}}</small>
+              </div>
+              <!-- end right -->
+            </div>
+            <h3><a ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie._id, idCours:cours._id})" title="{{cours.description}}"> {{cours.titre| limitTo:70}} </a></h3>
+          </div>
+        </div>
+        <!-- end shop-item -->
+      </div>
+    </div>
+  </div>
+  <!-- end container -->
+</section>

@@ -14,5 +14,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular-revolution": "^1.0.0",
+    "angular-ckeditor": "^1.0.3"
+  }
 }
