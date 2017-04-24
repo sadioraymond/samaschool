@@ -239,7 +239,7 @@
                 <li ng-repeat="otherCours in courseCtrl.LesCoursDeLaSousCategorie | limitTo: 3">
                   <div class="post">
                     <a ui-sref="courseSinglePage({sousDomaine:otherCours.sous_categorie._id, idCours:otherCours._id, idChap: ''})">
-                      <img alt="poster du cours {{otherCours.titre}}" ng-src="assets/upload/Cours/{{otherCours.images}}" class="img-responsive alignleft">
+                      <img alt="poster du cours {{otherCours.titre}}" ng-src="assets/upload/Cours/{{otherCours.images}}" class="img-responsive alignleft" style="height: 60px; width: 60px">
                       <h4>{{otherCours.titre | limitTo: 40}}</h4>
                       <div class="rating">
                         <i class="fa fa-star"></i>
