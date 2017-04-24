@@ -1,9 +1,10 @@
+
 <section class="section paralbackground banner" style="background-image:url('assets/upload/profil_uahb.jpg'); height: 500px; border-bottom: 4px solid #fff"
   data-img-width="2400" data-img-height="907" data-diff="100">
   <div class="overlay"></div>
 </section>
 <!-- end section -->
-
+<form id="editschoolform" class="row" name="editschoolform" method="post" enctype="multipart/form-data">
 <div class="page-title bgg">
   <div class="container clearfix">
     <div class="title-area pull-left">
@@ -18,7 +19,7 @@
                 <div class="magnifier">
                   <div class="shop-bottom clearfix">
                     <a ng-click="etabCtrl.showDialog()" title="Changer la photo"><i class="fa fa-wrench"></i></a>
-                    <input type="file" style="display:none;" id="selectPPEtab">
+                    <input type="file" style="display:none;" name="myFile" id="selectPPEtab">
                   </div>
                 </div>
               </div>
@@ -36,7 +37,7 @@
   </div>
 </div>
 <!-- end page-title -->
-
+</form>
 
 
 <annonces></annonces>

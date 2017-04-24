@@ -25,16 +25,40 @@ var storage = multer.diskStorage({
         } //path.extname(file.originalname) permet d'obtenir l'extension du fichier
 });
 
-var upload = multer({
-    storage: storage
-});
-var fs = require('fs');
-  var rep = 'client/assets/upload/Cours/' + '/';
-        mkdirp(rep, function(err) {
+var storageSchool = multer.diskStorage({
+    destination: function(req, file, cb) {
+        //cb(null, '../../test')
+        var dir = 'client/assets/upload/Etablissement/' + '/';
+        mkdirp(dir, function(err) {
             if (err) {
                 console.error(err);
             }
         });
+        cb(null, dir);
+    },
+    filename: function(req, file, cb) {
+            cb(null, req.params.id)
+        } //path.extname(file.originalname) permet d'obtenir l'extension du fichier
+});
+var upload = multer({
+    storage: storage
+});
+var uploadschool = multer({
+    storage: storageSchool
+});
+var fs = require('fs');
+var rep = 'client/assets/upload/Cours/' + '/';
+mkdirp(rep, function(err) {
+    if (err) {
+        console.error(err);
+    }
+});
+var repschool = 'client/assets/upload/Etablissement/' + '/';
+mkdirp(repschool, function(err) {
+    if (err) {
+        console.error(err);
+    }
+});
 export default function(app) {
     // Insert routes below
     app.post('/createcourse/:id', upload.single('myFile'), function uploadImage(req, res) {
@@ -48,12 +72,29 @@ export default function(app) {
         var size = myFile.size;
         var mimetype = myFile.mimetype;
     });
-    app.get('/deletepicture/:images',function deletePicture(req,res) {
+    app.post('/etablissement/:id', uploadschool.single('myFile'), function uploadImage(req, res) {
+        var widgetId = req.body.widgetId;
+        var width = req.body.width;
+        var myFile = req.file;
+        var originalname = myFile.originalname; //nom de l'image dans l'ordinateur du user
+        var filename = myFile.filename; //nouveau nom de l'image dans le dossier de sauvegarde
+        var path = myFile.path; //chemin complet de l'upload
+        var destination = myFile.destination; //destination de l'image
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
+    });
+    app.get('/deletepicture/:images', function deletePicture(req, res) {
         //var chemin=rep+req.params.images;
-       console.log('url bi', rep);
-    console.log('tourou image bi', req.params.images);
-    fs.unlinkSync( rep + req.params.images);
-});
+        console.log('url bi', rep);
+        console.log('tourou image bi', req.params.images);
+        fs.unlinkSync(rep + req.params.images);
+    });
+    app.get('/deletepictureschool/:images', function deletePicture(req, res) {
+        //var chemin=rep+req.params.images;
+        console.log('url bi', repschool);
+        console.log('tourou image bi', req.params.images);
+        fs.unlinkSync(repschool + req.params.images);
+    });
 
     app.use('/api/exercices', require('./api/Utilisateur_Module/exercice'));
     app.use('/api/type_fichiers', require('./api/Utilisateur_Module/type_fichier'));
