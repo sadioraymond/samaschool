@@ -58,7 +58,7 @@
     <div class="container">
       <data-owl-carousel class="owl-carousel text-center" data-options="{items: 2, nav: false, pagination: false, rewindNav : false}">
         <div owl-carousel-item="" ng-repeat="prof in etabCtrl.LesProfs" class="testi-item">
-            <img src="assets/upload/User/{{prof[0].user.images}}" alt="" class="img-circle" style="height: 50px; width: 50px">
+            <img ng-src="assets/upload/User/{{prof[0].user.images}}" alt="" class="img-circle" style="height: 50px; width: 50px">
             <h4> {{ prof[0].user.name }} </h4>
             <small>Envato.com</small>
             <p class="lead">The Hair cutting and styling with 25 years of experience Barberie offers you unlimited service. Our barber education
