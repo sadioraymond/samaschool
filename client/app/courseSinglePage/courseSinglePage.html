@@ -203,7 +203,8 @@
               </div>
               <!-- end rating -->
               <hr>
-              <input type="submit" value="Suivre ce cours" ng-hide="courseCtrl.bool" ng-click="courseCtrl.suivreClick()" class="btn btn-primary btn-block" />
+              <input type="submit" value="Suivre ce cours" ng-hide="courseCtrl.cacher()" ng-click="courseCtrl.suivreClick()" class="btn btn-primary btn-block" />
+              <input type="submit" ng-hide="courseCtrl.isLoggedIn()" value="Suivre ce cours"  class="btn btn-primary btn-block disabled" />
               <input type="submit" value="Ne plus suivre" ng-show="courseCtrl.bool" ng-click="courseCtrl.pasSuivreClick()" class="btn btn-danger btn-block" />
              
               <div class="course-meta clearfix">
