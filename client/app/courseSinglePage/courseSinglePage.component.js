@@ -16,6 +16,7 @@ export class CourseSinglePageComponent {
   LeCours: Array;
   getCurrentUser:Function;
   currentdate = new Date();
+  etat;
 
   // pour changer le bouton
   bool;
@@ -43,6 +44,17 @@ export class CourseSinglePageComponent {
           this.jsFonctions.otherScript();
         }, 0);
       });
+// vérification si l'utilisateur connecté suit déja le cours
+setTimeout(() => {
+         this.suiviCoursProvider.verifSuivi(this.getCurrentUser()._id, this.$stateParams.idCours).then(list =>{
+      this.etat = list;
+      if(this.etat.length != 0){
+        this.bool = true;
+      }
+      console.log('khollllll', list);
+    })
+        }, 2000);
+    
 
     // this.souscategorieProvider.getSousCatById(this.$stateParams.sousDomaine).then(list => {
     //   this.souscat = list;
@@ -109,6 +121,7 @@ export class CourseSinglePageComponent {
   }
   pasSuivreClick(){
     this.bool = false;
+    this.suiviCoursProvider.delSuivi(this.etat[0]._id);
   }
 }
 

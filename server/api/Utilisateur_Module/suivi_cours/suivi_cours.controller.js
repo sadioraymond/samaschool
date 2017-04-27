@@ -104,9 +104,7 @@ export function getCoursByUser(req, res) {
 export function getUserAndCours(req, res) {
     SuiviCours.find({ user: req.params.user, publication: req.params.cours }).exec()
         .then(list => {
-            if(list.length!=0)
-            return res.json('1');
-            return res.json('0');
+            return res.json(list);
         })
 
 }
