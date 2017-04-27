@@ -112,6 +112,7 @@
 </section>
 <!-- end section -->
 <section class="section bgd btop">
+ <form id="editannonceform" class="row" name="editannonceform" method="post" enctype="multipart/form-data">
   <div class="row-fluid">
     <div class="container">
       <data-owl-carousel class="owl-carousel nav-center text-center" data-options="{center: true, items: 1, navigation: true, pagination: false, rewindNav : false, autoplay:false}">
@@ -126,7 +127,7 @@
           <div class="row" style="height: 400px;">
             <div id="myimg{{annonce._id}}" class="col-md-6 myimg" ng-style="{'background':'url(assets/upload/Etablissement/{{annonce.images}}) no-repeat center center', 'background-size': 'cover'}">
               <a ng-if="vm.modifyAnnonce && vm.slider.index === $index" ng-click="vm.ouvreDialog()" style="margin-top: 10em;" class="btn btn-primary btn-square" title="Prendre une photo"><i class="fa fa-upload"></i></a>
-              <input style="display: none;" type="file" id="a">
+              <input style="display: none;" type="file" id="a" name="myFile">
             </div>
 
             <div class="col-md-6 col-md-offset-6" ng-if="!vm.modifyAnnonce || vm.slider.index !== $index">
@@ -138,19 +139,22 @@
               </div>
               <!-- end about-module -->
             </div>
+           
             <div class="col-md-6 col-md-offset-6" ng-if="vm.modifyAnnonce && vm.slider.index === $index">
               <div class="about-module wpa">
                 <input ng-model="vm.titreAnnonceAModifier" type="text" id="titreAnnone" class="form-control" placeholder="Titre">
                 <textarea ng-model="vm.descriptionAnnonceAModifier" class="form-control" id="description" rows="10" placeholder="Description de l'annone"></textarea>
-                <button type="submit" value="SEND" id="submit" class="btn btn-primary"> Valider</button>
+                <button type="submit" value="SEND" id="submit" class="btn btn-primary" ng-click="vm.modifAnnonce()"> Valider</button>
               </div>
               <!-- end modification -->
 
             </div>
+  
       </data-owl-carousel>
       <!--end of row-->
       </div>
       <!-- end container -->
       </div>
       <!-- end row fluid -->
+      </form>
 </section>
