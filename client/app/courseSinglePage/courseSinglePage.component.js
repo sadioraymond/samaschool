@@ -14,8 +14,13 @@ export class CourseSinglePageComponent {
   userProvider;
   LesChapitres: Array;
   LeCours: Array;
+  getCurrentUser:Function;
+  currentdate = new Date();
+
+  // pour changer le bouton
+  bool;
   /*@ngInject*/
-  constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider, userProvider) {
+  constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider, userProvider,suiviCoursProvider,Auth) {
     // setTimeout(() => {
     this.$stateParams = $stateParams;
     this.userProvider = userProvider;
@@ -26,6 +31,9 @@ export class CourseSinglePageComponent {
     this.coursProvider = coursProvider;
     this.souscategorieProvider = souscategorieProvider;
     this.chapitreProvider = chapitreProvider;
+    this.bool = false;
+    this.suiviCoursProvider = suiviCoursProvider;
+    this.getCurrentUser = Auth.getCurrentUserSync;
   }
   $onInit() {
     angular.element(document)
@@ -35,6 +43,7 @@ export class CourseSinglePageComponent {
           this.jsFonctions.otherScript();
         }, 0);
       });
+
     // this.souscategorieProvider.getSousCatById(this.$stateParams.sousDomaine).then(list => {
     //   this.souscat = list;
     //   console.log('La Sous Catégorie', this.souscat);
@@ -89,9 +98,21 @@ export class CourseSinglePageComponent {
       });
     }, 50);
   }
+
+  suivreClick(){
+    var datetime = this.currentdate.getFullYear()+ "-" +
+      (this.currentdate.getMonth() + 1) + "-" +
+      this.currentdate.getDate()
+      ;
+    this.suiviCoursProvider.addSuivi(this.$stateParams.idCours,this.getCurrentUser()._id,datetime);
+    this.bool = true;
+  }
+  pasSuivreClick(){
+    this.bool = false;
+  }
 }
 
-CourseSinglePageComponent.$inject = ["jsFonctions", "coursProvider", "$stateParams", "souscategorieProvider", "chapitreProvider", "userProvider"];
+CourseSinglePageComponent.$inject = ["jsFonctions", "coursProvider", "$stateParams", "souscategorieProvider", "chapitreProvider", "userProvider","suiviCoursProvider","Auth"];
 export default angular.module('samaschoolApp.courseSinglePage', [uiRouter])
   .config(routes)
   .component('courseSinglePage', {

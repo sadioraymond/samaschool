@@ -20,7 +20,20 @@ export function suiviCoursProviderService($http, $q) {
 
     }
 
+    this.addSuivi = function(pub, user, date) {
+        var deferred = $q.defer();
+
+                $http.post('/api/suivi_courss', {
+                    publication: pub,
+                    user: user,
+                    date_suivie: date
+                })
+            
+    }
+
 }
+
+ 
 
 export default angular.module('samaschoolApp.suivi_coursProvider', [])
   .service('suiviCoursProvider', suiviCoursProviderService)

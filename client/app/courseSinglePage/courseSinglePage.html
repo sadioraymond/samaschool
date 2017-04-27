@@ -81,6 +81,7 @@
           </table>
 
           <a href="#" class="btn btn-primary btn-block btn-lg btn-square">Suivre ce cours</a>
+          
 
         </div>
         <!-- end course-table -->
@@ -202,8 +203,9 @@
               </div>
               <!-- end rating -->
               <hr>
-              <input type="submit" value="Suivre ce cours" class="btn btn-primary btn-block" />
-
+              <input type="submit" value="Suivre ce cours" ng-hide="courseCtrl.bool" ng-click="courseCtrl.suivreClick()" class="btn btn-primary btn-block" />
+              <input type="submit" value="Ne plus suivre" ng-show="courseCtrl.bool" ng-click="courseCtrl.pasSuivreClick()" class="btn btn-danger btn-block" />
+             
               <div class="course-meta clearfix">
                 <p class="course-category">Domaine: <a> {{courseCtrl.LeCours.sous_categorie.libelle}}</a></p>
                 <hr>
