@@ -9,6 +9,7 @@ export class annoncesComponent {
     currentdate = new Date();
     datetime;
     images;
+    stateImage = false;
     constructor($stateParams, annonceProvider, jsFonctions, ouvreDialogProvider, etablissementProvider) {
         this.$stateParams = $stateParams;
         this.annonceProvider = annonceProvider;
@@ -34,6 +35,7 @@ export class annoncesComponent {
                 if (fichier.type.indexOf('image') > -1) {
                     var lecteur = new FileReader();
                     lecteur.onload = (e) => {
+                        this.stateImage = true;
                         // console.log('log', e);
                         let img = document.querySelector(`#myimg${this.slider.idAnnonce}`);
                         img.setAttribute('ng-style', '');
@@ -74,14 +76,22 @@ export class annoncesComponent {
         }
     }
     modifAnnonce() {
-        this.images = this.titreAnnonceAModifier + this.imag;
-        document.querySelector("#editannonceform").action = `/etablissement/${this.images}`;
-        $('#editannonceform').submit();
-        this.annonceProvider.modifierAnnonce(this.idannonce, this.descriptionAnnonceAModifier, this.images, this.titreAnnonceAModifier);
-        if (this.imageannoce !== "imageParDefautAnnonce.png") {
-            this.etablissementProvider.deleteFichier(this.imageannoce);
+        if (this.stateImage) {
+            console.log('1');
+            this.images = this.titreAnnonceAModifier + this.imag;
+            document.querySelector("#editannonceform").action = `/etablissement/${this.images}`;
+            $('#editannonceform').submit();
+            this.annonceProvider.modifierAnnonce(this.idannonce, this.descriptionAnnonceAModifier, this.images, this.titreAnnonceAModifier);
+            if (this.imageannoce !== "imageParDefautAnnonce.png") {
+                this.etablissementProvider.deleteFichier(this.imageannoce);
+            }
+            console.log('image bi', this.imageannoce);
+        } else {
+            console.log('2');
+            this.images = this.imageannoce;
+            this.annonceProvider.modifierAnnonce(this.idannonce, this.descriptionAnnonceAModifier, this.images, this.titreAnnonceAModifier);
         }
-        console.log('image bi', this.imageannoce);
+
     }
 
 }
