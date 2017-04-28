@@ -40,11 +40,29 @@ var storageSchool = multer.diskStorage({
             cb(null, req.params.id)
         } //path.extname(file.originalname) permet d'obtenir l'extension du fichier
 });
+var storageuser = multer.diskStorage({
+    destination: function(req, file, cb) {
+        //cb(null, '../../test')
+        var dir = 'client/assets/upload/User/' + '/';
+        mkdirp(dir, function(err) {
+            if (err) {
+                console.error(err);
+            }
+        });
+        cb(null, dir);
+    },
+    filename: function(req, file, cb) {
+            cb(null, req.params.id)
+        } //path.extname(file.originalname) permet d'obtenir l'extension du fichier
+});
 var upload = multer({
     storage: storage
 });
 var uploadschool = multer({
     storage: storageSchool
+});
+var uploaduser = multer({
+    storage: storageuser
 });
 var fs = require('fs');
 var rep = 'client/assets/upload/Cours/' + '/';
@@ -55,6 +73,12 @@ mkdirp(rep, function(err) {
 });
 var repschool = 'client/assets/upload/Etablissement/' + '/';
 mkdirp(repschool, function(err) {
+    if (err) {
+        console.error(err);
+    }
+});
+var repuser = 'client/assets/upload/User/' + '/';
+mkdirp(repuser, function(err) {
     if (err) {
         console.error(err);
     }
@@ -95,7 +119,23 @@ export default function(app) {
         console.log('tourou image bi', req.params.images);
         fs.unlinkSync(repschool + req.params.images);
     });
-
+    app.get('/deletepictureuser/:images', function deletePicture(req, res) {
+        //var chemin=rep+req.params.images;
+        console.log('url bi', repuser);
+        console.log('tourou image bi', req.params.images);
+        fs.unlinkSync(repuser + req.params.images);
+    });
+    app.post('/user/:id', uploaduser.single('myFile'), function uploadImage(req, res) {
+        var widgetId = req.body.widgetId;
+        var width = req.body.width;
+        var myFile = req.file;
+        var originalname = myFile.originalname; //nom de l'image dans l'ordinateur du user
+        var filename = myFile.filename; //nouveau nom de l'image dans le dossier de sauvegarde
+        var path = myFile.path; //chemin complet de l'upload
+        var destination = myFile.destination; //destination de l'image
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
+    });
     app.use('/api/exercices', require('./api/Utilisateur_Module/exercice'));
     app.use('/api/type_fichiers', require('./api/Utilisateur_Module/type_fichier'));
     app.use('/api/fichiers', require('./api/Utilisateur_Module/fichier'));

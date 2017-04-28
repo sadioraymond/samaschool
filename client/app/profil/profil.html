@@ -1,4 +1,5 @@
 <section class="section litpadtop bgw">
+ <form id="editprofilform" class="row" name="editprofilform" method="post" enctype="multipart/form-data">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 nopad">
@@ -17,7 +18,7 @@
                         <div class="magnifier" ng-show="profilCtrl.privateLink">
                           <div class="shop-bottom clearfix">
                             <a ng-click="profilCtrl.showDialog()" title="Changer la photo"><i class="fa fa-wrench"></i></a>
-                            <input type="file" style="display:none;" id="selectPP">
+                            <input type="file" style="display:none;" name="myFile" id="selectPP">
                           </div>
                         </div>
                       </div>
@@ -25,10 +26,11 @@
                   </div>
                   <div class="author-title desc">
                     <h4><a>{{profilCtrl.userData.username}}</a></h4>
-                    <a class="authorlink" href="https://showwp.com">https://showwp.com</a>
+                    <!--<a class="authorlink" href="https://showwp.com">https://showwp.com</a>-->
                     <ul class="list-inline social-small">
                       <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                       <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                       <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                     </ul>
                   </div>
@@ -45,7 +47,7 @@
     </div>
     <!-- end row -->
   </div>
-
+</form>
   <div class="container">
     <div class="row">
       <div id="sidebar" class="col-md-3 col-sm-12 page-left-sidebar">
@@ -116,8 +118,8 @@
 
             <div class="row profile-badges">
               <div class="col-md-6 col-sm-12 wow fadeIn" ng-repeat="etab in profilCtrl.LesEtabIncrit">
-                <div ui-sref="etablissement({id: etab._id})" class="boxes text-left service-first withcircle withborder leftservice">
-                  <i class="fa fa-user-plus alignleft"></i>
+                <div ui-sref="etablissement({id: etab._id})" class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 250px;">
+                  <img width="80px" alt="photo profil de {{etab.libelle}}" ng-src="assets/upload/Etablissement/{{etab.images}}" class="img-responsive img-circle alignleft">
 
                   <h3> {{etab.libelle}} </h3>
                   <p> {{etab.adresse}} </p>
@@ -136,7 +138,7 @@
             </div>
             <div class="row profile-badges">
               <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
+                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-birthday-cake alignleft"></i>
                   <h3>3+ Years of Membership</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
@@ -145,7 +147,7 @@
               <!-- end col -->
 
               <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
+                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-pencil alignleft"></i>
                   <h3>Contribute Teachme Blog</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
@@ -154,7 +156,7 @@
               <!-- end col -->
 
               <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
+                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-pencil alignleft"></i>
                   <h3>Contribute Teachme Blog</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
@@ -163,7 +165,7 @@
               <!-- end col -->
 
               <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
+                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-comments-o alignleft"></i>
                   <h3>Forum Moderator</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
@@ -172,7 +174,7 @@
               <!-- end col -->
 
               <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice">
+                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-code alignleft"></i>
                   <h3>Help to the development site</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>

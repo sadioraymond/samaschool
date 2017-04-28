@@ -79,8 +79,8 @@ export function jsFonctionsService() {
         }
       }
       $(".stat-count").each(function () {
-        $(this).data('count', parseInt($(this).html(), 10));
-        $(this).html('0');
+        $(this).data('count', parseInt($(this).html(), 0));
+        $(this).html('20000');
         count($(this));
       });
 

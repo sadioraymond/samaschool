@@ -6,6 +6,7 @@ var autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(mongoose);
 var AnnonceSchema = new mongoose.Schema({
     _id: Number,
+    titre: String,
     contenu: String,
     etablissement: {
         type: Number,

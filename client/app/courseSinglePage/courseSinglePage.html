@@ -172,6 +172,9 @@
           <!-- end postpager -->
         </div>
         <!-- end content -->
+        <div class="all-buttons text-center">
+          <a ui-sref="coursesPages" class="btn btn-primary btn-lg btn-square">VIEW ALL COURSES</a>
+        </div>
       </div>
       <!-- end col -->
       <div id="sidebar" class="col-md-3 col-sm-12">
@@ -238,14 +241,16 @@
                     <a ui-sref="courseSinglePage({sousDomaine:otherCours.sous_categorie._id, idCours:otherCours._id, idChap: ''})">
                       <img alt="poster du cours {{otherCours.titre}}" ng-src="assets/upload/Cours/{{otherCours.images}}" class="img-responsive alignleft"
                         style="height: 60px; width: 60px">
-                        <h4>{{otherCours.titre | limitTo: 40}}</h4>
-                        <div class="rating">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                        </div>
+
+                      <h4>{{otherCours.titre | limitTo: 40}}</h4>
+                      <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+
                     </a>
                   </div>
                 </li>
