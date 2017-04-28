@@ -21,10 +21,11 @@
           </video>
         </div>
         <!-- end media -->
-
         <div class="single-course-title text-center">
-          <h3><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
-              title=""> {{courseCtrl.LeCours.titre}} </a></h3>
+          <h3>
+            <a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
+              title=""> {{courseCtrl.LeCours.titre}} </a>
+          </h3>
           <div class="post-sharing">
             <ul class="list-inline">
               <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="hidden-xs">Share on Facebook</span></a></li>
@@ -35,9 +36,7 @@
           <!-- end post-sharing -->
         </div>
         <!-- end single-course-title -->
-
         <hr class="invis">
-
         <div ng-hide="courseCtrl.LesChapitres.length > 0 && !courseCtrl.$stateParams.idChap" class="course-single-desc clearfix">
           <div class="big-title">
             <h2 class="related-title">
@@ -48,13 +47,10 @@
           <!-- end big-title -->
           <p ng-if="courseCtrl.LesChapitres.length < 1" ng-bind-html="courseCtrl.LeCours.contenu"></p> <br>
           <p ng-if="courseCtrl.LesChapitres.length > 0 && courseCtrl.$stateParams.idChap" ng-bind-html="courseCtrl.LeChapitre.contenuChap.contenu">
-
           </p>
         </div>
         <!-- end post-padding -->
-
         <hr class="invis">
-
         <div class="course-table clearfix" ng-if="courseCtrl.LesChapitres.length > 0">
           <div class="big-title">
             <h2 class="related-title">
@@ -76,18 +72,18 @@
                 <td><i class="fa fa-play-circle"></i></td>
                 <td>{{chapitre.libelle | uppercase}}</td>
                 <td>{{$index + 1}}</td>
-              </tr>
+                </tr>
             </tbody>
           </table>
-
-          <a href="#" class="btn btn-primary btn-block btn-lg btn-square">Suivre ce cours</a>
-          
-
+          <input type="submit" value="Suivre ce cours" ng-hide="courseCtrl.cacher()" ng-click="courseCtrl.suivreClick()" class="btn btn-primary btn-block"
+          />
+          <input type="submit" ng-hide="courseCtrl.isLoggedIn()" value="Suivre ce cours" class="btn btn-primary btn-block disabled"
+          />
+          <input type="submit" value="Ne plus suivre" ng-show="courseCtrl.bool" ng-click="courseCtrl.pasSuivreClick()" class="btn btn-danger btn-block"
+          />
         </div>
         <!-- end course-table -->
-
         <hr class="invis1">
-
         <div class="single-content comment-wrapper clearfix">
           <div class="related-posts">
             <div class="big-title">
@@ -96,7 +92,6 @@
               </h2>
             </div>
             <!-- end big-title -->
-
             <div class="row">
               <div class="col-md-12">
                 <div class="panel">
@@ -145,7 +140,6 @@
           <!-- end postpager -->
         </div>
         <!-- end content -->
-
         <div class="single-content comment-wrapper">
           <div class="clearfix">
             <div class="big-title">
@@ -154,7 +148,6 @@
               </h2>
             </div>
             <!-- end big-title -->
-
             <div class="contact_form">
               <form class="row">
                 <div class="col-md-4 col-sm-12">
@@ -184,7 +177,6 @@
         </div>
       </div>
       <!-- end col -->
-
       <div id="sidebar" class="col-md-3 col-sm-12">
         <div class="row">
           <div class="post-media clearfix">
@@ -206,15 +198,18 @@
               </div>
               <!-- end rating -->
               <hr>
-              <input type="submit" value="Suivre ce cours" ng-hide="courseCtrl.cacher()" ng-click="courseCtrl.suivreClick()" class="btn btn-primary btn-block" />
-              <input type="submit" ng-hide="courseCtrl.isLoggedIn()" value="Suivre ce cours"  class="btn btn-primary btn-block disabled" />
-              <input type="submit" value="Ne plus suivre" ng-show="courseCtrl.bool" ng-click="courseCtrl.pasSuivreClick()" class="btn btn-danger btn-block" />
-             
+              <input type="submit" value="Suivre ce cours" ng-hide="courseCtrl.cacher()" ng-click="courseCtrl.suivreClick()" class="btn btn-primary btn-block"
+              />
+              <input type="submit" ng-hide="courseCtrl.isLoggedIn()" value="Suivre ce cours" class="btn btn-primary btn-block disabled"
+              />
+              <input type="submit" value="Ne plus suivre" ng-show="courseCtrl.bool" ng-click="courseCtrl.pasSuivreClick()" class="btn btn-danger btn-block"
+              />
               <div class="course-meta clearfix">
                 <p class="course-category">Domaine: <a> {{courseCtrl.LeCours.sous_categorie.libelle}}</a></p>
                 <hr>
                 <p class="course-instructors">Professeur :
-                  <a ui-sref="profil({username:courseCtrl.LeCours.user.username})" title="{{courseCtrl.LeCours.user.username}}"><img width="30px" height="30px" ng-src="assets/upload/User/{{courseCtrl.LeCours.user.images}}" class="img-circle"
+                  <a ui-sref="profil({username:courseCtrl.LeCours.user.username})" title="{{courseCtrl.LeCours.user.username}}">
+                    <img width="30px" height="30px" ng-src="assets/upload/User/{{courseCtrl.LeCours.user.images}}" class="img-circle"
                       alt=""> {{courseCtrl.LeCours.user.username}}
                   </a>
                 </p>
@@ -239,7 +234,6 @@
               </h2>
             </div>
             <!-- end big-title -->
-
             <div class="postpager liststylepost">
               <ul class="pager">
                 <li ng-repeat="otherCours in courseCtrl.LesCoursDeLaSousCategorie | limitTo: 3">
@@ -247,6 +241,7 @@
                     <a ui-sref="courseSinglePage({sousDomaine:otherCours.sous_categorie._id, idCours:otherCours._id, idChap: ''})">
                       <img alt="poster du cours {{otherCours.titre}}" ng-src="assets/upload/Cours/{{otherCours.images}}" class="img-responsive alignleft"
                         style="height: 60px; width: 60px">
+
                       <h4>{{otherCours.titre | limitTo: 40}}</h4>
                       <div class="rating">
                         <i class="fa fa-star"></i>
@@ -255,6 +250,7 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                       </div>
+
                     </a>
                   </div>
                 </li>
@@ -263,7 +259,6 @@
             <!-- end postpager -->
           </div>
           <!-- end widget -->
-
         </div>
       </div>
       <!-- end col -->
