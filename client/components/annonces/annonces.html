@@ -134,9 +134,12 @@
 
               <div class="col-md-6 col-md-offset-6" ng-if="!vm.modifyAnnonce || vm.slider.index !== $index">
                 <div class="about-module wpa">
-                  <h4>Titre</h4>
-                  <h3>Professional Course Builder</h3>
-                  <p> {{ annonce.contenu }} </p>
+                  <!--<pre>-->
+                  <h3>
+                    {{annonce.titre}}
+                  </h3>
+                  <p> {{annonce.contenu}} </p>
+                  <!--</pre>-->
                   <!--<a href="#" class="btn btn-primary btn-square">START HERE</a>-->
                 </div>
                 <!-- end about-module -->
