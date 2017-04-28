@@ -99,6 +99,17 @@ export function getCoursByUser(req, res) {
         })
 
 }
+
+// verifie si un user suit un cours
+export function getUserAndCours(req, res) {
+    SuiviCours.find({ user: req.params.user, publication: req.params.cours }).exec()
+        .then(list => {
+            return res.json(list);
+        })
+
+}
+
+
 // Creates a new SuiviCours in the DB
 export function create(req, res) {
     return SuiviCours.create(req.body)

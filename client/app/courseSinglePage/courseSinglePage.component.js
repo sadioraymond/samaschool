@@ -14,8 +14,15 @@ export class CourseSinglePageComponent {
   userProvider;
   LesChapitres: Array;
   LeCours: Array;
+  getCurrentUser: Function;
+  isLoggedIn: Function;
+  currentdate = new Date();
+  etat;
+
+  // pour changer le bouton
+  bool;
   /*@ngInject*/
-  constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider, userProvider) {
+  constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider, userProvider, suiviCoursProvider, Auth) {
     // setTimeout(() => {
     this.$stateParams = $stateParams;
     this.userProvider = userProvider;
@@ -26,6 +33,10 @@ export class CourseSinglePageComponent {
     this.coursProvider = coursProvider;
     this.souscategorieProvider = souscategorieProvider;
     this.chapitreProvider = chapitreProvider;
+    this.bool = false;
+    this.suiviCoursProvider = suiviCoursProvider;
+    this.getCurrentUser = Auth.getCurrentUserSync;
+    this.isLoggedIn = Auth.isLoggedInSync;
   }
   $onInit() {
     angular.element(document)
@@ -35,6 +46,23 @@ export class CourseSinglePageComponent {
           this.jsFonctions.otherScript();
         }, 0);
       });
+    // vérification si l'utilisateur connecté suit déja le cours
+    
+      setTimeout(() => {
+        if (this.isLoggedIn()) {
+        this.suiviCoursProvider.verifSuivi(this.getCurrentUser()._id, this.$stateParams.idCours).then(list => {
+          this.etat = list;
+          if (this.etat.length != 0) {
+            this.bool = true;
+          }
+          console.log('khollllll', list);
+        })
+        }
+      }, 1000);
+    
+
+
+
     // this.souscategorieProvider.getSousCatById(this.$stateParams.sousDomaine).then(list => {
     //   this.souscat = list;
     //   console.log('La Sous Catégorie', this.souscat);
@@ -80,7 +108,7 @@ export class CourseSinglePageComponent {
         this.LesCoursDeLaSousCategorie = list;
         // suppression du cours qui est déja afficher
         this.LesCoursDeLaSousCategorie.map((x, i) => {
-          if(x._id === this.LeCours._id){
+          if (x._id === this.LeCours._id) {
             console.info('ok 1', i);
             this.LesCoursDeLaSousCategorie.splice(i, 1);
           }
@@ -89,9 +117,37 @@ export class CourseSinglePageComponent {
       });
     }, 50);
   }
+
+  suivreClick() {
+   
+      var datetime = this.currentdate.getFullYear() + "-" +
+        (this.currentdate.getMonth() + 1) + "-" +
+        this.currentdate.getDate();
+      this.suiviCoursProvider.addSuivi(this.$stateParams.idCours, this.getCurrentUser()._id, datetime);
+      this.bool = true;
+    
+
+  }
+  pasSuivreClick() {
+    this.bool = false;
+    this.suiviCoursProvider.delSuivi(this.etat[0]._id);
+  }
+  cacher(){
+    if(this.bool == false && !this.isLoggedIn()){
+      return true;
+    }
+    if(this.bool == true){
+      return true;
+    }
+    // if(this.isLoggedIn){
+    // return false;
+
+    // }
+    return false;
+  }
 }
 
-CourseSinglePageComponent.$inject = ["jsFonctions", "coursProvider", "$stateParams", "souscategorieProvider", "chapitreProvider", "userProvider"];
+CourseSinglePageComponent.$inject = ["jsFonctions", "coursProvider", "$stateParams", "souscategorieProvider", "chapitreProvider", "userProvider", "suiviCoursProvider", "Auth"];
 export default angular.module('samaschoolApp.courseSinglePage', [uiRouter])
   .config(routes)
   .component('courseSinglePage', {
