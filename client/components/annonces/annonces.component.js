@@ -68,7 +68,7 @@ export class annoncesComponent {
     if (!this.modifyAnnonce) {
       this.annonceAModifier = annonce;
       console.log('annonce =>', annonce)
-    //   console.log('annonce =>', this.LesAnnoncesParEtab[this.slider.index])
+      //   console.log('annonce =>', this.LesAnnoncesParEtab[this.slider.index])
       console.log('slide =>', this.slider)
       this.modifyAnnonce = true;
       this.titreAnnonceAModifier = annonce.titre;
@@ -105,12 +105,18 @@ export class annoncesComponent {
 
   }
 
-    supprimerAnnonce() {
-        //cette fonction doit prendre en paramétre l'id de lannonce
-        this.annonceProvider.supprimerAnnonce();
-        //cette fonction doit prendre en paramétre le nom de l'image de l'annonce courante
-        this.etablissementProvider.deleteFichier();
+  supprimerAnnonce(annonce) {
+    console.log(annonce)
+    if (confirm('Etes vous sûre?')) {
+      //cette fonction doit prendre en paramétre l'id de lannonce
+      this.annonceProvider.supprimerAnnonce(annonce._id);
+      //cette fonction doit prendre en paramétre le nom de l'image de l'annonce courante
+      this.etablissementProvider.deleteFichier(annonce.images);
+
+      //suppression a la main de l'element en question dans la liste
+      this.LesAnnoncesParEtab.splice(this.slider.index, 1)
     }
+  }
 
 }
 annoncesComponent.$inject = ["$stateParams", "annonceProvider", "jsFonctions", "ouvreDialogProvider", "etablissementProvider", "$state"];
