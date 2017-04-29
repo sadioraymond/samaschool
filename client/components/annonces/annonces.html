@@ -121,7 +121,7 @@
             <a class="btn btn-primary btn-square" ng-click="" title="Ajouter une annonce"><i class="fa fa-plus"></i></a>
             <a class="btn btn-primary btn-square" ng-click="vm.slider= {'index': $index, 'idAnnonce': annonce._id}; vm.modifyAnnonceClick(annonce)"
               title="Modifier l'annonce"><i class="fa fa-wrench"></i></a>
-            <a class="btn btn-primary btn-square" ng-click="" title="Supprimer l'annonce"><i class="fa fa-trash"></i></a>
+            <a class="btn btn-primary btn-square" ng-click="vm.slider= {'index': $index, 'idAnnonce': annonce._id}; vm.supprimerAnnonce(annonce)" title="Supprimer l'annonce"><i class="fa fa-trash"></i></a>
             <!--</div>-->
           </div>
           <form id="editannonceform" class="row" name="editannonceform" method="post" enctype="multipart/form-data">
