@@ -29,6 +29,12 @@ export function annonceProviderService($http, $q) {
             console.log("Modifié bi Bakhna");
         });
     }
+    this.supprimerAnnonce = function(id) {
+        var deferred = $q.defer();
+        $http.delete('/api/annonces/' + id, {}).then(function() {
+            console.log("Supprimé bi Bakhna");
+        });
+    }
 }
 
 export default angular.module('samaschoolApp.annonceProvider', [])

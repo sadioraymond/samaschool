@@ -105,6 +105,13 @@ export class annoncesComponent {
 
   }
 
+    supprimerAnnonce() {
+        //cette fonction doit prendre en paramétre l'id de lannonce
+        this.annonceProvider.supprimerAnnonce();
+        //cette fonction doit prendre en paramétre le nom de l'image de l'annonce courante
+        this.etablissementProvider.deleteFichier();
+    }
+
 }
 annoncesComponent.$inject = ["$stateParams", "annonceProvider", "jsFonctions", "ouvreDialogProvider", "etablissementProvider", "$state"];
 export default angular.module('samaschoolApp.annonces', [])
