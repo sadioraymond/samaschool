@@ -114,7 +114,7 @@ export class annoncesComponent {
       this.etablissementProvider.deleteFichier(annonce.images);
 
       //suppression a la main de l'element en question dans la liste
-      this.LesAnnoncesParEtab.splice(this.slider, 1)
+      this.LesAnnoncesParEtab.splice(this.slider.index, 1)
     }
   }
 
