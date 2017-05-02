@@ -15,6 +15,7 @@ export class CoursesPagesComponent {
   souscategorieProvider;
 
   //Les variables globales
+  filtre;
   tousLesCours;
   lesCategories;
   lesSousCategories;
@@ -150,3 +151,4 @@ export default angular.module('samaschoolApp.coursesPages', [uiRouter])
     controllerAs: 'vm'
   })
   .name;
+
