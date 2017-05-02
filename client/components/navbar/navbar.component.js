@@ -17,8 +17,9 @@ export class NavbarComponent {
   test = false;
   userProvider;
   fegn;
-  constructor(Auth, userProvider) {
+  constructor(Auth, userProvider, $state) {
     'ngInject';
+    this.$state = $state
     this.isLoggedIn = Auth.isLoggedInSync;
     this.isAdmin = Auth.isAdminSync;
     this.getCurrentUser = Auth.getCurrentUserSync;
@@ -26,6 +27,28 @@ export class NavbarComponent {
   }
 
   $onInit() {}
+  // go to top courses
+  goTopCours() {
+    setTimeout(() => {
+      window.location.href = "#topCours"
+    }, 700);
+  }
+  goAllCourses() {
+    this.$state.go('coursesPages')
+    setTimeout(() => {
+      window.location.href = "#allCourses"
+    }, 2000);
+  }
+  goTopEtablissements() {
+    setTimeout(() => {
+      window.location.href = "#topEtablissement"
+    }, 1000);
+  }
+  goTopProfs() {
+    setTimeout(() => {
+      window.location.href = "#topProf"
+    }, 1000);
+  }
   showMsg() {
     this.test = true;
     // document.querySelector('#topbar_msg').click();
