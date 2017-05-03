@@ -82,7 +82,7 @@ function verify(tab, element) {
 
 function verifys(tab, element) {
     for (let i = 0; i < tab.length; i++) {
-        if (tab[i]._id == element._id) {
+        if (tab[i] == element) {
             return true;
         }
     }
@@ -282,70 +282,55 @@ export function getCoursByProfAndSchool(req, res) {
 }
 
 // Gets all Cours related to a School
-export function getCoursByEtablissements(req, res) {
-    var tab = [];
-    SuiviCoursClasse.find().populate('publication').exec(function(err, cp) {
-        cp.forEach(function(eleme) {
-            tab.push(eleme);
-        });
-        for (let i = 0; i < tab.length; i++) {
-            var tabs = [];
-            var cpt = 0;
-            var cou = [];
-            Detail.find({ classe: tab[i].classe, etablissement: req.params.etab }).exec().then(li => {
-                li.forEach(function(element) {
-                    var save = {};
-                    cou.push(tab[i].publication);
-                    save.cours = cou;
-                    tabs.push(save);
-                    cpt++;
-                    console.log('cpt', cpt);
-                    if (cpt == 7) {
-                        return res.json(tabs);
-                    }
-                });
-            });
-        }
-    });
-}
 
 export function getCoursByEtablissement(req, res) {
     var tab = [];
-    Detail.find({ etablissement: req.params.etab }).exec().then(li => {
-        li.forEach(function(element) {
-            tab.push(element.classe);
+    var coursyi = [];
+    var cou = [];
+    var tabs = [];
+    SuiviCoursClasse.find().populate('publication').exec().then(cours => {
+        cours.forEach(function(element) {
+            tab.push(element);
         });
-        var cpt = 0;
-        var tabbi = [];
-        for (let i = 0; i < tab.length; i++) {
-            var tabs = [];
-            var cou = [];
-            cpt++;
-            SuiviCoursClasse.find({ classe: tab[i] }).populate('publication').exec().then(cours => {
-                cours.forEach(function(el) {
-                    var save = {};
-                    if (tabbi == 0) {
-                        tabbi.push(el._id);
-                        cou.push(el.publication);
-                        save.cours = cou;
-                        tabs.push(save);
-                    } else {
-                        if (!verifys(tabbi, el._id)) {
-                            tabbi.push(el._id);
-                            cou.push(el.publication);
-                            save.cours = cou;
-                            tabs.push(save);
+        if (tab.length == 0) {
+            return res.json(tabs);
+        } else {
+            var cpt = 0;
+            for (let i = 0; i < tab.length; i++) {
+                Detail.find({ classe: tab[i].classe }).exec().then(li => {
+                    li.forEach(function(el) {
+                        var save = {};
+                        if (coursyi.length == 0) {
+                            if (el.etablissement == req.params.etab) {
+                                coursyi.push(tab[i].publication._id);
+                                cou.push(tab[i].publication);
+                                // save.cours = cou;
+                            }
+                            /*if (save.cours) {
+                                tabs.push(save);
+                            }*/
+                        } else {
+                            if (!verifys(coursyi, tab[i].publication._id)) {
+                                if (el.etablissement == req.params.etab) {
+                                    coursyi.push(tab[i].publication._id);
+                                    cou.push(tab[i].publication);
+                                    // save.cours = cou;
+                                }
+                                /*if (save.cours) {
+                                    tabs.push(save);
+                                }*/
+                            }
                         }
-                    }
-                    console.log('cpt', cpt);
-                    console.log('cou', cours.length);
-                    if (cpt == tab.length) {
-                        return res.json(tabs);
-                    }
+                        cpt++;
+                        console.log('tabs', cou);
+                        if (cpt == tab.length) {
+                            return res.json(cou);
+                        }
+                    });
                 });
-            });
+            }
         }
-    });
+    })
 }
 
 // Gets all Cours related to a SousCategorie
