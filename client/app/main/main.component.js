@@ -29,7 +29,8 @@ export class MainController {
   listeEtablissementPlussuivi;
   listProfSchool;
   /*@ngInject*/
-  constructor($http, $q, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, cfpLoadingBar) {
+  constructor($state, $http, $q, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, cfpLoadingBar) {
+    this.$state = $state
     this.$http = $http;
     this.$q = $q;
     this.cfpLoadingBar = cfpLoadingBar;
@@ -166,8 +167,15 @@ export class MainController {
         }
       }
     });
-   
 
+
+  }
+
+  // click sous Categorie dans la liste recents cours
+  viewScat(scat) {
+    console.log(scat)
+    this.$state.go('coursesPages')
+    this.coursProvider.scategorie = scat
   }
 }
 export default angular.module('samaschoolApp.main', [uiRouter, 'angular-loading-bar'])

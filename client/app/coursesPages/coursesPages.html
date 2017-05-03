@@ -4,7 +4,7 @@
     <div class="row">
       <nav class="portfolio-filter clearfix text-center">
         <ul>
-          <li><input type="text" value="" ng-model="vm.filtre" placeholder="Filter des cours" /></li>
+          <li><input type="text" value="" ng-model="vm.filtre" placeholder="Filter des cours et effacer si vous voulez voir tous" /></li>
           <li><a class="btn btn-default" ng-click="vm.allCourse()">Tous les Cours</a></li>
           <li><a class="btn btn-default" ng-click="vm.recentsCourse()">Les plus récents</a></li>
           <!--<li><a class="btn btn-default">Catégories</a></li>-->
@@ -33,7 +33,7 @@
     </div>
     <div class="row course-grid">
       <div class="col-md-offset-4 col-md-4 col-sm-4 col-xs-6 wow fadeIn" ng-if="vm.choixList == vm.lesCoursBySousCat &&  vm.lesCoursBySousCat.length === 0">
-        <h1>Cette catégorie ne contient pas de cours</h1>
+        <h1>Cette catégorie ne contient pas encore de cours</h1>
       </div>
       <div class="col-md-3 col-sm-4 col-xs-6 wow fadeIn" ng-repeat="cours in vm.choixList | filter:vm.filtre">
         <div class="shop-item course-v2">

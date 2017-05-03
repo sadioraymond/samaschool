@@ -43,7 +43,7 @@
                 </div>
               </div>
               <div class="pull-right">
-                <small>{{course.sous_categorie.libelle | limitTo: 20}}</small>
+                <small ng-click="$ctrl.viewScat(course.sous_categorie)" style="cursor: pointer;">{{course.sous_categorie.libelle | limitTo: 20}}</small>
               </div>
             </div>
             <h3><a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie._id, idCours:course._id})" title="{{course.description}}">{{course.titre | limitTo: 60}}</a></h3>
