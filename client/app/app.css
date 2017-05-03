@@ -84,6 +84,8 @@
 
 @import 'register/register.css';
 
+@import 'search/search.css';
+
 @import '../components/footer/footer.css';
 
 @import '../components/modal/modal.css';
