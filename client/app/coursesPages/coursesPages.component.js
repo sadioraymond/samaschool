@@ -42,11 +42,21 @@ export class CoursesPagesComponent {
     this.coursProvider = coursProvider;
     this.categorieProvider = categorieProvider;
     this.souscategorieProvider = souscategorieProvider;
-    this.categ.id = 0;
-    this.categ.libelle = "Domaine";
-    this.scateg.id = 0;
-    this.scateg.libelle = "sous Domaine";
-
+    if (this.coursProvider.scategorie == null) {
+      this.categ.id = 0;
+      this.categ.libelle = "Domaine";
+      this.scateg.id = 0;
+      this.scateg.libelle = "sous Domaine";
+    } else {
+      this.categ.id = this.coursProvider.scategorie.categorie;
+      this.categ.libelle = "libelle"
+      this.scateg.id = this.coursProvider.scategorie._id;
+      this.scateg.libelle = this.coursProvider.scategorie.libelle;
+    }
+    // this.coursProvider.getCoursBySousCat(this.scateg.id).then(list => {
+    //   this.lesCoursBySousCat = list;
+    //   this.choixList = this.lesCoursBySousCat;
+    // });
   }
 
 
@@ -61,11 +71,18 @@ export class CoursesPagesComponent {
 
 
     // Avoir la liste de tous les cour sau chargement de la page
-    this.coursProvider.listCours().then(list => {
-      this.tousLesCours = list;
-      console.log('les cours', list);
-      this.choixList = this.tousLesCours;
-    })
+    if (this.coursProvider.scategorie == null) {
+      this.coursProvider.listCours().then(list => {
+        this.tousLesCours = list;
+        console.log('les cours', list);
+        this.choixList = this.tousLesCours;
+      })
+    } else {
+      this.coursProvider.getCoursBySousCat(this.coursProvider.scategorie._id).then(list => {
+        this.lesCoursBySousCat = list;
+        this.choixList = this.lesCoursBySousCat;
+      });
+    }
 
     // Avoir toutes les categories au chargement de la page
     this.categorieProvider.listCategorie().then(list => {
@@ -134,7 +151,7 @@ export class CoursesPagesComponent {
     });
     this.scateg.id = scat._id;
     this.scateg.libelle = scat.libelle;
-
+    console.log(this.scateg)
   }
 }
 
@@ -151,4 +168,3 @@ export default angular.module('samaschoolApp.coursesPages', [uiRouter])
     controllerAs: 'vm'
   })
   .name;
-
