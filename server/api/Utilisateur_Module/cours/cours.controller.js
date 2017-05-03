@@ -304,21 +304,13 @@ export function getCoursByEtablissement(req, res) {
                             if (el.etablissement == req.params.etab) {
                                 coursyi.push(tab[i].publication._id);
                                 cou.push(tab[i].publication);
-                                // save.cours = cou;
                             }
-                            /*if (save.cours) {
-                                tabs.push(save);
-                            }*/
                         } else {
                             if (!verifys(coursyi, tab[i].publication._id)) {
                                 if (el.etablissement == req.params.etab) {
                                     coursyi.push(tab[i].publication._id);
                                     cou.push(tab[i].publication);
-                                    // save.cours = cou;
                                 }
-                                /*if (save.cours) {
-                                    tabs.push(save);
-                                }*/
                             }
                         }
                         cpt++;
