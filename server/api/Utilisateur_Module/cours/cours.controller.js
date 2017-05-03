@@ -80,6 +80,15 @@ function verify(tab, element) {
     return false;
 }
 
+function verifys(tab, element) {
+    for (let i = 0; i < tab.length; i++) {
+        if (tab[i]._id == element._id) {
+            return true;
+        }
+    }
+    return false;
+}
+
 //delete a Picture
 
 export function deletePicture(images) {
@@ -273,32 +282,70 @@ export function getCoursByProfAndSchool(req, res) {
 }
 
 // Gets all Cours related to a School
-export function getCoursByEtablissement(req, res) {
-    User.find({
-        user: req.params.etab
-    }).exec(function(err, userss) {
-        if (err) {
-            return handleError(res, err);
-        }
-        userss.forEach(function(element) {
-            if (element.profil === 4) {
-                Cours.find({
-                    user: req.params.etab
-                }).populate('sous_categorie').populate('user').exec(function(err, courss) {
-                    if (err) {
-                        return handleError(res, err);
+export function getCoursByEtablissements(req, res) {
+    var tab = [];
+    SuiviCoursClasse.find().populate('publication').exec(function(err, cp) {
+        cp.forEach(function(eleme) {
+            tab.push(eleme);
+        });
+        for (let i = 0; i < tab.length; i++) {
+            var tabs = [];
+            var cpt = 0;
+            var cou = [];
+            Detail.find({ classe: tab[i].classe, etablissement: req.params.etab }).exec().then(li => {
+                li.forEach(function(element) {
+                    var save = {};
+                    cou.push(tab[i].publication);
+                    save.cours = cou;
+                    tabs.push(save);
+                    cpt++;
+                    console.log('cpt', cpt);
+                    if (cpt == 7) {
+                        return res.json(tabs);
                     }
-                    console.log('Cours yi', courss);
-                    return res.json(courss);
                 });
-            } else {
-                console.log('C est pas un Etablissement');
-                return res.json("Vous n'etes pas un Etablissement");
-            }
-        }, this);
-
+            });
+        }
     });
+}
 
+export function getCoursByEtablissement(req, res) {
+    var tab = [];
+    Detail.find({ etablissement: req.params.etab }).exec().then(li => {
+        li.forEach(function(element) {
+            tab.push(element.classe);
+        });
+        var cpt = 0;
+        var tabbi = [];
+        for (let i = 0; i < tab.length; i++) {
+            var tabs = [];
+            var cou = [];
+            cpt++;
+            SuiviCoursClasse.find({ classe: tab[i] }).populate('publication').exec().then(cours => {
+                cours.forEach(function(el) {
+                    var save = {};
+                    if (tabbi == 0) {
+                        tabbi.push(el._id);
+                        cou.push(el.publication);
+                        save.cours = cou;
+                        tabs.push(save);
+                    } else {
+                        if (!verifys(tabbi, el._id)) {
+                            tabbi.push(el._id);
+                            cou.push(el.publication);
+                            save.cours = cou;
+                            tabs.push(save);
+                        }
+                    }
+                    console.log('cpt', cpt);
+                    console.log('cou', cours.length);
+                    if (cpt == tab.length) {
+                        return res.json(tabs);
+                    }
+                });
+            });
+        }
+    });
 }
 
 // Gets all Cours related to a SousCategorie
