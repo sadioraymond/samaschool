@@ -1,11 +1,11 @@
 <form id="editPhotoCouvertureEtab" class="row" name="editPhotoCouvertureEtab" method="post" enctype="multipart/form-data">
   <div class="entry entry2">
-    <section class="section paralbackground banner" style="background-image:url('assets/upload/Etablissement/{{etabCtrl.Letablissement.imagecouverture}}'); height: 500px; border-bottom: 4px solid #fff"
+    <section class="section paralbackground banner" id="imgTagEtabC" style="background-image:url('assets/upload/Etablissement/{{etabCtrl.Letablissement.imagecouverture}}'); height: 500px; border-bottom: 4px solid #fff"
       data-img-width="2400" data-img-height="907" data-diff="100">
       <div class="magnifier">
         <div class="shop-bottom clearfix">
-          <a ng-click="etabCtrl.showDialog()" title="Changer la photo"><i class="fa fa-wrench"></i></a>
-          <input type="file" style="display:none;" name="myFile" id="selectPPEtab">
+          <a ng-click="etabCtrl.showDialogs()" title="Changer la photo"><i class="fa fa-wrench"></i></a>
+          <input type="file" style="display:none;" name="myFile" id="selectPPEtabC">
         </div>
       </div>
       <div class="overlay"></div>
