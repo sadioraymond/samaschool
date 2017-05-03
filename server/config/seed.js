@@ -144,14 +144,16 @@ export default function seedDatabaseIfNeeded() {
                         adresse: "CP 598, 1868 Vivamus Chemin",
                         tel: "201-626-324-3444",
                         email: "sit.amet.metus@Curabiturmassa.co.uk",
-                        images: "imageParDefautPourLesEtablissement.png"
+                        images: "imageParDefautPourLesEtablissement.png",
+                        imagecouverture: "profil_uahb.jpg"
                     }, {
                         _id: 2,
                         libelle: "UCAD",
                         adresse: "CP 815, 6268 Diam Av.",
                         tel: "201-665-249-3835",
                         email: "a.mi.fringilla@ametmetus.net",
-                        images: "imageParDefautPourLesEtablissement.png"
+                        images: "imageParDefautPourLesEtablissement.png",
+                        imagecouverture: "ucad.jpg"
                     })
                     .then(() => console.log('finished populating Etablissement'))
                     .catch(err => console.log('error populating Etablissement', err));
