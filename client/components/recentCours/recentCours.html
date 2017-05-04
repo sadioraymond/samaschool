@@ -1,0 +1,57 @@
+<section class="section bgw">
+  <div class="container">
+    <div class="big-title">
+      <h2 class="related-title">
+        <span>Recent cours</span>
+      </h2>
+    </div>
+    <!-- end big-title -->
+
+
+     <data-owl-carousel class="owl-carousel" data-options="{navigation: true, pagination: false, rewindNav : false}">
+      <div owl-carousel-item="" ng-repeat="course in vm.lesCours" class="item">
+         <div class="shop-item">
+          <div class="post-media entry">
+            <img src="assets/upload/Cours/{{course.images}}" alt="" class="img-responsive" style="height: 200px;">
+            <div class="magnifier">
+              <div class="shop-bottom clearfix">
+                <a href="single.html" title="Full Preview"><i class="fa fa-link"></i></a>
+              </div>
+              <!-- end shop-bottom -->
+            </div>
+            <!-- end magnifier -->
+          </div>
+          <!-- end post-media -->
+          <div class="shop-desc">
+            <div class="shop-price clearfix">
+              <div class="pull-left">
+                <div class="rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+              </div>
+              <div class="pull-right">
+                <small style="cursor: pointer;">{{course.scat.libelle | limitTo: 20}}</small>
+              </div>
+            </div>
+            <h3><a ui-sref="courseSinglePage({sousDomaine:course.scat._id, idCours:course._id})" title="{{course.description}}">{{course.titre | limitTo: 60}}</a></h3>
+          </div>
+
+          <div class="large-post-meta">
+            <span class="avatar"><a ui-sref="profil({username: course.us.username})"><img ng-src="assets/upload/User/{{course.us.images}}" alt="" class="img-circle"> {{course.us.username}}</a></span>
+            <small>&#124;</small>
+            <span><a><i class="fa fa-clock-o"></i> 2 Month</a></span>
+            <small class="hidden-xs">&#124;</small>
+            <span class="hidden-xs"><a><i class="fa fa-graduation-cap"></i> 12 Students</a></span>
+          </div>
+          <!-- end meta -->
+        </div>
+      </div>
+    </data-owl-carousel>
+    <!-- end carousel-widget -->
+  </div>
+  <!-- end container -->
+</section>

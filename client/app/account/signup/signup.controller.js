@@ -8,36 +8,42 @@ type User = {
   email: string;
   password: string;
 };
-
 export default class SignupController {
   user: User = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   };
   errors = {};
   submitted = false;
   Auth;
   $state;
+  matchPass;
+  userProvider;
 
   /*@ngInject*/
-  constructor(Auth, $state) {
+  constructor(Auth, $state, userProvider) {
     this.Auth = Auth;
     this.$state = $state;
+    this.userProvider = userProvider;
   }
 
   register(form) {
     this.submitted = true;
-
-    if(form.$valid) {
+    // if(confirmPassword === this.user.password){}
+    if (form.$valid && this.user.confirmPassword === this.user.password) {
       return this.Auth.createUser({
-        name: this.user.name,
-        email: this.user.email,
-        password: this.user.password
-      })
+          name: this.user.name,
+          email: this.user.email,
+          password: this.user.password
+          // confirmPassword: this.user.password
+        })
         .then(() => {
+          this.matchPass = false;
           // Account created, redirect to home
-          this.$state.go('main');
+          this.userProvider.partage(this.userProvider.varbi);
+          // this.$state.go('main');
         })
         .catch(err => {
           err = err.data;
@@ -48,6 +54,8 @@ export default class SignupController {
             this.errors[field] = error.message;
           });
         });
+    }else{
+      this.matchPass = true;
     }
   }
 }

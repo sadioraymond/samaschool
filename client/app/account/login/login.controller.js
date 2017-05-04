@@ -1,5 +1,6 @@
 'use strict';
 // @flow
+// import ModalInstanceCtrl from '../../../components/navbar/navbar.component';
 
 type User = {
   name: string;
@@ -19,27 +20,37 @@ export default class LoginController {
   submitted = false;
   Auth;
   $state;
+  userProvider;
 
   /*@ngInject*/
-  constructor(Auth, $state) {
+  constructor(Auth, $state, userProvider) {
     this.Auth = Auth;
     this.$state = $state;
+    this.userProvider = userProvider;
   }
 
   login(form) {
     this.submitted = true;
 
-    if(form.$valid) {
+    if (form.$valid) {
       this.Auth.login({
-        email: this.user.email,
-        password: this.user.password
-      })
+          email: this.user.email,
+          password: this.user.password
+        })
         .then(() => {
+          // ===>>>> Permet de repasser par le constructeur de la page concernée <<<======
+          this.$state.reload();
+          this.userProvider.msg = true;
+          // document.querySelector('#topbar_msg').click();
+          setTimeout(() => {
+            this.userProvider.partage(this.userProvider.varbi);
+            // angular.element('#topbar_msg').triggerHandler('click');
+          }, 500);
           // Logged in, redirect to home
-          this.$state.go('main');
         })
         .catch(err => {
           this.errors.login = err.message;
+           this.$state.go('main');
         });
     }
   }
