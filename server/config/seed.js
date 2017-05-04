@@ -39,7 +39,8 @@ export default function seedDatabaseIfNeeded() {
                         username: 'Test',
                         email: 'test@example.com',
                         password: 'test',
-                        images: "ImageParDerfautPourLesUsers.png"
+                        images: "ImageParDerfautPourLesUsers.png",
+                        imagecouverture: "images.jpg"
                     }, {
                         _id: "58b03802d98ff60ec2777f8d",
                         provider: 'local',
@@ -48,63 +49,72 @@ export default function seedDatabaseIfNeeded() {
                         username: 'Admin',
                         email: 'admin@example.com',
                         password: 'admin',
-                        images: "ImageParDerfautPourLesUsers.png"
+                        images: "ImageParDerfautPourLesUsers.png",
+                        imagecouverture: "images.png"
                     }, {
                         _id: "58b03802d98ff60ec2777f8e",
                         name: "Selma",
                         username: "Selma",
                         email: "selma@example.com",
                         password: "Passer",
-                        images: "ImageParDerfautPourLesUsers.png"
+                        images: "ImageParDerfautPourLesUsers.png",
+                        imagecouverture: "images (1).jpg"
                     }, {
                         _id: "58b03802d98ff60ec2777f8f",
                         name: "Lilah",
                         username: "Lilah",
                         email: "lilah@example.com",
                         password: "Passer",
-                        images: "ImageParDerfautPourLesUsers.png"
+                        images: "ImageParDerfautPourLesUsers.png",
+                        imagecouverture: "images (1).png"
                     }, {
                         _id: "58b03802d98ff60ec2777f90",
                         name: "Sebastian",
                         username: "Sebastian",
                         email: "sebastian@example.com",
                         password: "Passer",
-                        images: "ImageParDerfautPourLesUsers.png"
+                        images: "ImageParDerfautPourLesUsers.png",
+                        imagecouverture: "images (2).jpg"
                     }, {
                         _id: "58b03802d98ff60ec2777f91",
                         name: "Pach",
                         username: "Pach",
                         email: "pach@example.com",
                         password: "Passer",
-                        images: "ImageParDerfautPourLesUsers.png"
+                        images: "ImageParDerfautPourLesUsers.png",
+                        imagecouverture: "images (2).png"
                     }, {
                         _id: "58b03802d98ff60ec2777f92",
                         name: "chico",
                         username: "chico",
                         email: "chico@example.com",
                         password: "Passer",
-                        images: "ImageParDerfautPourLesUsers.png"
+                        images: "ImageParDerfautPourLesUsers.png",
+                        imagecouverture: "images (3).jpg"
                     }, {
                         _id: "58b03802d98ff60ec2777f93",
                         name: "raymond",
                         username: "ray",
                         email: "ray@example.com",
                         password: "Passer",
-                        images: "ImageParDerfautPourLesUsers.png"
+                        images: "ImageParDerfautPourLesUsers.png",
+                        imagecouverture: "images (4).jpg"
                     }, {
                         _id: "58b03802d98ff60ec2777f94",
                         name: "kain",
                         username: "kain",
                         email: "kain@kain.com",
                         password: "passer",
-                        images: "ImageParDerfautPourLesUsers.png"
+                        images: "ImageParDerfautPourLesUsers.png",
+                        imagecouverture: "images (5).jpg"
                     }, {
                         _id: "58b03802d98ff60ec2777f95",
                         name: "Illiana",
                         username: "Illiana",
                         email: "illiana@example.com",
                         password: "Passer",
-                        images: "ImageParDerfautPourLesUsers.png"
+                        images: "ImageParDerfautPourLesUsers.png",
+                        imagecouverture: "images (6).jpg"
                     })
                     .then(() => console.log('finished populating users'))
                     .catch(err => console.log('error populating users', err));

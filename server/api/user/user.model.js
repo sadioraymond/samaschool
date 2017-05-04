@@ -11,6 +11,7 @@ var UserSchema = new Schema({
     name: String,
     username: String,
     images: String,
+    imagecouverture: String,
     email: {
         type: String,
         lowercase: true,
