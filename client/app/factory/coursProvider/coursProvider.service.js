@@ -9,6 +9,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
     this.show = false;
     this.chapitreCoursAModifie = {};
     this.scategorie = null;
+    this.reload = false;
     this.listCours = function() {
         var deferred = $q.defer();
         var liste = [];

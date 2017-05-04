@@ -31,7 +31,7 @@ export class CreatecourseComponent {
     titreChap = [];
     objectifChap = [];
     contenuChap = [];
-    idFichier=[];
+    idFichier = [];
     lienVideoChap = [];
     objChap = {};
     getcurrentUser;
@@ -159,7 +159,7 @@ export class CreatecourseComponent {
                     this.chapitreCoursAModifie = list;
                     if (this.chapitreCoursAModifie.length == 0) {
                         // Cas ou il n'y a pas de chapitres dans le cours
-                        this.coursProvider.objetCours.nombre=0;
+                        this.coursProvider.objetCours.nombre = 0;
                         console.log('Liste Vide chap', this.chapitreCoursAModifie);
                         this.nbChap = this.chapitreCoursAModifie.length;
                         this.GenerateFields();
@@ -169,7 +169,7 @@ export class CreatecourseComponent {
                     } else {
                         // Cas ou il ya des chapitres dans le cours
                         console.info('les chapitre du cours a modifié', this.chapitreCoursAModifie, 'et nombre ', this.chapitreCoursAModifie.length);
-                        this.coursProvider.objetCours.nombre=this.chapitreCoursAModifie.length;
+                        this.coursProvider.objetCours.nombre = this.chapitreCoursAModifie.length;
                         this.nbChap = this.chapitreCoursAModifie.length;
                         this.GenerateFields();
                         this.chapitreCoursAModifie.map((x, index) => {
@@ -182,7 +182,7 @@ export class CreatecourseComponent {
                                     this.chapitreProvider.getFichierByChapitre(x._id).then(list => {
                                         this.FichierAmodifier = list;
                                         console.log('khol li', this.FichierAmodifier);
-                                        this.idFichier[index]=this.FichierAmodifier[0]._id;
+                                        this.idFichier[index] = this.FichierAmodifier[0]._id;
                                         this.contenuChap[index] = this.FichierAmodifier[0].contenu;
                                         this.lienVideoChap[index] = this.FichierAmodifier[0].link;
                                     });
@@ -219,6 +219,7 @@ export class CreatecourseComponent {
                 var lecteur = new FileReader();
                 lecteur.onload = function(e) {
                     console.log('log', e);
+                    thi.coursProvider.objetCours.StateImage = true;
                     var img = document.querySelector('#imageSection');
                     img.style.background = 'url(' + e.target.result + ') center center no-repeat';
                     img.style.backgroundSize = 'cover';
@@ -260,7 +261,7 @@ export class CreatecourseComponent {
                 this.lienVideoch = this.lienVideoChap[c];
                 this.objChap[`${c}`] = {
                     'id_chap': this.idChap[c],
-                    'idFichier':this.idFichier[c],
+                    'idFichier': this.idFichier[c],
                     'titre': this.titrech,
                     'objectif': this.objectifch,
                     'contenu': this.contenuch,
@@ -493,7 +494,7 @@ export function ModalDemoCtrl($uibModal, $log, $document) {
         });
     };
 }
-export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classeProvider, Auth, coursProvider) {
+export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classeProvider, Auth, coursProvider, $state) {
 
     var $ctrl = this;
     $ctrl.items = items;
@@ -513,6 +514,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     coursProvider.objetCours.date = $ctrl.datetime;
     coursProvider.objetCours.user = $ctrl.getcurrentUser()._id;
     coursProvider.objetCours.act = $ctrl.activite;
+    $ctrl.verif = 1;
     $ctrl.toggleSelection = function toggleSelection(value) {
         var idx = $ctrl.selection.indexOf(value); // is currently selected
 
@@ -525,14 +527,20 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     };
     $ctrl.ok = function() {
         //soumission du formulaire
-        $ctrl.parametre = coursProvider.objetCours.titre + '-' + Date.now() + '.' + coursProvider.objetCours.images;
-        document.querySelector("#createcourseform").action = `/createcourse/${$ctrl.parametre}`;
-        document.querySelector('#createcourseform').submit();
+        if (coursProvider.objetCours.StateImage) {
+            $ctrl.parametre = coursProvider.objetCours.titre + '-' + Date.now() + '.' + coursProvider.objetCours.images;
+            document.querySelector("#createcourseform").action = `/createcourse/${$ctrl.parametre}`;
+            document.querySelector('#createcourseform').submit();
+        } else {
+            $ctrl.parametre = coursProvider.objetCours.url;
+            $ctrl.verif = 0;
+        }
         $uibModalInstance.close($ctrl.selected.item);
         if (!coursProvider.params) {
             if (coursProvider.objetCours.tab) {
                 console.log('Amoul dara', $ctrl.getcurrentUser()._id);
                 coursProvider.ajoutCours2(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, coursProvider.objetCours.tab, coursProvider.objetCours.taille, $ctrl.activite, $ctrl.selection, $ctrl.parametre);
+                $state.go("profil", { "username": $ctrl.getcurrentUser().username });
                 console.log('khol li', coursProvider.objetCours.taille);
                 console.log('verif', $ctrl.selection);
             } else {
@@ -540,29 +548,39 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
                 console.log('khol li ni', coursProvider.objetCours.lienVideo);
                 console.log('khol li ni 1', coursProvider.objetCours.contenuCours);
                 coursProvider.ajoutCours(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.selection, coursProvider.objetCours.lienVideo, coursProvider.objetCours.contenuCours, $ctrl.parametre);
+                $state.go("profil", { "username": $ctrl.getcurrentUser().username });
             }
         } else {
-            if(coursProvider.objetCours.nombre==0){
+            if (coursProvider.objetCours.nombre == 0) {
                 console.log('0 bi leu', coursProvider.objetCours.nombre);
-                if(coursProvider.objetCours.tab){
-                    var lienV="";
-                    var contenuC="";
-                    coursProvider.deleteFichier(coursProvider.objetCours.url);
-                    coursProvider.modifierCou(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre,lienV,contenuC);
-                    coursProvider.ajoutChapitre(coursProvider.params,coursProvider.objetCours.tab, coursProvider.objetCours.taille);
-                }else{
-                    coursProvider.deleteFichier(coursProvider.objetCours.url);
-                    coursProvider.modifierCou(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre,coursProvider.objetCours.lienVideo, coursProvider.objetCours.contenuCours);
+                if (coursProvider.objetCours.tab) {
+                    var lienV = "";
+                    var contenuC = "";
+                    if ($ctrl.verif == 1) {
+                        coursProvider.deleteFichier(coursProvider.objetCours.url);
+                    }
+                    coursProvider.modifierCou(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre, lienV, contenuC);
+                    coursProvider.ajoutChapitre(coursProvider.params, coursProvider.objetCours.tab, coursProvider.objetCours.taille);
+                    $state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" });
+                } else {
+                    if ($ctrl.verif == 1) {
+                        coursProvider.deleteFichier(coursProvider.objetCours.url);
+                    }
+                    coursProvider.modifierCou(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre, coursProvider.objetCours.lienVideo, coursProvider.objetCours.contenuCours);
+                    $state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" });
                 }
-            }else{
-            console.log('you beuri yi leu', coursProvider.objetCours.nombre);
-            console.log('Teste la wone');
-            console.log('khol ko', coursProvider.params);
-            console.log('li lane la', coursProvider.objetCours);
-            coursProvider.deleteFichier(coursProvider.objetCours.url);
-            coursProvider.modifierCours(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre);
-            coursProvider.modifierChapitre(coursProvider.objetCours.tab, coursProvider.objetCours.taille);
-            coursProvider.modifierFichier(coursProvider.objetCours.tab, coursProvider.objetCours.taille);
+            } else {
+                console.log('you beuri yi leu', coursProvider.objetCours.nombre);
+                console.log('Teste la wone');
+                console.log('khol ko', coursProvider.params);
+                console.log('li lane la', coursProvider.objetCours);
+                if ($ctrl.verif == 1) {
+                    coursProvider.deleteFichier(coursProvider.objetCours.url);
+                }
+                coursProvider.modifierCours(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre);
+                coursProvider.modifierChapitre(coursProvider.objetCours.tab, coursProvider.objetCours.taille);
+                coursProvider.modifierFichier(coursProvider.objetCours.tab, coursProvider.objetCours.taille);
+                $state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" });
             }
         }
 
@@ -632,7 +650,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
 }
 CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth", "classeProvider", "$stateParams", "chapitreProvider", "$state", "$location"];
 ModalDemoCtrl.$inject = ["$uibModal", "$log", "$document"];
-ModalInstanceCtrl.$inject = ["$uibModalInstance", "items", "userProvider", "classeProvider", "Auth", "coursProvider"];
+ModalInstanceCtrl.$inject = ["$uibModalInstance", "items", "userProvider", "classeProvider", "Auth", "coursProvider", "$state"];
 export default angular.module('samaschoolApp.createcourse', [uiRouter])
     .config(routes)
     .component('createcourse', {
