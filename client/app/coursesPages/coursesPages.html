@@ -3,8 +3,9 @@
   <div class="container" id="allCourses">
     <div class="row">
       <nav class="portfolio-filter clearfix text-center">
+        <input type="text"value="" ng-model="vm.filtre" placeholder="Rechercher un cours" style="height: 40px;width: 250px; border-bottom-color: black; margin-bottom: 20px " />
         <ul>
-          <li><input type="text" value="" ng-model="vm.filtre" placeholder="Filter des cours et effacer si vous voulez voir tous" /></li>
+          
           <li><a class="btn btn-default" ng-click="vm.allCourse()">Tous les Cours</a></li>
           <li><a class="btn btn-default" ng-click="vm.recentsCourse()">Les plus récents</a></li>
           <!--<li><a class="btn btn-default">Catégories</a></li>-->

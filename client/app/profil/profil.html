@@ -116,12 +116,12 @@
             </div>
             <!-- end big-title -->
 
-            <div class="row profile-badges">
+            <div class="row profile-badges" style="width: 750px">
               <div class="col-md-6 col-sm-12 wow fadeIn" ng-repeat="etab in profilCtrl.LesEtabIncrit">
-                <div ui-sref="etablissement({id: etab._id})" class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 250px;">
-                  <img width="80px" alt="photo profil de {{etab.libelle}}" ng-src="assets/upload/Etablissement/{{etab.images}}" class="img-responsive img-circle alignleft">
+                <div ui-sref="etablissement({id: etab._id})" class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 200px;">
+                 <a href="">  <img width="80px" alt="photo profil de {{etab.libelle}}" ng-src="assets/upload/Etablissement/{{etab.images}}" class="img-responsive img-circle alignleft"></a>
 
-                  <h3> {{etab.libelle}} </h3>
+                   <h3><a href=""> {{etab.libelle}}</a> </h3>
                   <p> {{etab.adresse}} </p>
                   <p> {{etab.email}} </p>
                   <p> {{etab.tel}} </p>
