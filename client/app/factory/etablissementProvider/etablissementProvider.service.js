@@ -71,6 +71,14 @@ export function etablissementProviderService($http, $q) {
             console.log("Modifié bi Bakhna");
         });
     }
+    this.changeImagesC = function(id, images) {
+        var deferred = $q.defer();
+        $http.put('/api/etablissements/' + id, {
+            imagecouverture: images
+        }).then(function() {
+            console.log("Modifié bi Bakhna");
+        });
+    }
     this.getEtabByUser = function(user) {
         var deferred = $q.defer();
         var liste = [];
