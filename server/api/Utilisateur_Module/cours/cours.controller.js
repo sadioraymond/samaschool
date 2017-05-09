@@ -123,6 +123,7 @@ export function show(req, res) {
         .catch(handleError(res));
 }
 
+// get cours by nom ou description ou une partie
 export function getCoursByNameOrDesc(req, res) {
     return Cours.find({ $or: [ { titre: {'$regex' : req.params.src, '$options' : 'i'} }, { description: {'$regex' : req.params.src, '$options' : 'i'} } ] }).exec()
         .then(handleEntityNotFound(res))
