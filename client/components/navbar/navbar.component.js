@@ -25,8 +25,20 @@ export class NavbarComponent {
     this.getCurrentUser = Auth.getCurrentUserSync;
     this.userProvider = userProvider;
   }
-
+  
   $onInit() {}
+  // recherche
+  doSearch(e) {
+    if (this.searchReq && this.searchReq.length > 3) {
+      e.preventDefault()
+      this.$state.go('search', {
+        search: this.searchReq
+      })
+    } else {
+      e.preventDefault()
+      console.log('==> requete trop courte <==')
+    }
+  }
   // go to top courses
   goTopCours() {
     setTimeout(() => {
