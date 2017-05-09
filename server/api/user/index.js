@@ -14,6 +14,7 @@ router.put('/:id', controller.upsert);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', controller.show); +
 router.get('/username/:id', controller.getuserbyusername);
+router.get('/search/:src', controller.getuserbyNameOrUsername);
 /*router.get('/:id', auth.isAuthenticated(), controller.show);*/
 router.post('/', controller.create);
 

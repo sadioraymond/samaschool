@@ -84,6 +84,18 @@ export function show(req, res, next) {
         .catch(err => next(err));
 }
 
+
+export function getuserbyNameOrUsername(req, res, next) {
+     return User.find({$or: [ { name: {'$regex' : req.params.src, '$options' : 'i'} }, { username: {'$regex' : req.params.src, '$options' : 'i'} } ]}).exec()
+        .then(user => {
+            if (!user) {
+                return res.status(404).end();
+            }
+            res.json(user);
+        })
+        .catch(err => next(err));
+}
+
 /**
  + * Get a single user By username
  + */
