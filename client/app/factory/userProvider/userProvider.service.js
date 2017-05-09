@@ -105,6 +105,19 @@ export function userProviderService($http, $q) {
             console.log("Image bi dégne na");
         });
     }
+     this.getUserByNameOrUsername = function(rech) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/users/search/' + rech, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+        return liste;
+    }
 }
 
 export default angular.module('samaschoolApp.userProvider', [])
