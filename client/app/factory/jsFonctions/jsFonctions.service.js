@@ -3742,7 +3742,7 @@ export function jsFonctionsService() {
             navigation: {},
             responsiveLevels: [1240, 1024, 778, 480],
             gridwidth: [1240, 1024, 778, 480],
-            gridheight: [600, 550, 400, 300],
+            gridheight: [510, 400, 300],
             lazyType: "none",
             parallax: {
               type: "mouse",
