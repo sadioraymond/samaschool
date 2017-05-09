@@ -1,1 +1,53 @@
-<div>This is the allEtablissemnts view.</div>
+<banner></banner>
+<section class="section bgw">
+  <div class="container" id="allEtablissements">
+    <div class="row">
+      <nav class="portfolio-filter clearfix text-center">
+        <input type="text"value="" ng-model="vm.filtre" placeholder="Rechercher un cours" style="height: 40px;width: 250px; border-bottom-color: black; margin-bottom: 20px " />
+      </nav>
+    </div>
+    <div class="row course-grid">
+      <div class="col-md-3 col-sm-4 col-xs-6 wow fadeIn" ng-repeat="etabliss in vm.LesEtablissements | filter: vm.filtre">
+        <div class="shop-item course-v2">
+          <div class="post-media entry">
+            <!--<div class="ribbon-wrapper-green">
+              <div class="ribbon-green">Featured</div>
+            </div>-->
+            <img ng-src="assets/upload/Etablissement/{{etabliss.images}}" alt="" class="img-responsive" style="height: 200px">
+            <div class="magnifier">
+              <div class="shop-bottom clearfix">
+                <a title="Suivre"><i class="fa fa-check-square-o"></i></a>
+                <a ui-sref="etablissement({id:etabliss._id})" title="Visiter l'établissement"><i class="fa fa-search" aria-hidden="true"></i></a>
+              </div>
+              <!-- end shop-bottom -->
+            </div>
+            <!-- end magnifier -->
+          </div>
+          <!-- end post-media -->
+          <div class="shop-desc">
+            <div class="shop-price clearfix">
+              <div class="pull-left">
+                <div class="rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <!-- end rating -->
+              </div>
+              <!-- end left -->
+              <div class="pull-right">
+                <small>{{etabliss.adresse | limitTo: 25}}</small>
+              </div>
+              <!-- end right -->
+            </div>
+            <h3><a ui-sref="etablissement({id:etabliss._id})" title="Visiter l'établissement"> {{etabliss.libelle| limitTo:70}} </a></h3>
+          </div>
+        </div>
+        <!-- end shop-item -->
+      </div>
+    </div>
+  </div>
+  <!-- end container -->
+</section>
