@@ -16,7 +16,7 @@
   <!-- end topbar -->
 </div>
 <!-- end topbar -->
-<header class="header header-absolute">
+<header class="header header-center">
   <div class="container-fluid">
     <nav class="navbar navbar-default yamm">
       <div class="container-f">
@@ -29,9 +29,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-          <a id="logo-left" class="navbar-brand text-center" ng-href="/">Sama<span>SchooL</span>
-                            <small>Se former en toute liberté</small>
-                            </a>
+          <a id="logo-left" style="margin-top: 0.4em;" class="navbar-brand text-center" ng-href="/"><i style="color: #fff;">Sama</i><span>SchooL</span></a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
@@ -69,12 +67,9 @@
 
           <ul class="nav navbar-nav navbar-right">
             <li ng-if="$ctrl.isLoggedIn()" class="cartmenu dropdown hasmenu" class="modal-demo">
-              <div class="post">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                            <img alt="" ng-src="assets/upload/User/ImageParDerfautPourLesUsers.png" class="img-responsive alignleft img-circle" style="height: 30px; width: 30px">
-                                            
-                                        </a>
-              </div>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <img alt="" ng-src="assets/upload/User/ImageParDerfautPourLesUsers.png" class="img-responsive img-circle" style="height: 30px; width: 30px">
+              </a>
               <ul class="dropdown-menu">
 
                 <li><a ui-sref="profil({username: $ctrl.getCurrentUser().username})"><i class="fa fa-user fa-2x" aria-hidden="true"></i> {{$ctrl.getCurrentUser().name}}</a></li>
