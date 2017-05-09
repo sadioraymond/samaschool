@@ -122,6 +122,15 @@ export function show(req, res) {
         .then(respondWithResult(res))
         .catch(handleError(res));
 }
+
+export function getCoursByNameOrDesc(req, res) {
+    return Cours.find({ $or: [ { titre: {'$regex' : req.params.src, '$options' : 'i'} }, { description: {'$regex' : req.params.src, '$options' : 'i'} } ] }).exec()
+        .then(handleEntityNotFound(res))
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+}
+
+
 var stringify = require('json-stringify-safe');
 // GLes Cours les plus suivies
 export function getCoursPlusSuivi(req, res) {
