@@ -120,7 +120,7 @@ export function etablissementProviderService($http, $q) {
     this.getEtabByNom = function(nom) {
         var deferred = $q.defer();
         var liste = [];
-        $http.get('/api/etablissements/nom' + nom, {
+        $http.get('/api/etablissements/nom/' + nom, {
 
             cache: true
         }).then(function(list) {
