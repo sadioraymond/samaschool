@@ -26,6 +26,7 @@ import suivi from '../api/Etablissement_Module/suivi/suivi.model';
 import Type from '../api/Utilisateur_Module/type_fichier/type_fichier.model';
 import exercice from '../api/Utilisateur_Module/exercice/exercice.model';
 import Fichier from '../api/Utilisateur_Module/fichier/fichier.model';
+import equipe from '../api/Etablissement_Module/equipe/equipe.model';
 import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
@@ -155,7 +156,8 @@ export default function seedDatabaseIfNeeded() {
                         tel: "201-626-324-3444",
                         email: "sit.amet.metus@Curabiturmassa.co.uk",
                         images: "imageParDefautPourLesEtablissement.png",
-                        imagecouverture: "profil_uahb.jpg"
+                        imagecouverture: "profil_uahb.jpg",
+                        description: "dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu"
                     }, {
                         _id: 2,
                         libelle: "UCAD",
@@ -163,7 +165,8 @@ export default function seedDatabaseIfNeeded() {
                         tel: "201-665-249-3835",
                         email: "a.mi.fringilla@ametmetus.net",
                         images: "imageParDefautPourLesEtablissement.png",
-                        imagecouverture: "ucad.jpg"
+                        imagecouverture: "ucad.jpg",
+                        description: "Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                     })
                     .then(() => console.log('finished populating Etablissement'))
                     .catch(err => console.log('error populating Etablissement', err));
@@ -2359,6 +2362,92 @@ export default function seedDatabaseIfNeeded() {
                     })
                     .then(() => console.log('finished populating Fichier'))
                     .catch(err => console.log('error populating Fichier', err));
+            });
+        equipe.find({}).remove()
+            .then(() => {
+                equipe.create({
+                        _id: 1,
+                        name: "Brynn",
+                        images: "ss_member-cover.jpg",
+                        email: "luctus.vulputate.nisi@rhoncusProin.org",
+                        adresse: "Appartement 678-6234 Pellentesque Av.",
+                        fonction: "Responsable Inscription",
+                        Etablissement: 2
+                    }, {
+                        _id: 2,
+                        name: "Moustapha der",
+                        images: "Mr_der.jpg",
+                        email: "erat.nonummy@cursusnonegestas.com",
+                        adresse: "921-427 Nec Avenue",
+                        fonction: "Responsable Scolarite",
+                        Etablissement: 2
+                    }, {
+                        _id: 3,
+                        name: "Tara",
+                        images: "recteur.png",
+                        email: "amet@Nuncmauris.org",
+                        adresse: "Appartement 143-8704 Ultrices Rd.",
+                        fonction: "Recteur",
+                        Etablissement: 1
+                    }, {
+                        _id: 4,
+                        name: "Makalou",
+                        images: "inscription.png",
+                        email: "turpis@Integer.ca",
+                        adresse: "554-6303 Magna Chemin",
+                        fonction: "Responsable Inscription",
+                        Etablissement: 1
+                    }, {
+                        _id: 5,
+                        name: "Kara Samb",
+                        images: "Mr_samb.jpg",
+                        email: "fermentum.vel.mauris@erat.co.uk",
+                        adresse: "883-6094 Placerat, Avenue",
+                        fonction: "Chep Departement",
+                        Etablissement: 2
+                    }, {
+                        _id: 6,
+                        name: "Pa Gbaya",
+                        images: "president.jpg",
+                        email: "luctus.aliquet@tellusNunc.co.uk",
+                        adresse: "7694 Varius Av.",
+                        fonction: "Président",
+                        Etablissement: 1
+                    }, {
+                        _id: 7,
+                        name: "Kuame",
+                        images: "small_course_01",
+                        email: "vitae.dolor@imperdiet.co.uk",
+                        adresse: "CP 750, 2858 Blandit Ave",
+                        fonction: "Administration",
+                        Etablissement: 2
+                    }, {
+                        _id: 8,
+                        name: "Jacques",
+                        images: "dr_scolarite.png",
+                        email: "faucibus@id.edu",
+                        adresse: "CP 127, 2608 Mollis Route",
+                        fonction: "Responsable Scolarité",
+                        Etablissement: 1
+                    }, {
+                        _id: 9,
+                        name: "Massamba Lô",
+                        images: "Mr_lo.jpg",
+                        email: "eu@pede.com",
+                        adresse: "Appartement 193-6065 Aliquam Ave",
+                        fonction: "Administration",
+                        Etablissement: 1
+                    }, {
+                        _id: 10,
+                        name: "Baye Niasse",
+                        images: "Mr_niass.jpg",
+                        email: "Ut.nec@et.co.uk",
+                        adresse: "8554 Consequat Impasse",
+                        fonction: "Administration",
+                        Etablissement: 1
+                    })
+                    .then(() => console.log('finished populating equipe:'))
+                    .catch(err => console.log('error populating equipe:', err));
             });
     }
 }

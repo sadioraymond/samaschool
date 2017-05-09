@@ -85,6 +85,7 @@ mkdirp(repuser, function(err) {
 });
 export default function(app) {
     // Insert routes below
+    app.use('/api/equipes', require('./api/Etablissement_Module/equipe'));
     app.post('/createcourse/:id', upload.single('myFile'), function uploadImage(req, res) {
         var widgetId = req.body.widgetId;
         var width = req.body.width;
