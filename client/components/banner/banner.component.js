@@ -6,17 +6,7 @@ export class bannerComponent {
   constructor($state) {
     this.$state = $state
   }
-  doSearch(e) {
-    if (this.searchReq && this.searchReq.length > 3) {
-      e.preventDefault()
-      this.$state.go('search', {
-        search: this.searchReq
-      })
-    } else {
-      e.preventDefault()
-      console.log('==> requete trop courte <==')
-    }
-  }
+  
 }
 
 bannerComponent.$inject = ["$state"]
