@@ -330,7 +330,7 @@ li.vimeo:hover {
   width: 100%;
   z-index: 10;
   padding: 0;
-  background-color: #000;
+  background-color: #0B0704;
 }
 
 .header-absolute {
@@ -549,7 +549,7 @@ li.vimeo:hover {
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.active>a:focus {
-  background-color: #47484c;
+  /*background-color: #47484c;*/
 }
 
 .dropdown-menu li:hover a,
