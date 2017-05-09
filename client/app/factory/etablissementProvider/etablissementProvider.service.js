@@ -116,6 +116,21 @@ export function etablissementProviderService($http, $q) {
             console.log("Image bi dégne na");
         });
     }
+    this.getEquipeByEtablissement = function(school) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/equipes/etablissement/' + school, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
 }
 
 
