@@ -293,6 +293,7 @@ export class CreatecourseComponent {
                 'heure': this.nbh,
                 'lien': this.lienVideoCours
             };
+            
             this.coursProvider.objetCours.lienVideo = this.lienVideoCours;
             this.coursProvider.objetCours.contenuCours = this.contenuCours;
             console.log('le cours ', this.objetCours);
