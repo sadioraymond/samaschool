@@ -81,12 +81,12 @@
       </div>
       <!-- end right -->
 
-      <div ng-show="profilCtrl.profil" id="sidebar1" class="col-md-7 col-sm-12">
+      <div ng-show="profilCtrl.profil" id="sidebar1" class="col-md-6 col-sm-12">
         <div class="widget clearfix">
           <div class="member-profile">
             <div class="big-title">
               <h2 class="related-title">
-                <span>About {{profilCtrl.userData.name}}</span>
+                <span> {{profilCtrl.userData.name}}</span>
               </h2>
             </div>
             <!-- end big-title -->
@@ -313,12 +313,12 @@
       <!-- end right -->
 
 
-      <div ng-show="profilCtrl.contact" id="sidebar2" class="col-md-2 col-sm-12 mob30">
+      <div ng-show="profilCtrl.contact" id="sidebar2" class="col-md-3 col-sm-12 mob30">
         <div class="widget clearfix">
           <div class="member-profile">
             <div class="big-title">
               <h2 class="related-title">
-                <span>Contact</span>
+                <span>Infos suplementaires</span>
               </h2>
             </div>
             <!-- end big-title -->
@@ -326,11 +326,26 @@
             <div class="loginform">
               <form class="row">
                 <div class="col-md-12">
-                  <input type="text" name="name" class="form-control" placeholder="Name">
-                  <input type="email" name="email" class="form-control" placeholder="Email">
-                  <input type="text" name="name" class="form-control" placeholder="Phone">
-                  <textarea class="form-control" name="comments" rows="6" placeholder="Your Bio"></textarea>
-                  <button type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Contact</button>
+                  <input type="text" name="facebook" class="form-control" placeholder="Facebook">
+                  <input type="text" name="twitter" class="form-control" placeholder="Twitter">
+                  <input type="text" name="linkedin" class="form-control" placeholder="Linkedin">
+                  <input type="email" name="google-plus" class="form-control" placeholder="Google-plus">
+                  <input type="date" name="dateNaiss" class="form-control" placeholder="Date de Naissance">
+                  <textarea class="form-control" name="comments" rows="6" placeholder="Votre Bio"></textarea>
+                   <!--Dropdown des sous categories:-->
+                    <label for="categorie">Categories </label>
+                    <!-- Single button -->
+                    <div class="btn-group" uib-dropdown is-open="false">
+                      <button ng-model="profilCtrl.categ.id" id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle
+                        ng-disabled="disabled" >
+                      {{profilCtrl.categ.libelle | limitTo:23}} 
+                      <span class="caret"></span>
+                    </button>
+                      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                        <li role="menuitem" ng-repeat="cat in profilCtrl.listCat" ng-click="profilCtrl.selectedCateg(cat)"><a href="#">{{cat.libelle}}</a></li>
+                      </ul>
+                  </div>
+                  <button type="submit" value="SEND" class="button button--wayra btn-block btn-square" style="margin-top: 2em"> Enregistrer</button>
                 </div>
               </form>
             </div>

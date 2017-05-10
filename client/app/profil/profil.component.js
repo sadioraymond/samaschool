@@ -47,6 +47,10 @@ export class ProfilComponent {
     im;
     ima;
     imag;
+    categ = {
+        id: "",
+        libelle: ""
+    };
     /*@ngInject*/
     constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state, $location, ouvreDialogProvider) {
         this.$stateParams = $stateParams;
@@ -276,6 +280,17 @@ export class ProfilComponent {
     delChap(indexTab) {
         this.listChap.splice(indexTab, 1);
         console.log(this.listChap)
+    }
+     // pour dropdown des Categories
+    selectedCateg(categorie) {
+        console.log(categorie)
+        console.log(this.categ)
+        this.selectedIdsCat = false;
+        this.categ.id = categorie._id;
+        this.categ.libelle = categorie.libelle;
+        this.selectedId = true;
+        console.log(this.categ);
+        this.getSousCatByCategorie(this.categ.id);
     }
 }
 
