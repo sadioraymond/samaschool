@@ -8,6 +8,8 @@ type User = {
   email: string;
   password: string;
   username: string;
+  images: string;
+  imagecouverture: string;
 };
 export default class SignupController {
   user: User = {
@@ -15,7 +17,9 @@ export default class SignupController {
     email: '',
     password: '',
     confirmPassword: '',
-    username: ''
+    username: '',
+    images: '',
+    imagecouverture: ''
   };
   errors = {};
   submitted = false;
@@ -39,7 +43,9 @@ export default class SignupController {
           name: this.user.name,
           email: this.user.email,
           password: this.user.password,
-          username: this.user.username
+          username: this.user.username,
+          images: "ImageParDerfautPourLesUsers.png",
+          imagecouverture: "images (6).jpg"
           // confirmPassword: this.user.password
         })
         .then(() => {
