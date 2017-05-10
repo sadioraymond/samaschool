@@ -67,7 +67,7 @@
             <li ng-if="$ctrl.isLoggedIn()" class="cartmenu dropdown hasmenu" class="modal-demo">
 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <img alt="" ng-src="assets/upload/User/ImageParDerfautPourLesUsers.png" class="img-responsive img-circle" style="height: 30px; width: 30px">
+                <img alt="" ng-src="assets/upload/User/{{$ctrl.getCurrentUser().images}}" class="img-responsive img-circle" style="height: 30px; width: 30px">
               </a>
 
               <ul class="dropdown-menu">
