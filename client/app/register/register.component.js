@@ -13,13 +13,18 @@ export class RegisterComponent {
     adresse;
     tel;
     email;
+    images;
+    imagecouverture;
+    slogan;
     constructor(jsFonctions, etablissementProvider) {
         this.message = 'Hello';
         this.jsFonctions = jsFonctions;
         this.etablissementProvider = etablissementProvider;
+        this.images = "imageParDefautPourLesEtablissement.png";
+        this.imagecouverture = "ucad.jpg";
     }
     ajoutEtablissement() {
-        this.etablissementProvider.ajoutEtablissement(this.libelle, this.adresse, this.tel, this.email);
+        this.etablissementProvider.ajoutEtablissement(this.libelle, this.adresse, this.tel, this.email, this.images, this.imagecouverture,this.slogan);
         window.location.reload();
     }
     $onInit() {
