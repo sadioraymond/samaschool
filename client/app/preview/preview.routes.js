@@ -4,7 +4,7 @@ export default function($stateProvider) {
   'ngInject';
   $stateProvider
     .state('preview', {
-      url: '/preview',
+      url: '/preview/cours',
       template: '<preview></preview>'
     });
 }
