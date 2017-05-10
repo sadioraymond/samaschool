@@ -6,8 +6,11 @@
     </div>
     <div class="row">
       <div id="post-content" class="col-md-9 col-sm-12 single-course">
-        <div class="post-media clearfix">
+        <div ng-if="courseCtrl.LeCours.contenu" class="post-media clearfix">
           <iframe width="300" height="200" src="{{courseCtrl.LeCours.link |trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+         <div ng-if="!courseCtrl.LeCours.contenu" class="post-media clearfix">
+          <iframe width="300" height="200" src="{{courseCtrl.LeChapitre.linkchapitre |trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
         </div>
         <!-- end media -->
         <div class="single-course-title text-center">

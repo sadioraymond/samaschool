@@ -293,7 +293,7 @@ export class CreatecourseComponent {
                 'heure': this.nbh,
                 'lien': this.lienVideoCours
             };
-            
+
             this.coursProvider.objetCours.lienVideo = this.lienVideoCours;
             this.coursProvider.objetCours.contenuCours = this.contenuCours;
             console.log('le cours ', this.objetCours);
@@ -516,6 +516,10 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     coursProvider.objetCours.user = $ctrl.getcurrentUser()._id;
     coursProvider.objetCours.act = $ctrl.activite;
     $ctrl.verif = 1;
+    $ctrl.youtubelink = "https://www.youtube.com/";
+    $ctrl.youtubelink1;
+    $ctrl.embed = "embed/";
+    $ctrl.linkyoutube;
     $ctrl.toggleSelection = function toggleSelection(value) {
         var idx = $ctrl.selection.indexOf(value); // is currently selected
 
@@ -539,16 +543,39 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
         $uibModalInstance.close($ctrl.selected.item);
         if (!coursProvider.params) {
             if (coursProvider.objetCours.tab) {
+                for (let i = 0; i < coursProvider.objetCours.taille; i++) {
+                    console.log('tableau bi', coursProvider.objetCours.tab[`${i}`].lienVideo);
+                    $ctrl.youtubelink1 = coursProvider.objetCours.tab[`${i}`].lienVideo.split($ctrl.youtubelink).pop();
+                    if ($ctrl.youtubelink1.indexOf($ctrl.embed) == 0) {
+                        console.log('amnako');
+                        $ctrl.linkyoutube = $ctrl.youtubelink + $ctrl.youtubelink1;
+                        coursProvider.objetCours.tab[`${i}`].lienVideo = $ctrl.linkyoutube;
+                    } else {
+                        console.log('amouko');
+                        $ctrl.linkyoutube = $ctrl.youtubelink + $ctrl.embed + $ctrl.youtubelink1;
+                        coursProvider.objetCours.tab[`${i}`].lienVideo = $ctrl.linkyoutube;
+                    }
+                }
                 console.log('Amoul dara', $ctrl.getcurrentUser()._id);
                 coursProvider.ajoutCours2(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, coursProvider.objetCours.tab, coursProvider.objetCours.taille, $ctrl.activite, $ctrl.selection, $ctrl.parametre);
                 $state.go("profil", { "username": $ctrl.getcurrentUser().username });
                 console.log('khol li', coursProvider.objetCours.taille);
                 console.log('verif', $ctrl.selection);
             } else {
+
                 console.log('Amoul dara', $ctrl.getcurrentUser()._id);
                 console.log('khol li ni', coursProvider.objetCours.lienVideo);
                 console.log('khol li ni 1', coursProvider.objetCours.contenuCours);
-                coursProvider.ajoutCours(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.selection, coursProvider.objetCours.lienVideo, coursProvider.objetCours.contenuCours, $ctrl.parametre);
+                console.log('youtube bi', coursProvider.objetCours.lienVideo.split($ctrl.youtubelink).pop());
+                $ctrl.youtubelink1 = coursProvider.objetCours.lienVideo.split($ctrl.youtubelink).pop();
+                if ($ctrl.youtubelink1.indexOf($ctrl.embed) == 0) {
+                    console.log('amnako');
+                    $ctrl.linkyoutube = $ctrl.youtubelink + $ctrl.youtubelink1;
+                } else {
+                    console.log('amouko');
+                    $ctrl.linkyoutube = $ctrl.youtubelink + $ctrl.embed + $ctrl.youtubelink1;
+                }
+                coursProvider.ajoutCours(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.selection, $ctrl.linkyoutube, coursProvider.objetCours.contenuCours, $ctrl.parametre);
                 $state.go("profil", { "username": $ctrl.getcurrentUser().username });
             }
         } else {
