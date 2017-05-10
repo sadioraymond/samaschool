@@ -55,7 +55,7 @@
           <div class="member-profile">
             <div class="big-title">
               <h2 class="related-title">
-                <span>Activity</span>
+                <span>Activité</span>
               </h2>
             </div>
             <!-- end big-title -->
@@ -63,16 +63,16 @@
               <ul id="ss_sidebar">
                 <li class="active"><a ng-click="profilCtrl.profilClick(); profilCtrl.doActive($event)" class="profilClass">Profil</a></li>
                 <li><a ng-click="profilCtrl.etablissementClick(); profilCtrl.doActive($event)" class="etabClass">Etablissements<span> {{profilCtrl.LesEtabIncrit.length}} </span> </a></li>
-                <li><a ng-click="profilCtrl.courseClick(); profilCtrl.doActive($event)" class="coursesClass">Courses <span> {{profilCtrl.lesCoursSuivis.length}} </span></a></li>
+                <li><a ng-click="profilCtrl.courseClick(); profilCtrl.doActive($event)" class="coursesClass">Cours <span> {{profilCtrl.lesCoursSuivis.length}} </span></a></li>
                 <!--<li><a href="member-achievements.html">Achievements <span>6</span></a></li>-->
-                <li><a href="">Forum Topics <span>33</span></a></li>
-                <li><a href="">Friends <span>8</span></a></li>
+                <li><a href="">Sujets du forum <span>33</span></a></li>
+                <li><a href="">Ami(e)s <span>8</span></a></li>
                 <li ng-show="profilCtrl.privateLink"><a href="">-Messages <span>5</span></a></li>
-                <li ng-show="profilCtrl.privateLink"><a href="">-Edit Profile</a></li>
+                <li ng-show="profilCtrl.privateLink"><a href="">-Editer le profil</a></li>
               </ul>
               <!-- end ul -->
               <hr>
-              <button type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Follow Me</button>
+              <button type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Suivez moi</button>
             </div>
             <!-- end team-desc -->
           </div>
@@ -81,12 +81,12 @@
       </div>
       <!-- end right -->
 
-      <div ng-show="profilCtrl.profil" id="sidebar1" class="col-md-7 col-sm-12">
+      <div ng-show="profilCtrl.profil" id="sidebar1" class="col-md-6 col-sm-12">
         <div class="widget clearfix">
           <div class="member-profile">
             <div class="big-title">
               <h2 class="related-title">
-                <span>About {{profilCtrl.userData.name}}</span>
+                <span> {{profilCtrl.userData.name}}</span>
               </h2>
             </div>
             <!-- end big-title -->
@@ -140,7 +140,7 @@
               <div class="col-md-6 col-sm-12 wow fadeIn">
                 <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-birthday-cake alignleft"></i>
-                  <h3>3+ Years of Membership</h3>
+                  <h3>plus de 3 années d'adhésion</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
                 </div>
               </div>
@@ -149,7 +149,7 @@
               <div class="col-md-6 col-sm-12 wow fadeIn">
                 <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-pencil alignleft"></i>
-                  <h3>Contribute Teachme Blog</h3>
+                  <h3>Contribuer au Blog SamaSchooL</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
                 </div>
               </div>
@@ -158,7 +158,7 @@
               <div class="col-md-6 col-sm-12 wow fadeIn">
                 <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-pencil alignleft"></i>
-                  <h3>Contribute Teachme Blog</h3>
+                  <h3>Contribuer au Blog SamaSchooL</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
                 </div>
               </div>
@@ -167,7 +167,7 @@
               <div class="col-md-6 col-sm-12 wow fadeIn">
                 <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-comments-o alignleft"></i>
-                  <h3>Forum Moderator</h3>
+                  <h3>Modérateur du forum</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
                 </div>
               </div>
@@ -176,7 +176,7 @@
               <div class="col-md-6 col-sm-12 wow fadeIn">
                 <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
                   <i class="fa fa-code alignleft"></i>
-                  <h3>Help to the development site</h3>
+                  <h3>Aide au site de développement</h3>
                   <p>Professional responsive and retina ready template for online learning websites!</p>
                 </div>
               </div>
@@ -219,7 +219,7 @@
                         <small> {{cours.description|limitTo:40}} </small>
                       </a>
                       &nbsp;-&nbsp;
-                      <small>Expires : 22 June 2016</small>
+                      <small>Expiré : 22 June 2016</small>
                     </div>
                   </li>
 
@@ -234,7 +234,7 @@
             <div ng-if="profilCtrl.lesCoursExpires && profilCtrl.lesCoursExpires.length > 0">
               <div class="big-title">
                 <h2 class="related-title">
-                  <span>Expired Courses</span>
+                  <span>Expiré Courses</span>
                 </h2>
               </div>
               <!-- end big-title -->
@@ -247,7 +247,7 @@
                         <img alt="" src="assets/upload/pager_01.png" class="img-responsive alignleft" style="height: 80px; width:80px">
                         <h4>Learning Professional English in 20 Days</h4>
                         <small>View Course</small> &nbsp;-&nbsp;
-                        <small>Expired : &nbsp;Join the Course</small>
+                        <small>Expiré : &nbsp;Rejoignez le cours</small>
                       </a>
                     </div>
                   </li>
@@ -257,7 +257,7 @@
                         <img alt="" src="assets/upload/pager_02.png" class="img-responsive alignleft">
                         <h4>Selecting Material Design and Color Palette</h4>
                         <small>View Course</small> &nbsp;-&nbsp;
-                        <small>Expired : &nbsp;Join the Course</small>
+                        <small>Expired : &nbsp;Rejoignez le cours</small>
                       </a>
                     </div>
                   </li>
@@ -267,7 +267,7 @@
                         <img alt="" src="assets/upload/pager_03.jpg" class="img-responsive alignleft">
                         <h4>Getting Starting Web Design and Web Development</h4>
                         <small>View Course</small> &nbsp;-&nbsp;
-                        <small>Expired : &nbsp;Join the Course</small>
+                        <small>Expiré : &nbsp;Rejoignez le cours</small>
                       </a>
                     </div>
                   </li>
@@ -278,7 +278,7 @@
               <br>
             </div>
             <!--les cours crées-->
-            <div ng-if="profilCtrl.lesCoursCrees && profilCtrl.lesCoursCrees.length > 0">
+            <div ng-if="profilCtrl.isprof && profilCtrl.lesCoursCrees.length > 0">
               <div class="big-title">
                 <h2 class="related-title">
                   <span>Cours crées</span>
@@ -313,12 +313,12 @@
       <!-- end right -->
 
 
-      <div ng-show="profilCtrl.contact" id="sidebar2" class="col-md-2 col-sm-12 mob30">
+      <div ng-show="profilCtrl.contact" id="sidebar2" class="col-md-3 col-sm-12 mob30">
         <div class="widget clearfix">
           <div class="member-profile">
             <div class="big-title">
               <h2 class="related-title">
-                <span>Contact</span>
+                <span>Infos supplementaires</span>
               </h2>
             </div>
             <!-- end big-title -->
@@ -326,11 +326,26 @@
             <div class="loginform">
               <form class="row">
                 <div class="col-md-12">
-                  <input type="text" name="name" class="form-control" placeholder="Name">
-                  <input type="email" name="email" class="form-control" placeholder="Email">
-                  <input type="text" name="name" class="form-control" placeholder="Phone">
-                  <textarea class="form-control" name="comments" rows="6" placeholder="Your Bio"></textarea>
-                  <button type="submit" value="SEND" class="button button--wayra btn-block btn-square"> Contact</button>
+                  <input type="text" name="facebook" class="form-control" placeholder="Facebook">
+                  <input type="text" name="twitter" class="form-control" placeholder="Twitter">
+                  <input type="text" name="linkedin" class="form-control" placeholder="Linkedin">
+                  <input type="email" name="google-plus" class="form-control" placeholder="Google-plus">
+                  <input type="date" name="dateNaiss" class="form-control" placeholder="Date de Naissance">
+                  <textarea class="form-control" name="comments" rows="6" placeholder="Votre Bio"></textarea>
+                   <!--Dropdown des sous categories:-->
+                    <label for="categorie">Categories </label>
+                    <!-- Single button -->
+                    <div class="btn-group" uib-dropdown is-open="false">
+                      <button ng-model="profilCtrl.categ.id" id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle
+                        ng-disabled="disabled" >
+                      {{profilCtrl.categ.libelle | limitTo:23}} 
+                      <span class="caret"></span>
+                    </button>
+                      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                        <li role="menuitem" ng-repeat="cat in profilCtrl.listCat" ng-click="profilCtrl.selectedCateg(cat)"><a href="#">{{cat.libelle}}</a></li>
+                      </ul>
+                  </div>
+                  <button type="submit" value="SEND" class="button button--wayra btn-block btn-square" style="margin-top: 2em"> Enregistrer</button>
                 </div>
               </form>
             </div>
