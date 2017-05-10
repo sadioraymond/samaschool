@@ -66,6 +66,10 @@
 
 @import 'admin/admin.css';
 
+@import 'allEtablissemnts/allEtablissemnts.css';
+
+@import 'allProfesseurs/allProfesseurs.css';
+
 @import 'courseSinglePage/courseSinglePage.css';
 
 @import 'coursesPages/coursesPages.css';
