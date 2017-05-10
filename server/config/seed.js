@@ -2282,7 +2282,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 5,
                         chapitre: 12,
-                        link: `https://www.youtube.com/watch?v=JIRReZpu4IU`,
+                        link: `https://www.youtube.com/embed/watch?v=JIRReZpu4IU`,
                         contenu: `orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse`
                     }, {
                         _id: 6,
@@ -2297,7 +2297,7 @@ export default function seedDatabaseIfNeeded() {
                     }, {
                         _id: 8,
                         chapitre: 3,
-                        link: `https://www.youtube.com/watch?v=RGrxjtTkHmQ`,
+                        link: `https://www.youtube.com/embed/watch?v=RGrxjtTkHmQ`,
                         contenu: `semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse`
                     }, {
                         _id: 9,
