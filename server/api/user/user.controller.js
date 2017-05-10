@@ -156,7 +156,7 @@ export function me(req, res, next) {
     return User.findOne({ _id: userId }, '-salt -password').exec()
         .then(user => { // don't ever give out the password or salt
             if (!user) {
-                return res.status(401).end();
+                // return res.status(401).end();
             }
             res.json(user);
         })
