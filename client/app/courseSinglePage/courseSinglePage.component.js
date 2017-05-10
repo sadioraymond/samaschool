@@ -93,7 +93,8 @@ export class CourseSinglePageComponent {
                                 this.chapitreProvider.getFichierByChapitre(chapitre._id).then(list => {
                                     this.LeContenuDuChapitre = list[0];
                                     console.info('le contenu du chapitre du cours =>>', this.LeContenuDuChapitre);
-                                    this.LeChapitre.contenuChap = this.LeContenuDuChapitre;
+                                    this.LeChapitre.contenuChap = this.LeContenuDuChapitre.contenu;
+                                    this.LeChapitre.linkchapitre = this.LeContenuDuChapitre.link;
                                 });
                             }
                         });
