@@ -7,13 +7,15 @@ type User = {
   name: string;
   email: string;
   password: string;
+  username: string;
 };
 export default class SignupController {
   user: User = {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    username: ''
   };
   errors = {};
   submitted = false;
@@ -36,7 +38,8 @@ export default class SignupController {
       return this.Auth.createUser({
           name: this.user.name,
           email: this.user.email,
-          password: this.user.password
+          password: this.user.password,
+          username: this.user.username
           // confirmPassword: this.user.password
         })
         .then(() => {
