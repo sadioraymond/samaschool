@@ -23,15 +23,16 @@
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
             aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
             </button>
 
-          <a id="logo-left" style="margin-top: 0.4em;" class="navbar-brand text-center" ng-href="/"><i style="color: #fff;">Sama</i><span>SchooL</span></a>
-        </div>
 
+          <a id="logo-left" style="margin-top: 0.4em;" class="navbar-brand text-center" ng-href="/"><i style="color: #fff;">Sama</i><span>SchooL</span></a>
+
+        </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="dropdown hasmenu">
@@ -39,72 +40,68 @@
               <ul class="dropdown-menu">
                 <li><a ui-sref="main" ng-click="$ctrl.goTopCours()">Top Cours</a></li>
                 <li><a ui-sref="coursesPages">Tous les cours</a></li>
-
               </ul>
             </li>
             <!--<li><a href="page-about.html">About</a></li>-->
             <li class="dropdown has-submenu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Etablissements <span class="fa fa-angle-down"></span></a>
               <ul class="dropdown-menu">
-
                 <li><a ui-sref="main" ng-click="$ctrl.goTopEtablissements()">Top Etablissements</a></li>
+
                 <li><a ui-sref="allEtablissements">Tous les Etablissements</a></li>
 
-              </ul>
 
+              </ul>
               <li class="dropdown hasmenu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Professeurs <span class="fa fa-angle-down"></span></a>
                 <ul class="dropdown-menu">
                   <li><a ui-sref="main" ng-click="$ctrl.goTopProfs()">Top Professeurs</a></li>
+
                   <li><a ui-sref="allProfesseurs">Tous les Professeurs</a></li>
+
 
                 </ul>
               </li>
-
-
-
           </ul>
-
           <ul class="nav navbar-nav navbar-right">
             <li ng-if="$ctrl.isLoggedIn()" class="cartmenu dropdown hasmenu" class="modal-demo">
+
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <img alt="" ng-src="assets/upload/User/ImageParDerfautPourLesUsers.png" class="img-responsive img-circle" style="height: 30px; width: 30px">
               </a>
+
               <ul class="dropdown-menu">
-
                 <li><a ui-sref="profil({username: $ctrl.getCurrentUser().username})"><i class="fa fa-user fa-2x" aria-hidden="true"></i> {{$ctrl.getCurrentUser().name}}</a></li>
-
                 <li><a ui-sref="createcourse"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Creat course</a></li>
-
                 <li><a ui-sref="logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Deconnexion</a></li>
               </ul>
             </li>
             <li ng-if="$ctrl.isLoggedIn()" class="cartmenu dropdown hasmenu" class="modal-demo">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-shopping-bag"></i> <sup>2</sup></a>
               <ul class="dropdown-menu">
-
                 <li><a> Notification 1</a></li>
-
                 <li><a> Notification 2</a></li>
-
                 <li><a> Toutes les Notifications </a></li>
               </ul>
             </li>
-
             <li ng-if="!$ctrl.isLoggedIn()" class="cartmenu" ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo"><a ng-click="$ctrl.open()"><i class="fa fa-sign-in" aria-hidden="true"></i> </a></li>
             <li class="dropdown cartmenu searchmenu hasmenu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search"></i></a>
               <ul class="dropdown-menu show-right">
                 <li>
                   <div id="custom-search-input">
+                    <form ng-submit="$ctrl.doSearch($event)">
                     <div class="input-group col-md-12">
-                      <input type="text" class="form-control input-lg" placeholder="Cherche içi ..." ng-model="$ctrl.searchReq" />
-                      <span class="input-group-btn">
-                          <button class="btn btn-primary btn-lg" type="button" ng-click="$ctrl.doSearch($event)">
+                      
+                        <input type="text" class="form-control input-lg" placeholder="Cherche içi ..." ng-model="$ctrl.searchReq" />
+                        <span class="input-group-btn">
+                          <button class="btn btn-primary btn-lg" type="submit">
                               <i class="fa fa-search"></i>
                           </button>
                       </span>
+                      
                     </div>
+                    </form>
                   </div>
                 </li>
               </ul>
@@ -120,8 +117,6 @@
   <!-- end container -->
 </header>
 <!-- end header -->
-
-
 <script type="text/ng-template" id="myModalContent.html">
   <div class="tab-first menu-center">
     <div class="modal-header" style="border: 0px;">
@@ -139,11 +134,9 @@
                 <div class="form-group">
                   <input type="email" placeholder="Email" name="email" class="form-control" ng-model="vm.user.email" required>
                 </div>
-
                 <div class="form-group">
                   <input type="password" placeholder="Password" name="password" class="form-control" ng-model="vm.user.password" required>
                 </div>
-
                 <div class="form-group has-error">
                   <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && vm.submitted">
                     Please enter your email and password.
@@ -151,10 +144,8 @@
                   <p class="help-block" ng-show="form.email.$error.email && vm.submitted">
                     Please enter a valid email.
                   </p>
-
                   <p class="help-block">{{ vm.errors.login }} </p>
                 </div>
-
                 <div>
                   <button type="submit" value="SEND" class="btn btn-primary btn-block btn-lg"> Login Account</button>
                 </div>
@@ -186,66 +177,54 @@
                   <p class="help-block" ng-show="form.name.$error.required && vm.submitted">
                     A name is required
                   </p>
-                </div>
-                <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
-                                            'has-error': form.email.$invalid && vm.submitted }">
-                  <input type="email" name="email" class="form-control" ng-model="vm.user.email" placeholder="Email" required mongoose-error/>
-                  <p class="help-block" ng-show="form.email.$error.email && vm.submitted">
-                    Doesn't look like a valid email.
-                  </p>
-                  <p class="help-block" ng-show="form.email.$error.required && vm.submitted">
-                    What's your email address?
-                  </p>
-                  <p class="help-block" ng-show="form.email.$error.mongoose">
-                    {{ vm.errors.email }}
-                  </p>
-                </div>
-
-
-                <div class="form-group" ng-class="{ 'has-success': form.password.$valid && vm.submitted,
-                                            'has-error': form.password.$invalid && vm.submitted }">
-
-                  <input placeholder="Password" type="password" name="password" class="form-control" ng-model="vm.user.password" ng-minlength="3"
-                    required mongoose-error/>
-
-                  <p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && vm.submitted">
-                    Password must be at least 3 characters.
-                  </p>
-
-                  <p class="help-block" ng-show="form.password.$error.mongoose">
-                    {{ vm.errors.password }}
-                  </p>
-                </div>
-
-
-                <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && vm.submitted,
-                                            'has-error': form.confirmPassword.$invalid && vm.submitted }">
-
-                  <input placeholder="Confirm password" type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword"
-                    match="vm.user.password" ng-minlength="3" required mongoose-error/>
-
-                  <p class="help-block" ng-show="form.confirmPassword.$error.match && vm.submitted">
-                    Passwords must match.
-                  </p>
-
-                  <p class="help-block" ng-show="form.confirmPassword.$error.mongoose">
-                    {{ vm.errors.confirmPassword }}
-                  </p>
-                  <p class="help-block" style="color: red;" ng-show="vm.matchPass">
-                    Passwords must match.
-                  </p>
-                </div>
-
-
-                <div>
-                  <button type="submit" value="SEND" class="btn btn-primary btn-block btn-lg"> Create Account</button>
-                </div>
               </div>
-            </form>
+              <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
+                                            'has-error': form.email.$invalid && vm.submitted }">
+                <input type="email" name="email" class="form-control" ng-model="vm.user.email" placeholder="Email" required mongoose-error/>
+                <p class="help-block" ng-show="form.email.$error.email && vm.submitted">
+                  Doesn't look like a valid email.
+                </p>
+                <p class="help-block" ng-show="form.email.$error.required && vm.submitted">
+                  What's your email address?
+                </p>
+                <p class="help-block" ng-show="form.email.$error.mongoose">
+                  {{ vm.errors.email }}
+                </p>
           </div>
+          <div class="form-group" ng-class="{ 'has-success': form.password.$valid && vm.submitted,
+                                            'has-error': form.password.$invalid && vm.submitted }">
+            <input placeholder="Password" type="password" name="password" class="form-control" ng-model="vm.user.password" ng-minlength="3"
+              required mongoose-error/>
+            <p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && vm.submitted">
+              Password must be at least 3 characters.
+            </p>
+            <p class="help-block" ng-show="form.password.$error.mongoose">
+              {{ vm.errors.password }}
+            </p>
         </div>
+        <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && vm.submitted,
+                                            'has-error': form.confirmPassword.$invalid && vm.submitted }">
+          <input placeholder="Confirm password" type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword"
+            match="vm.user.password" ng-minlength="3" required mongoose-error/>
+          <p class="help-block" ng-show="form.confirmPassword.$error.match && vm.submitted">
+            Passwords must match.
+          </p>
+          <p class="help-block" ng-show="form.confirmPassword.$error.mongoose">
+            {{ vm.errors.confirmPassword }}
+          </p>
+          <p class="help-block" style="color: red;" ng-show="vm.matchPass">
+            Passwords must match.
+          </p>
+      </div>
+      <div>
+        <button type="submit" value="SEND" class="btn btn-primary btn-block btn-lg"> Create Account</button>
       </div>
     </div>
+    </form>
+  </div>
+  </div>
+  </div>
+  </div>
   </div>
 </script>
 <script type="text/ng-template" id="stackedModal.html">
