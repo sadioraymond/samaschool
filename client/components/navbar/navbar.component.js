@@ -17,13 +17,14 @@ export class NavbarComponent {
   test = false;
   userProvider;
   fegn;
-  constructor(Auth, userProvider, $state) {
+  constructor(Auth, userProvider, $state, coursProvider) {
     'ngInject';
     this.$state = $state
     this.isLoggedIn = Auth.isLoggedInSync;
     this.isAdmin = Auth.isAdminSync;
     this.getCurrentUser = Auth.getCurrentUserSync;
     this.userProvider = userProvider;
+    this.coursProvider = coursProvider;
   }
   
   $onInit() {}
@@ -81,6 +82,10 @@ export class NavbarComponent {
     } else {
       console.log('ttttttt')
     }
+  }
+
+  viderScat(){
+    this.coursProvider.scategorie = null;
   }
 
 }
