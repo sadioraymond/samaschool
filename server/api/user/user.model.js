@@ -93,6 +93,30 @@ UserSchema
         return password.length;
     }, 'Password cannot be blank');
 
+// Validate username is not taken
+UserSchema
+    .path('username')
+    .validate(function(value, respond) {
+        if (authTypes.indexOf(this.provider) !== -1) {
+            return respond(true);
+        }
+
+        return this.constructor.findOne({ username: value }).exec()
+            .then(user => {
+                if (user) {
+                    if (this.id === user.id) {
+                        return respond(true);
+                    }
+                    return respond(false);
+                }
+                return respond(true);
+            })
+            .catch(function(err) {
+                throw err;
+            });
+    }, 'this username already exists');
+
+
 // Validate email is not taken
 UserSchema
     .path('email')
