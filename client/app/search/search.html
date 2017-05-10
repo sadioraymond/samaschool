@@ -28,8 +28,8 @@
                   <li ng-if="searchCtrl.lesUsers.length !== 0" class="bbp-body" ng-repeat="user in searchCtrl.lesUsers">
                     <ul class="forum type-forum status-publish hentry loop-item-0 odd bbp-forum-status-open bbp-forum-visibility-publish">
                       <li class="bbp-forum-info">
-                        <img src="assets/upload/User/{{user.images}}" alt="" class="alignleft">
-                        <a class="bbp-forum-title" href="#" title="General">{{user.name}}</a>
+                        <img src="assets/upload/User/{{user.images}}" alt="" class="alignleft" ui-sref="profil({username: user.username})">
+                        <a class="bbp-forum-title" ui-sref="profil({username: user.username})" title="General">{{user.name}}</a>
                         <div class="bbp-forum-content"> {{user.email}} </div>
                       </li>
                       
@@ -81,8 +81,8 @@
                   <li ng-if="searchCtrl.lesEtab.length !== 0" class="bbp-body" ng-repeat="etab in searchCtrl.lesEtab">
                     <ul class="forum type-forum status-publish hentry loop-item-0 odd bbp-forum-status-open bbp-forum-visibility-publish">
                       <li class="bbp-forum-info">
-                        <img src="assets/upload/Etablissement/{{etab.images}}" alt="" class="alignleft">
-                        <a class="bbp-forum-title" href="#" title="General">{{etab.libelle}}</a>
+                        <img src="assets/upload/Etablissement/{{etab.images}}" ui-sref="etablissement({id: etab._id})" alt="" class="alignleft">
+                        <a class="bbp-forum-title" ui-sref="etablissement({id: etab._id})" title="General">{{etab.libelle}}</a>
                         <div class="bbp-forum-content">{{etab.description}}</div>
                       </li>
                      
@@ -137,8 +137,8 @@
                   <li ng-if="searchCtrl.lesCours.length !== 0" class="bbp-body" ng-repeat="cours in searchCtrl.lesCours">
                     <ul class="forum type-forum status-publish hentry loop-item-0 odd bbp-forum-status-open bbp-forum-visibility-publish">
                       <li class="bbp-forum-info">
-                        <img src="assets/upload/Cours/{{cours.images}}" alt="" class="alignleft">
-                        <a class="bbp-forum-title" href="#" title="General">{{cours.titre}}</a>
+                        <img src="assets/upload/Cours/{{cours.images}}" ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie, idCours:cours._id})" alt="" class="alignleft">
+                        <a class="bbp-forum-title"  ui-sref="courseSinglePage({sousDomaine:cours.sous_categorie, idCours:cours._id})" title="General">{{cours.titre}}</a>
                         <div class="bbp-forum-content">{{cours.description}}</div>
                       </li>
                       
