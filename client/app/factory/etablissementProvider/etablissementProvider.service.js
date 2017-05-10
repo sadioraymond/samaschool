@@ -51,14 +51,16 @@ export function etablissementProviderService($http, $q) {
         return liste;
 
     }
-    this.ajoutEtablissement = function(libelle, adresse, tel, email, images) {
+    this.ajoutEtablissement = function(libelle, adresse, tel, email, images, imagecouverture,slogan) {
         var deferred = $q.defer();
         $http.post('/api/etablissements', {
             libelle: libelle,
             adresse: adresse,
             tel: tel,
             email: email,
-            images: images
+            images: images,
+            imagecouverture: imagecouverture,
+            slogan: slogan
         }).then(function() {
             console.log("School yi Bakhna");
         });
