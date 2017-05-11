@@ -4,6 +4,7 @@ const angular = require('angular');
 export class annoncesComponent {
   /*@ngInject*/
   modifyAnnonce = false;
+  addAnnoncebool = false;
   ima;
   imag;
   currentdate = new Date();
@@ -11,6 +12,7 @@ export class annoncesComponent {
   images;
   stateImage = false;
   annonceAModifier = {};
+  annonceAAjouter = {};
   constructor($stateParams, annonceProvider, jsFonctions, ouvreDialogProvider, etablissementProvider, $state) {
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -30,6 +32,27 @@ export class annoncesComponent {
           this.jsFonctions.otherScript();
         }, 0);
       });
+    //récupération des annonces par rapoort à létablissemnent en cours
+    this.annonceProvider.getAnnonceByEtab(this.$stateParams.id).then(annonces => {
+      this.LesAnnoncesParEtab = annonces;
+      console.log('Les annonces =>', annonces);
+    });
+
+    // génération de 2 annonces par defaut
+    this.annoncesParDefaut = [{
+        _id: 'a',
+        images: 'imageParDefautAnnonce.png',
+        titre: 'Modifier Titre1',
+        contenu: 'Modifier description1'
+      },
+      {
+        _id: 'b',
+        images: 'imageParDefautAnnonce.png',
+        titre: 'Modifier Titre2',
+        contenu: 'Modifier description2'
+      }
+    ]
+
     setTimeout(() => {
       var fichier = document.querySelector('#a');
       fichier.addEventListener('change', (e) => {
@@ -54,27 +77,7 @@ export class annoncesComponent {
           alert('Ce n\'est pas une image');
         }
       }, false);
-    }, 50);
-    //récupération des annonces par rapoort à létablissemnent en cours
-    this.annonceProvider.getAnnonceByEtab(this.$stateParams.id).then(annonces => {
-      this.LesAnnoncesParEtab = annonces;
-      console.log('Les annonces =>', annonces);
-    });
-
-    // génération de 2 annonces par defaut
-    this.annoncesParDefaut = [{
-        _id: 'a',
-        images: 'imageParDefautAnnonce.png',
-        titre: 'Modifier Titre1',
-        contenu: 'Modifier description1'
-      },
-      {
-        _id: 'b',
-        images: 'imageParDefautAnnonce.png',
-        titre: 'Modifier Titre2',
-        contenu: 'Modifier description2'
-      }
-    ]
+    }, 300);
   }
   ouvreDialog() {
     $('#a').click();
@@ -86,6 +89,7 @@ export class annoncesComponent {
       console.log('annonce =>', annonce)
       //   console.log('annonce =>', this.LesAnnoncesParEtab[this.slider.index])
       console.log('slide =>', this.slider)
+      this.addAnnoncebool = false;
       this.modifyAnnonce = true;
       this.titreAnnonceAModifier = annonce.titre;
       this.idannonce = annonce._id;
@@ -95,6 +99,7 @@ export class annoncesComponent {
       this.modifyAnnonce = false;
     }
   }
+
   modifAnnonce() {
     // si modifier ou ajouter
     if (Number.isInteger(this.idannonce)) {
@@ -122,13 +127,31 @@ export class annoncesComponent {
       this.LesAnnoncesParEtab[this.slider.index].contenu = this.descriptionAnnonceAModifier;
 
     } else {
-      // this.imageAjout = this.titreAnnonceAAjouter + this.imag;
-      // document.querySelector("#ajoutannonceform").action = `/etablissement/${this.imageAjout}`;
-      // $('#editannonceform').submit();
+      if (this.stateImage) {
+        console.log('1');
+        this.images = this.titreAnnonceAAjouter + this.imag;
+        document.querySelector("#editannonceform").action = `/etablissement/${this.images}`;
+        $('#editannonceform').submit();
+        this.annonceProvider.ajouterAnnonce(this.images, this.titreAnnonceAAjouter, this.descriptionAnnonceAAjouter, this.$stateParams.id);
+        // console.log('image bi', this.imageannoce);
+      } else {
+        console.log('2');
+        this.annonceProvider.ajouterAnnonce("imageParDefautAnnonce.png", this.titreAnnonceAAjouter, this.descriptionAnnonceAAjouter, this.$stateParams.id);
+        this.$state.reload()
+      }
 
-      this.annonceProvider.ajouterAnnonce("imageParDefautAnnonce.png", this.titreAnnonceAAjouter, this.descriptionAnnonceAAjouter, this.$stateParams.id);
     }
 
+  }
+
+  addAnnonce() {
+    if (!this.addAnnoncebool) {
+      console.log('slide =>', this.slider)
+      this.addAnnoncebool = true;
+      this.modifyAnnonce = false;
+    } else {
+      this.addAnnoncebool = false;
+    }
   }
 
   supprimerAnnonce(annonce) {
