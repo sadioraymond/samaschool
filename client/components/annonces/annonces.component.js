@@ -60,10 +60,26 @@ export class annoncesComponent {
       this.LesAnnoncesParEtab = annonces;
       console.log('Les annonces =>', annonces);
     });
+
+    // génération de 2 annonces par defaut
+    this.annoncesParDefaut = [{
+        _id: 'a',
+        images: 'imageParDefautAnnonce.png',
+        titre: 'Modifier Titre1',
+        contenu: 'Modifier description1'
+      },
+      {
+        _id: 'b',
+        images: 'imageParDefautAnnonce.png',
+        titre: 'Modifier Titre2',
+        contenu: 'Modifier description2'
+      }
+    ]
   }
   ouvreDialog() {
     $('#a').click();
   }
+
   modifyAnnonceClick(annonce) {
     if (!this.modifyAnnonce) {
       this.annonceAModifier = annonce;
@@ -80,28 +96,38 @@ export class annoncesComponent {
     }
   }
   modifAnnonce() {
-    if (this.stateImage) {
-      console.log('1');
-      this.images = this.titreAnnonceAModifier + this.imag;
-      document.querySelector("#editannonceform").action = `/etablissement/${this.images}`;
-      $('#editannonceform').submit();
-      this.annonceProvider.modifierAnnonce(this.idannonce, this.descriptionAnnonceAModifier, this.images, this.titreAnnonceAModifier);
-      if (this.imageannoce !== "imageParDefautAnnonce.png") {
-        this.etablissementProvider.deleteFichier(this.imageannoce);
+    // si modifier ou ajouter
+    if (Number.isInteger(this.idannonce)) {
+      if (this.stateImage) {
+        console.log('1');
+        this.images = this.titreAnnonceAModifier + this.imag;
+        document.querySelector("#editannonceform").action = `/etablissement/${this.images}`;
+        $('#editannonceform').submit();
+        this.annonceProvider.modifierAnnonce(this.idannonce, this.descriptionAnnonceAModifier, this.images, this.titreAnnonceAModifier);
+        if (this.imageannoce !== "imageParDefautAnnonce.png") {
+          this.etablissementProvider.deleteFichier(this.imageannoce);
+        }
+        console.log('image bi', this.imageannoce);
+      } else {
+        console.log('2');
+        this.images = this.imageannoce;
+        this.annonceProvider.modifierAnnonce(this.idannonce, this.descriptionAnnonceAModifier, this.images, this.titreAnnonceAModifier);
       }
-      console.log('image bi', this.imageannoce);
-    } else {
-      console.log('2');
-      this.images = this.imageannoce;
-      this.annonceProvider.modifierAnnonce(this.idannonce, this.descriptionAnnonceAModifier, this.images, this.titreAnnonceAModifier);
-    }
-    console.log(this.LesAnnoncesParEtab)
-    // quitter le design modification apres avoir modifier
-    this.modifyAnnonce = false;
+      console.log(this.LesAnnoncesParEtab)
+      // quitter le design modification apres avoir modifier
+      this.modifyAnnonce = false;
 
-    // modification a la main du titre et du contenu de l'annonce en question dans la liste 
-    this.LesAnnoncesParEtab[this.slider.index].titre = this.titreAnnonceAModifier;
-    this.LesAnnoncesParEtab[this.slider.index].contenu = this.descriptionAnnonceAModifier;
+      // modification a la main du titre et du contenu de l'annonce en question dans la liste 
+      this.LesAnnoncesParEtab[this.slider.index].titre = this.titreAnnonceAModifier;
+      this.LesAnnoncesParEtab[this.slider.index].contenu = this.descriptionAnnonceAModifier;
+
+    } else {
+      // this.imageAjout = this.titreAnnonceAAjouter + this.imag;
+      // document.querySelector("#ajoutannonceform").action = `/etablissement/${this.imageAjout}`;
+      // $('#editannonceform').submit();
+
+      this.annonceProvider.ajouterAnnonce("imageParDefautAnnonce.png", this.titreAnnonceAAjouter, this.descriptionAnnonceAAjouter, this.$stateParams.id);
+    }
 
   }
 
@@ -122,6 +148,9 @@ export class annoncesComponent {
     }
   }
 
+  addItemToAnnonceList() {
+
+  }
 }
 annoncesComponent.$inject = ["$stateParams", "annonceProvider", "jsFonctions", "ouvreDialogProvider", "etablissementProvider", "$state"];
 export default angular.module('samaschoolApp.annonces', [])
