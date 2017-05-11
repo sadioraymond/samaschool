@@ -125,7 +125,7 @@ export function show(req, res) {
 
 // get cours by nom ou description ou une partie
 export function getCoursByNameOrDesc(req, res) {
-    return Cours.find({ $or: [ { titre: {'$regex' : req.params.src, '$options' : 'i'} }, { description: {'$regex' : req.params.src, '$options' : 'i'} } ] }).exec()
+    return Cours.find({ $or: [ { titre: {'$regex' : req.params.src, '$options' : 'i'} }, { description: {'$regex' : req.params.src, '$options' : 'i'} } ] }).populate('sous_categorie').exec()
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
         .catch(handleError(res));
