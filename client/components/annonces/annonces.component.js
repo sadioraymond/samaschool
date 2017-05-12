@@ -171,9 +171,7 @@ export class annoncesComponent {
     }
   }
 
-  addItemToAnnonceList() {
-
-  }
+  addItemToAnnonceList() {}
 }
 annoncesComponent.$inject = ["$stateParams", "annonceProvider", "jsFonctions", "ouvreDialogProvider", "etablissementProvider", "$state"];
 export default angular.module('samaschoolApp.annonces', [])

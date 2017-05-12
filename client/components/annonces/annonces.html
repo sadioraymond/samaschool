@@ -127,29 +127,28 @@
           </div>
           <form id="editannonceform" class="row" name="editannonceform" method="post" enctype="multipart/form-data">
             <div class="row" style="height: 400px;">
+              <!--Affchage image Annonce-->
               <div id="myimg{{vm.slider.idAnnonce}}" class="col-md-6 myimg" ng-style="{'background':'url(assets/upload/Etablissement/{{annonce.images}}) no-repeat center center', 'background-size': 'cover'}">
-                <a ng-if="(vm.modifyAnnonce || vm.addAnnoncebool) && vm.slider.index === $index" ng-click="vm.ouvreDialog()" style="margin-top: 10em;" class="btn btn-primary btn-square"
-                  title="Prendre une photo"><i class="fa fa-upload"></i></a>
+                <a ng-if="(vm.modifyAnnonce || vm.addAnnoncebool) && vm.slider.index === $index" ng-click="vm.ouvreDialog()" style="margin-top: 10em;"
+                  class="btn btn-primary btn-square" title="Prendre une photo"><i class="fa fa-upload"></i></a>
                 <input style="display: none;" type="file" id="a" name="myFile">
               </div>
 
+              <!--affichage Annonce-->
               <div class="col-md-6 col-md-offset-6" ng-if="(!vm.modifyAnnonce && !vm.addAnnoncebool) || vm.slider.index !== $index">
                 <div class="about-module wpa">
-                  <!--<pre>-->
                   <h3>
                     {{annonce.titre}}
                   </h3>
                   <p> {{annonce.contenu}}</p>
-                  <!--</pre>-->
-                  <!--<a href="#" class="btn btn-primary btn-square">START HERE</a>-->
                 </div>
                 <!-- end about-module -->
               </div>
-               <!--champs pour modifier annonce-->
+              <!--champs pour modifier annonce-->
               <div class="col-md-6 col-md-offset-6" ng-if="vm.modifyAnnonce && vm.slider.index === $index">
                 <div class="about-module wpa">
-                  <input ng-model="vm.titreAnnonceAModifier" type="text" id="titreAnnone" class="form-control">
-                  <textarea ng-model="vm.descriptionAnnonceAModifier" class="form-control" id="description" rows="10"></textarea>
+                  <input ng-model="vm.titreAnnonceAModifier" type="text" class="form-control">
+                  <textarea ng-model="vm.descriptionAnnonceAModifier" class="form-control" rows="10"></textarea>
                   <button type="submit" class="btn btn-primary" ng-click="vm.modifAnnonce()"> Valider</button>
                 </div>
                 <!-- end modification -->
@@ -159,7 +158,7 @@
               <div class="col-md-6 col-md-offset-6" ng-if="vm.addAnnoncebool && vm.slider.index === $index">
                 <div class="about-module wpa">
                   <input ng-model="vm.titreAnnonceAAjouter" type="text" class="form-control" placeholder="Titre">
-                  <textarea ng-model="vm.descriptionAnnonceAAjouter" class="form-control" id="description" rows="10" placeholder="Description de l'annone"></textarea>
+                  <textarea ng-model="vm.descriptionAnnonceAAjouter" class="form-control" rows="10" placeholder="Description de l'annone"></textarea>
                   <button type="submit" class="btn btn-primary" ng-click="vm.modifAnnonce()"> Ajouter</button>
                 </div>
               </div>
