@@ -39,6 +39,10 @@ export class CourseSinglePageComponent {
         this.isLoggedIn = Auth.isLoggedInSync;
     }
     $onInit() {
+        if (this.coursProvider.reload) {
+            this.$state.reload();
+            this.coursProvider.reload = false;
+        }
         angular.element(document)
             .ready(() => {
                 setTimeout(() => {
