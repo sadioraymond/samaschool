@@ -1,8 +1,3 @@
-/**
- * Main application routes
- */
-
-
 'use strict';
 
 import errors from './components/errors';
@@ -57,13 +52,13 @@ var storageuser = multer.diskStorage({
 });
 var upload = multer({
     storage: storage
-}).single('myFile');
+});
 var uploadschool = multer({
     storage: storageSchool
-}).single('myFile');
+});
 var uploaduser = multer({
     storage: storageuser
-}).single('myFile');
+});
 var fs = require('fs');
 var rep = 'client/assets/upload/Cours/' + '/';
 mkdirp(rep, function(err) {
@@ -83,27 +78,30 @@ mkdirp(repuser, function(err) {
         console.error(err);
     }
 });
-
 export default function(app) {
     // Insert routes below
     app.use('/api/equipes', require('./api/Etablissement_Module/equipe'));
-    app.post('/createcourse/:id', function uploadImage(req, res, next) {
-        upload(req, res, function(err) {
-            if (err) {
-                return res.end("Erreur dans le chargement du image");
-            } else {
-                // res.location('http://localhost:3000/ray');
-            }
-        });
+    app.post('/createcourse/:id', upload.single('myFile'), function uploadImage(req, res) {
+        var widgetId = req.body.widgetId;
+        var width = req.body.width;
+        var myFile = req.file;
+        var originalname = myFile.originalname; //nom de l'image dans l'ordinateur du user
+        var filename = myFile.filename; //nouveau nom de l'image dans le dossier de sauvegarde
+        var path = myFile.path; //chemin complet de l'upload
+        var destination = myFile.destination; //destination de l'image
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
     });
-    app.post('/etablissement/:id', function uploadImage(req, res) {
-        uploadschool(req, res, function(err) {
-            if (err) {
-                return res.end("Erreur dans le chargement du image");
-            } else {
-                // res.location('http://localhost:3000/ray');
-            }
-        });
+    app.post('/etablissement/:id', uploadschool.single('myFile'), function uploadImage(req, res) {
+        var widgetId = req.body.widgetId;
+        var width = req.body.width;
+        var myFile = req.file;
+        var originalname = myFile.originalname; //nom de l'image dans l'ordinateur du user
+        var filename = myFile.filename; //nouveau nom de l'image dans le dossier de sauvegarde
+        var path = myFile.path; //chemin complet de l'upload
+        var destination = myFile.destination; //destination de l'image
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
     });
     app.get('/deletepicture/:images', function deletePicture(req, res) {
         //var chemin=rep+req.params.images;
@@ -123,14 +121,16 @@ export default function(app) {
         console.log('tourou image bi', req.params.images);
         fs.unlinkSync(repuser + req.params.images);
     });
-    app.post('/user/:id', function uploadImage(req, res) {
-        uploaduser(req, res, function(err) {
-            if (err) {
-                return res.end("Erreur dans le chargement du image");
-            } else {
-                // res.location('http://localhost:3000/ray');
-            }
-        });
+    app.post('/user/:id', uploaduser.single('myFile'), function uploadImage(req, res) {
+        var widgetId = req.body.widgetId;
+        var width = req.body.width;
+        var myFile = req.file;
+        var originalname = myFile.originalname; //nom de l'image dans l'ordinateur du user
+        var filename = myFile.filename; //nouveau nom de l'image dans le dossier de sauvegarde
+        var path = myFile.path; //chemin complet de l'upload
+        var destination = myFile.destination; //destination de l'image
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
     });
     app.use('/api/exercices', require('./api/Utilisateur_Module/exercice'));
     app.use('/api/type_fichiers', require('./api/Utilisateur_Module/type_fichier'));
