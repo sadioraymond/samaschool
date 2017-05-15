@@ -77,6 +77,10 @@ export class ProfilComponent {
         });
     }
     $onInit() {
+        if (this.coursProvider.reload) {
+            this.$state.reload();
+            this.coursProvider.reload = false;
+        }
         var fichier = document.querySelector('#selectPP');
         fichier.addEventListener('change', (e) => {
             this.im = this.ouvreDialogProvider.uploadFile(e, "imgTag");
