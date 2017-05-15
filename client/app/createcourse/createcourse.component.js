@@ -520,6 +520,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     $ctrl.youtubelink1;
     $ctrl.embed = "embed/";
     $ctrl.linkyoutube;
+    $ctrl.rel = window.location.reload();
     $ctrl.toggleSelection = function toggleSelection(value) {
         var idx = $ctrl.selection.indexOf(value); // is currently selected
 
@@ -558,7 +559,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
                 }
                 console.log('Amoul dara', $ctrl.getcurrentUser()._id);
                 coursProvider.ajoutCours2(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, coursProvider.objetCours.tab, coursProvider.objetCours.taille, $ctrl.activite, $ctrl.selection, $ctrl.parametre);
-                $state.go("profil", { "username": $ctrl.getcurrentUser().username });
+                $state.go("profil", { "username": $ctrl.getcurrentUser().username }, { reload: "profil" });
                 console.log('khol li', coursProvider.objetCours.taille);
                 console.log('verif', $ctrl.selection);
             } else {
@@ -576,7 +577,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
                     $ctrl.linkyoutube = $ctrl.youtubelink + $ctrl.embed + $ctrl.youtubelink1;
                 }
                 coursProvider.ajoutCours(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.selection, $ctrl.linkyoutube, coursProvider.objetCours.contenuCours, $ctrl.parametre);
-                $state.go("profil", { "username": $ctrl.getcurrentUser().username });
+                $state.go("profil", { "username": $ctrl.getcurrentUser().username }, { reload: "profil" });
             }
         } else {
             if (coursProvider.objetCours.nombre == 0) {
@@ -589,13 +590,13 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
                     }
                     coursProvider.modifierCou(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre, lienV, contenuC);
                     coursProvider.ajoutChapitre(coursProvider.params, coursProvider.objetCours.tab, coursProvider.objetCours.taille);
-                    $state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" });
+                    $state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" }, { reload: "profil" });
                 } else {
                     if ($ctrl.verif == 1) {
                         coursProvider.deleteFichier(coursProvider.objetCours.url);
                     }
                     coursProvider.modifierCou(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre, coursProvider.objetCours.lienVideo, coursProvider.objetCours.contenuCours);
-                    $state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" });
+                    $state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" }, { reload: "profil" });
                 }
             } else {
                 console.log('you beuri yi leu', coursProvider.objetCours.nombre);
@@ -608,7 +609,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
                 coursProvider.modifierCours(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre);
                 coursProvider.modifierChapitre(coursProvider.objetCours.tab, coursProvider.objetCours.taille);
                 coursProvider.modifierFichier(coursProvider.objetCours.tab, coursProvider.objetCours.taille);
-                $state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" });
+                $state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" }, { reload: "profil" });
             }
         }
 
