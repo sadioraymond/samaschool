@@ -5,6 +5,11 @@ export default function($stateProvider) {
   $stateProvider
     .state('allEtablissements', {
       url: '/all/etablissements',
-      template: '<all-etablissemnts></all-etablissemnts>'
+      template: '<all-etablissemnts></all-etablissemnts>',
+      onEnter: function () {
+        $('html, body').animate({
+          scrollTop: 500
+        }, 2000);
+      }
     });
 }

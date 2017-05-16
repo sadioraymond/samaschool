@@ -4,7 +4,12 @@ export default function($stateProvider) {
   'ngInject';
   $stateProvider
     .state('coursesPages', {
-      url: '/coursesPages',
-      template: '<courses-pages></courses-pages>'
+      url: '/all/coursesPages',
+      template: '<courses-pages></courses-pages>',
+      onEnter: function () {
+        $('html, body').animate({
+          scrollTop: 500
+        }, 2000);
+      }
     });
 }

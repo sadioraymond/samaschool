@@ -5,6 +5,11 @@ export default function($stateProvider) {
   $stateProvider
     .state('etablissement', {
       url: '/etablissement/:id',
-      template: '<etablissement-pages></etablissement-pages>'
+      template: '<etablissement-pages></etablissement-pages>',
+      onEnter: function () {
+        $('html, body').animate({
+          scrollTop: 90
+        }, 1200);
+      }
     });
 }

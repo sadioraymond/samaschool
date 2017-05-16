@@ -109,14 +109,15 @@
       <div ng-show="profilCtrl.etablissement" id="sidebar1" class="col-md-9 col-sm-12">
         <div class="widget clearfix">
           <div class="member-profile">
-            <div class="big-title">
+            <!--Pour les etablissements inscrits-->
+            <div class="big-title" ng-if="profilCtrl.LesEtabIncrit && profilCtrl.LesEtabIncrit !== 0">
               <h2 class="related-title">
-                <span>Etablissements inscrit</span>
+                <span>Etablissements inscrits</span>
               </h2>
             </div>
             <!-- end big-title -->
 
-            <div class="row profile-badges" style="width: 750px">
+            <div class="row profile-badges" style="width: 750px" ng-if="profilCtrl.LesEtabIncrit && profilCtrl.LesEtabIncrit !== 0">
               <div class="col-md-6 col-sm-12 wow fadeIn" ng-repeat="etab in profilCtrl.LesEtabIncrit">
                 <div ui-sref="etablissement({id: etab._id})" class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 200px;">
                  <a href="">  <img width="80px" alt="photo profil de {{etab.libelle}}" ng-src="assets/upload/Etablissement/{{etab.images}}" class="img-responsive img-circle alignleft"></a>
@@ -131,9 +132,10 @@
             </div>
             <!-- end col -->
 
+            <!--Pour les etablissements suivis-->
             <div class="big-title">
               <h2 class="related-title">
-                <span>Etablissements suivi</span>
+                <span>Etablissements suivis</span>
               </h2>
             </div>
             <div class="row profile-badges">
