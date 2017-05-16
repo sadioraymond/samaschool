@@ -134,11 +134,11 @@ export class ProfilComponent {
                 setTimeout(() => {
                     // voir le type de profil du user
                     this.userProvider.isProf(this.userData._id).then(user => {
-                        console.log("user bi ==", user)
+                        console.log("user prof ==", user)
                         this.isprof = user
                     })
                     this.userProvider.isEtudiant(this.userData._id).then(user => {
-                        console.log("user bi ==", user)
+                        console.log("user etudiant ==", user)
                         this.isetudiant = user
                     })
                 }, 100);

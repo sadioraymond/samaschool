@@ -5,6 +5,11 @@ export default function($stateProvider) {
   $stateProvider
     .state('profil', {
       url: '/:username',
-      template: '<profil></profil>'
+      template: '<profil></profil>',
+      onEnter: function () {
+        $('html, body').animate({
+          scrollTop: 50
+        }, 1200);
+      }
     });
 }
