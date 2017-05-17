@@ -39,10 +39,16 @@ var UserSchema = new Schema({
     },
     provider: String,
     salt: String,
-    facebook: {},
-    twitter: {},
-    google: {},
-    github: {}
+    facebook: String,
+    twitter: String,
+    google: String,
+    linkedIn: String,
+    dateNaiss: String,
+    bio: String
+    // facebook: {},
+    // twitter: {},
+    // google: {},
+    // github: {}
 });
 
 /**

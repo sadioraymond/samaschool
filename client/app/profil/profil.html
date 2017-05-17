@@ -325,15 +325,15 @@
             </div>
             <!-- end big-title -->
 
-            <div class="loginform">
+            <div ng-if="profilCtrl.isLoggedIn() && profilCtrl.getCurrentUser()._id === profilCtrl.userData._id" class="loginform">
               <form class="row">
                 <div class="col-md-12">
-                  <input type="text" name="facebook" class="form-control" placeholder="Facebook">
-                  <input type="text" name="twitter" class="form-control" placeholder="Twitter">
-                  <input type="text" name="linkedin" class="form-control" placeholder="Linkedin">
-                  <input type="email" name="google-plus" class="form-control" placeholder="Google-plus">
-                  <input type="date" name="dateNaiss" class="form-control" placeholder="Date de Naissance">
-                  <textarea class="form-control" name="comments" rows="6" placeholder="Votre Bio"></textarea>
+                  <input type="text" name="facebook" class="form-control" placeholder="Facebook" ng-model="profilCtrl.userData.facebook">
+                  <input type="text" name="twitter" class="form-control" placeholder="Twitter" ng-model="profilCtrl.userData.twitter">
+                  <input type="text" name="linkedin" class="form-control" placeholder="Linkedin" ng-model="profilCtrl.userData.linkedIn">
+                  <input type="text" name="google-plus" class="form-control" placeholder="Google-plus" ng-model="profilCtrl.userData.google">
+                  <input type="text" name="dateNaiss" class="form-control" placeholder="Date de Naissance" ng-model="profilCtrl.userData.dateNaiss">
+                  <textarea class="form-control" name="comments" rows="6" placeholder="Votre Bio" ng-model="profilCtrl.userData.bio"></textarea>
                    <!--Dropdown des sous categories:-->
                     <label for="categorie">Categories </label>
                     <!-- Single button -->
@@ -347,9 +347,16 @@
                         <li role="menuitem" ng-repeat="cat in profilCtrl.listCat" ng-click="profilCtrl.selectedCateg(cat)"><a href="#">{{cat.libelle}}</a></li>
                       </ul>
                   </div>
-                  <button type="submit" value="SEND" class="button button--wayra btn-block btn-square" style="margin-top: 2em"> Enregistrer</button>
+                  <button type="submit" value="SEND" class="button button--wayra btn-block btn-square" style="margin-top: 2em" ng-click="profilCtrl.completerClick()"> Enregistrer</button>
                 </div>
               </form>
+            </div>
+            <div ng-if="!profilCtrl.isLoggedIn() || (profilCtrl.isLoggedIn() && profilCtrl.getCurrentUser()._id !== profilCtrl.userData._id)">
+              <li>facebook: {{profilCtrl.userData.facebook}}</li>
+              <li>twitter: {{profilCtrl.userData.twitter}}</li>
+              <li>linkedIn: {{profilCtrl.userData.linkedIn}}</li>
+              <li>google plus: {{profilCtrl.userData.google}}</li>
+              <li>date de naissance: {{profilCtrl.userData.dateNaiss}}</li>
             </div>
           </div>
           <!-- end team-member -->
