@@ -125,7 +125,7 @@ export function show(req, res) {
 
 // get cours by nom ou description ou une partie
 export function getCoursByNameOrDesc(req, res) {
-    return Cours.find({ $or: [ { titre: {'$regex' : req.params.src, '$options' : 'i'} }, { description: {'$regex' : req.params.src, '$options' : 'i'} } ] }).populate('sous_categorie').exec()
+    return Cours.find({ $or: [{ titre: { '$regex': req.params.src, '$options': 'i' } }, { description: { '$regex': req.params.src, '$options': 'i' } }] }).populate('sous_categorie').exec()
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
         .catch(handleError(res));
@@ -181,6 +181,16 @@ export function getCoursPlusSuivi(req, res) {
         });
 
 
+}
+
+//Get Suivi Cours
+export function SuividuCours(req, res) {
+    SuiviCours.find({
+            publication: req.params.id
+        }).exec()
+        .then(nb => {
+            return res.json(nb.length);
+        });
 }
 //Cours les plus récents
 export function getCoursRecents(req, res) {

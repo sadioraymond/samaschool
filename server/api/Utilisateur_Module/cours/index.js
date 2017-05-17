@@ -14,6 +14,7 @@ router.get('/sousCat/:scat', controller.getCoursBySousCat);
 router.get('/prof/:id', controller.getCoursByProf);
 router.get('/school/:etab', controller.getCoursByEtablissement);
 router.get('/cours/suivi', controller.getCoursPlusSuivi);
+router.get('/suiviparcours/:id', controller.SuividuCours);
 router.get('/coursprof/:id/:ids', controller.getCoursByProfAndSchool);
 router.get('/search/:src', controller.getCoursByNameOrDesc);
 router.post('/', controller.create);

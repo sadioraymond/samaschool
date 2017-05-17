@@ -88,6 +88,21 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
 
     }
 
+    this.getSuividuCours = function(cours) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/courss/suiviparcours/' + cours, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
     this.GetCoursProfInSchool = function(prof) {
         var deferred = $q.defer();
         var liste = [];
