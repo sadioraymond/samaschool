@@ -351,6 +351,13 @@
                 </div>
               </form>
             </div>
+            <div ng-if="!profilCtrl.isLoggedIn() || (profilCtrl.isLoggedIn() && profilCtrl.getCurrentUser()._id !== profilCtrl.userData._id)">
+              <li>facebook: {{profilCtrl.userData.facebook}}</li>
+              <li>twitter: {{profilCtrl.userData.twitter}}</li>
+              <li>linkedIn: {{profilCtrl.userData.linkedIn}}</li>
+              <li>google plus: {{profilCtrl.userData.google}}</li>
+              <li>date de naissance: {{profilCtrl.userData.dateNaiss}}</li>
+            </div>
           </div>
           <!-- end team-member -->
         </div>
