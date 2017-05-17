@@ -41,7 +41,13 @@ export default function seedDatabaseIfNeeded() {
                         email: 'test@example.com',
                         password: 'test',
                         images: "ImageParDerfautPourLesUsers.png",
-                        imagecouverture: "images.jpg"
+                        imagecouverture: "images.jpg",
+                        facebook: "",
+                        twitter: "",
+                        linkedIn: "",
+                        googlePlus: "",
+                        dateNaiss: "",
+                        bio:""
                     }, {
                         _id: "58b03802d98ff60ec2777f8d",
                         provider: 'local',
@@ -51,7 +57,13 @@ export default function seedDatabaseIfNeeded() {
                         email: 'admin@example.com',
                         password: 'admin',
                         images: "ImageParDerfautPourLesUsers.png",
-                        imagecouverture: "images.png"
+                        imagecouverture: "images.png",
+                        facebook: "",
+                        twitter: "",
+                        linkedIn: "",
+                        googlePlus: "",
+                        dateNaiss: "",
+                        bio:""
                     }, {
                         _id: "58b03802d98ff60ec2777f8e",
                         name: "Selma",
@@ -59,7 +71,13 @@ export default function seedDatabaseIfNeeded() {
                         email: "selma@example.com",
                         password: "Passer",
                         images: "ImageParDerfautPourLesUsers.png",
-                        imagecouverture: "images (1).jpg"
+                        imagecouverture: "images (1).jpg",
+                        facebook: "",
+                        twitter: "",
+                        linkedIn: "",
+                        googlePlus: "",
+                        dateNaiss: "",
+                        bio:""
                     }, {
                         _id: "58b03802d98ff60ec2777f8f",
                         name: "Lilah",
@@ -67,7 +85,13 @@ export default function seedDatabaseIfNeeded() {
                         email: "lilah@example.com",
                         password: "Passer",
                         images: "ImageParDerfautPourLesUsers.png",
-                        imagecouverture: "images (1).png"
+                        imagecouverture: "images (1).png",
+                        facebook: "",
+                        twitter: "",
+                        linkedIn: "",
+                        googlePlus: "",
+                        dateNaiss: "",
+                        bio:""
                     }, {
                         _id: "58b03802d98ff60ec2777f90",
                         name: "Sebastian",
@@ -75,7 +99,13 @@ export default function seedDatabaseIfNeeded() {
                         email: "sebastian@example.com",
                         password: "Passer",
                         images: "ImageParDerfautPourLesUsers.png",
-                        imagecouverture: "images (2).jpg"
+                        imagecouverture: "images (2).jpg",
+                        facebook: "",
+                        twitter: "",
+                        linkedIn: "",
+                        googlePlus: "",
+                        dateNaiss: "",
+                        bio:""
                     }, {
                         _id: "58b03802d98ff60ec2777f91",
                         name: "Pach",
@@ -83,7 +113,13 @@ export default function seedDatabaseIfNeeded() {
                         email: "pach@example.com",
                         password: "Passer",
                         images: "ImageParDerfautPourLesUsers.png",
-                        imagecouverture: "images (2).png"
+                        imagecouverture: "images (2).png",
+                        facebook: "",
+                        twitter: "",
+                        linkedIn: "",
+                        googlePlus: "",
+                        dateNaiss: "",
+                        bio:""
                     }, {
                         _id: "58b03802d98ff60ec2777f92",
                         name: "chico",
@@ -91,7 +127,13 @@ export default function seedDatabaseIfNeeded() {
                         email: "chico@example.com",
                         password: "Passer",
                         images: "ImageParDerfautPourLesUsers.png",
-                        imagecouverture: "images (3).jpg"
+                        imagecouverture: "images (3).jpg",
+                        facebook: "",
+                        twitter: "",
+                        linkedIn: "",
+                        googlePlus: "",
+                        dateNaiss: "",
+                        bio:""
                     }, {
                         _id: "58b03802d98ff60ec2777f93",
                         name: "raymond",
@@ -99,7 +141,13 @@ export default function seedDatabaseIfNeeded() {
                         email: "ray@example.com",
                         password: "Passer",
                         images: "ImageParDerfautPourLesUsers.png",
-                        imagecouverture: "images (4).jpg"
+                        imagecouverture: "images (4).jpg",
+                        facebook: "",
+                        twitter: "",
+                        linkedIn: "",
+                        googlePlus: "",
+                        dateNaiss: "",
+                        bio:""
                     }, {
                         _id: "58b03802d98ff60ec2777f94",
                         name: "kain",
@@ -107,7 +155,13 @@ export default function seedDatabaseIfNeeded() {
                         email: "kain@kain.com",
                         password: "passer",
                         images: "ImageParDerfautPourLesUsers.png",
-                        imagecouverture: "images (5).jpg"
+                        imagecouverture: "images (5).jpg",
+                        facebook: "",
+                        twitter: "",
+                        linkedIn: "",
+                        googlePlus: "",
+                        dateNaiss: "",
+                        bio:""
                     }, {
                         _id: "58b03802d98ff60ec2777f95",
                         name: "Illiana",
@@ -115,7 +169,13 @@ export default function seedDatabaseIfNeeded() {
                         email: "illiana@example.com",
                         password: "Passer",
                         images: "ImageParDerfautPourLesUsers.png",
-                        imagecouverture: "images (6).jpg"
+                        imagecouverture: "images (6).jpg",
+                        facebook: "",
+                        twitter: "",
+                        linkedIn: "",
+                        googlePlus: "",
+                        dateNaiss: "",
+                        bio:""
                     })
                     .then(() => console.log('finished populating users'))
                     .catch(err => console.log('error populating users', err));
