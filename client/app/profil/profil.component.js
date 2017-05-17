@@ -6,14 +6,14 @@ const uiRouter = require('angular-ui-router');
 import routes from './profil.routes';
 
 export class ProfilComponent {
-    // les services à injecter
+ // les services à injecter
     jsFonctions;
     sousCategorieProvider;
     categorieProvider;
     etablissementProvider;
     suiviCoursProvider;
 
-    // Les variables
+ // Les variables
     listCat;
     selectedCount = 0;
     stateProgress = 0;
@@ -27,9 +27,10 @@ export class ProfilComponent {
     titreChap = [];
     objChap = [];
     getCurrentUser: Function;
+    isLoggedIn: Function;
     LesEtabIncrit;
 
-    //les booleen pour cacher ou montrer des div
+//les booleen pour cacher ou montrer des div
     profil = true;
     contact = true;
     etablissement = false;
@@ -51,7 +52,7 @@ export class ProfilComponent {
         id: "",
         libelle: ""
     };
-    /*@ngInject*/
+/*@ngInject*/
     constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state, $location, ouvreDialogProvider) {
         this.$stateParams = $stateParams;
         this.$state = $state;
@@ -61,6 +62,7 @@ export class ProfilComponent {
         this.sousCategorieProvider = souscategorieProvider;
         this.categorieProvider = categorieProvider;
         this.getCurrentUser = Auth.getCurrentUserSync;
+        this.isLoggedIn = Auth.isLoggedInSync;
         this.etablissementProvider = etablissementProvider;
         this.suiviCoursProvider = suiviCoursProvider;
         this.coursProvider = coursProvider;
@@ -114,6 +116,7 @@ export class ProfilComponent {
             } else {
                 console.log('La page du user ==>>', this.userDatas);
                 this.userData = this.userDatas[0]
+                
                     // le user courant ??
                 if (this.userData.username === this.getCurrentUser().username) {
                     this.privateLink = true;
@@ -295,6 +298,15 @@ export class ProfilComponent {
         this.selectedId = true;
         console.log(this.categ);
         this.getSousCatByCategorie(this.categ.id);
+        
+    }
+
+// enregistrement lors du click sur le bouton pour completer le profil
+    completerClick(){
+        console.log("zeee",this.userData);
+        this.userProvider.completerProfil(this.userData._id, this.userData.facebook, this.userData.twitter, this.userData.linkedIn, this.userData.google, this.userData.dateNaiss, this.userData.bio);
+        window.location.reload();
+        // TODO : convertir la date de mongo en date normale
     }
 }
 

@@ -118,6 +118,19 @@ export function userProviderService($http, $q) {
         liste = deferred.promise;
         return liste;
     }
+    this.completerProfil = function(id, facebook, twitter, linkedIn, google, dateNaiss, bio){
+        var deferred = $q.defer();
+        $http.put('/api/users/' + id, {
+            facebook: facebook,
+            twitter: twitter,
+            linkedIn: linkedIn,
+            google: google,
+            dateNaiss : dateNaiss,
+            bio: bio
+        }).then(function() {
+            console.log("Modifié bi Bakhna");
+        });
+    }
 }
 
 export default angular.module('samaschoolApp.userProvider', [])
