@@ -28,12 +28,11 @@ export class MainController {
   listProfplussuivi;
   listeEtablissementPlussuivi;
   listProfSchool;
+  LesCours
   /*@ngInject*/
-  constructor($state, $http, $q, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, cfpLoadingBar) {
+  constructor($state, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, $filter) {
+    this.$filter = $filter
     this.$state = $state
-    this.$http = $http;
-    this.$q = $q;
-    this.cfpLoadingBar = cfpLoadingBar;
     this.socket = socket;
     this.coursProvider = coursProvider;
     this.classeProvider = classeProvider;
@@ -87,10 +86,20 @@ export class MainController {
   }
   $onInit() {
     console.log('VERSION ANGULAR', angular.version.full)
-    this.coursProvider.getCoursRecents().then(list => {
-      this.LesCoursRecent = list;
-      console.log('LesCoursRecent directive', this.LesCoursRecent);
+    this.coursProvider.listCours().then(list => {
+      list.map(x => {
+        this.coursProvider.getSuividuCours(x._id).then(nbsuivi => {
+          x.nbSuivi = nbsuivi
+        })
+      })
+      this.LesCours = list;
+      console.info('LesCours directive', this.LesCours);
     });
+    setTimeout(() => {
+      // filtre (cours plus suivi) de la liste des cours 
+      this.lesCoursLesplusSuivis = this.$filter('orderBy')(this.LesCours, '-nbSuivi')
+      console.info('LesCours suivi', this.lesCoursLesplusSuivis);
+    }, 500);
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
@@ -98,23 +107,6 @@ export class MainController {
           this.jsFonctions.otherScript();
         }, 500);
       });
-
-    this.coursProvider.listCours().then(list => {
-      this.listCours = list;
-      if (this.listCours.length == 0) {
-        console.log('Liste Vide');
-      } else {
-        //console.log('Les Cours', this.listCours);
-      }
-    });
-    this.coursProvider.CoursPlusSuivi().then(list => {
-      this.listCoursPlussuivi = list;
-      if (this.listCoursPlussuivi.length == 0) {
-        console.log('Liste Vide');
-      } else {
-        console.log('Les Cours les plus suivi', this.listCoursPlussuivi);
-      }
-    });
     this.etablissementProvider.listeEtablissement().then(list => {
       this.listeEtablissement = list;
       if (this.listeEtablissement.length == 0) {
@@ -178,7 +170,7 @@ export class MainController {
     this.coursProvider.scategorie = scat
   }
 
-  viderScat(){
+  viderScat() {
     this.coursProvider.scategorie = null;
   }
 }

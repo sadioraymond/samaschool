@@ -11,13 +11,13 @@
   <div class="container">
     <div class="big-title">
       <h2 class="related-title">
-        <span>Recent Courses</span>
+        <span>Top Cours</span>
       </h2>
     </div>
     <!-- end big-title -->
 
     <data-owl-carousel class="owl-carousel" data-options="{navigation: true, pagination: false, rewindNav : false}">
-      <div owl-carousel-item="" ng-repeat="course in $ctrl.LesCoursRecent" class="item">
+      <div owl-carousel-item="" ng-repeat="course in $ctrl.lesCoursLesplusSuivis" class="item">
         <div class="shop-item">
           <div class="post-media entry">
             <!--<div class="ribbon-wrapper-green">
@@ -53,7 +53,7 @@
             <small>&#124;</small>
             <span><a><i class="fa fa-clock-o"></i> 2 Month</a></span>
             <small class="hidden-xs">&#124;</small>
-            <span class="hidden-xs"><a><i class="fa fa-graduation-cap"></i> 12 Students</a></span>
+            <span class="hidden-xs"><a><i class="fa fa-graduation-cap"></i> {{course.nbSuivi}} Users</a></span>
           </div>
         </div>
       </div>
