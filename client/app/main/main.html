@@ -7,73 +7,7 @@
   </div>
 </section>
 <statistics></statistics>
-<section class="section bgw" id="topCours">
-  <div class="container">
-    <div class="big-title">
-      <h2 class="related-title">
-        <span>Recent Courses</span>
-      </h2>
-    </div>
-    <!-- end big-title -->
-
-    <data-owl-carousel class="owl-carousel" data-options="{navigation: true, pagination: false, rewindNav : false}">
-      <div owl-carousel-item="" ng-repeat="course in $ctrl.LesCoursRecent" class="item">
-        <div class="shop-item">
-          <div class="post-media entry">
-            <!--<div class="ribbon-wrapper-green">
-              <div class="ribbon-green">Featured</div>
-            </div>-->
-            <img ng-src="../../assets/upload/Cours/{{course.images}}" alt="" class="img-responsive" style="height: 250px;">
-            <div class="magnifier">
-              <div class="shop-bottom clearfix">
-                <a href="course-checkout.html" title="Suivre"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
-                <a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie._id, idCours:course._id})" title="Visualiser"><i class="fa fa-search" aria-hidden="true"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="shop-desc">
-            <div class="shop-price clearfix">
-              <div class="pull-left">
-                <div class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-              </div>
-              <div class="pull-right">
-                <small ng-click="$ctrl.viewScat(course.sous_categorie)" style="cursor: pointer;">{{course.sous_categorie.libelle | limitTo: 20}}</small>
-              </div>
-            </div>
-            <h3><a ui-sref="courseSinglePage({sousDomaine:course.sous_categorie._id, idCours:course._id})" title="{{course.description}}">{{course.titre | limitTo: 60}}</a></h3>
-          </div>
-          <div class="large-post-meta">
-            <span class="avatar"><a ui-sref="profil({username: course.user.username})"><img ng-src="assets/upload/User/{{course.user.images}}" alt="" class="img-circle"> {{course.user.username}}</a></span>
-            <small>&#124;</small>
-            <span><a><i class="fa fa-clock-o"></i> 2 Month</a></span>
-            <small class="hidden-xs">&#124;</small>
-            <span class="hidden-xs"><a><i class="fa fa-graduation-cap"></i> 12 Students</a></span>
-          </div>
-        </div>
-      </div>
-    </data-owl-carousel>
-    <!-- end carousel-widget -->
-    <div class="clearfix"></div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="all-buttons text-center">
-          <a ui-sref="coursesPages" ng-click="$ctrl.viderScat()" class="btn btn-primary btn-lg btn-square">TOUS LES COURS</a>
-        </div>
-        <!-- end allbuttons -->
-      </div>
-      <!-- end col -->
-    </div>
-    <!-- end row -->
-  </div>
-  <!-- end container -->
-</section>
-<!-- end section -->
+<courses></courses>
 <teachers></teachers>
 <etablissements></etablissements>
 <!--<section class="welcomebox-wrapper">

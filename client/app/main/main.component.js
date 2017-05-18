@@ -29,11 +29,9 @@ export class MainController {
   listeEtablissementPlussuivi;
   listProfSchool;
   /*@ngInject*/
-  constructor($state, $http, $q, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, cfpLoadingBar) {
+  constructor($state, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, $filter) {
+    this.$filter = $filter
     this.$state = $state
-    this.$http = $http;
-    this.$q = $q;
-    this.cfpLoadingBar = cfpLoadingBar;
     this.socket = socket;
     this.coursProvider = coursProvider;
     this.classeProvider = classeProvider;
@@ -87,10 +85,6 @@ export class MainController {
   }
   $onInit() {
     console.log('VERSION ANGULAR', angular.version.full)
-    this.coursProvider.getCoursRecents().then(list => {
-      this.LesCoursRecent = list;
-      console.log('LesCoursRecent directive', this.LesCoursRecent);
-    });
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
@@ -98,23 +92,6 @@ export class MainController {
           this.jsFonctions.otherScript();
         }, 500);
       });
-
-    this.coursProvider.listCours().then(list => {
-      this.listCours = list;
-      if (this.listCours.length == 0) {
-        console.log('Liste Vide');
-      } else {
-        //console.log('Les Cours', this.listCours);
-      }
-    });
-    this.coursProvider.CoursPlusSuivi().then(list => {
-      this.listCoursPlussuivi = list;
-      if (this.listCoursPlussuivi.length == 0) {
-        console.log('Liste Vide');
-      } else {
-        console.log('Les Cours les plus suivi', this.listCoursPlussuivi);
-      }
-    });
     this.etablissementProvider.listeEtablissement().then(list => {
       this.listeEtablissement = list;
       if (this.listeEtablissement.length == 0) {
@@ -169,17 +146,6 @@ export class MainController {
     });
 
 
-  }
-
-  // click sous Categorie dans la liste recents cours
-  viewScat(scat) {
-    console.log(scat)
-    this.$state.go('coursesPages')
-    this.coursProvider.scategorie = scat
-  }
-
-  viderScat(){
-    this.coursProvider.scategorie = null;
   }
 }
 export default angular.module('samaschoolApp.main', [uiRouter, 'angular-loading-bar'])

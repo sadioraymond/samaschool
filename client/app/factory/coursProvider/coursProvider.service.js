@@ -88,6 +88,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
 
     }
 
+
     this.getSuividuCours = function(cours) {
         var deferred = $q.defer();
         var liste = [];
