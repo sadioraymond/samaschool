@@ -41,6 +41,7 @@ export class ProfilComponent {
     secondPart = false;
     thirdPart = false;
     fourthPart = false;
+    formCompleterIns = false;
     lesCoursSuivis;
     userData;
     permissionProfil: boolean;
@@ -307,6 +308,14 @@ export class ProfilComponent {
         this.userProvider.completerProfil(this.userData._id, this.userData.facebook, this.userData.twitter, this.userData.linkedIn, this.userData.google, this.userData.dateNaiss, this.userData.bio);
         window.location.reload();
         // TODO : convertir la date de mongo en date normale
+    }
+// montrer le formulaire pour compéter profil
+    montrerForm(){
+        this.formCompleterIns = true;
+    }
+// cacher le formulaire pour compéter profil
+    cacherForm(){
+        this.formCompleterIns = false;
     }
 }
 
