@@ -325,7 +325,7 @@
             </div>
             <!-- end big-title -->
 
-            <div ng-if="profilCtrl.isLoggedIn() && profilCtrl.getCurrentUser()._id === profilCtrl.userData._id" class="loginform">
+            <div ng-show="profilCtrl.formCompleterIns" class="loginform">
               <form class="row">
                 <div class="col-md-12">
                   <input type="text" name="facebook" class="form-control" placeholder="Facebook" ng-model="profilCtrl.userData.facebook">
@@ -347,16 +347,17 @@
                         <li role="menuitem" ng-repeat="cat in profilCtrl.listCat" ng-click="profilCtrl.selectedCateg(cat)"><a href="#">{{cat.libelle}}</a></li>
                       </ul>
                   </div>
-                  <button type="submit" value="SEND" class="button button--wayra btn-block btn-square" style="margin-top: 2em" ng-click="profilCtrl.completerClick()"> Enregistrer</button>
+                  <button type="submit" value="SEND" class="button button--wayra btn-block btn-square" style="margin-top: 2em" ng-click="profilCtrl.completerClick() ; profilCtrl.montrerForm()"> Enregistrer</button>
                 </div>
               </form>
             </div>
-            <div ng-if="!profilCtrl.isLoggedIn() || (profilCtrl.isLoggedIn() && profilCtrl.getCurrentUser()._id !== profilCtrl.userData._id)">
+            <div ng-hide="profilCtrl.formCompleterIns">
               <li>facebook: {{profilCtrl.userData.facebook}}</li>
               <li>twitter: {{profilCtrl.userData.twitter}}</li>
               <li>linkedIn: {{profilCtrl.userData.linkedIn}}</li>
               <li>google plus: {{profilCtrl.userData.google}}</li>
               <li>date de naissance: {{profilCtrl.userData.dateNaiss}}</li>
+              <button ng-if="profilCtrl.isLoggedIn() && profilCtrl.getCurrentUser()._id === profilCtrl.userData._id" ng-click="profilCtrl.montrerForm()">Modifier</button>
             </div>
           </div>
           <!-- end team-member -->
