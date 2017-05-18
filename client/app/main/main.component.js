@@ -28,7 +28,6 @@ export class MainController {
   listProfplussuivi;
   listeEtablissementPlussuivi;
   listProfSchool;
-  LesCours
   /*@ngInject*/
   constructor($state, $scope, socket, coursProvider, classeProvider, niveauProvider, etablissementProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, $filter) {
     this.$filter = $filter
@@ -86,20 +85,6 @@ export class MainController {
   }
   $onInit() {
     console.log('VERSION ANGULAR', angular.version.full)
-    // this.coursProvider.listCours().then(list => {
-    //   list.map(x => {
-    //     this.coursProvider.getSuividuCours(x._id).then(nbsuivi => {
-    //       x.nbSuivi = nbsuivi
-    //     })
-    //   })
-    //   this.LesCours = list;
-    //   console.info('LesCours directive', this.LesCours);
-    // });
-    // setTimeout(() => {
-    //   // filtre (cours plus suivi) de la liste des cours 
-    //   this.lesCoursLesplusSuivis = this.$filter('orderBy')(this.LesCours, '-nbSuivi')
-    //   console.info('LesCours suivi', this.lesCoursLesplusSuivis);
-    // }, 500);
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
@@ -161,17 +146,6 @@ export class MainController {
     });
 
 
-  }
-
-  // click sous Categorie dans la liste recents cours
-  viewScat(scat) {
-    console.log(scat)
-    this.$state.go('coursesPages')
-    this.coursProvider.scategorie = scat
-  }
-
-  viderScat() {
-    this.coursProvider.scategorie = null;
   }
 }
 export default angular.module('samaschoolApp.main', [uiRouter, 'angular-loading-bar'])
