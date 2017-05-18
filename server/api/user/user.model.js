@@ -43,7 +43,7 @@ var UserSchema = new Schema({
     twitter: String,
     google: String,
     linkedIn: String,
-    dateNaiss: String,
+    dateNaiss: Date,
     bio: String
     // facebook: {},
     // twitter: {},

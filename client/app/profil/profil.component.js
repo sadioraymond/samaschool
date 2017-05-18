@@ -29,6 +29,7 @@ export class ProfilComponent {
   getCurrentUser: Function;
   isLoggedIn: Function;
   LesEtabIncrit;
+  dateNaissance: Date
   //les booleen pour cacher ou montrer des div
   profil = true;
   contact = true;
@@ -41,7 +42,7 @@ export class ProfilComponent {
   thirdPart = false;
   fourthPart = false;
   lesCoursSuivis;
-  userData;
+  userData = {};
   permissionProfil: boolean;
   privateLink: boolean;
   im;
@@ -52,11 +53,12 @@ export class ProfilComponent {
     libelle: ""
   };
   /*@ngInject*/
-  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state, $location, ouvreDialogProvider) {
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state, $location, ouvreDialogProvider, $filter, $timeout) {
     this.$stateParams = $stateParams;
     this.$state = $state;
     this.Auth = Auth;
-    this.message = 'Hello';
+    this.$filter = $filter
+    this.$timeout = $timeout
     this.jsFonctions = jsFonctions;
     this.sousCategorieProvider = souscategorieProvider;
     this.categorieProvider = categorieProvider;
@@ -113,9 +115,15 @@ export class ProfilComponent {
         this.userData = "";
         this.$state.go('main');
       } else {
-        console.log('La page du user ==>>', this.userDatas);
+        console.log('La page du user ==>>', this.userDatas[0]);
         this.userData = this.userDatas[0]
-
+        console.error("date bi ", this.$filter('date')(this.userData.dateNaiss, "dd/MM/yyyy").toString())
+        this.$timeout(() => {
+          this.annee = ""
+          this.annee = this.$filter('date')(this.userData.dateNaiss, "dd/MM/yyyy").toString()
+          // console.error('d', this.annee)
+          this.dateNaissance = new Date(`${this.annee}`)
+        }, 1000)
         // le user courant ??
         if (this.userData.username === this.getCurrentUser().username) {
           this.privateLink = true;
@@ -159,8 +167,6 @@ export class ProfilComponent {
 
       }
     });
-
-
     // Liste des categories au chargement de la page
     this.categorieProvider.listCategorie().then(list => {
       this.listCat = list;
@@ -302,24 +308,29 @@ export class ProfilComponent {
 
   }
 
-// enregistrement lors du click sur le bouton pour completer le profil
-    completerClick(){
-        console.log("zeee",this.userData);
-        this.userProvider.completerProfil(this.userData._id, this.userData.facebook, this.userData.twitter, this.userData.linkedIn, this.userData.google, this.userData.dateNaiss, this.userData.bio);
-        window.location.reload();
-        // TODO : convertir la date de mongo en date normale
-    }
-// montrer le formulaire pour compéter profil
-    montrerForm(){
-        this.formCompleterIns = true;
-    }
-// cacher le formulaire pour compéter profil
-    cacherForm(){
-        this.formCompleterIns = false;
-    }
+  // enregistrement lors du click sur le bouton pour completer le profil
+  completerClick() {
+    // console.log("zeee", this.userData);
+    this.userData.dateNaiss = new Date(this.userData.dateNaissance)
+    this.userProvider.completerProfil(this.userData._id, this.userData.facebook, this.userData.twitter, this.userData.linkedIn, this.userData.google, this.dateNaissance, this.userData.bio).then((msg) => {
+      console.info("msg", msg)
+      location.reload();
+    }, (error) => {
+      console.info("error", error)
+    })
+    // TODO : convertir la date de mongo en date normale
+  }
+  // montrer le formulaire pour compéter profil
+  montrerForm() {
+    this.formCompleterIns = true;
+  }
+  // cacher le formulaire pour compéter profil
+  cacherForm() {
+    this.formCompleterIns = false;
+  }
 }
 
-ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider", "userProvider", "$stateParams", "$state", "$location", "ouvreDialogProvider"];
+ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider", "userProvider", "$stateParams", "$state", "$location", "ouvreDialogProvider", "$filter", "$timeout"];
 export default angular.module('samaschoolApp.profil', [uiRouter])
   .config(routes)
   .component('profil', {
