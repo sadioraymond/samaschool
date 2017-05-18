@@ -86,20 +86,20 @@ export class MainController {
   }
   $onInit() {
     console.log('VERSION ANGULAR', angular.version.full)
-    this.coursProvider.listCours().then(list => {
-      list.map(x => {
-        this.coursProvider.getSuividuCours(x._id).then(nbsuivi => {
-          x.nbSuivi = nbsuivi
-        })
-      })
-      this.LesCours = list;
-      console.info('LesCours directive', this.LesCours);
-    });
-    setTimeout(() => {
-      // filtre (cours plus suivi) de la liste des cours 
-      this.lesCoursLesplusSuivis = this.$filter('orderBy')(this.LesCours, '-nbSuivi')
-      console.info('LesCours suivi', this.lesCoursLesplusSuivis);
-    }, 500);
+    // this.coursProvider.listCours().then(list => {
+    //   list.map(x => {
+    //     this.coursProvider.getSuividuCours(x._id).then(nbsuivi => {
+    //       x.nbSuivi = nbsuivi
+    //     })
+    //   })
+    //   this.LesCours = list;
+    //   console.info('LesCours directive', this.LesCours);
+    // });
+    // setTimeout(() => {
+    //   // filtre (cours plus suivi) de la liste des cours 
+    //   this.lesCoursLesplusSuivis = this.$filter('orderBy')(this.LesCours, '-nbSuivi')
+    //   console.info('LesCours suivi', this.lesCoursLesplusSuivis);
+    // }, 500);
     angular.element(document)
       .ready(() => {
         setTimeout(() => {
