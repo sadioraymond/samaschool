@@ -50,6 +50,8 @@ export default class SignupController {
         })
         .then(() => {
           this.matchPass = false;
+          // affichage du message de félicitation
+          this.userProvider.inscription = true;
           // Account created, redirect to home
           this.userProvider.partage(this.userProvider.varbi);
           // this.$state.go('main');

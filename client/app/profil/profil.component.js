@@ -29,7 +29,6 @@ export class ProfilComponent {
   getCurrentUser: Function;
   isLoggedIn: Function;
   LesEtabIncrit;
-
   //les booleen pour cacher ou montrer des div
   profil = true;
   contact = true;
@@ -303,13 +302,21 @@ export class ProfilComponent {
 
   }
 
-  // enregistrement lors du click sur le bouton pour completer le profil
-  completerClick() {
-    console.log("zeee", this.userData);
-    this.userProvider.completerProfil(this.userData._id, this.userData.facebook, this.userData.twitter, this.userData.linkedIn, this.userData.google, this.userData.dateNaiss, this.userData.bio);
-    window.location.reload();
-    // TODO : convertir la date de mongo en date normale
-  }
+// enregistrement lors du click sur le bouton pour completer le profil
+    completerClick(){
+        console.log("zeee",this.userData);
+        this.userProvider.completerProfil(this.userData._id, this.userData.facebook, this.userData.twitter, this.userData.linkedIn, this.userData.google, this.userData.dateNaiss, this.userData.bio);
+        window.location.reload();
+        // TODO : convertir la date de mongo en date normale
+    }
+// montrer le formulaire pour compéter profil
+    montrerForm(){
+        this.formCompleterIns = true;
+    }
+// cacher le formulaire pour compéter profil
+    cacherForm(){
+        this.formCompleterIns = false;
+    }
 }
 
 ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider", "userProvider", "$stateParams", "$state", "$location", "ouvreDialogProvider"];
