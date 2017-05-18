@@ -15,6 +15,26 @@
   </div>
   <!-- end topbar -->
 </div>
+
+<!--TODO: stylisation des bouttons de redirection-->
+<div ng-show="$ctrl.messageInscription()" class="topbar" style="background-color: #dff0d8;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-12 text-left">
+        <div class="topmenu">
+          <p>
+            <i class="fa fa-envelope-o fa-2x"></i>
+            <strong style="color: #3c763d;">Inscription réussi  <button ui-sref="profil({username: $ctrl.getCurrentUser().username})" ng-click="$ctrl.fermerMessageInscription()">Cliquer ici pour compléter le profil</button> <button ng-click="$ctrl.fermerMessageInscription()" >fermer</button></strong>
+          </p>
+        </div>
+        <!-- end callus -->
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- end topbar -->
+</div>
+
 <!-- end topbar -->
 <header class="header header-center">
   <div class="container-fluid">
