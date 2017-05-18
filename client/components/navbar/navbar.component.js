@@ -88,6 +88,13 @@ export class NavbarComponent {
     this.coursProvider.scategorie = null;
   }
 
+  messageInscription(){
+    return this.userProvider.inscription;
+  }
+  fermerMessageInscription(){
+    this.userProvider.inscription = false;
+  }
+
 }
 
 export function ModalDemoCtrl($uibModal, $log, $document) {

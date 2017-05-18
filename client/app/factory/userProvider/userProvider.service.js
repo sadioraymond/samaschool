@@ -5,6 +5,7 @@ const angular = require('angular');
 export function userProviderService($http, $q) {
     this.msg = false;
     this.varbi = null;
+    this.inscription = false;
     this.partage = function(test) {
         test.dismiss('cancel');
     }
