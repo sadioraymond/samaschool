@@ -332,7 +332,7 @@
                   <input type="text" name="twitter" class="form-control" placeholder="Twitter" ng-model="profilCtrl.userData.twitter">
                   <input type="text" name="linkedin" class="form-control" placeholder="Linkedin" ng-model="profilCtrl.userData.linkedIn">
                   <input type="text" name="google-plus" class="form-control" placeholder="Google-plus" ng-model="profilCtrl.userData.google">
-                  <input type="text" name="dateNaiss" class="form-control" placeholder="Date de Naissance" ng-model="profilCtrl.userData.dateNaiss">
+                  <input type="date" name="dateNaiss" class="form-control"  max="2015-12-31" ng-model="profilCtrl.dateNaissance">
                   <textarea class="form-control" name="comments" rows="6" placeholder="Votre Bio" ng-model="profilCtrl.userData.bio"></textarea>
                    <!--Dropdown des sous categories:-->
                     <label for="categorie">Categories </label>
@@ -356,7 +356,7 @@
               <li>twitter: {{profilCtrl.userData.twitter}}</li>
               <li>linkedIn: {{profilCtrl.userData.linkedIn}}</li>
               <li>google plus: {{profilCtrl.userData.google}}</li>
-              <li>date de naissance: {{profilCtrl.userData.dateNaiss}}</li>
+              <li>date de naissance: {{profilCtrl.userData.dateNaiss | date}}</li>
               <button ng-if="profilCtrl.isLoggedIn() && profilCtrl.getCurrentUser()._id === profilCtrl.userData._id" ng-click="profilCtrl.montrerForm()">Modifier</button>
             </div>
           </div>

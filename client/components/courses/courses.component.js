@@ -43,6 +43,7 @@ export class coursesComponent {
         //   this.getClasseByUser(this.getcurrentUser()._id);
         // }, 0);
 
+        // liste des cours avec, pour chaque, leur nombre de suivi
         this.coursProvider.listCours().then(list => {
           list.map(x => {
             this.coursProvider.getSuividuCours(x._id).then(nbsuivi => {
@@ -50,13 +51,13 @@ export class coursesComponent {
             })
           })
           this.LesCours = list;
-          console.info('LesCours directive', this.LesCours);
+          console.info('LesCours =>', this.LesCours);
         });
         this.$timeout(() => {
           // filtre (cours plus suivi) de la liste des cours 
           this.lesCoursLesplusSuivis = this.$filter('orderBy')(this.LesCours, '-nbSuivi')
           console.info('LesCours suivi', this.lesCoursLesplusSuivis);
-        }, 500);
+        },1000);
       });
   }
   // click sous Categorie dans la liste recents cours

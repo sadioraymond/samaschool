@@ -172,6 +172,11 @@ export class annoncesComponent {
   }
 
   addItemToAnnonceList() {}
+
+  changedtitre(error){
+    // alert('okk')
+    console.log('error yi =>', error)
+  }
 }
 annoncesComponent.$inject = ["$stateParams", "annonceProvider", "jsFonctions", "ouvreDialogProvider", "etablissementProvider", "$state"];
 export default angular.module('samaschoolApp.annonces', [])
