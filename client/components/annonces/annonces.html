@@ -1,7 +1,11 @@
 <section class="section bgw">
   <div class="container">
     <div class="section-title-2 text-center">
-      <h2>NOUS SOMMES PROFESSIONNEL</h2>
+      <form name="myForm">
+        <h2 contenteditable name="myWidget" ng-change="vm.changedtitre(myForm.myWidget.$error)" ng-model="vm.userContent" strip-br="true"
+          ng-minlength="4" ng-maxlength="55" required>NOUS SOMMES PROFESSIONNELS</h2>
+        <span ng-show="myForm.myWidget.$error.required">Required!</span>
+      </form>
       <p class="lead">Nous construisons des parcours incroyables ! Ne manquez pas de nous rejoindre aujourd'hui !</p>
       <hr>
     </div>

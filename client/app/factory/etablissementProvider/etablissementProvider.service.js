@@ -91,7 +91,7 @@ export function etablissementProviderService($http, $q) {
       deferred.resolve(liste);
 
     }, function (error) {
-      console.error(error)
+      // console.error(error)
       deferred.reject(error);
 
     });

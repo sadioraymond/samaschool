@@ -53,7 +53,8 @@ export class ProfilComponent {
     libelle: ""
   };
   /*@ngInject*/
-  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state, $location, ouvreDialogProvider, $filter, $timeout) {
+  constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state, $location, ouvreDialogProvider, $filter, $timeout, $log) {
+    this.$log = $log
     this.$stateParams = $stateParams;
     this.$state = $state;
     this.Auth = Auth;
@@ -81,7 +82,7 @@ export class ProfilComponent {
   }
   $onInit() {
     if (this.coursProvider.reload) {
-      this.$state.reload();
+      window.location.reload();
       this.coursProvider.reload = false;
     }
     var fichier = document.querySelector('#selectPP');
@@ -102,7 +103,7 @@ export class ProfilComponent {
     }, false);
     angular.element(document)
       .ready(() => {
-        setTimeout(() => {
+        this.$timeout(() => {
           this.jsFonctions.pluginScript();
           this.jsFonctions.otherScript();
         }, 0);
@@ -117,13 +118,13 @@ export class ProfilComponent {
       } else {
         console.log('La page du user ==>>', this.userDatas[0]);
         this.userData = this.userDatas[0]
-        console.error("date bi ", this.$filter('date')(this.userData.dateNaiss, "dd/MM/yyyy").toString())
+        console.info("date bi ", this.$filter('date')(this.userData.dateNaiss, "dd/MM/yyyy"))
         this.$timeout(() => {
           this.annee = ""
-          this.annee = this.$filter('date')(this.userData.dateNaiss, "dd/MM/yyyy").toString()
+          this.annee = this.$filter('date')(this.userData.dateNaiss, "dd/MM/yyyy")
           // console.error('d', this.annee)
           this.dateNaissance = new Date(`${this.annee}`)
-        }, 1000)
+        }, 700)
         // le user courant ??
         if (this.userData.username === this.getCurrentUser().username) {
           this.privateLink = true;
@@ -144,26 +145,37 @@ export class ProfilComponent {
         });
 
         // voir le type de profil du user
-        setTimeout(() => {
+        this.$timeout(() => {
           this.userProvider.isProf(this.userData._id).then(user => {
             console.log("user prof ==", user)
             this.isprof = user
+            if (this.isprof) {
+              // Liste des cours crées par le profil
+              this.coursProvider.getCoursByProf(this.userData._id).then(list => {
+                this.lesCoursCrees = list;
+                console.log('les cours crees', this.lesCoursCrees);
+              });
+            }
+          }, error => {
+            console.log("isProf", error)
           })
           this.userProvider.isEtudiant(this.userData._id).then(user => {
             console.log("user etudiant ==", user)
             this.isetudiant = user
+          }, error => {
+            console.log("isetudiant", error)
           })
-        }, 100);
-        setTimeout(() => {
-
-          if (this.isprof) {
-            // Liste des cours crées par le profil
-            this.coursProvider.getCoursByProf(this.userData._id).then(list => {
-              this.lesCoursCrees = list;
-              console.log('les cours crees', this.lesCoursCrees);
-            });
-          }
         }, 500);
+        // setTimeout(() => {
+
+        //   if (this.isprof) {
+        //     // Liste des cours crées par le profil
+        //     this.coursProvider.getCoursByProf(this.userData._id).then(list => {
+        //       this.lesCoursCrees = list;
+        //       console.log('les cours crees', this.lesCoursCrees);
+        //     });
+        //   }
+        // }, 500);
 
       }
     });
@@ -314,11 +326,11 @@ export class ProfilComponent {
     this.userData.dateNaiss = new Date(this.userData.dateNaissance)
     this.userProvider.completerProfil(this.userData._id, this.userData.facebook, this.userData.twitter, this.userData.linkedIn, this.userData.google, this.dateNaissance, this.userData.bio).then((msg) => {
       console.info("msg", msg)
-      location.reload();
+      window.location.reload();
     }, (error) => {
       console.info("error", error)
     })
-    // TODO : convertir la date de mongo en date normale
+    // FIXER TODO : convertir la date de mongo en date normale
   }
   // montrer le formulaire pour compéter profil
   montrerForm() {
@@ -330,7 +342,7 @@ export class ProfilComponent {
   }
 }
 
-ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider", "userProvider", "$stateParams", "$state", "$location", "ouvreDialogProvider", "$filter", "$timeout"];
+ProfilComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "Auth", "etablissementProvider", "suiviCoursProvider", "coursProvider", "userProvider", "$stateParams", "$state", "$location", "ouvreDialogProvider", "$filter", "$timeout", "$log"];
 export default angular.module('samaschoolApp.profil', [uiRouter])
   .config(routes)
   .component('profil', {
