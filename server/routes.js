@@ -133,7 +133,6 @@ export default function(app) {
         var mimetype = myFile.mimetype;
     });
     app.use('/api/exercices', require('./api/Utilisateur_Module/exercice'));
-    app.use('/api/type_fichiers', require('./api/Utilisateur_Module/type_fichier'));
     app.use('/api/fichiers', require('./api/Utilisateur_Module/fichier'));
     app.use('/api/suivis', require('./api/Etablissement_Module/suivi'));
     app.use('/api/categories', require('./api/Utilisateur_Module/categorie'));

@@ -183,16 +183,11 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
                 $http.post('/api/chapitres', {
                     libelle: tab[`${i}`].titre,
                     objectif: tab[`${i}`].objectif,
-                    cours: data.data._id
+                    cours: data.data._id,
+                    link: tab[`${i}`].lienVideo,
+                    contenu: tab[`${i}`].contenu
                 }).then(function(datas) {
                     console.log("Chapitre yi Bakhnagnou");
-                    $http.post('/api/fichiers', {
-                        chapitre: datas.data._id,
-                        link: tab[`${i}`].lienVideo,
-                        contenu: tab[`${i}`].contenu
-                    }).then(function() {
-                        console.log("Fichiers yi Bakhnagnou");
-                    });
                 });
             }
 
@@ -212,16 +207,11 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
             $http.post('/api/chapitres', {
                 libelle: tab[`${i}`].titre,
                 objectif: tab[`${i}`].objectif,
-                cours: id
+                cours: id,
+                link: tab[`${i}`].lienVideo,
+                contenu: tab[`${i}`].contenu
             }).then(function(datas) {
                 console.log("Chapitre yi Bakhnagnou");
-                $http.post('/api/fichiers', {
-                    chapitre: datas.data._id,
-                    link: tab[`${i}`].lienVideo,
-                    contenu: tab[`${i}`].contenu
-                }).then(function() {
-                    console.log("Fichiers yi Bakhnagnou");
-                });
             });
         }
     }
@@ -266,18 +256,7 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
         for (let i = 0; i < taille; i++) {
             $http.put('/api/chapitres/' + tab[`${i}`].id_chap, {
                 libelle: tab[`${i}`].titre,
-                objectif: tab[`${i}`].objectif
-            }).then(function() {
-                console.log("Modifié bi Bakhna");
-            });
-        }
-    }
-    this.modifierFichier = function(tab, taille) {
-        var deferred = $q.defer();
-        console.log('khol', tab);
-        console.log('taille bi', taille);
-        for (let i = 0; i < taille; i++) {
-            $http.put('/api/fichiers/' + tab[`${i}`].idFichier, {
+                objectif: tab[`${i}`].objectif,
                 link: tab[`${i}`].lienVideo,
                 contenu: tab[`${i}`].contenu
             }).then(function() {
