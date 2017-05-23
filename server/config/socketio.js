@@ -16,6 +16,12 @@ function onConnect(socket) {
     });
 
     // Insert sockets below
+    require('../api/Etablissement_Module/demande_inscription/demande_inscription.socket').register(socket);
+    require('../api/Etablissement_Module/detail_option/detail_option.socket').register(socket);
+    require('../api/Etablissement_Module/option/option.socket').register(socket);
+    require('../api/Etablissement_Module/filiere/filiere.socket').register(socket);
+    require('../api/Etablissement_Module/departement/departement.socket').register(socket);
+    require('../api/Etablissement_Module/faculte/faculte.socket').register(socket);
     require('../api/Etablissement_Module/detail_cycle/detail_cycle.socket').register(socket);
     require('../api/Etablissement_Module/equipe/equipe.socket').register(socket);
     require('../api/Utilisateur_Module/exercice/exercice.socket').register(socket);
