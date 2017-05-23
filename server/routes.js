@@ -80,6 +80,12 @@ mkdirp(repuser, function(err) {
 });
 export default function(app) {
     // Insert routes below
+    app.use('/api/Etablissement_Module/demande_inscriptions', require('./api/demande_inscription'));
+    app.use('/api/detail_options', require('./api/Etablissement_Module/detail_option'));
+    app.use('/api/options', require('./api/Etablissement_Module/option'));
+    app.use('/api/filieres', require('./api/Etablissement_Module/filiere'));
+    app.use('/api/departements', require('./api/Etablissement_Module/departement'));
+    app.use('/api/facultes', require('./api/Etablissement_Module/faculte'));
     app.use('/api/detail_cycles', require('./api/Etablissement_Module/detail_cycle'));
     app.use('/api/equipes', require('./api/Etablissement_Module/equipe'));
     app.post('/createcourse/:id', upload.single('myFile'), function uploadImage(req, res) {
