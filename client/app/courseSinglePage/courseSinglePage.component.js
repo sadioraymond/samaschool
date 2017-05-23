@@ -88,14 +88,9 @@ export class CourseSinglePageComponent {
                             if (chapitre._id == this.$stateParams.idChap) {
                                 this.LeChapitre = chapitre;
                                 console.log('le chapitre ===>>> ', this.LeChapitre);
-
                                 // recuperation du contenu du chapitre
-                                this.chapitreProvider.getFichierByChapitre(chapitre._id).then(list => {
-                                    this.LeContenuDuChapitre = list[0];
-                                    console.info('le contenu du chapitre du cours =>>', this.LeContenuDuChapitre);
-                                    this.LeChapitre.contenuChap = this.LeContenuDuChapitre.contenu;
-                                    this.LeChapitre.linkchapitre = this.LeContenuDuChapitre.link;
-                                });
+                                this.LeChapitre.contenuChap = chapitre.contenu;
+                                this.LeChapitre.linkchapitre = chapitre.link;
                             }
                         });
                     }

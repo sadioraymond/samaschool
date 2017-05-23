@@ -12,7 +12,9 @@ var ChapitreSchema = new mongoose.Schema({
     cours: {
         type: Number,
         ref: 'Cours'
-    }
+    },
+    link: String,
+    contenu: String,
 });
 
 registerEvents(ChapitreSchema);
