@@ -50,6 +50,21 @@ export function classeProviderService($http, $q) {
         return liste;
 
     }
+    this.getClasseByEtablissement = function(school) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/classes/etablissement/' + school, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
 }
 
 export default angular.module('samaschoolApp.classeProvider', [])

@@ -1,14 +1,14 @@
 /**
- * DetailClasse model events
+ * DetailCycle model events
  */
 
 'use strict';
 
 import {EventEmitter} from 'events';
-var DetailClasseEvents = new EventEmitter();
+var DetailCycleEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
-DetailClasseEvents.setMaxListeners(0);
+DetailCycleEvents.setMaxListeners(0);
 
 // Model events
 var events = {
@@ -17,19 +17,19 @@ var events = {
 };
 
 // Register the event emitter to the model events
-function registerEvents(DetailClasse) {
+function registerEvents(DetailCycle) {
   for(var e in events) {
     let event = events[e];
-    DetailClasse.post(e, emitEvent(event));
+    DetailCycle.post(e, emitEvent(event));
   }
 }
 
 function emitEvent(event) {
   return function(doc) {
-    DetailClasseEvents.emit(event + ':' + doc._id, doc);
-    DetailClasseEvents.emit(event, doc);
+    DetailCycleEvents.emit(event + ':' + doc._id, doc);
+    DetailCycleEvents.emit(event, doc);
   };
 }
 
 export {registerEvents};
-export default DetailClasseEvents;
+export default DetailCycleEvents;

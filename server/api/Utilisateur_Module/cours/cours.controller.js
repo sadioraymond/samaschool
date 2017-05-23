@@ -15,10 +15,9 @@ import Cours from './cours.model';
 import User from '../detail_profil/detail_profil.model';
 import Profil from '../profil/profil.model';
 import SuiviCours from '../suivi_cours/suivi_cours.model';
-import Classe from '../../Etablissement_Module/detail_classe/detail_classe.model';
 import Suivi from '../../Etablissement_Module/suivi_cours_classe/suivi_cours_classe.model';
 import SuiviCoursClasse from '../../Etablissement_Module/suivi_cours_classe/suivi_cours_classe.model';
-import Detail from '../../Etablissement_Module/detail_classe/detail_classe.model';
+import Classe from '../../Etablissement_Module/classe/classe.model';
 var fs = require('fs');
 
 function respondWithResult(res, statusCode) {
@@ -273,7 +272,7 @@ export function getCoursByProfAndSchool(req, res) {
                     }).populate('publication').exec(function(err, cp) {
                         cp.forEach(function(eleme) {
                             var cou = [];
-                            Detail.find({ classe: eleme.classe }).populate('classe').populate('etablissement').exec().then(li => {
+                            Classe.find({ _id: eleme.classe }).populate('etablissement').exec().then(li => {
                                 li.forEach(function(el) {
                                     var save = {};
                                     cou.push(eleme.publication);
@@ -317,7 +316,7 @@ export function getCoursByEtablissement(req, res) {
         } else {
             var cpt = 0;
             for (let i = 0; i < tab.length; i++) {
-                Detail.find({ classe: tab[i].classe }).exec().then(li => {
+                Classe.find({ _id: tab[i].classe }).exec().then(li => {
                     li.forEach(function(el) {
                         var save = {};
                         if (coursyi.length == 0) {

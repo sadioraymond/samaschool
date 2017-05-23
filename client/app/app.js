@@ -14,7 +14,7 @@ import uiBootstrap from 'angular-ui-bootstrap';
 import '../../node_modules/angular-loading-bar/src/loading-bar';
 
 import {
-  routeConfig
+    routeConfig
 } from './app.config';
 
 // ckeditor ------------
@@ -47,7 +47,6 @@ import etablissementProvider from '../app/factory/etablissementProvider/etabliss
 import classeProvider from '../app/factory/classeProvider/classeProvider.service';
 import niveauProvider from '../app/factory/niveauProvider/niveauProvider.service';
 import suiviCoursClasseProvider from '../app/factory/suivi_cours_classeProvider/suivi_cours_classeProvider.service';
-import detailClasseProvider from '../app/factory/detail_classeProvider/detail_classeProvider.service';
 import profilProvider from '../app/factory/profilProvider/profilProvider.service';
 import jsFonctions from '../app/factory/jsFonctions/jsFonctions.service';
 import chapitreProvider from '../app/factory/chapitreProvider/chapitreProvider.service';
@@ -75,112 +74,112 @@ import './app.css';
 // ---------- directives -----------
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, detailClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, recentCours, formations, notreEquipe, 'angular-loading-bar', 'cfp.loadingBar', 'ckeditor', annonceProvider, ouvreDialogProvider, SearchComponent, AllEtablissemntsComponent, AllProfesseursComponent
+        uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, recentCours, formations, notreEquipe, 'angular-loading-bar', 'cfp.loadingBar', 'ckeditor', annonceProvider, ouvreDialogProvider, SearchComponent, AllEtablissemntsComponent, AllProfesseursComponent
 
-  ])
-  .config(routeConfig)
-  .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
-    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
-    cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Custom Loading Message...</div>';
-  }])
-  .run(function ($rootScope, $location, Auth) {
-    'ngInject';
-    // Redirect to login if route requires auth and you're not logged in
+    ])
+    .config(routeConfig)
+    .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+        cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Custom Loading Message...</div>';
+    }])
+    .run(function($rootScope, $location, Auth) {
+        'ngInject';
+        // Redirect to login if route requires auth and you're not logged in
 
-    // $rootScope.$on('$stateChangeStart', function (event, next) {
-    //   Auth.isLoggedIn(function (loggedIn) {
-    //     if (next.authenticate && !loggedIn) {
-    //       $location.path('/');
-    //     }
-    //   });
-    // });
-  })
-  .directive("owlCarousel", function () {
-    return {
-      restrict: 'E',
-      transclude: false,
-      link: function (scope) {
-        scope.initCarousel = function (element) {
-          // console.error('elm =>', element.attr('id'))
-          // if (element.attr('id') == 'owl-courses') {
-          // provide any default options you want
-          var defaultOptions = {
-            loop: true,
-            margin: 30,
-            nav: true,
-            dots: false,
-            autoplay: true,
-            // responsive: {
-            //   0: {
-            //     items: 1
-            //   },
-            //   600: {
-            //     items: 2
-            //   },
-            //   1000: {
-            //     items: 3
-            //   }
-            // }
-          };
-          // }
-          var customOptions = scope.$eval($(element).attr('data-options'));
-          // combine the two options objects
-          for (var key in customOptions) {
-            defaultOptions[key] = customOptions[key];
-          }
-          // init carousel
-          $(element).owlCarousel(defaultOptions);
+        // $rootScope.$on('$stateChangeStart', function (event, next) {
+        //   Auth.isLoggedIn(function (loggedIn) {
+        //     if (next.authenticate && !loggedIn) {
+        //       $location.path('/');
+        //     }
+        //   });
+        // });
+    })
+    .directive("owlCarousel", function() {
+        return {
+            restrict: 'E',
+            transclude: false,
+            link: function(scope) {
+                scope.initCarousel = function(element) {
+                    // console.error('elm =>', element.attr('id'))
+                    // if (element.attr('id') == 'owl-courses') {
+                    // provide any default options you want
+                    var defaultOptions = {
+                        loop: true,
+                        margin: 30,
+                        nav: true,
+                        dots: false,
+                        autoplay: true,
+                        // responsive: {
+                        //   0: {
+                        //     items: 1
+                        //   },
+                        //   600: {
+                        //     items: 2
+                        //   },
+                        //   1000: {
+                        //     items: 3
+                        //   }
+                        // }
+                    };
+                    // }
+                    var customOptions = scope.$eval($(element).attr('data-options'));
+                    // combine the two options objects
+                    for (var key in customOptions) {
+                        defaultOptions[key] = customOptions[key];
+                    }
+                    // init carousel
+                    $(element).owlCarousel(defaultOptions);
+                };
+            }
         };
-      }
-    };
-  })
-  .directive('owlCarouselItem', [function () {
-    return {
-      restrict: 'A',
-      transclude: false,
-      link: function (scope, element) {
-        // wait for the last item in the ng-repeat then call init
-        if (scope.$last) {
-          scope.initCarousel(element.parent());
-        }
-      }
-    };
-  }])
-  .directive('contenteditable', ['$sce', function ($sce) {
-    return {
-      restrict: 'A', // only activate on element attribute
-      require: '?ngModel', // get a hold of NgModelController
-      link: function (scope, element, attrs, ngModel) {
-        if (!ngModel) return; // do nothing if no ng-model
-        console.log("ngModel", ngModel)
-        // Specify how UI should be updated
-        ngModel.$render = function () {
-          element.html($sce.getTrustedHtml(ngModel.$viewValue || ''));
+    })
+    .directive('owlCarouselItem', [function() {
+        return {
+            restrict: 'A',
+            transclude: false,
+            link: function(scope, element) {
+                // wait for the last item in the ng-repeat then call init
+                if (scope.$last) {
+                    scope.initCarousel(element.parent());
+                }
+            }
         };
+    }])
+    .directive('contenteditable', ['$sce', function($sce) {
+        return {
+            restrict: 'A', // only activate on element attribute
+            require: '?ngModel', // get a hold of NgModelController
+            link: function(scope, element, attrs, ngModel) {
+                if (!ngModel) return; // do nothing if no ng-model
+                console.log("ngModel", ngModel)
+                    // Specify how UI should be updated
+                ngModel.$render = function() {
+                    element.html($sce.getTrustedHtml(ngModel.$viewValue || ''));
+                };
 
-        // Listen for change events to enable binding
-        element.on('blur keyup change', function () {
-          scope.$evalAsync(read);
-        });
-        read(); // initialize
+                // Listen for change events to enable binding
+                element.on('blur keyup change', function() {
+                    scope.$evalAsync(read);
+                });
+                read(); // initialize
 
-        // Write data to the model
-        function read() {
-          var html = element.html();
-          // When we clear the content editable the browser leaves a <br> behind
-          // If strip-br attribute is provided then we strip this out
-          if (attrs.stripBr && html == '<br>') {
-            html = '';
-          }
-          ngModel.$setViewValue(html);
-        }
-      }
-    };
-  }]);
+                // Write data to the model
+                function read() {
+                    var html = element.html();
+                    // When we clear the content editable the browser leaves a <br> behind
+                    // If strip-br attribute is provided then we strip this out
+                    if (attrs.stripBr && html == '<br>') {
+                        html = '';
+                    }
+                    ngModel.$setViewValue(html);
+                }
+            }
+        };
+    }]);
 
 angular.element(document)
-  .ready(() => {
-    angular.bootstrap(document, ['samaschoolApp'], {
-      strictDi: true
+    .ready(() => {
+        angular.bootstrap(document, ['samaschoolApp'], {
+            strictDi: true
+        });
     });
-  });

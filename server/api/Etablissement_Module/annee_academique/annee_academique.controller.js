@@ -12,7 +12,7 @@
 
 import jsonpatch from 'fast-json-patch';
 import AnneeAcademique from './annee_academique.model';
-import Classe from '../detail_classe/detail_classe.model';
+import Classe from '../classe/classe.model';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -93,7 +93,7 @@ export function getClassByUser(req, res) {
         } else {
             var cpt = 0;
             for (let i = 0; i < tab.length; i++) {
-                Classe.find({ classe: tab[i] }).populate('classe').populate('etablissement').exec(function(err, cl) {
+                Classe.find({ _id: tab[i] }).populate('etablissement').exec(function(err, cl) {
                     tabs.push(cl);
                     cpt++;
                     if (cpt == tab.length) {

@@ -16,13 +16,13 @@ function onConnect(socket) {
     });
 
     // Insert sockets below
+    require('../api/Etablissement_Module/detail_cycle/detail_cycle.socket').register(socket);
     require('../api/Etablissement_Module/equipe/equipe.socket').register(socket);
     require('../api/Utilisateur_Module/exercice/exercice.socket').register(socket);
     require('../api/Utilisateur_Module/fichier/fichier.socket').register(socket);
     require('../api/Etablissement_Module/suivi/suivi.socket').register(socket);
     require('../api/Utilisateur_Module/categorie/categorie.socket').register(socket);
     require('../api/Utilisateur_Module/sous_categorie/sous_categorie.socket').register(socket);
-    require('../api/Etablissement_Module/detail_classe/detail_classe.socket').register(socket);
     require('../api/Etablissement_Module/cycle/cycle.socket').register(socket);
     require('../api/Utilisateur_Module/chapitre/chapitre.socket').register(socket);
     require('../api/Utilisateur_Module/suivi_cours/suivi_cours.socket').register(socket);

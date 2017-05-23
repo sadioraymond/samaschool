@@ -12,7 +12,7 @@
 
 import jsonpatch from 'fast-json-patch';
 import SuiviCoursClasse from './suivi_cours_classe.model';
-import Detail from '../detail_classe/detail_classe.model';
+import Classe from '../classe/classe.model';
 import Cours from '../../Utilisateur_Module/cours/cours.model';
 
 function respondWithResult(res, statusCode) {
@@ -83,7 +83,7 @@ export function GetCoursProfInSchool(req, res) {
                         cp.forEach(function(eleme) {
                             var cou = [];
                             cou.push(eleme.publication);
-                            Detail.find({ classe: eleme.classe }).populate('classe').populate('etablissement').exec(function(err, etab) {
+                            Classe.find({ _id: eleme.classe }).populate('etablissement').exec(function(err, etab) {
                                 var save = {};
                                 save.publication = cou;
                                 save.detail = etab;
