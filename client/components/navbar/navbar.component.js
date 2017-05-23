@@ -17,16 +17,29 @@ export class NavbarComponent {
   test = false;
   userProvider;
   fegn;
-  constructor(Auth, userProvider, $state) {
+  constructor(Auth, userProvider, $state, coursProvider) {
     'ngInject';
     this.$state = $state
     this.isLoggedIn = Auth.isLoggedInSync;
     this.isAdmin = Auth.isAdminSync;
     this.getCurrentUser = Auth.getCurrentUserSync;
     this.userProvider = userProvider;
+    this.coursProvider = coursProvider;
   }
-
+  
   $onInit() {}
+  // recherche
+  doSearch(e) {
+    if (this.searchReq && this.searchReq.length > 3) {
+      e.preventDefault()
+      this.$state.go('search', {
+        search: this.searchReq
+      })
+    } else {
+      e.preventDefault()
+      console.log('==> requete trop courte <==')
+    }
+  }
   // go to top courses
   goTopCours() {
     setTimeout(() => {
@@ -69,6 +82,10 @@ export class NavbarComponent {
     } else {
       console.log('ttttttt')
     }
+  }
+
+  viderScat(){
+    this.coursProvider.scategorie = null;
   }
 
 }

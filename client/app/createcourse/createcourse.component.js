@@ -177,16 +177,9 @@ export class CreatecourseComponent {
                                 this.idChap[index] = x._id;
                                 this.titreChap[index] = x.libelle;
                                 this.objectifChap[index] = x.objectif;
+                                this.contenuChap[index] = x.contenu;
+                                this.lienVideoChap[index] = x.link;
                                 console.log('kho');
-                                setTimeout(() => {
-                                    this.chapitreProvider.getFichierByChapitre(x._id).then(list => {
-                                        this.FichierAmodifier = list;
-                                        console.log('khol li', this.FichierAmodifier);
-                                        this.idFichier[index] = this.FichierAmodifier[0]._id;
-                                        this.contenuChap[index] = this.FichierAmodifier[0].contenu;
-                                        this.lienVideoChap[index] = this.FichierAmodifier[0].link;
-                                    });
-                                }, 1000)
 
                             }, 800);
                         });
@@ -293,6 +286,7 @@ export class CreatecourseComponent {
                 'heure': this.nbh,
                 'lien': this.lienVideoCours
             };
+
             this.coursProvider.objetCours.lienVideo = this.lienVideoCours;
             this.coursProvider.objetCours.contenuCours = this.contenuCours;
             console.log('le cours ', this.objetCours);
@@ -514,7 +508,11 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     coursProvider.objetCours.date = $ctrl.datetime;
     coursProvider.objetCours.user = $ctrl.getcurrentUser()._id;
     coursProvider.objetCours.act = $ctrl.activite;
-    $ctrl.verif = 1;
+    $ctrl.verif;
+    $ctrl.youtubelink = "https://www.youtube.com/";
+    $ctrl.youtubelink1;
+    $ctrl.embed = "embed/";
+    $ctrl.linkyoutube;
     $ctrl.toggleSelection = function toggleSelection(value) {
         var idx = $ctrl.selection.indexOf(value); // is currently selected
 
@@ -531,6 +529,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
             $ctrl.parametre = coursProvider.objetCours.titre + '-' + Date.now() + '.' + coursProvider.objetCours.images;
             document.querySelector("#createcourseform").action = `/createcourse/${$ctrl.parametre}`;
             document.querySelector('#createcourseform').submit();
+            $ctrl.verif = 1;
         } else {
             $ctrl.parametre = coursProvider.objetCours.url;
             $ctrl.verif = 0;
@@ -538,17 +537,42 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
         $uibModalInstance.close($ctrl.selected.item);
         if (!coursProvider.params) {
             if (coursProvider.objetCours.tab) {
+                for (let i = 0; i < coursProvider.objetCours.taille; i++) {
+                    console.log('tableau bi', coursProvider.objetCours.tab[`${i}`].lienVideo);
+                    $ctrl.youtubelink1 = coursProvider.objetCours.tab[`${i}`].lienVideo.split($ctrl.youtubelink).pop();
+                    if ($ctrl.youtubelink1.indexOf($ctrl.embed) == 0) {
+                        console.log('amnako');
+                        $ctrl.linkyoutube = $ctrl.youtubelink + $ctrl.youtubelink1;
+                        coursProvider.objetCours.tab[`${i}`].lienVideo = $ctrl.linkyoutube;
+                    } else {
+                        console.log('amouko');
+                        $ctrl.linkyoutube = $ctrl.youtubelink + $ctrl.embed + $ctrl.youtubelink1;
+                        coursProvider.objetCours.tab[`${i}`].lienVideo = $ctrl.linkyoutube;
+                    }
+                }
                 console.log('Amoul dara', $ctrl.getcurrentUser()._id);
                 coursProvider.ajoutCours2(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, coursProvider.objetCours.tab, coursProvider.objetCours.taille, $ctrl.activite, $ctrl.selection, $ctrl.parametre);
-                $state.go("profil", { "username": $ctrl.getcurrentUser().username });
+                //coursProvider.reload = true;
+                // $state.go("profil", { "username": $ctrl.getcurrentUser().username });
                 console.log('khol li', coursProvider.objetCours.taille);
                 console.log('verif', $ctrl.selection);
             } else {
+
                 console.log('Amoul dara', $ctrl.getcurrentUser()._id);
                 console.log('khol li ni', coursProvider.objetCours.lienVideo);
                 console.log('khol li ni 1', coursProvider.objetCours.contenuCours);
-                coursProvider.ajoutCours(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.selection, coursProvider.objetCours.lienVideo, coursProvider.objetCours.contenuCours, $ctrl.parametre);
-                $state.go("profil", { "username": $ctrl.getcurrentUser().username });
+                console.log('youtube bi', coursProvider.objetCours.lienVideo.split($ctrl.youtubelink).pop());
+                $ctrl.youtubelink1 = coursProvider.objetCours.lienVideo.split($ctrl.youtubelink).pop();
+                if ($ctrl.youtubelink1.indexOf($ctrl.embed) == 0) {
+                    console.log('amnako');
+                    $ctrl.linkyoutube = $ctrl.youtubelink + $ctrl.youtubelink1;
+                } else {
+                    console.log('amouko');
+                    $ctrl.linkyoutube = $ctrl.youtubelink + $ctrl.embed + $ctrl.youtubelink1;
+                }
+                coursProvider.ajoutCours(coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, $ctrl.getcurrentUser()._id, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.selection, $ctrl.linkyoutube, coursProvider.objetCours.contenuCours, $ctrl.parametre);
+                //coursProvider.reload = true;
+                //$state.go("profil", { "username": $ctrl.getcurrentUser().username });
             }
         } else {
             if (coursProvider.objetCours.nombre == 0) {
@@ -557,17 +581,21 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
                     var lienV = "";
                     var contenuC = "";
                     if ($ctrl.verif == 1) {
+                        console.log('fi ni');
                         coursProvider.deleteFichier(coursProvider.objetCours.url);
                     }
                     coursProvider.modifierCou(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre, lienV, contenuC);
                     coursProvider.ajoutChapitre(coursProvider.params, coursProvider.objetCours.tab, coursProvider.objetCours.taille);
-                    $state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" });
+                    //coursProvider.reload = true;
+                    //$state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" });
                 } else {
                     if ($ctrl.verif == 1) {
+                        console.log('fi ni');
                         coursProvider.deleteFichier(coursProvider.objetCours.url);
                     }
                     coursProvider.modifierCou(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre, coursProvider.objetCours.lienVideo, coursProvider.objetCours.contenuCours);
-                    $state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" });
+                    // coursProvider.reload = true;
+                    //$state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" });
                 }
             } else {
                 console.log('you beuri yi leu', coursProvider.objetCours.nombre);
@@ -575,12 +603,13 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
                 console.log('khol ko', coursProvider.params);
                 console.log('li lane la', coursProvider.objetCours);
                 if ($ctrl.verif == 1) {
+                    console.log('fi ni');
                     coursProvider.deleteFichier(coursProvider.objetCours.url);
                 }
                 coursProvider.modifierCours(coursProvider.params, coursProvider.objetCours.titre, coursProvider.objetCours.description, coursProvider.objetCours.date, coursProvider.objetCours.sous_cat, coursProvider.objetCours.nbheures, $ctrl.activite, $ctrl.parametre);
                 coursProvider.modifierChapitre(coursProvider.objetCours.tab, coursProvider.objetCours.taille);
-                coursProvider.modifierFichier(coursProvider.objetCours.tab, coursProvider.objetCours.taille);
-                $state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" });
+                //coursProvider.reload = true;
+                //$state.go("courseSinglePage", { "sousDomaine": coursProvider.objetCours.sous_cat, "idCours": coursProvider.params, "idChap": "" });
             }
         }
 

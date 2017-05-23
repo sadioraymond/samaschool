@@ -51,14 +51,16 @@ export function etablissementProviderService($http, $q) {
         return liste;
 
     }
-    this.ajoutEtablissement = function(libelle, adresse, tel, email, images) {
+    this.ajoutEtablissement = function(libelle, adresse, tel, email, images, imagecouverture,slogan) {
         var deferred = $q.defer();
         $http.post('/api/etablissements', {
             libelle: libelle,
             adresse: adresse,
             tel: tel,
             email: email,
-            images: images
+            images: images,
+            imagecouverture: imagecouverture,
+            slogan: slogan
         }).then(function() {
             console.log("School yi Bakhna");
         });
@@ -115,6 +117,38 @@ export function etablissementProviderService($http, $q) {
         $http.get('/deletepictureschool/' + images, {}).then(function() {
             console.log("Image bi dégne na");
         });
+    }
+
+    this.getEtabByNom = function(nom) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/etablissements/nom/' + nom, {
+
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
+    }
+     this.getEquipeByEtablissement = function(school) {
+        var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/equipes/etablissement/' + school, {
+      cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+
     }
 }
 

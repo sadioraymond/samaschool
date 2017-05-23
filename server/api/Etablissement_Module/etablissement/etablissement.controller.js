@@ -80,6 +80,15 @@ export function show(req, res) {
         .catch(handleError(res));
 }
 
+export function getEtablissementByNom(req, res) {
+    return Etablissement.find({libelle: {'$regex' : req.params.nom, '$options' : 'i'}}).exec()
+        .then(handleEntityNotFound(res))
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+}
+
+getEtablissementByNom
+
 //get Etablissement By USer 
 export function getEtablissementByUser(req, res) {
     Detail.find({ user: req.params.id }).populate('etablissement').exec().then(list => {

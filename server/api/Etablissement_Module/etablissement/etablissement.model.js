@@ -11,7 +11,9 @@ var EtablissementSchema = new mongoose.Schema({
     tel: String,
     email: String,
     images: String,
-    imagecouverture: String
+    imagecouverture: String,
+    description: String,
+    slogan: String
 });
 EtablissementSchema.plugin(autoIncrement.plugin, 'Etablissement');
 registerEvents(EtablissementSchema);

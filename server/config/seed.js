@@ -23,9 +23,8 @@ import Dclasse from '../api/Etablissement_Module/detail_classe/detail_classe.mod
 import SousCat from '../api/Utilisateur_Module/sous_categorie/sous_categorie.model';
 import Categorie from '../api/Utilisateur_Module/categorie/categorie.model';
 import suivi from '../api/Etablissement_Module/suivi/suivi.model';
-import Type from '../api/Utilisateur_Module/type_fichier/type_fichier.model';
 import exercice from '../api/Utilisateur_Module/exercice/exercice.model';
-import Fichier from '../api/Utilisateur_Module/fichier/fichier.model';
+import equipe from '../api/Etablissement_Module/equipe/equipe.model';
 import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
@@ -155,7 +154,8 @@ export default function seedDatabaseIfNeeded() {
                         tel: "201-626-324-3444",
                         email: "sit.amet.metus@Curabiturmassa.co.uk",
                         images: "imageParDefautPourLesEtablissement.png",
-                        imagecouverture: "profil_uahb.jpg"
+                        imagecouverture: "profil_uahb.jpg",
+                        description: "dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu"
                     }, {
                         _id: 2,
                         libelle: "UCAD",
@@ -163,7 +163,8 @@ export default function seedDatabaseIfNeeded() {
                         tel: "201-665-249-3835",
                         email: "a.mi.fringilla@ametmetus.net",
                         images: "imageParDefautPourLesEtablissement.png",
-                        imagecouverture: "ucad.jpg"
+                        imagecouverture: "ucad.jpg",
+                        description: "Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                     })
                     .then(() => console.log('finished populating Etablissement'))
                     .catch(err => console.log('error populating Etablissement', err));
@@ -1603,7 +1604,7 @@ export default function seedDatabaseIfNeeded() {
                         nbheures: 4,
                         images: "images.jpg",
                         actif: true,
-                        link: `dolor vitae dolor. Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non lorem vitae odio sagittis semper. Nam`,
+                        link: `https://www.youtube.com/embed/watch?v=sRNMIoxx8HY&list=PL5BcU-_5Oa_pAv9YpL_bPyr4BpwN8Y4ab`,
                         contenu: `in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus ornare. Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis.`
                     }, {
                         _id: 2,
@@ -1615,7 +1616,7 @@ export default function seedDatabaseIfNeeded() {
                         nbheures: 2,
                         images: "imag.png",
                         actif: true,
-                        link: `ut ipsum ac mi eleifend egestas. Sed pharetra, felis eget`,
+                        link: `https://www.youtube.com/embed/watch?v=UOn8kLLA508&list=PL5BcU-_5Oa_pPnz9kEZ_LF2Lp-PavL1uD`,
                         contenu: `sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris sit amet lorem semper auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus. In mi pede,`
                     }, {
                         _id: 3,
@@ -1687,7 +1688,7 @@ export default function seedDatabaseIfNeeded() {
                         nbheures: 8,
                         images: "téléchargement (1).jpg",
                         actif: true,
-                        link: `mauris, rhoncus id, mollis nec, cursus a, enim. Suspendisse aliquet, sem ut cursus luctus,`,
+                        link: `https://www.youtube.com/embed/watch?v=d6Dp4Dyeke8`,
                         contenu: `<header> <h1>How to use CKEditor in AngularJS with custom directive</h1> <p><small>24 January, 2016, by&nbsp;<a href="https://naveensingh.net/author/naveen/">Naveen Singh</a>&nbsp;</small><small>on:&nbsp;<a href="https://naveensingh.net/tag/angularjs/">angularjs</a>,&nbsp;<a href="https://naveensingh.net/tag/angular-ckeditor/">angular-ckeditor</a>,&nbsp;<a href="https://naveensingh.net/tag/ckeditor/">ckeditor</a>,&nbsp;<a href="https://naveensingh.net/tag/ckeditor-directive/">ckeditor-directive</a></small></p> </header> <section id="post-body"> <p>In this article learn how to use CKEditor in AngularJS with custom directive and ng-ckeditor, richtext editors are really important piece of plugins when it comes to doing more than just a text field, there are loads of options when choosing a plugin like the ever so popular&nbsp;<a href="https://www.tinymce.com/">TinyMCE</a>,&nbsp;<a href="http://ckeditor.com/">CKeditor</a>,&nbsp;<a href="http://quilljs.com/">QuillJS</a>. There are plenty of other options as well but none of them are as refined and stable as these.</p> <p>In this article we'll talk only about the CKeditor my personal favorite, it is super easy to integrate in a standard HTML web-page setting.</p> <pre> <code>&lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;meta charset="utf-8"&gt; &lt;title&gt;CKEditor&lt;/title&gt; &lt;script src="//cdn.ckeditor.com/4.5.6/standard/ckeditor.js"&gt;&lt;/script&gt; &lt;/head&gt; &lt;body&gt; &lt;textarea name="editor1"&gt;&lt;/textarea&gt; &lt;script&gt; CKEDITOR.replace( 'editor1' ); &lt;/script&gt; &lt;/body&gt; &lt;/html&gt; </code></pre> <p><em>*excerpt sourced from ckeditor&nbsp;<a href="https://cdn.ckeditor.com/">documentation</a></em></p> <p>That was easy isn't it? yes it is! that was everything required to set it up in a standard html page, but we won't be focusing on that, we want to integrate CKeditor with AngularJS and want to be able to use Angular's two way data binding, which is not possible using the above method, Angular just wouldn't know what you are trying to do because CKeditor and other editors as well work in an embedded iframe.</p> <p><strong>There are two ways that I personally go about when i'm solving this problem:</strong></p> <ul> <li>Write my own custom directive to listen and write for changes</li> <li>Use&nbsp;<a href="http://ngmodules.org/modules/ng-ckeditor">ng-ckeditor</a>&nbsp;a plugin/directive to make CKeditor work.</li> </ul> <p>Either way we are using a directive, either you write it on your own, that suits your need or use a plugin written by someone else, whatever floats your boat. I've used both in separate occasions and got my job done.</p> <p><strong>Method 1</strong>&nbsp;(writing custom directive):</p> <p>In this method we write our own directive, what we want that directive to do is simply listen for changes and write them to the ng-model.</p> <pre> <code>angular.module("CKEditorExample", []) .directive('ckEditor', function () { return { require: '?ngModel', link: function (scope, elm, attr, ngModel) { var ck = CKEDITOR.replace(elm[0]); if (!ngModel) return; ck.on('instanceReady', function () { ck.setData(ngModel.$viewValue); }); function updateModel() { scope.$apply(function () { ngModel.$setViewValue(ck.getData()); }); } ck.on('change', updateModel); ck.on('key', updateModel); ck.on('dataReady', updateModel); ngModel.$render = function (value) { ck.setData(ngModel.$viewValue); }; } }; }); </code></pre> <p>If you notice these three lines:</p> <pre> <code>ck.on('change', updateModel); ck.on('key', updateModel); ck.on('dataReady', updateModel); </code></pre> <p>These are listening for events happening in the directive/editor and then updating the model with new data, that's the two way data flow.</p> <p>Now when we need to use this directive in our Angular app, we still need to include the main ck-editor plugin as shown in the first code excerpt.</p> <p><strong>Method 2</strong>&nbsp;(using&nbsp;<a href="http://ngmodules.org/modules/ng-ckeditor">ng-ckeditor</a>&nbsp;directive)</p> <p><a href="http://ngmodules.org/modules/ng-ckeditor">ng-ckeditor</a>&nbsp;is written by Github user&nbsp;<a href="https://github.com/esvit">Vitalii Savchuk</a>&nbsp;does pretty much the same thing, I personally haven't dived in the code or what this plugin actually has under the hood but it gets the job done none the less.</p> <p>Installation:</p> <pre> <code>bower install ng-ckeditor // you would still need to include the base plugin script &lt;script src="//cdn.ckeditor.com/4.5.6/standard/ckeditor.js"&gt;&lt;/script&gt; </code></pre> <p>Setting up:</p> <pre> &nbsp;</pre> </section>`
                     }, {
                         _id: 10,
@@ -1699,7 +1700,7 @@ export default function seedDatabaseIfNeeded() {
                         nbheures: 10,
                         images: "télécharger (1).jpg",
                         actif: true,
-                        link: `iaculis nec, eleifend non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin`,
+                        link: `https://www.youtube.com/embed/watch?v=R9TggJZ2UHA`,
                         contenu: ` ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam auctor, velit eget laoreet`
                     })
                     .then(() => console.log('finished populating cours:'))
@@ -1916,102 +1917,142 @@ export default function seedDatabaseIfNeeded() {
                         _id: 1,
                         libelle: "ut mi. Duis",
                         objectif: `dolor. Fusce feugiat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam auctor, velit eget laoreet posuere, enim nisl`,
-                        cours: 4
+                        cours: 4,
+                        link: `https://www.youtube.com/embed/watch?v=-7pJ45oXuvE`,
+                        contenu: `tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam.`
                     }, {
                         _id: 2,
                         libelle: "erat eget ipsum.",
                         objectif: `pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper`,
-                        cours: 5
+                        cours: 5,
+                        link: `https://www.youtube.com/embed/watch?v=tHP14GQjf-U`,
+                        contenu: `In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse`
                     }, {
                         _id: 3,
                         libelle: "nibh. Donec",
                         objectif: `molestie tortor nibh sit amet orci. Ut sagittis lobortis mauris.`,
-                        cours: 3
+                        cours: 3,
+                        link: `https://www.youtube.com/embed/watch?v=DxsMHHErw9c`,
+                        contenu: `lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus`
                     }, {
                         _id: 4,
                         libelle: "accumsan",
                         objectif: `est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo`,
-                        cours: 5
+                        cours: 5,
+                        link: `https://www.youtube.com/embed/watch?v=31pD5F2ni-4`,
+                        contenu: `sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique neque venenatis lacus. Etiam bibendum fermentum metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla`
                     }, {
                         _id: 5,
                         libelle: "Proin velit. Sed malesuada augue",
                         objectif: `Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum`,
-                        cours: 4
+                        cours: 4,
+                        link: `https://www.youtube.com/embed/watch?v=JIRReZpu4IU`,
+                        contenu: `orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse`
                     }, {
                         _id: 6,
                         libelle: "vulputate, nisi sem semper erat, in",
                         objectif: `lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem, vehicula et, rutrum`,
-                        cours: 8
+                        cours: 8,
+                        link: `https://www.youtube.com/embed/watch?v=DDVzQEZWhLo`,
+                        contenu: `quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce aliquam, enim nec tempus scelerisque, lorem ipsum sodales purus, in molestie tortor nibh sit amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor,`
                     }, {
                         _id: 7,
                         libelle: "felis. Nulla tempor augue ac",
                         objectif: `sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed nec`,
-                        cours: 7
+                        cours: 7,
+                        link: `https://www.youtube.com/embed/watch?v=SCInuamhzUk`,
+                        contenu: `Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor`
                     }, {
                         _id: 8,
                         libelle: "Nullam suscipit, est ac facilisis facilisis, magna",
                         objectif: `Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est, mollis`,
-                        cours: 4
+                        cours: 4,
+                        link: `https://www.youtube.com/embed/watch?v=RGrxjtTkHmQ`,
+                        contenu: `semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse`
                     }, {
                         _id: 9,
                         libelle: "felis purus ac tellus. Suspendisse sed dolor.",
                         objectif: `eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus.`,
-                        cours: 8
+                        cours: 8,
+                        link: `https://www.youtube.com/embed/watch?v=zuIDCtsjyTQ`,
+                        contenu: `vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis`
                     }, {
                         _id: 10,
                         libelle: "amet nulla. Donec non",
                         objectif: ` non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient`,
-                        cours: 7
+                        cours: 7,
+                        link: `https://www.youtube.com/embed/watch?v=tAEW_zFD-v4`,
+                        contenu: `vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus fermentum convallis ligula. Donec luctus aliquet`
                     }, {
                         _id: 11,
                         libelle: "lobortis. Class aptent taciti sociosqu ad litora",
                         objectif: `et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus. Nullam scelerisque`,
-                        cours: 4
+                        cours: 4,
+                        link: `https://www.youtube.com/embed/watch?v=eaoAiTEZuqk`,
+                        contenu: `fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy`
                     }, {
                         _id: 12,
                         libelle: "nisl.",
                         objectif: `vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget`,
-                        cours: 4
+                        cours: 4,
+                        link: `https://www.youtube.com/embed/watch?v=Pem0xXFQ-E8`,
+                        contenu: `amet ante. Vivamus non lorem vitae odio sagittis semper. Nam tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec`
                     }, {
                         _id: 13,
                         libelle: "id enim. Curabitur massa.",
                         objectif: `venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras`,
-                        cours: 3
+                        cours: 3,
+                        link: `https://www.youtube.com/embed/watch?v=0pxaHyz_E5w`,
+                        contenu: `ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod`
                     }, {
                         _id: 14,
                         libelle: "erat, eget tincidunt dui augue eu",
                         objectif: `at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed`,
-                        cours: 8
+                        cours: 8,
+                        link: `https://www.youtube.com/embed/watch?v=IqTk1je6iYs`,
+                        contenu: `ligula. Donec luctus aliquet odio. Etiam ligula tortor, dictum eu, placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem`
                     }, {
                         _id: 15,
                         libelle: "laoreet ipsum. Curabitur consequat, lectus sit",
                         objectif: `eleifend non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed`,
-                        cours: 3
+                        cours: 3,
+                        link: `https://www.youtube.com/embed/watch?v=Cb19hBqqryk`,
+                        contenu: `et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet`
                     }, {
                         _id: 16,
                         libelle: "amet ultricies sem magna nec",
                         objectif: `Morbi quis urna. Nunc quis arcu vel quam dignissim pharetra. Nam ac nulla. In tincidunt congue turpis. In condimentum. Donec`,
-                        cours: 8
+                        cours: 8,
+                        link: `https://www.youtube.com/embed/watch?v=GwFIazJdRis`,
+                        contenu: `Nunc ut erat. Sed nunc est, mollis non, cursus non,`
                     }, {
                         _id: 17,
                         libelle: "eget nisi dictum augue malesuada",
                         objectif: `metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh.`,
-                        cours: 3
+                        cours: 3,
+                        link: `https://www.youtube.com/embed/watch?v=IBGbHKC_HbM`,
+                        contenu: `dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in`
                     }, {
                         _id: 18,
                         libelle: "tellus. Suspendisse",
                         objectif: `eu, ultrices sit amet, risus. Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum sociis natoque penatibus`,
-                        cours: 3
+                        cours: 3,
+                        link: `https://www.youtube.com/embed/watch?v=-TjtoP6-mcQ`,
+                        contenu: `mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse`
                     }, {
                         _id: 19,
                         libelle: "tortor. Integer aliquam",
                         objectif: ` egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse`,
-                        cours: 6
+                        cours: 6,
+                        link: `https://www.youtube.com/embed/watch?v=hQhQjY5hFVE`,
+                        contenu: `diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet`
                     }, {
                         _id: 20,
                         libelle: "elit pede, malesuada vel,",
                         objectif: `auris a nunc. In at pede. Cras vulputate velit eu sem.`,
-                        cours: 6
+                        cours: 6,
+                        link: `https://www.youtube.com/embed/watch?v=jrnQjUiahJc`,
+                        contenu: `Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt,`
                     })
                     .then(() => console.log('finished populating Chapitre'))
                     .catch(err => console.log('error populating Chapitre', err));
@@ -2217,21 +2258,7 @@ export default function seedDatabaseIfNeeded() {
                     .then(() => console.log('finished populating Catégorie'))
                     .catch(err => console.log('error populating Catégorie', err));
             });
-        Type.find({}).remove()
-            .then(() => {
-                Type.create({
-                        _id: 1,
-                        libelle: "Documents"
-                    }, {
-                        _id: 2,
-                        libelle: "Fichier Video"
-                    }, {
-                        _id: 3,
-                        libelle: "Fichier Image"
-                    })
-                    .then(() => console.log('finished populating Type Fichier'))
-                    .catch(err => console.log('error populating Type Fichier', err));
-            });
+
         exercice.find({}).remove()
             .then(() => {
                 exercice.create({
@@ -2254,111 +2281,92 @@ export default function seedDatabaseIfNeeded() {
                     .then(() => console.log('finished populating exercice:'))
                     .catch(err => console.log('error populating exercice:', err));
             });
-        Fichier.find({}).remove()
+
+        equipe.find({}).remove()
             .then(() => {
-                Fichier.create({
+                equipe.create({
                         _id: 1,
-                        chapitre: 1,
-                        link: "aliquet libero. Integer in magna. Phasellus",
-                        contenu: `tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam.`
+                        name: "Brynn",
+                        images: "ss_member-cover.jpg",
+                        email: "luctus.vulputate.nisi@rhoncusProin.org",
+                        adresse: "Appartement 678-6234 Pellentesque Av.",
+                        fonction: "Responsable Inscription",
+                        Etablissement: 2
                     }, {
                         _id: 2,
-                        chapitre: 5,
-                        link: "egestas ligula. Nullam feugiat",
-                        contenu: `In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse`
+                        name: "Moustapha der",
+                        images: "Mr_der.jpg",
+                        email: "erat.nonummy@cursusnonegestas.com",
+                        adresse: "921-427 Nec Avenue",
+                        fonction: "Responsable Scolarite",
+                        Etablissement: 2
                     }, {
                         _id: 3,
-                        chapitre: 8,
-                        link: "eu dolor egestas",
-                        contenu: `lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus`
+                        name: "Tara",
+                        images: "recteur.png",
+                        email: "amet@Nuncmauris.org",
+                        adresse: "Appartement 143-8704 Ultrices Rd.",
+                        fonction: "Recteur",
+                        Etablissement: 1
                     }, {
                         _id: 4,
-                        chapitre: 11,
-                        link: "id, libero.",
-                        contenu: `sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique neque venenatis lacus. Etiam bibendum fermentum metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla`
+                        name: "Makalou",
+                        images: "inscription.png",
+                        email: "turpis@Integer.ca",
+                        adresse: "554-6303 Magna Chemin",
+                        fonction: "Responsable Inscription",
+                        Etablissement: 1
                     }, {
                         _id: 5,
-                        chapitre: 12,
-                        link: "sagittis.",
-                        contenu: `orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse`
+                        name: "Kara Samb",
+                        images: "Mr_samb.jpg",
+                        email: "fermentum.vel.mauris@erat.co.uk",
+                        adresse: "883-6094 Placerat, Avenue",
+                        fonction: "Chep Departement",
+                        Etablissement: 2
                     }, {
                         _id: 6,
-                        chapitre: 19,
-                        link: "penatibus et magnis dis",
-                        contenu: `quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce aliquam, enim nec tempus scelerisque, lorem ipsum sodales purus, in molestie tortor nibh sit amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor,`
+                        name: "Pa Gbaya",
+                        images: "president.jpg",
+                        email: "luctus.aliquet@tellusNunc.co.uk",
+                        adresse: "7694 Varius Av.",
+                        fonction: "Président",
+                        Etablissement: 1
                     }, {
                         _id: 7,
-                        chapitre: 20,
-                        link: "Aliquam adipiscing lobortis risus. In mi",
-                        contenu: `Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor`
+                        name: "Kuame",
+                        images: "small_course_01",
+                        email: "vitae.dolor@imperdiet.co.uk",
+                        adresse: "CP 750, 2858 Blandit Ave",
+                        fonction: "Administration",
+                        Etablissement: 2
                     }, {
                         _id: 8,
-                        chapitre: 3,
-                        link: "magnis",
-                        contenu: `semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse`
+                        name: "Jacques",
+                        images: "dr_scolarite.png",
+                        email: "faucibus@id.edu",
+                        adresse: "CP 127, 2608 Mollis Route",
+                        fonction: "Responsable Scolarité",
+                        Etablissement: 1
                     }, {
                         _id: 9,
-                        chapitre: 13,
-                        link: "mauris erat eget ipsum.",
-                        contenu: `vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis`
+                        name: "Massamba Lô",
+                        images: "Mr_lo.jpg",
+                        email: "eu@pede.com",
+                        adresse: "Appartement 193-6065 Aliquam Ave",
+                        fonction: "Administration",
+                        Etablissement: 1
                     }, {
                         _id: 10,
-                        chapitre: 15,
-                        link: "feugiat non, lobortis quis, pede.",
-                        contenu: `vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus fermentum convallis ligula. Donec luctus aliquet`
-                    }, {
-                        _id: 11,
-                        chapitre: 17,
-                        link: "orci, consectetuer euismod est arcu ac",
-                        contenu: `fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy`
-                    }, {
-                        _id: 12,
-                        chapitre: 18,
-                        link: "Morbi non sapien molestie orci",
-                        contenu: `amet ante. Vivamus non lorem vitae odio sagittis semper. Nam tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec`
-                    }, {
-                        _id: 13,
-                        chapitre: 6,
-                        link: "ultrices iaculis odio. Nam interdum",
-                        contenu: `ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod`
-                    }, {
-                        _id: 14,
-                        chapitre: 9,
-                        link: "Fusce",
-                        contenu: `ligula. Donec luctus aliquet odio. Etiam ligula tortor, dictum eu, placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem`
-                    }, {
-                        _id: 15,
-                        chapitre: 14,
-                        link: "imperdiet nec, leo. Morbi",
-                        contenu: `et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet`
-                    }, {
-                        _id: 16,
-                        chapitre: 16,
-                        link: "aliquet, metus urna convallis erat,",
-                        contenu: `Nunc ut erat. Sed nunc est, mollis non, cursus non,`
-                    }, {
-                        _id: 17,
-                        chapitre: 7,
-                        link: "ullamcorper, nisl arcu iaculis enim, sit",
-                        contenu: `dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in`
-                    }, {
-                        _id: 18,
-                        chapitre: 10,
-                        link: "et magnis dis parturient",
-                        contenu: `mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse`
-                    }, {
-                        _id: 19,
-                        chapitre: 2,
-                        link: "vulputate, posuere vulputate, lacus. Cras",
-                        contenu: `diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet`
-                    }, {
-                        _id: 20,
-                        chapitre: 4,
-                        link: "lobortis quam a felis ullamcorper viverra.",
-                        contenu: `Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt,`
+                        name: "Baye Niasse",
+                        images: "Mr_niass.jpg",
+                        email: "Ut.nec@et.co.uk",
+                        adresse: "8554 Consequat Impasse",
+                        fonction: "Administration",
+                        Etablissement: 1
                     })
-                    .then(() => console.log('finished populating Fichier'))
-                    .catch(err => console.log('error populating Fichier', err));
+                    .then(() => console.log('finished populating equipe:'))
+                    .catch(err => console.log('error populating equipe:', err));
             });
     }
 }

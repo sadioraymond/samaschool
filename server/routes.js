@@ -1,8 +1,3 @@
-/**
- * Main application routes
- */
-
-
 'use strict';
 
 import errors from './components/errors';
@@ -85,6 +80,7 @@ mkdirp(repuser, function(err) {
 });
 export default function(app) {
     // Insert routes below
+    app.use('/api/equipes', require('./api/Etablissement_Module/equipe'));
     app.post('/createcourse/:id', upload.single('myFile'), function uploadImage(req, res) {
         var widgetId = req.body.widgetId;
         var width = req.body.width;
@@ -137,7 +133,6 @@ export default function(app) {
         var mimetype = myFile.mimetype;
     });
     app.use('/api/exercices', require('./api/Utilisateur_Module/exercice'));
-    app.use('/api/type_fichiers', require('./api/Utilisateur_Module/type_fichier'));
     app.use('/api/fichiers', require('./api/Utilisateur_Module/fichier'));
     app.use('/api/suivis', require('./api/Etablissement_Module/suivi'));
     app.use('/api/categories', require('./api/Utilisateur_Module/categorie'));

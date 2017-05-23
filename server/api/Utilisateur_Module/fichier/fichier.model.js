@@ -10,8 +10,6 @@ var FichierSchema = new mongoose.Schema({
         type: Number,
         ref: 'Chapitre'
     },
-    link: String,
-    contenu: String,
     type: {
         type: Number,
         ref: 'TypeFichier'

@@ -177,6 +177,10 @@ export class MainController {
     this.$state.go('coursesPages')
     this.coursProvider.scategorie = scat
   }
+
+  viderScat(){
+    this.coursProvider.scategorie = null;
+  }
 }
 export default angular.module('samaschoolApp.main', [uiRouter, 'angular-loading-bar'])
   .config(routing)

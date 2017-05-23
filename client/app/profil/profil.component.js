@@ -47,6 +47,10 @@ export class ProfilComponent {
     im;
     ima;
     imag;
+    categ = {
+        id: "",
+        libelle: ""
+    };
     /*@ngInject*/
     constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state, $location, ouvreDialogProvider) {
         this.$stateParams = $stateParams;
@@ -100,7 +104,6 @@ export class ProfilComponent {
                     this.jsFonctions.otherScript();
                 }, 0);
             });
-
         // donnees du user de la page actuelle
         this.userProvider.findByUsername(this.$stateParams.username).then(list => {
             this.userDatas = list;
@@ -117,26 +120,42 @@ export class ProfilComponent {
                 } else {
                     this.privateLink = false;
                 }
+                // Liste des cours suivis par le User
+                this.suiviCoursProvider.getCoursByUser(this.userData._id).then(list => {
+                    this.lesCoursSuivis = list;
+                    console.log('les cours tout court', list);
+                });
                 //Liste des Etablissements où le User est inscrit au chargement de la page
                 this.etablissementProvider.getEtabByUser(this.userData._id).then(list => {
                     this.LesEtabIncrit = list;
                     console.log('les etablissements', list);
                 });
 
-                // Liste des cours suivis par le User
-                this.suiviCoursProvider.getCoursByUser(this.userData._id).then(list => {
-                    this.lesCoursSuivis = list;
-                    console.log('les cours tout court', list);
-                });
+                setTimeout(() => {
+                    // voir le type de profil du user
+                    this.userProvider.isProf(this.userData._id).then(user => {
+                        console.log("user bi ==", user)
+                        this.isprof = user
+                    })
+                    this.userProvider.isEtudiant(this.userData._id).then(user => {
+                        console.log("user bi ==", user)
+                        this.isetudiant = user
+                    })
+                }, 100);
+                setTimeout(() => {
 
-                // Liste des cours crées par le profil
-                this.coursProvider.getCoursByProf(this.userData._id).then(list => {
-                    this.lesCoursCrees = list;
-                    console.log('les cours crees', this.lesCoursCrees);
-                });
+                    if (this.isprof) {
+                        // Liste des cours crées par le profil
+                        this.coursProvider.getCoursByProf(this.userData._id).then(list => {
+                            this.lesCoursCrees = list;
+                            console.log('les cours crees', this.lesCoursCrees);
+                        });
+                    }
+                }, 500);
 
             }
         });
+
 
         // Liste des categories au chargement de la page
         this.categorieProvider.listCategorie().then(list => {
@@ -263,8 +282,19 @@ export class ProfilComponent {
         }
     }
     delChap(indexTab) {
-        this.listChap.splice(indexTab, 1);
-        console.log(this.listChap)
+            this.listChap.splice(indexTab, 1);
+            console.log(this.listChap)
+        }
+        // pour dropdown des Categories
+    selectedCateg(categorie) {
+        console.log(categorie)
+        console.log(this.categ)
+        this.selectedIdsCat = false;
+        this.categ.id = categorie._id;
+        this.categ.libelle = categorie.libelle;
+        this.selectedId = true;
+        console.log(this.categ);
+        this.getSousCatByCategorie(this.categ.id);
     }
 }
 
