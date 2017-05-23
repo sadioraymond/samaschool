@@ -19,12 +19,12 @@ import DProfil from '../api/Utilisateur_Module/detail_profil/detail_profil.model
 import suivi_cours from '../api/Utilisateur_Module/suivi_cours/suivi_cours.model';
 import Chapitre from '../api/Utilisateur_Module/chapitre/chapitre.model';
 import Cycle from '../api/Etablissement_Module/cycle/cycle.model';
-import Dclasse from '../api/Etablissement_Module/detail_classe/detail_classe.model';
 import SousCat from '../api/Utilisateur_Module/sous_categorie/sous_categorie.model';
 import Categorie from '../api/Utilisateur_Module/categorie/categorie.model';
 import suivi from '../api/Etablissement_Module/suivi/suivi.model';
 import exercice from '../api/Utilisateur_Module/exercice/exercice.model';
 import equipe from '../api/Etablissement_Module/equipe/equipe.model';
+import detailcycle from '../api/Etablissement_Module/detail_cycle/detail_cycle.model';
 import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
@@ -45,7 +45,7 @@ export default function seedDatabaseIfNeeded() {
                         linkedIn: "",
                         googlePlus: "",
                         dateNaiss: "",
-                        bio:""
+                        bio: ""
                     }, {
                         _id: "58b03802d98ff60ec2777f8d",
                         provider: 'local',
@@ -61,7 +61,7 @@ export default function seedDatabaseIfNeeded() {
                         linkedIn: "",
                         googlePlus: "",
                         dateNaiss: "",
-                        bio:""
+                        bio: ""
                     }, {
                         _id: "58b03802d98ff60ec2777f8e",
                         name: "Selma",
@@ -75,7 +75,7 @@ export default function seedDatabaseIfNeeded() {
                         linkedIn: "",
                         googlePlus: "",
                         dateNaiss: "",
-                        bio:""
+                        bio: ""
                     }, {
                         _id: "58b03802d98ff60ec2777f8f",
                         name: "Lilah",
@@ -89,7 +89,7 @@ export default function seedDatabaseIfNeeded() {
                         linkedIn: "",
                         googlePlus: "",
                         dateNaiss: "",
-                        bio:""
+                        bio: ""
                     }, {
                         _id: "58b03802d98ff60ec2777f90",
                         name: "Sebastian",
@@ -103,7 +103,7 @@ export default function seedDatabaseIfNeeded() {
                         linkedIn: "",
                         googlePlus: "",
                         dateNaiss: "",
-                        bio:""
+                        bio: ""
                     }, {
                         _id: "58b03802d98ff60ec2777f91",
                         name: "Pach",
@@ -117,7 +117,7 @@ export default function seedDatabaseIfNeeded() {
                         linkedIn: "",
                         googlePlus: "",
                         dateNaiss: "",
-                        bio:""
+                        bio: ""
                     }, {
                         _id: "58b03802d98ff60ec2777f92",
                         name: "chico",
@@ -131,7 +131,7 @@ export default function seedDatabaseIfNeeded() {
                         linkedIn: "",
                         googlePlus: "",
                         dateNaiss: "",
-                        bio:""
+                        bio: ""
                     }, {
                         _id: "58b03802d98ff60ec2777f93",
                         name: "raymond",
@@ -145,7 +145,7 @@ export default function seedDatabaseIfNeeded() {
                         linkedIn: "",
                         googlePlus: "",
                         dateNaiss: "",
-                        bio:""
+                        bio: ""
                     }, {
                         _id: "58b03802d98ff60ec2777f94",
                         name: "kain",
@@ -159,7 +159,7 @@ export default function seedDatabaseIfNeeded() {
                         linkedIn: "",
                         googlePlus: "",
                         dateNaiss: "",
-                        bio:""
+                        bio: ""
                     }, {
                         _id: "58b03802d98ff60ec2777f95",
                         name: "Illiana",
@@ -173,7 +173,7 @@ export default function seedDatabaseIfNeeded() {
                         linkedIn: "",
                         googlePlus: "",
                         dateNaiss: "",
-                        bio:""
+                        bio: ""
                     })
                     .then(() => console.log('finished populating users'))
                     .catch(err => console.log('error populating users', err));
@@ -234,43 +234,53 @@ export default function seedDatabaseIfNeeded() {
                 Classe.create({
                         _id: 1,
                         niveau: 1,
-                        libelle: "Stic1"
+                        libelle: "Stic1",
+                        etablissement: 1,
                     }, {
                         _id: 2,
                         niveau: 2,
-                        libelle: "Stic2"
+                        libelle: "Stic2",
+                        etablissement: 1,
                     }, {
                         _id: 3,
                         niveau: 3,
-                        libelle: "Stic3"
+                        libelle: "Stic3",
+                        etablissement: 1,
                     }, {
                         _id: 4,
                         niveau: 4,
-                        libelle: "Stic4"
+                        libelle: "Stic4",
+                        etablissement: 1,
                     }, {
                         _id: 5,
                         niveau: 5,
-                        libelle: "Stic5"
+                        libelle: "Stic5",
+                        etablissement: 1,
                     }, {
                         _id: 6,
                         niveau: 1,
-                        libelle: "Droit1"
+                        libelle: "Droit1",
+                        etablissement: 2,
                     }, {
                         _id: 7,
                         niveau: 2,
-                        libelle: "Droit2"
+                        libelle: "Droit2",
+                        etablissement: 2,
                     }, {
                         _id: 8,
                         niveau: 3,
-                        libelle: "Droit3"
+                        libelle: "Droit3",
+                        etablissement: 2,
                     }, {
                         _id: 9,
                         niveau: 4,
-                        libelle: "Droit4"
+                        libelle: "Droit4",
+                        etablissement: 2,
                     }, {
                         _id: 10,
                         niveau: 5,
-                        libelle: "Droit5"
+                        libelle: "Droit5",
+                        etablissement: 2,
                     })
                     .then(() => console.log('finished populating Classe'))
                     .catch(err => console.log('error populating Classe', err));
@@ -2130,67 +2140,12 @@ export default function seedDatabaseIfNeeded() {
                         libelle: "arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut"
                     }, {
                         _id: 4,
-                        libelle: "Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec"
+                        libelle: "Enseignement Supérieur"
                     })
                     .then(() => console.log('finished populating Cycle'))
                     .catch(err => console.log('error populating Cycle', err));
             });
-        Dclasse.find({}).remove()
-            .then(() => {
-                Dclasse.create({
-                        _id: 1,
-                        classe: 1,
-                        etablissement: 1,
-                        date: "2016-05-30"
-                    }, {
-                        _id: 2,
-                        classe: 2,
-                        etablissement: 1,
-                        date: "2016-07-18"
-                    }, {
-                        _id: 3,
-                        classe: 3,
-                        etablissement: 1,
-                        date: "2017-01-30"
-                    }, {
-                        _id: 4,
-                        classe: 4,
-                        etablissement: 1,
-                        date: "2016-12-02"
-                    }, {
-                        _id: 5,
-                        classe: 5,
-                        etablissement: 1,
-                        date: "2017-04-30"
-                    }, {
-                        _id: 6,
-                        classe: 6,
-                        etablissement: 2,
-                        date: "2017-01-21"
-                    }, {
-                        _id: 7,
-                        classe: 7,
-                        etablissement: 2,
-                        date: "2016-11-14"
-                    }, {
-                        _id: 8,
-                        classe: 8,
-                        etablissement: 2,
-                        date: "2017-03-16"
-                    }, {
-                        _id: 9,
-                        classe: 9,
-                        etablissement: 2,
-                        date: "2016-07-30"
-                    }, {
-                        _id: 10,
-                        classe: 10,
-                        etablissement: 2,
-                        date: "2017-10-01"
-                    })
-                    .then(() => console.log('finished populating Détail Classe'))
-                    .catch(err => console.log('error populating Détail Classe', err));
-            });
+
         SousCat.find({}).remove()
             .then(() => {
                 SousCat.create({
@@ -2427,6 +2382,22 @@ export default function seedDatabaseIfNeeded() {
                     })
                     .then(() => console.log('finished populating equipe:'))
                     .catch(err => console.log('error populating equipe:', err));
+            });
+        detailcycle.find({}).remove()
+            .then(() => {
+                detailcycle.create({
+                        _id: 1,
+                        cycle: 4,
+                        etablissement: 1,
+                        date: "2016-09-30"
+                    }, {
+                        _id: 2,
+                        cycle: 4,
+                        etablissement: 2,
+                        date: "2017-09-30"
+                    })
+                    .then(() => console.log('finished populating Detail Cycle'))
+                    .catch(err => console.log('error populating Detail Cycle', err));
             });
     }
 }

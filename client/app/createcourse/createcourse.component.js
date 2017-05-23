@@ -666,7 +666,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
                 for (let i = 0; i < $ctrl.listClasseUser.length; i++) {
                     for (let j = 0; j < $ctrl.listClasseUser[i].length; j++) {
                         if ($ctrl.verif($ctrl.listClasseUsers[k], $ctrl.listClasseUser[i][j].etablissement._id)) {
-                            userClass[`${l}`] = $ctrl.listClasseUser[i][j].classe;
+                            userClass[`${l}`] = $ctrl.listClasseUser[i][j];
                             l++;
                         }
                     }

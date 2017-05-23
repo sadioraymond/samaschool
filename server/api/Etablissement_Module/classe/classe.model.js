@@ -1,4 +1,3 @@
-
 'use strict';
 
 import mongoose from 'mongoose';
@@ -11,7 +10,11 @@ var ClasseSchema = new mongoose.Schema({
         type: Number,
         ref: 'Niveau'
     },
-    libelle: String
+    libelle: String,
+    etablissement: {
+        type: Number,
+        ref: 'Etablissement'
+    }
 });
 ClasseSchema.plugin(autoIncrement.plugin, 'Classe');
 registerEvents(ClasseSchema);

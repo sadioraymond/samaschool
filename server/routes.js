@@ -80,6 +80,7 @@ mkdirp(repuser, function(err) {
 });
 export default function(app) {
     // Insert routes below
+    app.use('/api/detail_cycles', require('./api/Etablissement_Module/detail_cycle'));
     app.use('/api/equipes', require('./api/Etablissement_Module/equipe'));
     app.post('/createcourse/:id', upload.single('myFile'), function uploadImage(req, res) {
         var widgetId = req.body.widgetId;
@@ -137,7 +138,6 @@ export default function(app) {
     app.use('/api/suivis', require('./api/Etablissement_Module/suivi'));
     app.use('/api/categories', require('./api/Utilisateur_Module/categorie'));
     app.use('/api/sous_categories', require('./api/Utilisateur_Module/sous_categorie'));
-    app.use('/api/detail_classes', require('./api/Etablissement_Module/detail_classe'));
     app.use('/api/cycles', require('./api/Etablissement_Module/cycle'));
     app.use('/api/chapitres', require('./api/Utilisateur_Module/chapitre'));
     app.use('/api/suivi_courss', require('./api/Utilisateur_Module/suivi_cours'));
