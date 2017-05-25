@@ -3,108 +3,98 @@
     <div class="section-title-2 text-center">
       <form name="myForm">
         <h2 contenteditable name="myWidget" ng-change="vm.changedtitre(myForm.myWidget.$error)" ng-model="vm.userContent" strip-br="true"
-          ng-minlength="4" ng-maxlength="55" required>NOUS SOMMES PROFESSIONNELS</h2>
+          ng-minlength="4" ng-maxlength="55" required>Structure de l'établissement</h2>
         <span ng-show="myForm.myWidget.$error.required">Required!</span>
       </form>
-      <p class="lead">Nous construisons des parcours incroyables ! Ne manquez pas de nous rejoindre aujourd'hui !</p>
+      <p class="lead">Mettez en place la structure de l'etablissement pour bien présenter votre architecture et de profiter des classes virtuelles
+        pour vos etudiants et leurs professeurs!</p>
       <hr>
     </div>
     <!-- end section-title -->
     <div class="row services-wrapper">
       <div class="col-md-3 col-sm-6">
         <div class="boxes text-center service-first">
-          <h3>Bienvenue à UAHB</h3>
-          <p>Un temple du savoir qui vous forme a devenir professionnel et entreprendre un avenir meilleur !</p>
+          <h3>Structure de l'etablissement</h3>
+          <p>Mettez en place la structure de l'etablissement pour bien présenter votre architecture et de profiter des classes
+            virtuelles pour vos etudiants et leurs professeurs!</p>
           <a href="#" class="btn btn-primary btn-trans btn-radius">Lire la suite</a>
         </div>
         <!-- end box -->
       </div>
       <!-- end col -->
-      <div class="col-md-3 col-sm-6">
+      <div class="col-md-4 col-sm-6">
         <div class="boxes services">
-          <div class="entry">
-            <img src="assets/upload/cultur_uahb.jpg" alt="" class="img-responsive img-rounded" style="height: 300px;width: 800px">
-            <div class="magnifier">
-              <div class="shop-bottom clearfix">
-                <a href="#" title=""><i class="fa fa-users btn-radius"></i></a>
-              </div>
-              <!-- end shop-bottom -->
-            </div>
-            <!-- end magnifier -->
+          <h3>Cycle</h3>
+          <div class="radio radio-info radio-inline" ng-repeat="cycle in $ctrl.cycles">
+            <input type="radio" name="cycle" id="{{cycle._id}}" value="{{cycle._id}}" ng-click="$ctrl.selectedCycle(cycle._id)">
+            <label for="{{cycle._id}}">
+                {{cycle.libelle}}
+            </label>
           </div>
-          <!-- entry -->
-          <h3>Ce que nous faisons</h3>
-          <p>Depuis sa première rentrée académique de Novembre 2006, votre établissement, l'UNIVERSITE AMADOU HAMPATE BA DE
-            DAKAR, est confrontée, chaque année, à la redoutable question entre l'effectif des étudiants inscrits et le nombre
-            de salles de cours pour les accueil. </p>
+
+          <div ng-if="$ctrl.superieur && $ctrl.hasFaculte">
+            <hr>
+            <h3>Avez-vous des facultés? </h3>
+            <div class="radio radio-danger radio-inline">
+              <input type="radio" name="cycle" id="y" value="y" ng-click="$ctrl.hasFaculte()">
+              <label for="y">
+                OUI
+            </label>
+            </div>
+            <div class="radio radio-danger radio-inline">
+              <input type="radio" name="cycle" id="n" value="n" ng-click="$ctrl.hasntFaculte()">
+              <label for="n">
+                NON
+            </label>
+            </div>
+          </div>
+          <div ng-if="$ctrl.superieur && $ctrl.hasDepartement">
+            <hr>
+            <h3>Avez-vous des Départements? </h3>
+            <div class="radio radio-warning radio-inline">
+              <input type="radio" name="cycle" id="y" value="y" ng-click="$ctrl.hasDepartement()">
+              <label for="y">
+                OUI
+            </label>
+            </div>
+            <div class="radio radio-danger radio-inline">
+              <input type="radio" name="cycle" id="n" value="n" ng-click="$ctrl.hasntDepartement()">
+              <label for="n">
+                NON
+            </label>
+            </div>
+          </div>
+          <div ng-if="$ctrl.superieur && $ctrl.filiere">
+            <hr>
+            <h3>Filieres</h3>
+            <!-- Single button using append-to-body -->
+            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+              <button type="button" class="btn btn-default" ng-repeat="sf in $ctrl.selectedFilieres">
+                    {{sf.libelle}} <i class="fa fa-times" aria-hidden="true" ng-click="$ctrl.deleteSelectedFiliere(sf)"></i>
+              </button> <br>
+              <button id="btn-append-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                    Ajouter vos filieres <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                <li role="menuitem" ng-repeat="filiere in $ctrl.filieres" ng-click="$ctrl.selectedFiliere(filiere)">{{filiere.libelle}}</li>
+              </ul>
+            </div>
+          </div>
         </div>
         <!-- end box -->
       </div>
       <!-- end col -->
-      <div class="col-md-3 col-sm-6">
+      <div class="col-md-4 col-sm-6">
         <div class="boxes services">
-          <div class="entry">
-            <img src="assets/upload/president.jpg" alt="" class="img-responsive img-rounded" style="height: 300px;width: 800px">
-            <div class="magnifier">
-              <div class="shop-bottom clearfix">
-                <a href="#" title=""><i class="fa fa-graduation-cap btn-radius"></i></a>
-              </div>
-              <!-- end shop-bottom -->
+          <div ng-repeat="sf in $ctrl.selectedFilieres">
+            <h3> {{sf.libelle}}</h3>
+            <div style="padding-bottom: 0.3em" class="checkbox checkbox-info checkbox-inline" ng-repeat="classe in $ctrl.LesClassesSuperieurs">
+              <input type="checkbox" name="classe" id="classe_{{classe._id}}" value="{{classe._id}}" ng-click="$ctrl.selectedclasse(classe._id)">
+              <label for="classe_{{classe._id}}">
+                {{classe.libelle}}
+            </label>
             </div>
-            <!-- end magnifier -->
           </div>
-          <!-- entry -->
-          <h3>Qui nous sommes</h3>
-          <p>Sénégalais d'adoption, le Déclarant responsable du collège Moderne Jean de la Fontaine ,Monsieur Michel Claver
-            GBAYA, a incontestablement beaucoup oeuvré et contribué à la qualité et à la promotion de l'enseignent privé
-            laïc au Sénégal.
-            <!--Son établissement ne fuit-il pas le premier à obtenir un lauréat au concours Général en 1991
-            ? Performance qui, jusque-là, était l'apanage exclusif des établissements publics ou privés catholiques. C'est
-            pourquoi, sa contribution et celle de son établissement, durant quarante six années, aux efforts de l'Etat, dans
-            le domaine aussi bien de l'emploi que de l'éducation et de la formation des enfants, sont reconnues et appréciées.
-            C'est en raison de tous ces services rendus à la Nation que Monsieur Michel Claver GBAYA a été élevé au Grade
-            de chevalier de l'ordre du Mérite, après avoir été décoré des Palmes académiques et après avoir reçu de nombreuses
-            lettres de félicitation des autorités du Sénégal. Son initiative d'ouvrir, aujourd'hui un établissement d'enseignement
-            supérieur est la poursuite et le couronnement de l'œuvre qu'il accomplit, depuis 46 ans, à la tête d'un établissement
-            secondaire reconnu pour son sérieux et son dynamisme : le Collège Moderne Jean de la Fontaine. Son enseignement
-            de près d'un demi siècle au service de l'Ecole sénégalaise mérite aujourd'hui, au moment où son nouvel établissement,
-            l'UNIVERSITÉ AMADOU HAMPATHE BA DE DAKAR, a ouvert officiellement ses portes en Octobre 2006, nos encouragements
-            et nos souhaits de chance et de réussite dans cette nouvelle étape de sa contribution au développement du Sénégal.-->
-          </p>
-        </div>
-        <!-- end box -->
-      </div>
-      <!-- end col -->
-      <div class="col-md-3 col-sm-6">
-        <div class="boxes services">
-          <div class="entry">
-            <img src="assets/upload/informatique.jpg" alt="" class="img-responsive img-rounded" style="height: 300px;width: 800px">
-            <div class="magnifier">
-              <div class="shop-bottom clearfix">
-                <a href="#" title=""><i class="fa fa-question btn-radius"></i></a>
-              </div>
-              <!-- end shop-bottom -->
-            </div>
-            <!-- end magnifier -->
-          </div>
-          <!-- entry -->
-          <h3>Nos Termes</h3>
-          <p>- L'architecture des études est fondée sur 3 grades (Licence, Master, Doctorat) Diplômes déclinés en domaines,
-            mentions et spécialités. - Organisation de formation en semestre. - Système composé d'unités d'enseignement (U.E)
-            ou modules.
-            <!--- Mise en œuvre de système de crédits capitalisables et transférables - Chaque semestre totalise
-            30 crédits. 
-            - Existence de deux filières (académique et professionnelle). - Enseignement obligatoire d'une langue
-            étrangère (anglais …) et de l'utilisation de l'outil informatique. 
-            - Contrôle continu plus contrôle terminal.
-            - Organisation des formations en semestre. L'année universitaire est organisée en semestre et le semestre devient
-            désormais l'unité de base. Un semestre comprend 16 semaines d'enseignement et d'évaluation, pouvant comporter
-            au moins 3 unités d'enseignements avec un volume horaire global semestriel de 360 heures minimum. Un semestre
-            équivaut à 30 crédits ; ainsi, un cursus licence organisé en 6 semestres vaut 80 crédits et un cursus master
-            organisé en 4 semestres correspond à 120 crédits. La poursuite des études dans un nouveau semestre est de droit
-            pour tout étudiant àqui ne manque au maximum que la validation d'un certain nombre de crédits dans l'ancien semestre.
-            Un étudiant passe dans le semestre supérieur lorsqu'il n'a pas, en dette, plus d'un certain nombre de crédits
-            dans le semestre précédent.</p>-->
         </div>
         <!-- end box -->
       </div>
