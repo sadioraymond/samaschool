@@ -10,6 +10,7 @@ export class completerStructureEtablissementComponent {
     this.selectedFilieres = []
   }
   $onInit() {
+    // liste fictive des cycles
     this.cycles = [{
         _id: 1,
         libelle: 'primaire'
@@ -23,6 +24,7 @@ export class completerStructureEtablissementComponent {
         libelle: 'superieur'
       }
     ]
+    // liste fictive des filieres
     this.filieres = [{
         _id: 1,
         libelle: 'Sciences-Eco'
@@ -37,6 +39,7 @@ export class completerStructureEtablissementComponent {
       }
 
     ]
+    // liste fictive des classes pour cycle superieur
     this.LesClassesSuperieurs = [{
         _id: 1,
         libelle: '1ere année'
@@ -60,32 +63,44 @@ export class completerStructureEtablissementComponent {
 
     ]
   }
+  // le choix de cycle
   selectedCycle(id) {
     this.$log.log('okk', id)
     if (id === 3) {
       this.superieur = true
     }
   }
+  // Pour le cycle superieur qui n'a pas de Faculté
+  // si non est choisi
   hasntFaculte() {
     this.$timeout(() => {
       this.hasFaculte = false
       this.hasDepartement = true
     }, 500)
   }
+  // Pour le cycle superieur qui n'a pas de Departement
+  // si non est choisi
   hasntDepartement() {
     this.$timeout(() => {
       this.hasDepartement = false
       this.filiere = true
     }, 500)
   }
+
+  // choix ou selection de filieres
   selectedFiliere(filiere) {
+    // si la filiere nest pas deja choisi
     if (!this.selectedFilieres.includes(filiere)) {
+      // ajout de la filiere dans la liste des filieres choisies
       this.selectedFilieres.push(filiere)
     }
   }
-  deleteSelectedFiliere(filiere){
+
+  // deselection de filieres
+  deleteSelectedFiliere(filiere) {
     this.selectedFilieres.map((f, index) => {
-      if(f._id === filiere._id){
+      if (f._id === filiere._id) {
+        // suppresion de la filiere dans la liste
         this.selectedFilieres.splice(index, 1)
       }
     })

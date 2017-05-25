@@ -24,14 +24,17 @@
       <!-- end col -->
       <div class="col-md-4 col-sm-6">
         <div class="boxes services">
-          <h3>Cycle</h3>
-          <div class="radio radio-info radio-inline" ng-repeat="cycle in $ctrl.cycles">
-            <input type="radio" name="cycle" id="{{cycle._id}}" value="{{cycle._id}}" ng-click="$ctrl.selectedCycle(cycle._id)">
-            <label for="{{cycle._id}}">
+          <!--choix de cycles-->
+          <div>
+            <h3>Cycles</h3>
+            <div class="radio radio-info radio-inline" ng-repeat="cycle in $ctrl.cycles">
+              <input type="radio" name="cycle" id="{{cycle._id}}" value="{{cycle._id}}" ng-click="$ctrl.selectedCycle(cycle._id)">
+              <label for="{{cycle._id}}">
                 {{cycle.libelle}}
             </label>
+            </div>
           </div>
-
+          <!--choix ou non de faculté-->
           <div ng-if="$ctrl.superieur && $ctrl.hasFaculte">
             <hr>
             <h3>Avez-vous des facultés? </h3>
@@ -48,6 +51,7 @@
             </label>
             </div>
           </div>
+          <!--choix ou non de departement-->
           <div ng-if="$ctrl.superieur && $ctrl.hasDepartement">
             <hr>
             <h3>Avez-vous des Départements? </h3>
@@ -64,6 +68,7 @@
             </label>
             </div>
           </div>
+          <!--choix de filiere-->
           <div ng-if="$ctrl.superieur && $ctrl.filiere">
             <hr>
             <h3>Filieres</h3>
@@ -86,12 +91,13 @@
       <!-- end col -->
       <div class="col-md-4 col-sm-6">
         <div class="boxes services">
+          <!--choix des classes pour chaque filiere-->
           <div ng-repeat="sf in $ctrl.selectedFilieres">
             <h3> {{sf.libelle}}</h3>
             <div style="padding-bottom: 0.3em" class="checkbox checkbox-info checkbox-inline" ng-repeat="classe in $ctrl.LesClassesSuperieurs">
-              <input type="checkbox" name="classe" id="classe_{{classe._id}}" value="{{classe._id}}" ng-click="$ctrl.selectedclasse(classe._id)">
-              <label for="classe_{{classe._id}}">
-                {{classe.libelle}}
+              <input type="checkbox" id="classe_{{sf._id}}_{{classe._id}}" value="{{classe._id}}" ng-click="$ctrl.selectedclasse(classe._id)">
+              <label for="classe_{{sf._id}}_{{classe._id}}">
+              {{classe.libelle}}
             </label>
             </div>
           </div>
