@@ -55,6 +55,12 @@ import suiviCoursProvider from '../app/factory/suivi_coursProvider/suivi_coursPr
 import annonceProvider from '../app/factory/annonceProvider/annonceProvider.service';
 import ouvreDialogProvider from '../app/factory/ouvreDialogProvider/ouvreDialogProvider.service';
 
+import faculteProvider from '../app/factory/faculteProvider/faculteProvider.service';
+import departementProvider from '../app/factory/departementProvider/departementProvider.service';
+import filiereProvider from '../app/factory/filiereProvider/filiereProvider.service';
+import cycleProvider from '../app/factory/cycleProvider/cycleProvider.service';
+
+
 
 // ------ Les routes -------
 import CoursesPagesComponent from './coursesPages/coursesPages.component';
@@ -75,7 +81,7 @@ import './app.css';
 // ---------- directives -----------
 
 angular.module('samaschoolApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, recentCours, formations, notreEquipe, 'angular-loading-bar', 'cfp.loadingBar', 'ckeditor', annonceProvider, ouvreDialogProvider, SearchComponent, AllEtablissemntsComponent, AllProfesseursComponent, structureEtab
+    uiBootstrap, _Auth, account, admin, constants, socket, util, coursProvider, etablissementProvider, navbar, bottomfooter, main, courses, classeProvider, niveauProvider, suiviCoursClasseProvider, jsFonctions, profilProvider, statistics, teachers, etablissements, CoursesPagesComponent, CourseSinglePageComponent, RegisterComponent, banner, ProfilComponent, EtablissementPagesComponent, annonces, userProvider, sousCategories, categorieProvider, souscategorieProvider, CreatecourseComponent, PreviewComponent, chapitreProvider, suiviCoursProvider, recentCours, formations, notreEquipe, 'angular-loading-bar', 'cfp.loadingBar', 'ckeditor', annonceProvider, ouvreDialogProvider, SearchComponent, AllEtablissemntsComponent, AllProfesseursComponent, cycleProvider, filiereProvider, departementProvider, faculteProvider, structureEtab
 
   ])
   .config(routeConfig)
