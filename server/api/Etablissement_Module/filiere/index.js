@@ -7,6 +7,8 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
+router.get('/etablissement/:id', controller.getAllFilierebyEtab);
+router.get('/departement/:id', controller.getAllFilierebyDepartement);
 router.post('/', controller.create);
 router.put('/:id', controller.upsert);
 router.patch('/:id', controller.patch);

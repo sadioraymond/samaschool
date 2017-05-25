@@ -25,6 +25,9 @@ import suivi from '../api/Etablissement_Module/suivi/suivi.model';
 import exercice from '../api/Utilisateur_Module/exercice/exercice.model';
 import equipe from '../api/Etablissement_Module/equipe/equipe.model';
 import detailcycle from '../api/Etablissement_Module/detail_cycle/detail_cycle.model';
+import Faculte from '../api/Etablissement_Module/faculte/faculte.model';
+import Departement from '../api/Etablissement_Module/departement/departement.model';
+import Filiere from '../api/Etablissement_Module/filiere/filiere.model';
 import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
@@ -236,51 +239,61 @@ export default function seedDatabaseIfNeeded() {
                         niveau: 1,
                         libelle: "Stic1",
                         etablissement: 1,
+                        filiere: 1
                     }, {
                         _id: 2,
                         niveau: 2,
                         libelle: "Stic2",
                         etablissement: 1,
+                        filiere: 1
                     }, {
                         _id: 3,
                         niveau: 3,
                         libelle: "Stic3",
                         etablissement: 1,
+                        filiere: 1
                     }, {
                         _id: 4,
                         niveau: 4,
                         libelle: "Stic4",
                         etablissement: 1,
+                        filiere: 1
                     }, {
                         _id: 5,
                         niveau: 5,
                         libelle: "Stic5",
                         etablissement: 1,
+                        filiere: 1
                     }, {
                         _id: 6,
                         niveau: 1,
                         libelle: "Droit1",
                         etablissement: 2,
+                        filiere: 2
                     }, {
                         _id: 7,
                         niveau: 2,
                         libelle: "Droit2",
                         etablissement: 2,
+                        filiere: 2
                     }, {
                         _id: 8,
                         niveau: 3,
                         libelle: "Droit3",
                         etablissement: 2,
+                        filiere: 2
                     }, {
                         _id: 9,
                         niveau: 4,
                         libelle: "Droit4",
                         etablissement: 2,
+                        filiere: 2
                     }, {
                         _id: 10,
                         niveau: 5,
                         libelle: "Droit5",
                         etablissement: 2,
+                        filiere: 2
                     })
                     .then(() => console.log('finished populating Classe'))
                     .catch(err => console.log('error populating Classe', err));
@@ -2398,6 +2411,68 @@ export default function seedDatabaseIfNeeded() {
                     })
                     .then(() => console.log('finished populating Detail Cycle'))
                     .catch(err => console.log('error populating Detail Cycle', err));
+            });
+        Faculte.find({}).remove()
+            .then(() => {
+                Faculte.create({
+                        _id: 1,
+                        libelle: "Faculté des Sciences et Techniques (FST)",
+                        cycle: 1
+                    }, {
+                        _id: 2,
+                        libelle: "Faculté des Lettres et Sciences Humaines (FLSH)",
+                        cycle: 1
+                    }, {
+                        _id: 3,
+                        libelle: "Faculté des Sciences Juridiques et Politiques (FSJP)",
+                        cycle: 2
+                    }, {
+                        _id: 4,
+                        libelle: "Faculté des Sciences Economiques et de Gestion (FASEG)",
+                        cycle: 2
+                    })
+                    .then(() => console.log('finished populating Faculte'))
+                    .catch(err => console.log('error populating Faculte', err));
+            });
+        Departement.find({}).remove()
+            .then(() => {
+                Departement.create({
+                        _id: 1,
+                        libelle: "Département des sciences de l'information et de la communication",
+                        faculte: 1
+                    }, {
+                        _id: 2,
+                        libelle: "Département des Lettres",
+                        faculte: 2
+                    }, {
+                        _id: 3,
+                        libelle: "Département Juridique",
+                        faculte: 3
+                    }, {
+                        _id: 4,
+                        libelle: "Département des Sciences Economiques",
+                        faculte: 4
+                    }, {
+                        _id: 5,
+                        libelle: "Département Mécanique",
+                        faculte: 1
+                    })
+                    .then(() => console.log('finished populating Departement'))
+                    .catch(err => console.log('error populating Departement', err));
+            });
+        Filiere.find({}).remove()
+            .then(() => {
+                Filiere.create({
+                        _id: 1,
+                        libelle: "Informatique",
+                        departement: 1
+                    }, {
+                        _id: 2,
+                        libelle: "Droit des affaires",
+                        departement: 3
+                    })
+                    .then(() => console.log('finished populating Filiere'))
+                    .catch(err => console.log('error populating Filiere', err));
             });
     }
 }

@@ -86,6 +86,15 @@ export function getclasseByNiveau(req, res) {
         .catch(handleError(res));
 }
 
+//get classe by filiere
+
+export function getClasseByFiliere(req, res) {
+    return Classe.find({ filiere: req.params.id }).populate('filiere').exec()
+        .then(handleEntityNotFound(res))
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+}
+
 //get Classe By Etablissement
 export function getClasseByEtablissement(req, res) {
     return Classe.find({ etablissement: req.params.etablissement }).exec()
