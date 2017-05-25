@@ -62,6 +62,21 @@ export class completerStructureEtablissementComponent {
       }
 
     ]
+    // liste fictive des Facultes
+    this.facultes = [{
+        _id: 1,
+        libelle: 'Fac Sciences'
+      },
+      {
+        _id: 2,
+        libelle: 'Fac Lettres'
+      },
+      {
+        _id: 3,
+        libelle: 'Fac Gestion'
+      }
+
+    ]
   }
   // le choix de cycle
   selectedCycle(id) {
@@ -105,6 +120,7 @@ export class completerStructureEtablissementComponent {
       }
     })
   }
+
 }
 
 export default angular.module('samaschoolApp.completerStructureEtablissement', [])
