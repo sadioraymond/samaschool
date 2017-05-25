@@ -14,6 +14,10 @@ var ClasseSchema = new mongoose.Schema({
     etablissement: {
         type: Number,
         ref: 'Etablissement'
+    },
+    filiere: {
+        type: Number,
+        ref: 'Filiere'
     }
 });
 ClasseSchema.plugin(autoIncrement.plugin, 'Classe');

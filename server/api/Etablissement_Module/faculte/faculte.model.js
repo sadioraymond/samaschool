@@ -9,7 +9,7 @@ var FaculteSchema = new mongoose.Schema({
     libelle: String,
     cycle: {
         type: Number,
-        ref: 'Cycle'
+        ref: 'DetailCycle'
     }
 });
 FaculteSchema.plugin(autoIncrement.plugin, 'Faculte');
