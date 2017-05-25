@@ -128,7 +128,7 @@ export default function seedDatabaseIfNeeded() {
                         email: "chico@example.com",
                         password: "Passer",
                         images: "ImageParDerfautPourLesUsers.png",
-                        imagecouverture: "images (3).jpg",
+                        imagecouverture: "ss_member-cover.jpg",
                         facebook: "",
                         twitter: "",
                         linkedIn: "",
@@ -141,8 +141,8 @@ export default function seedDatabaseIfNeeded() {
                         username: "ray",
                         email: "ray@example.com",
                         password: "Passer",
-                        images: "ImageParDerfautPourLesUsers.png",
-                        imagecouverture: "images (4).jpg",
+                        images: "images (5).jpg",
+                        imagecouverture: "creer_site_web.jpg",
                         facebook: "",
                         twitter: "",
                         linkedIn: "",
@@ -216,7 +216,7 @@ export default function seedDatabaseIfNeeded() {
                         adresse: "CP 598, 1868 Vivamus Chemin",
                         tel: "201-626-324-3444",
                         email: "sit.amet.metus@Curabiturmassa.co.uk",
-                        images: "imageParDefautPourLesEtablissement.png",
+                        images: "1493077197728.png",
                         imagecouverture: "profil_uahb.jpg",
                         description: "dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu"
                     }, {
