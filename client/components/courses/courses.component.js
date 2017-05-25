@@ -24,9 +24,10 @@ export class coursesComponent {
   obj12 = {};
   obj13 = {};
   tableauCours = [];
-  constructor(jsFonctions, coursProvider, $filter, $timeout) {
+  constructor(jsFonctions, coursProvider, $filter, $timeout, $state) {
     this.LesCoursRecent = [];
     this.message = 'World';
+    this.$state = $state
     this.jsFonctions = jsFonctions;
     this.coursProvider = coursProvider;
     this.$filter = $filter;
@@ -57,7 +58,7 @@ export class coursesComponent {
           // filtre (cours plus suivi) de la liste des cours 
           this.lesCoursLesplusSuivis = this.$filter('orderBy')(this.LesCours, '-nbSuivi')
           console.info('LesCours suivi', this.lesCoursLesplusSuivis);
-        },1000);
+        }, 1000);
       });
   }
   // click sous Categorie dans la liste recents cours
@@ -71,7 +72,7 @@ export class coursesComponent {
     this.coursProvider.scategorie = null;
   }
 }
-coursesComponent.$inject = ["jsFonctions", "coursProvider", "$filter", "$timeout"];
+coursesComponent.$inject = ["jsFonctions", "coursProvider", "$filter", "$timeout", "$state"];
 export default angular.module('samaschoolApp.courses', [])
   .component('courses', {
     // template: '<h1>Hello {{ $ctrl.message }}</h1>',

@@ -1,0 +1,107 @@
+<section class="section bgw">
+  <div class="container">
+    <div class="section-title-2 text-center">
+      <form name="myForm">
+        <h2 contenteditable name="myWidget" ng-change="vm.changedtitre(myForm.myWidget.$error)" ng-model="vm.userContent" strip-br="true"
+          ng-minlength="4" ng-maxlength="55" required>Structure de l'établissement</h2>
+        <span ng-show="myForm.myWidget.$error.required">Required!</span>
+      </form>
+      <p class="lead">Mettez en place la structure de l'etablissement pour bien présenter votre architecture et de profiter des classes virtuelles
+        pour vos etudiants et leurs professeurs!</p>
+      <hr>
+    </div>
+    <!-- end section-title -->
+    <div class="row services-wrapper">
+      <div class="col-md-3 col-sm-6">
+        <div class="boxes text-center service-first">
+          <h3>Structure de l'etablissement</h3>
+          <p>Mettez en place la structure de l'etablissement pour bien présenter votre architecture et de profiter des classes
+            virtuelles pour vos etudiants et leurs professeurs!</p>
+          <a href="#" class="btn btn-primary btn-trans btn-radius">Lire la suite</a>
+        </div>
+        <!-- end box -->
+      </div>
+      <!-- end col -->
+      <div class="col-md-4 col-sm-6">
+        <div class="boxes services">
+          <h3>Cycle</h3>
+          <div class="radio radio-info radio-inline" ng-repeat="cycle in $ctrl.cycles">
+            <input type="radio" name="cycle" id="{{cycle._id}}" value="{{cycle._id}}" ng-click="$ctrl.selectedCycle(cycle._id)">
+            <label for="{{cycle._id}}">
+                {{cycle.libelle}}
+            </label>
+          </div>
+
+          <div ng-if="$ctrl.superieur && $ctrl.hasFaculte">
+            <hr>
+            <h3>Avez-vous des facultés? </h3>
+            <div class="radio radio-danger radio-inline">
+              <input type="radio" name="cycle" id="y" value="y" ng-click="$ctrl.hasFaculte()">
+              <label for="y">
+                OUI
+            </label>
+            </div>
+            <div class="radio radio-danger radio-inline">
+              <input type="radio" name="cycle" id="n" value="n" ng-click="$ctrl.hasntFaculte()">
+              <label for="n">
+                NON
+            </label>
+            </div>
+          </div>
+          <div ng-if="$ctrl.superieur && $ctrl.hasDepartement">
+            <hr>
+            <h3>Avez-vous des Départements? </h3>
+            <div class="radio radio-warning radio-inline">
+              <input type="radio" name="cycle" id="y" value="y" ng-click="$ctrl.hasDepartement()">
+              <label for="y">
+                OUI
+            </label>
+            </div>
+            <div class="radio radio-danger radio-inline">
+              <input type="radio" name="cycle" id="n" value="n" ng-click="$ctrl.hasntDepartement()">
+              <label for="n">
+                NON
+            </label>
+            </div>
+          </div>
+          <div ng-if="$ctrl.superieur && $ctrl.filiere">
+            <hr>
+            <h3>Filieres</h3>
+            <!-- Single button using append-to-body -->
+            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+              <button type="button" class="btn btn-default" ng-repeat="sf in $ctrl.selectedFilieres">
+                    {{sf.libelle}} <i class="fa fa-times" aria-hidden="true" ng-click="$ctrl.deleteSelectedFiliere(sf)"></i>
+              </button> <br>
+              <button id="btn-append-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                    Ajouter vos filieres <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                <li role="menuitem" ng-repeat="filiere in $ctrl.filieres" ng-click="$ctrl.selectedFiliere(filiere)">{{filiere.libelle}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- end box -->
+      </div>
+      <!-- end col -->
+      <div class="col-md-4 col-sm-6">
+        <div class="boxes services">
+          <div ng-repeat="sf in $ctrl.selectedFilieres">
+            <h3> {{sf.libelle}}</h3>
+            <div style="padding-bottom: 0.3em" class="checkbox checkbox-info checkbox-inline" ng-repeat="classe in $ctrl.LesClassesSuperieurs">
+              <input type="checkbox" name="classe" id="classe_{{classe._id}}" value="{{classe._id}}" ng-click="$ctrl.selectedclasse(classe._id)">
+              <label for="classe_{{classe._id}}">
+                {{classe.libelle}}
+            </label>
+            </div>
+          </div>
+        </div>
+        <!-- end box -->
+      </div>
+      <!-- end col -->
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+</section>
+<!-- end section -->
