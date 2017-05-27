@@ -85,23 +85,6 @@ export class completerStructureEtablissementComponent {
       this.superieur = true
     }
   }
-  // Pour le cycle superieur qui n'a pas de Faculté
-  // si non est choisi
-  hasntFaculte() {
-    this.$timeout(() => {
-      this.hasFaculte = false
-      this.hasDepartement = true
-    }, 500)
-  }
-  // Pour le cycle superieur qui n'a pas de Departement
-  // si non est choisi
-  hasntDepartement() {
-    this.$timeout(() => {
-      this.hasDepartement = false
-      this.filiere = true
-    }, 500)
-  }
-
   // choix ou selection de filieres
   selectedFiliere(filiere) {
     // si la filiere nest pas deja choisi
@@ -121,6 +104,15 @@ export class completerStructureEtablissementComponent {
     })
   }
 
+  check(a, b) {
+    this.$log.log('==>>', a, b, this.classeTab[a][b])
+  }
+  completerStructureEtablissement() {
+    this.$log.log(this.classeTab)
+    this.$log.log(this.classeTab)
+    this.$log.log(this.classeTab[0])
+    this.$log.log(this.classeTab[1])
+  }
 }
 
 export default angular.module('samaschoolApp.completerStructureEtablissement', [])
