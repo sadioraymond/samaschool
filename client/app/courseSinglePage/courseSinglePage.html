@@ -6,13 +6,6 @@
     </div>
     <div class="row">
       <div id="post-content" class="col-md-9 col-sm-12 single-course">
-        <div ng-if="courseCtrl.LeCours.contenu" class="post-media clearfix">
-          <iframe width="300" height="200" src="{{courseCtrl.LeCours.link |trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
-        </div>
-         <div ng-if="!courseCtrl.LeCours.contenu" class="post-media clearfix">
-          <iframe width="300" height="200" src="{{courseCtrl.LeChapitre.linkchapitre |trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <!-- end media -->
         <div class="single-course-title text-center">
           <h3>
             <a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
@@ -28,6 +21,29 @@
           <!-- end post-sharing -->
         </div>
         <!-- end single-course-title -->
+        <!--video cours sans chap-->
+        <div ng-if="courseCtrl.LeCours.contenu" class="post-media clearfix">
+          <iframe width="300" height="200" src="{{courseCtrl.LeCours.link |trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <!--video cours avec chap-->
+        <!--si on est sur la page du chap en cours-->
+        <div ng-if="!courseCtrl.LeCours.contenu && courseCtrl.$stateParams.idChap !== ''" class="post-media clearfix">
+          <iframe width="300" height="200" src="{{courseCtrl.LeChapitre.linkchapitre |trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <br>
+        <!--si on est sur la racine du cours-->
+        <div class="course-table clearfix" ng-if="!courseCtrl.LeCours.contenu && courseCtrl.$stateParams.idChap === ''">
+          <div class="big-title">
+            <h2 class="related-title">
+              <span>Description du cours</span>
+            </h2>
+          </div>
+          <p>
+            {{courseCtrl.LeCours.description}}
+          </p>
+        </div>
+        <br> <br>
+        <!-- end media -->
         <hr class="invis">
         <div ng-hide="courseCtrl.LesChapitres.length > 0 && !courseCtrl.$stateParams.idChap" class="course-single-desc clearfix">
           <div class="big-title">
@@ -38,9 +54,10 @@
           </div>
           <!-- end big-title -->
           <p ng-if="courseCtrl.LesChapitres.length < 1" ng-bind-html="courseCtrl.LeCours.contenu"></p> <br>
-          <p ng-if="courseCtrl.LesChapitres.length > 0 && courseCtrl.$stateParams.idChap" ng-bind-html="courseCtrl.LeChapitre.contenuChap.contenu">
+          <p ng-if="courseCtrl.LesChapitres.length > 0 && courseCtrl.$stateParams.idChap" ng-bind-html="courseCtrl.LeChapitre.contenu">
           </p>
         </div>
+        <br> <br>
         <!-- end post-padding -->
         <hr class="invis">
         <div class="course-table clearfix" ng-if="courseCtrl.LesChapitres.length > 0">
@@ -64,7 +81,7 @@
                 <td><i class="fa fa-play-circle"></i></td>
                 <td>{{chapitre.libelle | uppercase}}</td>
                 <td>{{$index + 1}}</td>
-                </tr>
+              </tr>
             </tbody>
           </table>
           <input type="submit" value="Suivre ce cours" ng-hide="courseCtrl.cacher()" ng-click="courseCtrl.suivreClick()" class="btn btn-primary btn-block"
@@ -164,7 +181,7 @@
           <!-- end postpager -->
         </div>
         <!-- end content -->
-       
+
       </div>
       <!-- end col -->
       <div id="sidebar" class="col-md-3 col-sm-12">
@@ -199,8 +216,7 @@
                 <hr>
                 <p class="course-instructors">Professeur :
                   <a ui-sref="profil({username:courseCtrl.LeCours.user.username})" title="{{courseCtrl.LeCours.user.username}}">
-                    <img width="30px" height="30px" ng-src="assets/upload/User/{{courseCtrl.LeCours.user.images}}" class="img-circle"
-                      alt=""> {{courseCtrl.LeCours.user.username}}
+                    <img width="30px" height="30px" ng-src="assets/upload/User/{{courseCtrl.LeCours.user.images}}" class="img-circle" alt="">                    {{courseCtrl.LeCours.user.username}}
                   </a>
                 </p>
                 <hr>
@@ -250,9 +266,9 @@
           </div>
           <!-- end widget -->
 
-           <div class="all-buttons text-center">
-          <a ui-sref="coursesPages" class="btn btn-primary btn-lg btn-square">VIEW ALL COURSES</a>
-        </div>
+          <div class="all-buttons text-center">
+            <a ui-sref="coursesPages" class="btn btn-primary btn-lg btn-square">VIEW ALL COURSES</a>
+          </div>
 
 
         </div>
