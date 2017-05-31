@@ -4,7 +4,7 @@ export default function($stateProvider) {
   'ngInject';
   $stateProvider
     .state('etablissement', {
-      url: '/etablissement/:id',
+      url: '/etablissement/:id/:idFiliere/:idClasse',
       template: '<etablissement-pages></etablissement-pages>',
       onEnter: function () {
         $('html, body').animate({

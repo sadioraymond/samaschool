@@ -34,55 +34,15 @@
             </label>
             </div>
           </div>
-          <!--choix ou non de faculté-->
-          <div ng-if="$ctrl.superieur && $ctrl.hasFaculte">
-            <hr>
-            <h3>Avez-vous des facultés? </h3>
-            <!-- Single button using append-to-body -->
-            <div class="btn-group" uib-dropdown dropdown-append-to-body>
-              <button type="button" class="btn btn-default" ng-repeat="fac in $ctrl.selectedFacultes">
-                    {{fac.libelle}} <i class="fa fa-times" aria-hidden="true" ng-click="$ctrl.deleteSelectedFaculte(fac)"></i>
-              </button> <br>
-              <button id="btn-append-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
-                    Ajouter vos facultés <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-                <li role="menuitem" ng-repeat="faculte in $ctrl.facultes" ng-click="$ctrl.selectedFaculte(faculte)">{{faculte.libelle}}</li>
-              </ul>
-            </div> <br>
-            <div class="checkbox checkbox-danger checkbox-inline">
-              <input type="checkbox" id="nFac" value="n" ng-click="$ctrl.hasntFaculte()">
-              <label for="nFac">
-                Nous ne possédons pas de facultés
-            </label>
-            </div>
-          </div>
-          <!--choix ou non de departement-->
-          <div ng-if="$ctrl.superieur && $ctrl.hasDepartement">
-            <hr>
-            <h3>Avez-vous des Départements? </h3>
-            <div class="radio radio-warning radio-inline">
-              <input type="radio" name="cycle" id="y" value="y" ng-click="$ctrl.hasDepartement()">
-              <label for="y">
-                OUI
-            </label>
-            </div>
-            <div class="radio radio-danger radio-inline">
-              <input type="radio" name="cycle" id="n" value="n" ng-click="$ctrl.hasntDepartement()">
-              <label for="n">
-                NON
-            </label>
-            </div>
-          </div>
           <!--choix de filiere-->
-          <div ng-if="$ctrl.superieur && $ctrl.filiere">
+          <div ng-if="$ctrl.superieur">
             <hr>
             <h3>Filieres</h3>
             <!-- Single button using append-to-body -->
             <div class="btn-group" uib-dropdown dropdown-append-to-body>
               <button type="button" class="btn btn-default" ng-repeat="sf in $ctrl.selectedFilieres">
                     {{sf.libelle}} <i class="fa fa-times" aria-hidden="true" ng-click="$ctrl.deleteSelectedFiliere(sf)"></i>
-              </button> <br>
+              </button> <br> <br>
               <button id="btn-append-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
                     Ajouter vos filieres <span class="caret"></span>
               </button>
@@ -96,17 +56,19 @@
       </div>
       <!-- end col -->
       <div class="col-md-4 col-sm-6">
-        <div class="boxes services">
+        <div class="boxes services" ng-if="$ctrl.selectedFilieres.length > 0">
           <!--choix des classes pour chaque filiere-->
           <div ng-repeat="sf in $ctrl.selectedFilieres">
-            <h3> {{sf.libelle}}</h3>
-            <div style="padding-bottom: 0.3em" class="checkbox checkbox-info checkbox-inline" ng-repeat="classe in $ctrl.LesClassesSuperieurs">
-              <input type="checkbox" id="classe_{{sf._id}}_{{classe._id}}" value="{{classe._id}}" ng-click="$ctrl.selectedclasse(classe._id)">
+            <h3> {{sf.libelle}}</h3> <br>
+            <div class="checkbox checkbox-info checkbox-inline" ng-repeat="classe in $ctrl.LesClassesSuperieurs">
+              <input type="checkbox" id="classe_{{sf._id}}_{{classe._id}}" ng-model="$ctrl.classeTab[sf._id][classe._id]" ng-click="$ctrl.selectedclasse(classe._id)" ng-change="$ctrl.check(sf._id, classe._id)">
               <label for="classe_{{sf._id}}_{{classe._id}}">
               {{classe.libelle}}
             </label>
             </div>
           </div>
+          <br>
+          <a ng-click="$ctrl.completerStructureEtablissement()" class="row col-md-offset-6 btn btn-primary btn-trans btn-radius">Valider les modifications</a>
         </div>
         <!-- end box -->
       </div>
