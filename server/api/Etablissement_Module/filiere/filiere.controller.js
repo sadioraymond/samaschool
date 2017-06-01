@@ -92,7 +92,6 @@ export function getAllFilierebyDepartement(req, res) {
 export function getAllFilierebyEtab(req, res) {
     var tab = [];
     var tabs = [];
-    var tabd = [];
     var tabbi = [];
     Detail.find({ etablissement: req.params.id }).exec().then(list => {
         list.forEach(function(element) {
@@ -105,19 +104,26 @@ export function getAllFilierebyEtab(req, res) {
                 });
                 for (let j = 0; j < tabs.length; j++) {
                     Departement.find({ faculte: tabs[j] }).exec().then(dep => {
-                        dep.forEach(function(el) {
-                            tabbi.push(el._id);
-                        });
-                        var cpt = 0;
-                        console.log('tab bi', tabbi);
-                        for (let k = 0; k < tabbi.length; k++) {
-                            Filiere.find({ departement: tabbi[k] }).exec().then(fil => {
-                                tabd.push(fil);
-                                cpt++;
-                                if (cpt == tabbi.length) {
-                                    return res.json(tabd);
+                        if (dep) {
+                            dep.forEach(function(el) {
+                                if (el) {
+                                    tabbi.push(el._id);
                                 }
-                            })
+                            });
+                            var cpt = 0;
+                            console.log('tab bi', tabbi);
+                            var tabd = [];
+                            for (let k = 0; k < tabbi.length; k++) {
+                                Filiere.find({ departement: tabbi[k] }).exec().then(fil => {
+                                    if (fil) {
+                                        tabd.push(fil);
+                                        cpt++;
+                                    }
+                                    if (cpt == tabbi.length) {
+                                        return res.json(tabd);
+                                    }
+                                })
+                            }
                         }
                     });
                 }
