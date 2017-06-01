@@ -2468,8 +2468,16 @@ export default function seedDatabaseIfNeeded() {
                         departement: 1
                     }, {
                         _id: 2,
+                        libelle: "Télécom",
+                        departement: 1
+                    }, {
+                        _id: 3,
                         libelle: "Droit des affaires",
                         departement: 3
+                    }, {
+                        _id: 4,
+                        libelle: "Génie Mécanique",
+                        departement: 5
                     })
                     .then(() => console.log('finished populating Filiere'))
                     .catch(err => console.log('error populating Filiere', err));
