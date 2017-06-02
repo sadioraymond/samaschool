@@ -189,10 +189,10 @@ export class CreatecourseComponent {
           this.classesDuCours = list;
           // injection des classes dans cours provider pour unee futur utilisation
           if (this.classesDuCours.length == 0) {
-            this.coursProvider.classesDuCoursAModifier = null
+            this.coursProvider.objetCours.classesDuCoursAModifier = null
             console.info('classesDuCours null', this.classesDuCours);
           } else {
-            this.coursProvider.classesDuCoursAModifier = this.classesDuCours
+            this.coursProvider.objetCours.classesDuCoursAModifier = this.classesDuCours
             console.info('classesDuCours not null', this.classesDuCours);
           }
         });
@@ -526,8 +526,8 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
   $ctrl.embed = "embed/";
   $ctrl.linkyoutube;
 
-  // fonction qui renvoi le lien youtube avec embed
-  $ctrl.updateYoutubeLink = function updateYoutubeLink(link) {
+  // fonction qui renvoie le lien youtube avec embed
+  $ctrl.updateYoutubeLink = function (link) {
     $ctrl.youtubelink1 = link.split($ctrl.youtubelink).pop();
     if ($ctrl.youtubelink1.indexOf($ctrl.embed) == 0) {
       $ctrl.linkyoutube = $ctrl.youtubelink + $ctrl.youtubelink1;
@@ -689,11 +689,14 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     if (coursProvider.objetCours.nbChap > 0) {
       $ctrl.listChapitre = []
       for (let i = 0; i < coursProvider.objetCours.nbChap; i++) {
+        // si c'est le processus ajout l'id du chapitre sera UNDEFINED
+        
         coursProvider.objetCours.objChap[`${i}`].lienVideo = $ctrl.updateYoutubeLink(coursProvider.objetCours.objChap[`${i}`].lienVideo)
         $ctrl.listChapitre.push(coursProvider.objetCours.objChap[`${i}`])
       }
       coursProvider.objetCours.objChap = $ctrl.listChapitre
     }
+
     // soumettre le formulaire si le cours contient une image
     if (coursProvider.objetCours.StateImage) {
       $ctrl.parametre = coursProvider.objetCours.titre + '-' + Date.now() + '.' + coursProvider.objetCours.images;
@@ -701,6 +704,8 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
       document.querySelector('#createcourseform').submit();
       // $ctrl.verif = 1;
     }
+
+    // l'objet COURS final qui servira a modifier ou a ajouter
     $log.log('objetcours au finish ==> ', coursProvider.objetCours)
   };
 
