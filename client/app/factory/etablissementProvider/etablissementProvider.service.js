@@ -2,7 +2,7 @@
 const angular = require('angular');
 
 /*@ngInject*/
-export function etablissementProviderService($http, $q) {
+export function etablissementProviderService($http, $q, $log) {
   // AngularJS will instantiate a singleton by calling "new" on this function
   this.listeEtab = null;
   this.listeEtablissement = function () {
@@ -44,6 +44,9 @@ export function etablissementProviderService($http, $q) {
     }).then(function (list) {
       liste = list.data;
       deferred.resolve(liste);
+    }, function (error) {
+      $log.error('from provider',error)
+      deferred.reject(error);
 
     });
     liste = deferred.promise;
