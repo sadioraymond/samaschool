@@ -143,8 +143,6 @@ export class CreatecourseComponent {
           this.categ.id = this.souscat.categorie._id;
           this.categ.libelle = this.souscat.categorie.libelle;
         });
-        console.log(`L'ancienne Sous Catégorie`, this.sCateg);
-        console.log(`L'ancienne Catégorie`, this.categ);
         this.boolCoursAModifie = true;
         // 2em partie
         this.titreCours = this.coursAModifie.titre;
@@ -180,8 +178,6 @@ export class CreatecourseComponent {
                 this.objectifChap[index] = x.objectif;
                 this.contenuChap[index] = x.contenu;
                 this.lienVideoChap[index] = x.link;
-                console.log('kho');
-
               }, 800);
             });
 
@@ -504,7 +500,7 @@ export function ModalDemoCtrl($uibModal, $log, $document) {
     });
   };
 }
-export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classeProvider, Auth, coursProvider, $state, $log, $timeout) {
+export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classeProvider, Auth, coursProvider, $state, $log, $timeout, $stateParams) {
 
   var $ctrl = this;
   $ctrl.items = items;
@@ -677,8 +673,12 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
   };
 
   $ctrl.ok = function () {
+    // ajout de la propriete _id dans l'objet cours si modification
+    $log.log('stateparams', $stateParams.id)
+    if ($stateParams.id !== "") {
+      coursProvider.objetCours._id = $stateParams.id
+    }
 
-    $log.log('objetcours', coursProvider.objetCours)
     // ajout de la liste des classe dans l'objet si existe
     if ($ctrl.lesClasseSelectionnes.length > 0) {
       coursProvider.objetCours.classeEtablissement = $ctrl.lesClasseSelectionnes
@@ -766,7 +766,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
 }
 CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth", "classeProvider", "$stateParams", "chapitreProvider", "$state", "$location", "$timeout"];
 ModalDemoCtrl.$inject = ["$uibModal", "$log", "$document"];
-ModalInstanceCtrl.$inject = ["$uibModalInstance", "items", "userProvider", "classeProvider", "Auth", "coursProvider", "$state", "$log", "$timeout"];
+ModalInstanceCtrl.$inject = ["$uibModalInstance", "items", "userProvider", "classeProvider", "Auth", "coursProvider", "$state", "$log", "$timeout", "$stateParams"];
 export default angular.module('samaschoolApp.createcourse', [uiRouter])
   .config(routes)
   .component('createcourse', {
