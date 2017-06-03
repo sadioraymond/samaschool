@@ -218,9 +218,7 @@
         </li>-->
           Etablissement: {{etablissement.libelle}}
           <div ng-repeat="classe in etablissement.classe" class="checkbox checkbox-info">
-            <!--<input id="{{classe._id}}" type="checkbox" value="{{classe._id}}" ng-checked="$ctrl.selection.indexOf(classe._id) > -1" ng-click="$ctrl.toggleSelection(classe._id)"
-              class="styled checkbox-info">-->
-            <input type="checkbox" ng-click="$ctrl.checkedClass(etablissement._id, classe._id)"
+            <input id="{{classe._id}}" type="checkbox" value="{{classe._id}}" ng-checked="$ctrl.selection.indexOf(classe._id) > -1" ng-click="$ctrl.toggleSelection(classe._id)"
               class="styled checkbox-info">
             <label>
               {{classe.libelle}}
