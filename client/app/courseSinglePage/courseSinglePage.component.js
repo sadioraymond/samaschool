@@ -110,7 +110,6 @@ export class CourseSinglePageComponent {
         // suppression du cours qui est déja afficher
         this.LesCoursDeLaSousCategorie.map((x, i) => {
           if (x._id === this.LeCours._id) {
-            console.info('ok 1', i);
             this.LesCoursDeLaSousCategorie.splice(i, 1);
           }
         });
