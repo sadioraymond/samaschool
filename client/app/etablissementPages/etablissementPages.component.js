@@ -18,7 +18,9 @@ export class EtablissementPagesComponent {
   imC;
   imaC;
   imagC;
-  constructor(jsFonctions, $stateParams, etablissementProvider, ouvreDialogProvider) {
+  constructor(jsFonctions, $stateParams, etablissementProvider, ouvreDialogProvider, $log, $state) {
+    this.$log = $log
+    this.$state = $state
     this.jsFonctions = jsFonctions;
     this.$stateParams = $stateParams;
     console.log('param etablissement =>', this.$stateParams)
@@ -71,6 +73,9 @@ export class EtablissementPagesComponent {
     this.etablissementProvider.FindEtabByID(this.$stateParams.id).then(etablissement => {
       this.Letablissement = etablissement;
       console.log(`l'etablissement =>>`, this.Letablissement);
+    }, (error) => {
+      this.$log.error('from component', error)
+      this.$state.go('main')
     });
     // Les profs d'un établissement
     // TODO: reglage du bug, le nom du prof par souvent
@@ -91,7 +96,7 @@ export class EtablissementPagesComponent {
 
   }
 }
-EtablissementPagesComponent.$inject = ["jsFonctions", "$stateParams", "etablissementProvider", "ouvreDialogProvider"];
+EtablissementPagesComponent.$inject = ["jsFonctions", "$stateParams", "etablissementProvider", "ouvreDialogProvider", "$log", "$state"];
 export default angular.module('samaschoolApp.etablissementPages', [uiRouter])
   .config(routes)
   .component('etablissementPages', {

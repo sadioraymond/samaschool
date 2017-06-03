@@ -31,7 +31,7 @@
           <iframe width="300" height="200" src="{{courseCtrl.LeChapitre.linkchapitre |trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
         </div>
         <br>
-        <!--si on est sur la racine du cours-->
+        <!--si on est sur la racine du cours avec chapitre-->
         <div class="course-table clearfix" ng-if="!courseCtrl.LeCours.contenu && courseCtrl.$stateParams.idChap === ''">
           <div class="big-title">
             <h2 class="related-title">
@@ -41,6 +41,15 @@
           <p>
             {{courseCtrl.LeCours.description}}
           </p>
+        </div>
+        <!--si on est sur la racine du cours sans chapitre-->
+        <div class="course-table clearfix" ng-if="courseCtrl.LeCours.contenu && courseCtrl.$stateParams.idChap === ''">
+          <div class="big-title">
+            <h2 class="related-title">
+              <span></span>
+            </h2>
+          </div>
+          <p ng-bind-html="courseCtrl.LeCours.contenu"> </p>
         </div>
         <br> <br>
         <!-- end media -->

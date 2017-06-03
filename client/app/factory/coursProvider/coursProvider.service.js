@@ -8,7 +8,6 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
     this.show = "";
     this.show = false;
     this.chapitreCoursAModifie = {};
-    this.classesDuCoursAModifier = null;
     this.scategorie = null;
     this.reload = false;
     this.listCours = function() {
