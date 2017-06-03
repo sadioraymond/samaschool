@@ -525,7 +525,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
   $ctrl.youtubelink1;
   $ctrl.embed = "embed/";
   $ctrl.linkyoutube;
-
+ 
   // fonction qui renvoie le lien youtube avec embed
   $ctrl.updateYoutubeLink = function (link) {
     $ctrl.youtubelink1 = link.split($ctrl.youtubelink).pop();
@@ -550,7 +550,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
 
 
   // 
-  $ctrl.lesClasseSelectionnes = [];
+  // $ctrl.lesClasseSelectionnes = [];
   // $ctrl.ok = function () {
   //   //soumission du formulaire
   //   if (coursProvider.objetCours.StateImage) {
@@ -647,31 +647,6 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
 
 
   // };
-
-  $ctrl.checkedClass = function (etablissement, classe) {
-    $log.log('etablissement =>>', etablissement, 'classes ==> ', classe)
-    $ctrl.laClasseSelectionnee = {
-      id: `${etablissement}${classe}`,
-      etab: etablissement,
-      class: classe
-    }
-    // if (!$ctrl.lesClasseSelectionnes.includes($ctrl.laClasseSelectionnee.id)) {
-    $ctrl.pushOR = true
-    $ctrl.lesClasseSelectionnes.map((obj, index) => {
-      if (obj.id === $ctrl.laClasseSelectionnee.id) {
-        $ctrl.lesClasseSelectionnes.splice(index, 1)
-        $ctrl.pushOR = false
-        // $ctrl.lesClasseSelectionnes.push($ctrl.laClasseSelectionnee)
-      }
-    })
-    $timeout(() => {
-      if ($ctrl.pushOR === true) {
-        $ctrl.lesClasseSelectionnes.push($ctrl.laClasseSelectionnee)
-      }
-      $log.log('lesClasseSelectionnes =>>', $ctrl.lesClasseSelectionnes)
-    }, 400)
-  };
-
   $ctrl.ok = function () {
     // ajout de la propriete _id dans l'objet cours si modification
     $log.log('stateparams', $stateParams.id)
@@ -680,8 +655,8 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     }
 
     // ajout de la liste des classe dans l'objet si existe
-    if ($ctrl.lesClasseSelectionnes.length > 0) {
-      coursProvider.objetCours.classeEtablissement = $ctrl.lesClasseSelectionnes
+    if ($ctrl.selection.length > 0) {
+      coursProvider.objetCours.lesClasses = $ctrl.selection
     }
 
     // ajout de la liste des chapitre dans l'objet si existe
