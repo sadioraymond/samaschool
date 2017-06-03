@@ -8,8 +8,7 @@ var SuiviCoursClasseSchema = new mongoose.Schema({
     _id: Number,
     publication: {
         type: Number,
-        ref: 'Cours',
-        ref: 'Exercice'
+        ref: 'Cours'
     },
     classe: {
         type: Number,
