@@ -2311,170 +2311,177 @@ export default function seedDatabaseIfNeeded() {
           .then(() => console.log('finished populating exercice:'))
           .catch(err => console.log('error populating exercice:', err));
       });
-
-    equipe.find({}).remove()
-      .then(() => {
-        equipe.create({
-            _id: 1,
-            name: "Brynn",
-            images: "ss_member-cover.jpg",
-            email: "luctus.vulputate.nisi@rhoncusProin.org",
-            adresse: "Appartement 678-6234 Pellentesque Av.",
-            fonction: "Responsable Inscription",
-            Etablissement: 2
-          }, {
-            _id: 2,
-            name: "Moustapha der",
-            images: "Mr_der.jpg",
-            email: "erat.nonummy@cursusnonegestas.com",
-            adresse: "921-427 Nec Avenue",
-            fonction: "Responsable Scolarite",
-            Etablissement: 2
-          }, {
-            _id: 3,
-            name: "Tara",
-            images: "recteur.png",
-            email: "amet@Nuncmauris.org",
-            adresse: "Appartement 143-8704 Ultrices Rd.",
-            fonction: "Recteur",
-            Etablissement: 1
-          }, {
-            _id: 4,
-            name: "Makalou",
-            images: "inscription.png",
-            email: "turpis@Integer.ca",
-            adresse: "554-6303 Magna Chemin",
-            fonction: "Responsable Inscription",
-            Etablissement: 1
-          }, {
-            _id: 5,
-            name: "Kara Samb",
-            images: "Mr_samb.jpg",
-            email: "fermentum.vel.mauris@erat.co.uk",
-            adresse: "883-6094 Placerat, Avenue",
-            fonction: "Chep Departement",
-            Etablissement: 2
-          }, {
-            _id: 6,
-            name: "Pa Gbaya",
-            images: "president.jpg",
-            email: "luctus.aliquet@tellusNunc.co.uk",
-            adresse: "7694 Varius Av.",
-            fonction: "Président",
-            Etablissement: 1
-          }, {
-            _id: 7,
-            name: "Kuame",
-            images: "small_course_01",
-            email: "vitae.dolor@imperdiet.co.uk",
-            adresse: "CP 750, 2858 Blandit Ave",
-            fonction: "Administration",
-            Etablissement: 2
-          }, {
-            _id: 8,
-            name: "Jacques",
-            images: "dr_scolarite.png",
-            email: "faucibus@id.edu",
-            adresse: "CP 127, 2608 Mollis Route",
-            fonction: "Responsable Scolarité",
-            Etablissement: 1
-          }, {
-            _id: 9,
-            name: "Massamba Lô",
-            images: "Mr_lo.jpg",
-            email: "eu@pede.com",
-            adresse: "Appartement 193-6065 Aliquam Ave",
-            fonction: "Administration",
-            Etablissement: 1
-          }, {
-            _id: 10,
-            name: "Baye Niasse",
-            images: "Mr_niass.jpg",
-            email: "Ut.nec@et.co.uk",
-            adresse: "8554 Consequat Impasse",
-            fonction: "Administration",
-            Etablissement: 1
-          })
-          .then(() => console.log('finished populating equipe:'))
-          .catch(err => console.log('error populating equipe:', err));
-      });
-    detailcycle.find({}).remove()
-      .then(() => {
-        detailcycle.create({
-            _id: 1,
-            cycle: 4,
-            etablissement: 1,
-            date: "2016-09-30"
-          }, {
-            _id: 2,
-            cycle: 4,
-            etablissement: 2,
-            date: "2017-09-30"
-          })
-          .then(() => console.log('finished populating Detail Cycle'))
-          .catch(err => console.log('error populating Detail Cycle', err));
-      });
-    Faculte.find({}).remove()
-      .then(() => {
-        Faculte.create({
-            _id: 1,
-            libelle: "Faculté des Sciences et Techniques (FST)",
-            cycle: 1
-          }, {
-            _id: 2,
-            libelle: "Faculté des Lettres et Sciences Humaines (FLSH)",
-            cycle: 1
-          }, {
-            _id: 3,
-            libelle: "Faculté des Sciences Juridiques et Politiques (FSJP)",
-            cycle: 2
-          }, {
-            _id: 4,
-            libelle: "Faculté des Sciences Economiques et de Gestion (FASEG)",
-            cycle: 2
-          })
-          .then(() => console.log('finished populating Faculte'))
-          .catch(err => console.log('error populating Faculte', err));
-      });
-    Departement.find({}).remove()
-      .then(() => {
-        Departement.create({
-            _id: 1,
-            libelle: "Département des sciences de l'information et de la communication",
-            faculte: 1
-          }, {
-            _id: 2,
-            libelle: "Département des Lettres",
-            faculte: 2
-          }, {
-            _id: 3,
-            libelle: "Département Juridique",
-            faculte: 3
-          }, {
-            _id: 4,
-            libelle: "Département des Sciences Economiques",
-            faculte: 4
-          }, {
-            _id: 5,
-            libelle: "Département Mécanique",
-            faculte: 1
-          })
-          .then(() => console.log('finished populating Departement'))
-          .catch(err => console.log('error populating Departement', err));
-      });
-    Filiere.find({}).remove()
-      .then(() => {
-        Filiere.create({
-            _id: 1,
-            libelle: "Informatique",
-            departement: 1
-          }, {
-            _id: 2,
-            libelle: "Droit des affaires",
-            departement: 3
-          })
-          .then(() => console.log('finished populating Filiere'))
-          .catch(err => console.log('error populating Filiere', err));
-      });
-  }
+        equipe.find({}).remove()
+            .then(() => {
+                equipe.create({
+                        _id: 1,
+                        name: "Brynn",
+                        images: "ss_member-cover.jpg",
+                        email: "luctus.vulputate.nisi@rhoncusProin.org",
+                        adresse: "Appartement 678-6234 Pellentesque Av.",
+                        fonction: "Responsable Inscription",
+                        Etablissement: 2
+                    }, {
+                        _id: 2,
+                        name: "Moustapha der",
+                        images: "Mr_der.jpg",
+                        email: "erat.nonummy@cursusnonegestas.com",
+                        adresse: "921-427 Nec Avenue",
+                        fonction: "Responsable Scolarite",
+                        Etablissement: 2
+                    }, {
+                        _id: 3,
+                        name: "Tara",
+                        images: "recteur.png",
+                        email: "amet@Nuncmauris.org",
+                        adresse: "Appartement 143-8704 Ultrices Rd.",
+                        fonction: "Recteur",
+                        Etablissement: 1
+                    }, {
+                        _id: 4,
+                        name: "Makalou",
+                        images: "inscription.png",
+                        email: "turpis@Integer.ca",
+                        adresse: "554-6303 Magna Chemin",
+                        fonction: "Responsable Inscription",
+                        Etablissement: 1
+                    }, {
+                        _id: 5,
+                        name: "Kara Samb",
+                        images: "Mr_samb.jpg",
+                        email: "fermentum.vel.mauris@erat.co.uk",
+                        adresse: "883-6094 Placerat, Avenue",
+                        fonction: "Chep Departement",
+                        Etablissement: 2
+                    }, {
+                        _id: 6,
+                        name: "Pa Gbaya",
+                        images: "president.jpg",
+                        email: "luctus.aliquet@tellusNunc.co.uk",
+                        adresse: "7694 Varius Av.",
+                        fonction: "Président",
+                        Etablissement: 1
+                    }, {
+                        _id: 7,
+                        name: "Kuame",
+                        images: "small_course_01",
+                        email: "vitae.dolor@imperdiet.co.uk",
+                        adresse: "CP 750, 2858 Blandit Ave",
+                        fonction: "Administration",
+                        Etablissement: 2
+                    }, {
+                        _id: 8,
+                        name: "Jacques",
+                        images: "dr_scolarite.png",
+                        email: "faucibus@id.edu",
+                        adresse: "CP 127, 2608 Mollis Route",
+                        fonction: "Responsable Scolarité",
+                        Etablissement: 1
+                    }, {
+                        _id: 9,
+                        name: "Massamba Lô",
+                        images: "Mr_lo.jpg",
+                        email: "eu@pede.com",
+                        adresse: "Appartement 193-6065 Aliquam Ave",
+                        fonction: "Administration",
+                        Etablissement: 1
+                    }, {
+                        _id: 10,
+                        name: "Baye Niasse",
+                        images: "Mr_niass.jpg",
+                        email: "Ut.nec@et.co.uk",
+                        adresse: "8554 Consequat Impasse",
+                        fonction: "Administration",
+                        Etablissement: 1
+                    })
+                    .then(() => console.log('finished populating equipe:'))
+                    .catch(err => console.log('error populating equipe:', err));
+            });
+        detailcycle.find({}).remove()
+            .then(() => {
+                detailcycle.create({
+                        _id: 1,
+                        cycle: 4,
+                        etablissement: 1,
+                        date: "2016-09-30"
+                    }, {
+                        _id: 2,
+                        cycle: 4,
+                        etablissement: 2,
+                        date: "2017-09-30"
+                    })
+                    .then(() => console.log('finished populating Detail Cycle'))
+                    .catch(err => console.log('error populating Detail Cycle', err));
+            });
+        Faculte.find({}).remove()
+            .then(() => {
+                Faculte.create({
+                        _id: 1,
+                        libelle: "Faculté des Sciences et Techniques (FST)",
+                        cycle: 1
+                    }, {
+                        _id: 2,
+                        libelle: "Faculté des Lettres et Sciences Humaines (FLSH)",
+                        cycle: 1
+                    }, {
+                        _id: 3,
+                        libelle: "Faculté des Sciences Juridiques et Politiques (FSJP)",
+                        cycle: 2
+                    }, {
+                        _id: 4,
+                        libelle: "Faculté des Sciences Economiques et de Gestion (FASEG)",
+                        cycle: 2
+                    })
+                    .then(() => console.log('finished populating Faculte'))
+                    .catch(err => console.log('error populating Faculte', err));
+            });
+        Departement.find({}).remove()
+            .then(() => {
+                Departement.create({
+                        _id: 1,
+                        libelle: "Département des sciences de l'information et de la communication",
+                        faculte: 1
+                    }, {
+                        _id: 2,
+                        libelle: "Département des Lettres",
+                        faculte: 2
+                    }, {
+                        _id: 3,
+                        libelle: "Département Juridique",
+                        faculte: 3
+                    }, {
+                        _id: 4,
+                        libelle: "Département des Sciences Economiques",
+                        faculte: 4
+                    }, {
+                        _id: 5,
+                        libelle: "Département Mécanique",
+                        faculte: 1
+                    })
+                    .then(() => console.log('finished populating Departement'))
+                    .catch(err => console.log('error populating Departement', err));
+            });
+        Filiere.find({}).remove()
+            .then(() => {
+                Filiere.create({
+                        _id: 1,
+                        libelle: "Informatique",
+                        departement: 1
+                    }, {
+                        _id: 2,
+                        libelle: "Télécom",
+                        departement: 1
+                    }, {
+                        _id: 3,
+                        libelle: "Droit des affaires",
+                        departement: 3
+                    }, {
+                        _id: 4,
+                        libelle: "Génie Mécanique",
+                        departement: 5
+                    })
+                    .then(() => console.log('finished populating Filiere'))
+                    .catch(err => console.log('error populating Filiere', err));
+            });
+    }
 }

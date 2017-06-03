@@ -6,14 +6,6 @@ var autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(mongoose);
 var FichierSchema = new mongoose.Schema({
     _id: Number,
-    chapitre: {
-        type: Number,
-        ref: 'Chapitre'
-    },
-    type: {
-        type: Number,
-        ref: 'TypeFichier'
-    }
 });
 FichierSchema.plugin(autoIncrement.plugin, 'Fichier');
 registerEvents(FichierSchema);
