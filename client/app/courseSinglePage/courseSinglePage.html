@@ -8,7 +8,8 @@
       <div id="post-content" class="col-md-9 col-sm-12 single-course">
         <div class="single-course-title text-center">
           <form name="myForm">
-            <h3 contenteditable name="myWidget" ng-model="courseCtrl.LeCours.titre" strip-br="true" ng-minlength="5" ng-maxlength="200" required>
+            <h3 contenteditable name="myWidget" ng-model="courseCtrl.LeCours.titre" strip-br="true" ng-minlength="5" ng-maxlength="200"
+              required>
               <a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
                 title=""> {{courseCtrl.LeCours.titre}} </a>
             </h3>
@@ -245,8 +246,31 @@
           </div>
           <!-- end widget -->
         </div>
+        <!--les classes du profs qui a crée le cours-->
+        <!--chocher les classes du cours par defaut-->
+        <div class="row" ng-if="courseCtrl.getCurrentUser()._id === courseCtrl.LeCours.user._id">
+          <div class="widget custom-widget course-pricing clearfix">
+            <div class="customwidget text-left w40" ng-repeat="etablissemt in courseCtrl.listClasseUsers">
+              <h4 class="text-center">{{etablissemt.libelle}}</h4>
+              <!--<h4 class="text-center">90 Days Money Back Guarantee</h4>-->
+              <hr>
+              <form>
+                <div class="checkbox checkbox-warning checkbox-inline" ng-repeat="classe in etablissemt.classe">
+                  <input id="{{classe._id}}" type="checkbox" class="styled" ng-checked="courseCtrl.checkIfClasseMustBeChecked(classe._id)">
+                  <label for="{{classe._id}}">
+                    {{classe.libelle}} 
+                </label>
+                </div>
+                <!--<input type="submit" value="Join Course" class="btn btn-primary btn-block" />-->
+              </form>
+
+            </div>
+            <!-- end newsletter -->
+          </div>
+          <!-- end widget -->
+        </div>
         <!--Les cours a recommander-->
-        <div class="row">
+        <div class="row" ng-if="courseCtrl.LesCoursDeLaSousCategorie.length > 0">
           <div class="widget clearfix">
             <div class="big-title">
               <h2 class="related-title">
@@ -280,7 +304,7 @@
           </div>
           <!-- end widget -->
 
-          <div class="all-buttons text-center" ng-if="courseCtrl.LesCoursDeLaSousCategorie.length > 0">
+          <div class="all-buttons text-center">
             <a ui-sref="coursesPages" class="btn btn-primary btn-lg btn-square">Voir d'autres cours</a>
           </div>
 

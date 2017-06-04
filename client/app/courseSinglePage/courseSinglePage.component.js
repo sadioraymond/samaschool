@@ -22,7 +22,7 @@ export class CourseSinglePageComponent {
   // pour changer le bouton
   bool;
   /*@ngInject*/
-  constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider, userProvider, suiviCoursProvider, Auth, $state, $timeout) {
+  constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider, userProvider, suiviCoursProvider, Auth, $state, $timeout, classeProvider) {
     // setTimeout(() => {
     this.$timeout = $timeout
     this.$stateParams = $stateParams;
@@ -38,6 +38,8 @@ export class CourseSinglePageComponent {
     this.suiviCoursProvider = suiviCoursProvider;
     this.getCurrentUser = Auth.getCurrentUserSync;
     this.isLoggedIn = Auth.isLoggedInSync;
+    this.classeProvider = classeProvider
+    this.listClasseUsers = []
   }
   $onInit() {
     if (this.coursProvider.reload) {
@@ -53,6 +55,21 @@ export class CourseSinglePageComponent {
       });
     // vérification si l'utilisateur connecté suit déja le cours
 
+    this.verify = function (tab, element) {
+      for (let i = 0; i < tab.length; i++) {
+        if (tab[i]._id == element) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    this.verif = function (tab, element) {
+      if (tab._id == element) {
+        return true;
+      }
+      return false;
+    }
     this.$timeout(() => {
       if (this.isLoggedIn()) {
         this.suiviCoursProvider.verifSuivi(this.getCurrentUser()._id, this.$stateParams.idCours).then(list => {
@@ -76,6 +93,7 @@ export class CourseSinglePageComponent {
     this.coursProvider.FindById(this.$stateParams.idCours).then(list => {
       this.LeCours = list;
       console.log('objet cours =>>', this.LeCours);
+
       // si le cours a des chapitres
       if (!this.LeCours.contenu) {
         // Recuperation des chapitres en passant l'url
@@ -101,6 +119,10 @@ export class CourseSinglePageComponent {
       //   this.Leprof = list;
       //   console.log('Le prof qui a cree le cours =>>', this.Leprof);
       // });
+      this.coursProvider.getClasseByCours(this.LeCours._id).then((list) => {
+        this.lesClasseDuCours = list
+        console.log('lesClasseDuCours =<', this.lesClasseDuCours)
+      })
     });
 
     // Recuperation des autres cours de la sous Catégorie
@@ -115,7 +137,56 @@ export class CourseSinglePageComponent {
         });
         console.log('LesCoursDeLaSousCategorie ==>>', this.LesCoursDeLaSousCategorie);
       });
-    }, 50);
+      if (this.getCurrentUser()._id === this.LeCours.user._id) {
+        this.classeProvider.getClasseByUser(this.LeCours.user._id).then((list) => {
+          this.listClasseUser = list;
+          if (this.listClasseUser.length === 0) {
+            console.error('Liste Vide');
+          } else {
+            console.log('Les Classes du prof', this.listClasseUser);
+            for (let i = 0; i < this.listClasseUser.length; i++) {
+              for (let j = 0; j < this.listClasseUser[i].length; j++) {
+                if (this.listClasseUsers.length == 0) {
+                  this.listClasseUsers.push(this.listClasseUser[i][j].etablissement);
+                } else {
+                  if (!this.verify(this.listClasseUsers, this.listClasseUser[i][j].etablissement._id)) {
+                    this.listClasseUsers.push(this.listClasseUser[i][j].etablissement);
+                  }
+                }
+              }
+            }
+            var l;
+            for (let k = 0; k < this.listClasseUsers.length; k++) {
+              l = 0;
+              var userClass = {};
+              for (let i = 0; i < this.listClasseUser.length; i++) {
+                for (let j = 0; j < this.listClasseUser[i].length; j++) {
+                  if (this.verif(this.listClasseUsers[k], this.listClasseUser[i][j].etablissement._id)) {
+                    userClass[`${l}`] = this.listClasseUser[i][j];
+                    l++;
+                  }
+                }
+              }
+              this.listClasseUsers[k].classe = userClass;
+            }
+            console.log('Les Classes du profss', this.listClasseUsers);
+          }
+        })
+      }
+
+    }, 1000);
+
+  }
+
+  // verifie les case à cocher pour les classes du cours
+  checkIfClasseMustBeChecked(classe) {
+    this.mustChecked = false
+    this.lesClasseDuCours.map((x) => {
+      if (x._id === classe) {
+        this.mustChecked = true
+      }
+    })
+    return this.mustChecked
   }
 
   suivreClick() {
@@ -147,7 +218,7 @@ export class CourseSinglePageComponent {
   }
 }
 
-CourseSinglePageComponent.$inject = ["jsFonctions", "coursProvider", "$stateParams", "souscategorieProvider", "chapitreProvider", "userProvider", "suiviCoursProvider", "Auth", "$state", "$timeout"];
+CourseSinglePageComponent.$inject = ["jsFonctions", "coursProvider", "$stateParams", "souscategorieProvider", "chapitreProvider", "userProvider", "suiviCoursProvider", "Auth", "$state", "$timeout", "classeProvider"];
 export default angular.module('samaschoolApp.courseSinglePage', [uiRouter])
   .config(routes)
   .component('courseSinglePage', {
