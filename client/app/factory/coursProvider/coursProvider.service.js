@@ -142,62 +142,61 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
 
     }
 
-    this.ajoutCours = function(titre, description, date, sous_cat, user, nbheures, act, classes, lienVideo, contenu, images) {
+    //fonction d'ajout du cours
+    this.ajoutCours = function(objetCours, images) {
         var deferred = $q.defer();
+        var contenu;
+        var lienVideo;
+        var chap = 0;
+        //verifier si le cours a un contenu direct c'est à dire cours sans chapitre
+        if (objetCours.contenuCours) {
+            contenu = objetCours.contenuCours
+            lienVideo = objetCours.lienVideo;
+        }
+        //verifier si le cours a des chapitres
+        if (objetCours.nbChap) {
+            chap = objetCours.nbChap;
+        }
+        //ajout du cours
         $http.post('/api/courss', {
-            titre: titre,
-            description: description,
-            date_creation: date,
-            sous_categorie: sous_cat,
-            user: user,
-            nbheures: nbheures,
+            titre: objetCours.titre,
+            description: objetCours.description,
+            date_creation: objetCours.date,
+            sous_categorie: objetCours.sous_cat,
+            user: objetCours.user,
+            nbheures: objetCours.nbheures,
             images: images,
-            actif: act,
+            actif: objetCours.act,
             link: lienVideo,
             contenu: contenu
         }).then(function(data) {
             console.log("Bakhna");
-            for (let j = 0; j < classes.length; j++) {
+            if (chap > 0) {
+                //ajout des chapitres
+                for (let i = 0; i < chap; i++) {
+                    $http.post('/api/chapitres', {
+                        libelle: objetCours.objChap[`${i}`].titre,
+                        objectif: objetCours.objChap[`${i}`].objectif,
+                        cours: data.data._id,
+                        link: objetCours.objChap[`${i}`].lienVideo,
+                        contenu: objetCours.objChap[`${i}`].contenu
+                    }).then(function(datas) {
+                        console.log("Chapitre yi Bakhnagnou");
+                    });
+                }
+            }
+            //ajout des suivi cours classes
+            for (let j = 0; j < objetCours.lesClasses.length; j++) {
                 $http.post('/api/suivi_cours_classes', {
                     publication: data.data._id,
-                    classe: classes[j],
-                    date: date
-                })
-            }
-        });
-    }
-    this.ajoutCours2 = function(titre, description, date, sous_cat, user, nbheures, tab, taille, act, classes, images) {
-        var deferred = $q.defer();
-        $http.post('/api/courss', {
-            titre: titre,
-            description: description,
-            date_creation: date,
-            sous_categorie: sous_cat,
-            user: user,
-            nbheures: nbheures,
-            images: images,
-            actif: act
-        }).then(function(data) {
-            console.log("Cours bi Bakhna");
-            for (let i = 0; i < taille; i++) {
-                $http.post('/api/chapitres', {
-                    libelle: tab[`${i}`].titre,
-                    objectif: tab[`${i}`].objectif,
-                    cours: data.data._id,
-                    link: tab[`${i}`].lienVideo,
-                    contenu: tab[`${i}`].contenu
-                }).then(function(datas) {
-                    console.log("Chapitre yi Bakhnagnou");
+                    classe: objetCours.lesClasses[j],
+                    date: objetCours.date
+                }).then(function(da) {
+                    console.log("Suivi yi Bakhnagnou");
                 });
             }
 
-            for (let j = 0; j < classes.length; j++) {
-                $http.post('/api/suivi_cours_classes', {
-                    publication: data.data._id,
-                    classe: classes[j],
-                    date: date
-                })
-            }
+
         });
     }
     this.ajoutChapitre = function(id, tab, taille) {
