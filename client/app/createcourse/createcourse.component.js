@@ -490,7 +490,7 @@ export function ModalDemoCtrl($uibModal, $log, $document) {
         });
     };
 }
-export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classeProvider, Auth, coursProvider, $state, $log, $timeout, $stateParams) {
+export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classeProvider, Auth, coursProvider, $state, $log, $timeout, $stateParams, multerProvider) {
 
     var $ctrl = this;
     $ctrl.items = items;
@@ -640,8 +640,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
         // soumettre le formulaire si le cours contient une image
         if (coursProvider.objetCours.StateImage) {
             $ctrl.parametre = coursProvider.objetCours.titre + '-' + Date.now() + '.' + coursProvider.objetCours.images;
-            document.querySelector("#createcourseform").action = `/createcourse/${$ctrl.parametre}`;
-            document.querySelector('#createcourseform').submit();
+            multerProvider.addImage("#createcourseform", '#createcourseform', `/createcourse/${$ctrl.parametre}`);
         } else {
             $ctrl.parametre = "imageParDefautCours.jpg";
         }
@@ -741,7 +740,7 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
 }
 CreatecourseComponent.$inject = ["jsFonctions", "categorieProvider", "souscategorieProvider", "coursProvider", "Auth", "classeProvider", "$stateParams", "chapitreProvider", "$state", "$location", "$timeout"];
 ModalDemoCtrl.$inject = ["$uibModal", "$log", "$document"];
-ModalInstanceCtrl.$inject = ["$uibModalInstance", "items", "userProvider", "classeProvider", "Auth", "coursProvider", "$state", "$log", "$timeout", "$stateParams"];
+ModalInstanceCtrl.$inject = ["$uibModalInstance", "items", "userProvider", "classeProvider", "Auth", "coursProvider", "$state", "$log", "$timeout", "$stateParams", "multerProvider"];
 export default angular.module('samaschoolApp.createcourse', [uiRouter])
     .config(routes)
     .component('createcourse', {
