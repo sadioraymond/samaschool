@@ -8,6 +8,7 @@ var router = express.Router();
 router.get('/', controller.index);
 router.get('/suivi', controller.getMostPopularSchool);
 router.get('/:id', controller.show);
+router.get('/userEtab/:user/:etab', controller.getUserAndEtab);
 router.post('/', controller.create);
 router.put('/:id', controller.upsert);
 router.patch('/:id', controller.patch);

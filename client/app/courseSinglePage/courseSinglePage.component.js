@@ -53,7 +53,7 @@ export class CourseSinglePageComponent {
           this.jsFonctions.otherScript();
         }, 0);
       });
-    // vérification si l'utilisateur connecté suit déja le cours
+
 
     this.verify = function (tab, element) {
       for (let i = 0; i < tab.length; i++) {
@@ -70,6 +70,8 @@ export class CourseSinglePageComponent {
       }
       return false;
     }
+
+    // vérification si l'utilisateur connecté suit déja le cours
     this.$timeout(() => {
       if (this.isLoggedIn()) {
         this.suiviCoursProvider.verifSuivi(this.getCurrentUser()._id, this.$stateParams.idCours).then(list => {
@@ -189,6 +191,7 @@ export class CourseSinglePageComponent {
     return this.mustChecked
   }
 
+  // TODO: regler bug ne pas suivre au premier click just apres suivre
   suivreClick() {
 
     var datetime = this.currentdate.getFullYear() + "-" +

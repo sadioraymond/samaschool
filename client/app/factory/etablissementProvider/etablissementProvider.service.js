@@ -157,6 +157,43 @@ export function etablissementProviderService($http, $q, $log) {
     return liste;
 
   }
+
+  // ajout du suivi d'un étalbissement
+  this.addSuivi = function ( user, etab, suivre, active) {
+    var deferred = $q.defer();
+
+    $http.post('/api/detail_users', {
+      user: user,
+      etablissement: etab,
+      suivre: suivre,
+      active: active
+    })
+
+  }
+
+// verifier le suivi d'un etablissement
+this.SuiviVerif = function(user, etab){
+  var deferred = $q.defer();
+    var liste = [];
+    $http.get('/api/detail_users/userEtab/' + user + '/' + etab, {
+      cache: true
+    }).then(function (list) {
+      liste = list.data;
+      deferred.resolve(liste);
+
+    });
+    liste = deferred.promise;
+
+    return liste;
+
+}
+
+  // supprimmer le suivi d'un etablissement
+  this.delSuivi = function (suivi) {
+    var deferred = $q.defer();
+
+    $http.delete('/api/detail_users/' + suivi)
+  }
 }
 
 
