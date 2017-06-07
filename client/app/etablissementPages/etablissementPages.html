@@ -38,6 +38,15 @@
           <div class="col-md-6">
             <h2>{{etabCtrl.Letablissement.libelle}} <small> {{etabCtrl.Letablissement.slogan}}
               </small></h2>
+              
+          </div>
+          <div class="col-md-2">
+            <input type="submit" value="Suivre" ng-hide="etabCtrl.cacher()" ng-click="etabCtrl.suivreClick()" class="btn btn-primary btn-block"
+          />
+          <input type="submit" value="Ne plus suivre" ng-show="etabCtrl.bool" ng-click="etabCtrl.nePlusSuivreClick()" class="btn btn-danger btn-block"
+          />
+           <input type="submit" ng-hide="etabCtrl.isLoggedIn()" value="Suivre"  class="btn btn-primary btn-block disabled"
+          />
           </div>
         </div>
 

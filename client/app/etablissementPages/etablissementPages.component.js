@@ -18,11 +18,20 @@ export class EtablissementPagesComponent {
   imC;
   imaC;
   imagC;
-  constructor(jsFonctions, $stateParams, etablissementProvider, ouvreDialogProvider, $log, $state) {
+  bool;
+  getCurrentUser: Function;
+  isLoggedIn: Function;
+  etat;
+  constructor(jsFonctions, $stateParams, etablissementProvider, ouvreDialogProvider, $log, $state, Auth,$timeout) {
     this.$log = $log
     this.$state = $state
     this.jsFonctions = jsFonctions;
     this.$stateParams = $stateParams;
+    this.getCurrentUser = Auth.getCurrentUserSync;
+    this.isLoggedIn = Auth.isLoggedInSync;
+    this.bool = false;
+    this.$timeout = $timeout;
+
     console.log('param etablissement =>', this.$stateParams)
     this.etablissementProvider = etablissementProvider;
     this.ouvreDialogProvider = ouvreDialogProvider;
@@ -77,6 +86,8 @@ export class EtablissementPagesComponent {
       this.$log.error('from component', error)
       this.$state.go('main')
     });
+
+
     // Les profs d'un établissement
     // TODO: reglage du bug, le nom du prof par souvent
     this.etablissementProvider.getProfInEtablissement(this.$stateParams.id).then(profs => {
@@ -85,8 +96,45 @@ export class EtablissementPagesComponent {
 
     })
 
+    // vérification si l'utilisateur connecté suit déja l'etablissement'
+    this.$timeout(() => {
+      if (this.isLoggedIn()) {
+        this.etablissementProvider.SuiviVerif(this.getCurrentUser()._id, this.$stateParams.id).then(list => {
+          this.etat = list;
+          if (this.etat.length != 0) {
+            this.bool = true;
+          }
+          console.log('khollllll', list);
+        })
+      }
+    }, 1000);
+
 
   }
+
+  // click sur le boutton suivre
+  suivreClick() {
+    this.etablissementProvider.addSuivi(this.getCurrentUser()._id, this.$stateParams.id, true, true);
+    this.bool = true;
+  }
+// TODO : régler ne pas suivre juste apres avoir cliqué sur suivre
+  //click sur le boutton ne plus suivre un cours 
+  nePlusSuivreClick(){
+    this.bool = false;
+    this.etablissementProvider.delSuivi(this.etat[0]._id);
+  } 
+
+  cacher() {
+    if (this.bool == false && !this.isLoggedIn()) {
+      return true;
+    }
+    if (this.bool == true) {
+      return true;
+    }
+   
+    return false;
+  }
+
   showDialog() {
     $('#selectPPEtab').click();
 
@@ -96,7 +144,7 @@ export class EtablissementPagesComponent {
 
   }
 }
-EtablissementPagesComponent.$inject = ["jsFonctions", "$stateParams", "etablissementProvider", "ouvreDialogProvider", "$log", "$state"];
+EtablissementPagesComponent.$inject = ["jsFonctions", "$stateParams", "etablissementProvider", "ouvreDialogProvider", "$log", "$state", "Auth","$timeout"];
 export default angular.module('samaschoolApp.etablissementPages', [uiRouter])
   .config(routes)
   .component('etablissementPages', {

@@ -134,6 +134,15 @@ export function getMostPopularSchool(req, res) {
 
 }
 
+// verifie si un user suit un etablissement
+export function getUserAndEtab(req, res) {
+    DetailUser.find({ user: req.params.user, etablissement: req.params.etab }).exec()
+        .then(list => {
+            return res.json(list);
+        })
+
+}
+
 // Creates a new DetailUser in the DB
 export function create(req, res) {
     return DetailUser.create(req.body)
