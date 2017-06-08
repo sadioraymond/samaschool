@@ -16,6 +16,7 @@ function onConnect(socket) {
     });
 
     // Insert sockets below
+    require('../api/Utilisateur_Module/preference/preference.socket').register(socket);
     require('../api/Etablissement_Module/demande_inscription/demande_inscription.socket').register(socket);
     require('../api/Etablissement_Module/detail_option/detail_option.socket').register(socket);
     require('../api/Etablissement_Module/option/option.socket').register(socket);

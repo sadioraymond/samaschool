@@ -28,6 +28,7 @@ import detailcycle from '../api/Etablissement_Module/detail_cycle/detail_cycle.m
 import Faculte from '../api/Etablissement_Module/faculte/faculte.model';
 import Departement from '../api/Etablissement_Module/departement/departement.model';
 import Filiere from '../api/Etablissement_Module/filiere/filiere.model';
+import Preference from '../api/Utilisateur_Module/preference/preference.model';
 import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
@@ -2472,6 +2473,117 @@ export default function seedDatabaseIfNeeded() {
                     })
                     .then(() => console.log('finished populating Filiere'))
                     .catch(err => console.log('error populating Filiere', err));
+            });
+        Preference.find({}).remove()
+            .then(() => {
+                Preference.create({
+                        _id: 1,
+                        user: "58b03802d98ff60ec2777f91",
+                        sous_categorie: 8,
+                        date: "2018-02-04"
+                    }, {
+                        _id: 2,
+                        user: "58b03802d98ff60ec2777f91",
+                        sous_categorie: 4,
+                        date: "2016-07-07"
+                    }, {
+                        _id: 3,
+                        user: "58b03802d98ff60ec2777f91",
+                        sous_categorie: 1,
+                        date: "2017-05-28"
+                    }, {
+                        _id: 4,
+                        user: "58b03802d98ff60ec2777f91",
+                        sous_categorie: 3,
+                        date: "2016-09-09"
+                    }, {
+                        _id: 5,
+                        user: "58b03802d98ff60ec2777f91",
+                        sous_categorie: 2,
+                        date: "2017-10-11"
+                    }, {
+                        _id: 6,
+                        user: "58b03802d98ff60ec2777f91",
+                        sous_categorie: 5,
+                        date: "2017-07-08"
+                    }, {
+                        _id: 7,
+                        user: "58b03802d98ff60ec2777f91",
+                        sous_categorie: 9,
+                        date: "2018-04-01"
+                    }, {
+                        _id: 8,
+                        user: "58b03802d98ff60ec2777f92",
+                        sous_categorie: 3,
+                        date: "2018-03-14"
+                    }, {
+                        _id: 9,
+                        user: "58b03802d98ff60ec2777f92",
+                        sous_categorie: 5,
+                        date: "2016-12-10"
+                    }, {
+                        _id: 10,
+                        user: "58b03802d98ff60ec2777f92",
+                        sous_categorie: 10,
+                        date: "2017-04-30"
+                    }, {
+                        _id: 11,
+                        user: "58b03802d98ff60ec2777f92",
+                        sous_categorie: 8,
+                        date: "2018-01-19"
+                    }, {
+                        _id: 12,
+                        user: "58b03802d98ff60ec2777f93",
+                        sous_categorie: 5,
+                        date: "2016-12-20"
+                    }, {
+                        _id: 13,
+                        user: "58b03802d98ff60ec2777f93",
+                        sous_categorie: 6,
+                        date: "2017-10-04"
+                    }, {
+                        _id: 14,
+                        user: "58b03802d98ff60ec2777f93",
+                        sous_categorie: 9,
+                        date: "2017-06-11"
+                    }, {
+                        _id: 15,
+                        user: "58b03802d98ff60ec2777f93",
+                        sous_categorie: 8,
+                        date: "2016-07-23"
+                    }, {
+                        _id: 16,
+                        user: "58b03802d98ff60ec2777f94",
+                        sous_categorie: 5,
+                        date: "2018-04-09"
+                    }, {
+                        _id: 17,
+                        user: "58b03802d98ff60ec2777f94",
+                        sous_categorie: 10,
+                        date: "2017-06-19"
+                    }, {
+                        _id: 18,
+                        user: "58b03802d98ff60ec2777f94",
+                        sous_categorie: 6,
+                        date: "2017-04-04"
+                    }, {
+                        _id: 19,
+                        user: "58b03802d98ff60ec2777f94",
+                        sous_categorie: 4,
+                        date: "2017-07-30"
+                    }, {
+                        _id: 20,
+                        user: "58b03802d98ff60ec2777f94",
+                        sous_categorie: 9,
+                        date: "2017-11-02"
+                    }, {
+                        _id: 21,
+                        user: "58b03802d98ff60ec2777f94",
+                        sous_categorie: 8,
+                        date: "2016-08-28"
+                    })
+                    .then(() => console.log('finished populating Preference'))
+                    .catch(err => console.log('error populating Preference', err));
             });
     }
 }

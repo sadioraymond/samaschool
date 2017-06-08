@@ -80,6 +80,7 @@ mkdirp(repuser, function(err) {
 });
 export default function(app) {
     // Insert routes below
+    app.use('/api/preferences', require('./api/Utilisateur_Module/preference'));
     app.use('/api/demande_inscriptions', require('./api/Etablissement_Module/demande_inscription'));
     app.use('/api/detail_options', require('./api/Etablissement_Module/detail_option'));
     app.use('/api/options', require('./api/Etablissement_Module/option'));
