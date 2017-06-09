@@ -62,6 +62,7 @@
             <div class="member-desc clearfix">
               <ul id="ss_sidebar">
                 <li class="active"><a ng-click="profilCtrl.profilClick(); profilCtrl.doActive($event)" class="profilClass">Profil</a></li>
+                <!--TODO: regler bug compteur etablissements-->
                 <li><a ng-click="profilCtrl.etablissementClick(); profilCtrl.doActive($event)" class="etabClass">Etablissements<span> {{profilCtrl.LesEtabIncrit.length}} </span> </a></li>
                 <li><a ng-click="profilCtrl.courseClick(); profilCtrl.doActive($event)" class="coursesClass">Cours <span> {{profilCtrl.lesCoursSuivis.length}} </span></a></li>
                 <!--<li><a href="member-achievements.html">Achievements <span>6</span></a></li>-->
@@ -133,58 +134,25 @@
             <!-- end col -->
 
             <!--Pour les etablissements suivis-->
-            <div class="big-title">
+            <div class="big-title" ng-if="profilCtrl.LesEtabSuivi && profilCtrl.LesEtabSuivi !== 0">
               <h2 class="related-title">
                 <span>Etablissements suivis</span>
               </h2>
             </div>
-            <div class="row profile-badges">
-              <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
-                  <i class="fa fa-birthday-cake alignleft"></i>
-                  <h3>plus de 3 années d'adhésion</h3>
-                  <p>Professional responsive and retina ready template for online learning websites!</p>
+            <div class="row profile-badges" ng-if="profilCtrl.LesEtabSuivi && profilCtrl.LesEtabSuivi !== 0">
+              <div class="col-md-6 col-sm-12 wow fadeIn" ng-repeat="etab in profilCtrl.LesEtabSuivi">
+                 <div ui-sref="etablissement({id: etab._id})" class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 200px;">
+                 <a href="">  <img width="80px" alt="photo profil de {{etab.libelle}}" ng-src="assets/upload/Etablissement/{{etab.images}}" class="img-responsive img-circle alignleft"></a>
+
+                   <h3><a href=""> {{etab.libelle}}</a> </h3>
+                  <p> {{etab.adresse}} </p>
+                  <p> {{etab.email}} </p>
+                  <p> {{etab.tel}} </p>
                 </div>
               </div>
               <!-- end col -->
 
-              <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
-                  <i class="fa fa-pencil alignleft"></i>
-                  <h3>Contribuer au Blog SamaSchooL</h3>
-                  <p>Professional responsive and retina ready template for online learning websites!</p>
-                </div>
-              </div>
-              <!-- end col -->
-
-              <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
-                  <i class="fa fa-pencil alignleft"></i>
-                  <h3>Contribuer au Blog SamaSchooL</h3>
-                  <p>Professional responsive and retina ready template for online learning websites!</p>
-                </div>
-              </div>
-              <!-- end col -->
-
-              <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
-                  <i class="fa fa-comments-o alignleft"></i>
-                  <h3>Modérateur du forum</h3>
-                  <p>Professional responsive and retina ready template for online learning websites!</p>
-                </div>
-              </div>
-              <!-- end col -->
-
-              <div class="col-md-6 col-sm-12 wow fadeIn">
-                <div class="boxes text-left service-first withcircle withborder leftservice" style="min-height: 230px;">
-                  <i class="fa fa-code alignleft"></i>
-                  <h3>Aide au site de développement</h3>
-                  <p>Professional responsive and retina ready template for online learning websites!</p>
-                </div>
-              </div>
-              <!-- end box -->
-
-              <!-- end col -->
+              
             </div>
             <!-- end row -->
           </div>

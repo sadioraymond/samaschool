@@ -7,7 +7,8 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
-router.get('/user/:id', controller.getEtablissementByUser);
+router.get('/userInscrit/:id', controller.getEtablissementInscritByUser);
+router.get('/userSuivi/:id', controller.getEtablissementSuiviByUser);
 router.get('/prof/:id', controller.getProfInEtablissement);
 router.get('/nom/:nom', controller.getEtablissementByNom);
 router.post('/', controller.create);

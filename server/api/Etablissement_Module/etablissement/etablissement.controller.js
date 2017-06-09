@@ -87,11 +87,26 @@ export function getEtablissementByNom(req, res) {
         .catch(handleError(res));
 }
 
-getEtablissementByNom
 
-//get Etablissement By USer 
-export function getEtablissementByUser(req, res) {
-    Detail.find({ user: req.params.id }).populate('etablissement').exec().then(list => {
+//get Etablissement  où le user est inscrit 
+export function getEtablissementInscritByUser(req, res) {
+    Detail.find({ user: req.params.id, suivre: false }).populate('etablissement').exec().then(list => {
+        var etab = [];
+        var cpt = 0;
+        list.map(etablis => {
+            etab.push(etablis.etablissement);
+            cpt++;
+            if (cpt == list.length) {
+                return res.json(etab);
+            }
+        });
+    });
+
+}
+
+//get Etablissement  suivi par le user 
+export function getEtablissementSuiviByUser(req, res) {
+    Detail.find({ user: req.params.id, suivre: true }).populate('etablissement').exec().then(list => {
         var etab = [];
         var cpt = 0;
         list.map(etablis => {

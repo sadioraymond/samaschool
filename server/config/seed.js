@@ -1490,13 +1490,13 @@ export default function seedDatabaseIfNeeded() {
                         user: "58b03802d98ff60ec2777f95",
                         etablissement: 1,
                         dateentree: "2016-09-30",
-                        suivre: true,
+                        suivre: false,
                         active: true
                     }, {
                         _id: 2,
                         user: "58b03802d98ff60ec2777f92",
                         etablissement: 2,
-                        dateentree: "2016-06-05",
+                        dateentree: "",
                         suivre: true,
                         active: true
                     }, {
@@ -1504,13 +1504,13 @@ export default function seedDatabaseIfNeeded() {
                         user: "58b03802d98ff60ec2777f94",
                         etablissement: 1,
                         dateentree: "2017-11-19",
-                        suivre: true,
+                        suivre: false,
                         active: true
                     }, {
                         _id: 4,
                         user: "58b03802d98ff60ec2777f94",
                         etablissement: 2,
-                        dateentree: "2017-05-18",
+                        dateentree: "",
                         suivre: true,
                         active: true
                     }, {
@@ -1518,13 +1518,13 @@ export default function seedDatabaseIfNeeded() {
                         user: "58b03802d98ff60ec2777f93",
                         etablissement: 1,
                         dateentree: "2017-04-13",
-                        suivre: true,
+                        suivre: false,
                         active: true
                     }, {
                         _id: 6,
                         user: "58b03802d98ff60ec2777f93",
                         etablissement: 2,
-                        dateentree: "2017-08-26",
+                        dateentree: "",
                         suivre: true,
                         active: true
                     })

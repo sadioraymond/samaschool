@@ -84,10 +84,29 @@ export function etablissementProviderService($http, $q, $log) {
       console.log("Modifié bi Bakhna");
     });
   }
-  this.getEtabByUser = function (user) {
+  this.getEtabInscritByUser = function (user) {
     var deferred = $q.defer();
     var liste = [];
-    $http.get('/api/etablissements/user/' + user, {
+    $http.get('/api/etablissements/userInscrit/' + user, {
+      cache: true
+    }).then(function (list) {
+      liste = list.data;
+      deferred.resolve(liste);
+
+    }, function (error) {
+      // console.error(error)
+      deferred.reject(error);
+
+    });
+    liste = deferred.promise;
+
+    return liste;
+
+  }
+   this.getEtabSuiviByUser = function (user) {
+    var deferred = $q.defer();
+    var liste = [];
+    $http.get('/api/etablissements/userSuivi/' + user, {
       cache: true
     }).then(function (list) {
       liste = list.data;
