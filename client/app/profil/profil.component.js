@@ -29,6 +29,7 @@ export class ProfilComponent {
     getCurrentUser: Function;
     isLoggedIn: Function;
     LesEtabIncrit;
+    LesEtabSuivi;
     dateNaissance: Date
         //les booleen pour cacher ou montrer des div
     profil = true;
@@ -138,9 +139,17 @@ export class ProfilComponent {
                     console.log('les cours tout court', list);
                 });
                 //Liste des Etablissements où le User est inscrit au chargement de la page
-                this.etablissementProvider.getEtabByUser(this.userData._id).then(list => {
+                this.etablissementProvider.getEtabInscritByUser(this.userData._id).then(list => {
                     this.LesEtabIncrit = list;
                     console.log('les etablissements', list);
+                }, error => {
+                    console.info('les erreurs getEtabByUser ==>', error);
+                });
+
+                 //Liste des Etablissements suivi par le user au chargement de la page
+                this.etablissementProvider.getEtabSuiviByUser(this.userData._id).then(list => {
+                    this.LesEtabSuivi = list;
+                    console.log('les etablissements suivi', list);
                 }, error => {
                     console.info('les erreurs getEtabByUser ==>', error);
                 });
