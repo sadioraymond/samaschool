@@ -33,20 +33,28 @@
         </div>
         <!--video cours avec chap-->
         <!--si on est sur la page du chap en cours-->
-        <div ng-if="!courseCtrl.LeCours.contenu && courseCtrl.$stateParams.idChap !== ''" class="post-media clearfix">
+        <div ng-if="courseCtrl.LeCours.contenu === undefined && courseCtrl.$stateParams.idChap !== ''" class="post-media clearfix">
           <iframe width="300" height="200" src="{{courseCtrl.LeChapitre.linkchapitre |trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
         </div>
         <br>
         <!--si on est sur la racine du cours avec chapitre-->
-        <div class="course-table clearfix" ng-if="!courseCtrl.LeCours.contenu && courseCtrl.$stateParams.idChap === ''">
+        <div class="course-table clearfix" ng-if="courseCtrl.LeCours.contenu === 'undefined' && courseCtrl.$stateParams.idChap === ''">
           <div class="big-title">
             <h2 class="related-title">
               <span>Description du cours</span>
             </h2>
           </div>
-          <p>
-            {{courseCtrl.LeCours.description}}
-          </p>
+          <p ng-hide="courseCtrl.modif" ng-bind-html="courseCtrl.LeCours.description"></p>
+          <!--Modification de la description (ou objectif) du cours -->
+          <form name="descriptionCours">
+            <div ng-show="courseCtrl.modif" class="form-group">
+              <label for="objectif">Objectif du cours</label>
+              <textarea name="descCours" class="form-control" id="objectif" rows="4" ckeditor="courseCtrl.options" ng-model="courseCtrl.LeCours.description"
+                required ng-minlength="20"></textarea>
+              <span ng-show="descriptionCours.descCours.$error.required">la description du cours est obligatoire</span>
+              <span ng-show="descriptionCours.descCours.$error.minlength">la description est trop courte</span>
+            </div>
+          </form>
         </div>
         <!--si on est sur la racine du cours sans chapitre-->
         <div class="course-table clearfix" ng-if="courseCtrl.LeCours.contenu && courseCtrl.$stateParams.idChap === ''">
@@ -55,7 +63,16 @@
               <span></span>
             </h2>
           </div>
-          <p ng-bind-html="courseCtrl.LeCours.contenu"> </p>
+          <p ng-hide="courseCtrl.modif" ng-bind-html="courseCtrl.LeCours.contenu"> </p>
+          <form name="contenuForm">
+            <div ng-show="courseCtrl.modif" class="form-group">
+              <label for="content">Contenu du cours</label>
+              <textarea name="contenuInput" required class="form-control" id="content" ckeditor="courseCtrl.options" ng-model="courseCtrl.LeCours.contenu"
+                ng-minlength="200"></textarea>
+            </div>
+            <span ng-show="contenuForm.contenuInput.$error.required">le contenu du cours est obligatoire</span>
+            <span ng-show="contenuForm.contenuInput.$error.minlength">le contenu est trop court</span>
+          </form>
         </div>
         <br> <br>
         <!-- end media -->
@@ -237,7 +254,23 @@
                 <hr>
                 <!--<p class="course-time">Perriod : 12 Month </p>
                 <hr>-->
-                <p class="course-time">Durée : {{courseCtrl.LeCours.nbheures}}h</p>
+                <p ng-hide="courseCtrl.modif" class="course-time">Durée : {{courseCtrl.LeCours.nbheures}}h</p>
+                <!--Modification duree du cours-->
+                <form name="nbHeure">
+                  <p ng-show="courseCtrl.modif" class="course-time">Durée :
+                    <input style="color: #000;" ng-change="courseCtrl.verifyNumber()" type="number" id="nbh" ng-model="courseCtrl.LeCours.nbheures"
+                      name="nbheur" ng-min="1" ng-max="99" required /> <br>
+                    <span ng-show="courseCtrl.numberError" class="label label-warning">le nombre d'heures doit etre compris entre 1 et 99h</span>
+                    <span ng-show="nbHeure.nbheur.$error.required" class="label label-warning"> Mettre la durée du cours </span>
+                    <span ng-show="nbHeure.nbheur.$error.max || nbHeure.nbheur.$error.min" class="label label-warning"> le nombre d'heures doit etre compris entre 1 et 99h </span>
+                  </p>
+                </form>
+                <hr>
+                <input type="submit" ng-show="courseCtrl.modif" ng-click="courseCtrl.updateCourse()" value="Mettre à jour" class="btn btn-primary btn-block"
+                />
+                <input type="submit" ng-click="courseCtrl.doModify()" ng-show="!courseCtrl.modif && courseCtrl.courseCreator" value="Cliquez pour modifier" class="btn btn-primary btn-block"
+                />
+
                 <!--<p class="course-forum">Course Forum : <a href="#" title="">Web Designers</a></p>-->
               </div>
               <!-- end meta -->

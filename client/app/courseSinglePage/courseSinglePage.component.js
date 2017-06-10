@@ -19,15 +19,20 @@ export class CourseSinglePageComponent {
   currentdate = new Date();
   etat;
 
+  // le user connecté n'est pas le createur du cours
+  courseCreator = false
+  // pour l'affichage des champs
+  modif = false
   // pour changer le bouton
   bool;
   /*@ngInject*/
-  constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider, userProvider, suiviCoursProvider, Auth, $state, $timeout, classeProvider) {
+  constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider, userProvider, suiviCoursProvider, Auth, $state, $timeout, classeProvider, $log) {
     // setTimeout(() => {
+    this.$log = $log
     this.$timeout = $timeout
     this.$stateParams = $stateParams;
     this.userProvider = userProvider;
-    console.log('params =>', this.$stateParams);
+    this.$log.log('params =>', this.$stateParams);
     // }, 50);
     this.message = 'Hello';
     this.jsFonctions = jsFonctions;
@@ -53,6 +58,7 @@ export class CourseSinglePageComponent {
           this.jsFonctions.otherScript();
         }, 0);
       });
+
 
 
     this.verify = function (tab, element) {
@@ -82,6 +88,12 @@ export class CourseSinglePageComponent {
           console.log('khollllll', list);
         })
       }
+      // Editor options. 
+      this.options = {
+        language: 'en',
+        allowedContent: true,
+        entities: false
+      };
     }, 1000);
 
 
@@ -95,6 +107,14 @@ export class CourseSinglePageComponent {
     this.coursProvider.FindById(this.$stateParams.idCours).then(list => {
       this.LeCours = list;
       console.log('objet cours =>>', this.LeCours);
+
+      // le createur du cours est il connecté
+      if (this.getCurrentUser()._id === this.LeCours.user._id) {
+        this.courseCreator = true
+      } else {
+        this.courseCreator = false
+      }
+
 
       // si le cours a des chapitres
       if (!this.LeCours.contenu) {
@@ -219,9 +239,57 @@ export class CourseSinglePageComponent {
     // }
     return false;
   }
+
+  // champs editable pour le template
+  doModify() {
+    if (!this.modif) {
+      this.modif = true
+    } else {
+      this.modif = false
+    }
+
+  }
+  // verification du nbre d'heures du cours 
+  verifyNumber() {
+    if (this.LeCours.nbheures) {
+      if (this.LeCours.nbheures < 1 || this.LeCours.nbheures > 99) {
+        this.numberError = true;
+      } else {
+        this.numberError = false;
+      }
+    }
+  }
+
+  // update Cours
+  updateCourse() {
+    if (typeof this.LeCours.titre !== 'undefined') {
+      this.$log.log('nouveau titre cours =>>', this.LeCours.titre)
+      // Ici modifier que le titre
+    } else {
+      this.$log.log(`titre cours est ${typeof this.LeCours.titre} et ne doit pas etre modifié`)
+    }
+
+    if (typeof this.LeCours.nbheures !== 'undefined') {
+      this.$log.log('nouvelle duree cours =>>', this.LeCours.nbheures)
+      // Ici modifier que la durée
+    } else {
+      this.$log.log(`nbheures cours est ${typeof this.LeCours.nbheures} et ne doit pas etre modifié`)
+    }
+
+    // modifier la description si le cours a des chapitres
+    if (typeof this.LeCours.contenu !== 'undefined') {
+      if (typeof this.LeCours.description !== 'undefined') {
+        this.$log.log('nouvelle description cours =>>', this.LeCours.description)
+        // Ici modifier que la description
+      } else {
+        this.$log.log(`description cours est ${typeof this.LeCours.description} et ne doit pas etre modifiée`)
+      }
+    }
+
+  }
 }
 
-CourseSinglePageComponent.$inject = ["jsFonctions", "coursProvider", "$stateParams", "souscategorieProvider", "chapitreProvider", "userProvider", "suiviCoursProvider", "Auth", "$state", "$timeout", "classeProvider"];
+CourseSinglePageComponent.$inject = ["jsFonctions", "coursProvider", "$stateParams", "souscategorieProvider", "chapitreProvider", "userProvider", "suiviCoursProvider", "Auth", "$state", "$timeout", "classeProvider", "$log"];
 export default angular.module('samaschoolApp.courseSinglePage', [uiRouter])
   .config(routes)
   .component('courseSinglePage', {
