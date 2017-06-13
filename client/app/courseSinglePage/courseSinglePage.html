@@ -108,18 +108,9 @@
         <hr class="invis">
         <!--  [CONTENU VIDEO DU COURS SANS CHAPITRE]  -->
         <div ng-if="courseCtrl.$stateParams.idChap === ''" class="post-media clearfix">
-          <video class="videoplayer" poster="upload/video_01.jpg" controls preload="none">
-            <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
-            <source type="video/mp4" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.mp4"
-            />
-            <!-- WebM/VP8 for Firefox4, Opera, and Chrome -->
-            <source type="video/webm" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.webm"
-            />
-            <!-- Ogg/Vorbis for older Firefox and Opera versions -->
-            <source type="video/ogg" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.ogv"
-            />
-            <!-- Optional: Add subtitles for each language -->
-          </video>
+          <iframe width="420" height="315" src="{{courseCtrl.LeCours.link |trustAsResourceUrl}}">
+          </iframe>
+          
         </div>
         <!-- end media -->
 
@@ -185,7 +176,7 @@
         </div>
         <!-- end post-padding -->
 
-        
+
       </div>
       <!-- end col -->
 
