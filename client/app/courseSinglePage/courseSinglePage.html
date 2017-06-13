@@ -105,12 +105,13 @@
           <!-- end post-sharing -->
         </div>
         <!-- end single-course-title -->
+
         <hr class="invis">
+
         <!--  [CONTENU VIDEO DU COURS SANS CHAPITRE]  -->
         <div ng-if="courseCtrl.$stateParams.idChap === ''" class="post-media clearfix">
-          <iframe width="420" height="315" src="{{courseCtrl.LeCours.link |trustAsResourceUrl}}">
-          </iframe>
-          
+          <!--LIEN VIDEO-->
+          <iframe width="560" height="315" src="{{courseCtrl.LeCours.link |trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
         </div>
         <!-- end media -->
 
@@ -132,18 +133,7 @@
 
         <!--  [CONTENU VIDEO DU COURS AVEC CHAPITRE]  -->
         <div ng-if="courseCtrl.$stateParams.idChap !== ''" class="post-media clearfix">
-          <video class="videoplayer" poster="upload/video_01.jpg" controls preload="none">
-            <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
-            <source type="video/mp4" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.mp4"
-            />
-            <!-- WebM/VP8 for Firefox4, Opera, and Chrome -->
-            <source type="video/webm" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.webm"
-            />
-            <!-- Ogg/Vorbis for older Firefox and Opera versions -->
-            <source type="video/ogg" src="https://0.s3.envato.com/h264-video-previews/ec34ad1d-cba5-43a6-a1d0-a537b10e5879/759078.ogv"
-            />
-            <!-- Optional: Add subtitles for each language -->
-          </video>
+          <iframe width="300" height="200" src="{{courseCtrl.LeChapitre.linkchapitre |trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
         </div>
         <!-- end media -->
 
@@ -159,23 +149,30 @@
 
         <hr class="invis">
         <!--  [CONTENU TEXTE DU COURS]  -->
-        <div class="course-single-desc clearfix">
-          <p>Morbi congue leo et est sodales consequat a quis est. Nunc aliquam ut massa et accumsan. Donec cursus pretium porta.
-            Maecenas vehicula pellentesque eros, non consectetur massa finibus quis. Ut ut rhoncus purus. Donec varius ultricies
-            dapibus. Aliquam facilisis lacus purus, sit amet maximus lectus auctor et. Nam vehicula eget leo sed gravida.</p>
-
-          <p>In dignissim feugiat gravida. <em>Proin feugiat quam sed gravida fringilla.</em> Proin quis mauris ut magna fringilla
-            vulputate quis non ante. Integer bibendum velit dui. Sed consequat nisi id convallis eleifend. Proin rhoncus
-            dapibus vulputate. Phasellus eget fringilla justo. Aliquam erat volutpat. <a href="#">Praesent lorem nisi</a>            vehicula fringilla rutrum facilisis, tempus sed ipsum. Mauris commodo mattis ante, at consequat lectus blandit
-            nec. Nulla facilisi. Phasellus aliquet est ac faucibus iaculis. <strong>Sed non lorem in quam placerat</strong>            facilisis nec eu quam. Etiam at tincidunt felis, et posuere eros. Nulla dictum id enim vitae fermentum. Phasellus
-            eget fringilla justo. Aliquam erat volutpat. <a href="#">Praesent lorem nisi</a> vehicula fringilla rutrum fc
-            faucibus iaculis. <strong>Sed non lorem in quam placerat</strong> facilisis nec eu quam. Etiam at tincidunt felis
-            vehicula fringillacilisis, tempus sed ipsum. Mauris commodo mattis ante, at consequat lectus blandit nec. Nulla
-            facilisi. Phasellus aliquet est ac faucibus iaculis. <strong>Sed non lorem in quam placerat</strong> facilisis
-            nec eu quam. Etiam at tincidunt felis, et posuere eros. Nulla dictum id enim vitae fermentum.</p>
+        <div ng-if="courseCtrl.$stateParams.idChap === ''" class="course-single-desc clearfix">
+          <p ng-bind-html="courseCtrl.LeCours.contenu"></p>
         </div>
         <!-- end post-padding -->
 
+        <!--  [CONTENU TEXTE DU CHAPITRE]  -->
+        <div ng-if="courseCtrl.$stateParams.idChap !== ''" class="course-single-desc clearfix">
+          <p ng-bind-html="courseCtrl.LeChapitre.contenu"></p>
+        </div>
+        <!-- end post-padding -->
+
+
+
+
+        <!--   [PAGINATION ENTRE LES CHAPITRES]    -->
+        <div ng-if="courseCtrl.$stateParams.idChap !== ''" class="row">
+
+          <div class="all-buttons text-center col-md-4 col-md-offset-2">
+            <a class="btn btn-primary btn-lg btn-square"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Le chapitre précédent</a>
+          </div>
+          <div class="all-buttons text-center col-md-4">
+            <a class="btn btn-primary btn-lg btn-square">Le chapitre suivant <i class="fa fa-arrow-right" aria-hidden="true"></i> </a>
+          </div>
+        </div>
 
       </div>
       <!-- end col -->
