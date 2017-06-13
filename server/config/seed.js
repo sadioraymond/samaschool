@@ -1776,7 +1776,7 @@ export default function seedDatabaseIfNeeded() {
                         nbheures: 10,
                         images: "télécharger (1).jpg",
                         actif: true,
-                        link: `https://www.youtube.com/embed/watch?v=R9TggJZ2UHA`,
+                        link: `https://www.youtube.com/embed/Zxf1mnP5zcw`,
                         contenu: ` ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam auctor, velit eget laoreet`
                     })
                     .then(() => console.log('finished populating cours:'))

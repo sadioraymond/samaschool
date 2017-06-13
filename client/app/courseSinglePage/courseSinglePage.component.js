@@ -45,6 +45,12 @@ export class CourseSinglePageComponent {
     this.isLoggedIn = Auth.isLoggedInSync;
     this.classeProvider = classeProvider
     this.listClasseUsers = []
+    //true par defaut si page accueil du cours
+    this.firstPart = true
+    //false par defaut si page accueil du cours
+    this.secondPart = false
+    // Pour la pagination
+    this.hasnextList = []
   }
   $onInit() {
     if (this.coursProvider.reload) {
@@ -125,6 +131,8 @@ export class CourseSinglePageComponent {
           // si un chapitre est choisi
           // recherche du chapitre choisi
           if (this.$stateParams.idChap) {
+            // preparation du template à afficher [secondPart a true]
+            this.exploreCourse()
             this.LesChapitres.map((chapitre) => {
               if (chapitre._id == this.$stateParams.idChap) {
                 this.LeChapitre = chapitre;
@@ -133,7 +141,13 @@ export class CourseSinglePageComponent {
                 this.LeChapitre.contenuChap = chapitre.contenu;
                 this.LeChapitre.linkchapitre = chapitre.link;
               }
+              if (chapitre._id > this.$stateParams.idChap) {
+                this.hasnextList.push(chapitre._id)
+                console.log('hasnextList ===>>> ', this.hasnextList);
+              }
             });
+
+            
           }
         });
       }
@@ -286,6 +300,21 @@ export class CourseSinglePageComponent {
       }
     }
 
+  }
+
+  // au Click sur EXPLORER LE COURS
+  exploreCourse() {
+    if (this.firstPart) {
+      this.firstPart = false
+      this.secondPart = true
+    }
+  }
+  // au click Sur le titre du cours rediriger a la page d'accueil et remetre les parametres par defaut
+  titreClick() {
+    if (this.secondPart) {
+      this.secondPart = false
+      this.firstPart = true
+    }
   }
 }
 
