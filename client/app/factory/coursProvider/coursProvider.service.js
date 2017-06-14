@@ -179,7 +179,8 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
                         objectif: objetCours.objChap[`${i}`].objectif,
                         cours: data.data._id,
                         link: objetCours.objChap[`${i}`].lienVideo,
-                        contenu: objetCours.objChap[`${i}`].contenu
+                        contenu: objetCours.objChap[`${i}`].contenu,
+                        numchap: objetCours.objChap[`${i}`].numChap
                     }).then(function(datas) {
                         console.log("Chapitre yi Bakhnagnou");
                     });

@@ -15,6 +15,7 @@ var ChapitreSchema = new mongoose.Schema({
     },
     link: String,
     contenu: String,
+    numchap: Number
 });
 
 registerEvents(ChapitreSchema);
