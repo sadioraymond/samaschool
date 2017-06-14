@@ -264,7 +264,7 @@ export class CreatecourseComponent {
                 this.lienVideoch = this.lienVideoChap[c];
                 this.objChap[`${c}`] = {
                     'id_chap': this.idChap[c],
-                    'numChap': c+1,
+                    'numChap': c + 1,
                     'idFichier': this.idFichier[c],
                     'titre': this.titrech,
                     'objectif': this.objectifch,
@@ -517,10 +517,17 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
     $ctrl.youtubelink1;
     $ctrl.embed = "embed/";
     $ctrl.linkyoutube;
+    $ctrl.watch = "watch?v=";
+    $ctrl.linkyoutub;
 
     // fonction qui renvoie le lien youtube avec embed
     $ctrl.updateYoutubeLink = function(link) {
-        $ctrl.youtubelink1 = link.split($ctrl.youtubelink).pop();
+        $ctrl.linkyoutub = link.split($ctrl.youtubelink).pop();
+        if ($ctrl.linkyoutub.indexOf($ctrl.watch) == 0) {
+            $ctrl.youtubelink1 = $ctrl.linkyoutub.split($ctrl.watch).pop();
+        } else {
+            $ctrl.youtubelink1 = $ctrl.linkyoutub;
+        }
         if ($ctrl.youtubelink1.indexOf($ctrl.embed) == 0) {
             $ctrl.linkyoutube = $ctrl.youtubelink + $ctrl.youtubelink1;
         } else {
@@ -564,10 +571,14 @@ export function ModalInstanceCtrl($uibModalInstance, items, userProvider, classe
             for (let i = 0; i < coursProvider.objetCours.nbChap; i++) {
                 // si c'est le processus ajout l'id du chapitre sera UNDEFINED
 
-                coursProvider.objetCours.objChap[`${i}`].lienVideo = $ctrl.updateYoutubeLink(coursProvider.objetCours.objChap[`${i}`].lienVideo)
+                coursProvider.objetCours.objChap[`${i}`].lienVideo = $ctrl.updateYoutubeLink(coursProvider.objetCours.objChap[`${i}`].lienVideo);
                 $ctrl.listChapitre.push(coursProvider.objetCours.objChap[`${i}`])
             }
             coursProvider.objetCours.objChap = $ctrl.listChapitre
+        } else {
+            if (coursProvider.objetCours.lienVideo) {
+                coursProvider.objetCours.lienVideo = $ctrl.updateYoutubeLink(coursProvider.objetCours.lienVideo);
+            }
         }
 
         // l'objet COURS final qui servira a modifier ou a ajouter
