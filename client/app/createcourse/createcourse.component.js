@@ -264,11 +264,13 @@ export class CreatecourseComponent {
                 this.lienVideoch = this.lienVideoChap[c];
                 this.objChap[`${c}`] = {
                     'id_chap': this.idChap[c],
+                    'numChap': c+1,
                     'idFichier': this.idFichier[c],
                     'titre': this.titrech,
                     'objectif': this.objectifch,
                     'contenu': this.contenuch,
                     'lienVideo': this.lienVideoch,
+
                 };
             }
             this.objetCours.objChap = this.objChap;
