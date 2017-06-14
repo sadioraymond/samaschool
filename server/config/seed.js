@@ -1995,140 +1995,160 @@ export default function seedDatabaseIfNeeded() {
                         objectif: `dolor. Fusce feugiat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam auctor, velit eget laoreet posuere, enim nisl`,
                         cours: 4,
                         link: `https://www.youtube.com/embed/-7pJ45oXuvE`,
-                        contenu: `tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam.`
+                        contenu: `tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam.`,
+                        numchap: 1
                     }, {
                         _id: 2,
                         libelle: "erat eget ipsum.",
                         objectif: `pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper`,
                         cours: 5,
                         link: `https://www.youtube.com/embed/tHP14GQjf-U`,
-                        contenu: `In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse`
+                        contenu: `In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse`,
+                        numchap: 1
                     }, {
                         _id: 3,
                         libelle: "nibh. Donec",
                         objectif: `molestie tortor nibh sit amet orci. Ut sagittis lobortis mauris.`,
                         cours: 3,
                         link: `https://www.youtube.com/embed/DxsMHHErw9c`,
-                        contenu: `lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus`
+                        contenu: `lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus`,
+                        numchap: 1
                     }, {
                         _id: 4,
                         libelle: "accumsan",
                         objectif: `est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo`,
                         cours: 5,
                         link: `https://www.youtube.com/embed/31pD5F2ni-4`,
-                        contenu: `sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique neque venenatis lacus. Etiam bibendum fermentum metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla`
+                        contenu: `sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique neque venenatis lacus. Etiam bibendum fermentum metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla`,
+                        numchap: 2
                     }, {
                         _id: 5,
                         libelle: "Proin velit. Sed malesuada augue",
                         objectif: `Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum`,
                         cours: 4,
                         link: `https://www.youtube.com/embed/JIRReZpu4IU`,
-                        contenu: `orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse`
+                        contenu: `orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse`,
+                        numchap: 2
                     }, {
                         _id: 6,
                         libelle: "vulputate, nisi sem semper erat, in",
                         objectif: `lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem, vehicula et, rutrum`,
                         cours: 8,
                         link: `https://www.youtube.com/embed/DDVzQEZWhLo`,
-                        contenu: `quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce aliquam, enim nec tempus scelerisque, lorem ipsum sodales purus, in molestie tortor nibh sit amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor,`
+                        contenu: `quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce aliquam, enim nec tempus scelerisque, lorem ipsum sodales purus, in molestie tortor nibh sit amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor,`,
+                        numchap: 1
                     }, {
                         _id: 7,
                         libelle: "felis. Nulla tempor augue ac",
                         objectif: `sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed nec`,
                         cours: 7,
                         link: `https://www.youtube.com/embed/SCInuamhzUk`,
-                        contenu: `Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor`
+                        contenu: `Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor`,
+                        numchap: 1
                     }, {
                         _id: 8,
                         libelle: "Nullam suscipit, est ac facilisis facilisis, magna",
                         objectif: `Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est, mollis`,
                         cours: 4,
                         link: `https://www.youtube.com/embed/RGrxjtTkHmQ`,
-                        contenu: `semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse`
+                        contenu: `semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse`,
+                        numchap: 3
                     }, {
                         _id: 9,
                         libelle: "felis purus ac tellus. Suspendisse sed dolor.",
                         objectif: `eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus.`,
                         cours: 8,
                         link: `https://www.youtube.com/embed/zuIDCtsjyTQ`,
-                        contenu: `vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis`
+                        contenu: `vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis`,
+                        numchap: 2
                     }, {
                         _id: 10,
                         libelle: "amet nulla. Donec non",
                         objectif: ` non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient`,
                         cours: 7,
                         link: `https://www.youtube.com/embed/tAEW_zFD-v4`,
-                        contenu: `vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus fermentum convallis ligula. Donec luctus aliquet`
+                        contenu: `vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus fermentum convallis ligula. Donec luctus aliquet`,
+                        numchap: 2
                     }, {
                         _id: 11,
                         libelle: "lobortis. Class aptent taciti sociosqu ad litora",
                         objectif: `et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus. Nullam scelerisque`,
                         cours: 4,
                         link: `https://www.youtube.com/embed/eaoAiTEZuqk`,
-                        contenu: `fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy`
+                        contenu: `fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy`,
+                        numchap: 4
                     }, {
                         _id: 12,
                         libelle: "nisl.",
                         objectif: `vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget`,
                         cours: 4,
                         link: `https://www.youtube.com/embed/Pem0xXFQ-E8`,
-                        contenu: `amet ante. Vivamus non lorem vitae odio sagittis semper. Nam tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec`
+                        contenu: `amet ante. Vivamus non lorem vitae odio sagittis semper. Nam tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec`,
+                        numchap: 5
                     }, {
                         _id: 13,
                         libelle: "id enim. Curabitur massa.",
                         objectif: `venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras`,
                         cours: 3,
                         link: `https://www.youtube.com/embed/0pxaHyz_E5w`,
-                        contenu: `ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod`
+                        contenu: `ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod`,
+                        numchap: 2
                     }, {
                         _id: 14,
                         libelle: "erat, eget tincidunt dui augue eu",
                         objectif: `at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed`,
                         cours: 8,
                         link: `https://www.youtube.com/embed/IqTk1je6iYs`,
-                        contenu: `ligula. Donec luctus aliquet odio. Etiam ligula tortor, dictum eu, placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem`
+                        contenu: `ligula. Donec luctus aliquet odio. Etiam ligula tortor, dictum eu, placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem`,
+                        numchap: 3
                     }, {
                         _id: 15,
                         libelle: "laoreet ipsum. Curabitur consequat, lectus sit",
                         objectif: `eleifend non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed`,
                         cours: 3,
                         link: `https://www.youtube.com/embed/Cb19hBqqryk`,
-                        contenu: `et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet`
+                        contenu: `et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet`,
+                        numchap: 3
                     }, {
                         _id: 16,
                         libelle: "amet ultricies sem magna nec",
                         objectif: `Morbi quis urna. Nunc quis arcu vel quam dignissim pharetra. Nam ac nulla. In tincidunt congue turpis. In condimentum. Donec`,
                         cours: 8,
                         link: `https://www.youtube.com/embed/GwFIazJdRis`,
-                        contenu: `Nunc ut erat. Sed nunc est, mollis non, cursus non,`
+                        contenu: `Nunc ut erat. Sed nunc est, mollis non, cursus non,`,
+                        numchap: 4
                     }, {
                         _id: 17,
                         libelle: "eget nisi dictum augue malesuada",
                         objectif: `metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh.`,
                         cours: 3,
                         link: `https://www.youtube.com/embed/IBGbHKC_HbM`,
-                        contenu: `dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in`
+                        contenu: `dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in`,
+                        numchap: 4
                     }, {
                         _id: 18,
                         libelle: "tellus. Suspendisse",
                         objectif: `eu, ultrices sit amet, risus. Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum sociis natoque penatibus`,
                         cours: 3,
                         link: `https://www.youtube.com/embed/-TjtoP6-mcQ`,
-                        contenu: `mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse`
+                        contenu: `mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse`,
+                        numchap: 5
                     }, {
                         _id: 19,
                         libelle: "tortor. Integer aliquam",
                         objectif: ` egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse`,
                         cours: 6,
                         link: `https://www.youtube.com/embed/hQhQjY5hFVE`,
-                        contenu: `diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet`
+                        contenu: `diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet`,
+                        numchap: 1
                     }, {
                         _id: 20,
                         libelle: "elit pede, malesuada vel,",
                         objectif: `auris a nunc. In at pede. Cras vulputate velit eu sem.`,
                         cours: 6,
                         link: `https://www.youtube.com/embed/jrnQjUiahJc`,
-                        contenu: `Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt,`
+                        contenu: `Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt,`,
+                        numchap: 2
                     })
                     .then(() => console.log('finished populating Chapitre'))
                     .catch(err => console.log('error populating Chapitre', err));
