@@ -52,15 +52,15 @@
               <tr>
                 <th>Type</th>
                 <th>Titre</th>
-                <th>Time</th>
+                <th>Partie</th>
               </tr>
             </thead>
             <tbody>
               <tr style="cursor: pointer;" ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap:chapitre._id})"
-                ui-sref-active="doActive" ng-repeat="chapitre in courseCtrl.LesChapitres">
+                ui-sref-active="doActive" ng-repeat="chapitre in courseCtrl.LesChapitres | orderBy: 'numchap'">
                 <td><i class="fa fa-play-circle"></i></td>
                 <td>{{chapitre.libelle | uppercase}}</td>
-                <td>{{$index + 1}}</td>
+                <td>{{chapitre.numchap}}</td>
               </tr>
             </tbody>
           </table>
@@ -119,7 +119,7 @@
         <!--    [TITRE DU CHAPITRE]    -->
         <div ng-if="courseCtrl.$stateParams.idChap !== ''" class="single-course-title text-center">
           <h3><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.LeChapitre.libelle})"
-              title="{{courseCtrl.LeChapitre.libelle}}">{{courseCtrl.LeChapitre.libelle}} </a></h3>
+              title="{{courseCtrl.LeChapitre.libelle}}"> {{courseCtrl.LeChapitre.numchap}} {{courseCtrl.LeChapitre.libelle}} </a></h3>
           <div class="post-sharing">
             <ul class="list-inline">
               <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="hidden-xs">Share on Facebook</span></a></li>
@@ -164,14 +164,25 @@
 
 
         <!--   [PAGINATION ENTRE LES CHAPITRES]    -->
-        <div ng-if="courseCtrl.$stateParams.idChap !== ''" class="row">
+        <div ng-if="courseCtrl.$stateParams.idChap !== ''" class="row col-md-offset-3">
 
-          <div class="all-buttons text-center col-md-4 col-md-offset-2">
+          <!--<div class="all-buttons text-center col-md-4 col-md-offset-2">
             <a class="btn btn-primary btn-lg btn-square"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Le chapitre précédent</a>
           </div>
           <div class="all-buttons text-center col-md-4">
             <a class="btn btn-primary btn-lg btn-square">Le chapitre suivant <i class="fa fa-arrow-right" aria-hidden="true"></i> </a>
+          </div>-->
+
+          <div class="post-sharing">
+            <ul class="list-inline">
+              <li><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
+                  title="{{courseCtrl.LeCours.titre}}" class="gp-button btn btn-primary" title="Home"><i class="fa fa-home"></i></a></li>
+              <li ng-if="courseCtrl.isThePrev._id !== ''"><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.isThePrev._id})" title="courseCtrl.isThePrev.libelle" class="btn btn-primary"><i class="fa fa-arrow-left"></i><span class="hidden-xs">Précédent Chapitre</span> </a></li>
+
+              <li ng-if="courseCtrl.isTheNext._id !== ''"><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.isTheNext._id})" title="courseCtrl.isTheNext.libelle" class="btn btn-primary"><span class="hidden-xs">Prochain chapitre</span><i class="fa fa-arrow-right" aria-hidden="true"></i> </a></li>
+            </ul>
           </div>
+          <!-- end post-sharing -->
         </div>
 
       </div>

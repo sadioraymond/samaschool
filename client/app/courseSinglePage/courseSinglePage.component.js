@@ -50,7 +50,8 @@ export class CourseSinglePageComponent {
     //false par defaut si page accueil du cours
     this.secondPart = false
     // Pour la pagination
-    this.hasnextList = []
+    this.isTheNext
+    this.isThePrev
   }
   $onInit() {
     if (this.coursProvider.reload) {
@@ -141,13 +142,21 @@ export class CourseSinglePageComponent {
                 this.LeChapitre.contenuChap = chapitre.contenu;
                 this.LeChapitre.linkchapitre = chapitre.link;
               }
-              if (chapitre._id > this.$stateParams.idChap) {
-                this.hasnextList.push(chapitre._id)
-                console.log('hasnextList ===>>> ', this.hasnextList);
-              }
             });
 
-            
+            this.LesChapitres.map((chapitre) => {
+              if (this.LeChapitre.numchap + 1 === chapitre.numchap) {
+                this.isTheNext = chapitre
+                console.log('isTheNext ===>>> ', this.isTheNext);
+              }
+              if (this.LeChapitre.numchap - 1 === chapitre.numchap) {
+                this.isThePrev = chapitre
+                console.log('isThePrev ===>>> ', this.isThePrev);
+              }
+              console.log('isThePrev ===>>> ', this.isThePrev);
+            });
+
+
           }
         });
       }
