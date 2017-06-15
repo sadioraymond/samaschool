@@ -21,12 +21,16 @@ export class CourseSinglePageComponent {
 
   // le user connecté n'est pas le createur du cours
   courseCreator = false
-  // pour l'affichage des champs
-  modif = false
+  // pour mode modification ou non
+  inModif = false
   // pour changer le bouton
   bool;
+  // 
+  lesSousCategories
+  categ = {}
+  scateg = {}
   /*@ngInject*/
-  constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider, userProvider, suiviCoursProvider, Auth, $state, $timeout, classeProvider, $log) {
+  constructor(jsFonctions, coursProvider, $stateParams, souscategorieProvider, chapitreProvider, userProvider, suiviCoursProvider, Auth, $state, $timeout, classeProvider, $log, ouvreDialogProvider, categorieProvider) {
     // setTimeout(() => {
     this.$log = $log
     this.$timeout = $timeout
@@ -44,6 +48,8 @@ export class CourseSinglePageComponent {
     this.getCurrentUser = Auth.getCurrentUserSync;
     this.isLoggedIn = Auth.isLoggedInSync;
     this.classeProvider = classeProvider
+    this.ouvreDialogProvider = ouvreDialogProvider
+    this.categorieProvider = categorieProvider
     this.listClasseUsers = []
     //true par defaut si page accueil du cours
     this.firstPart = true
@@ -114,6 +120,19 @@ export class CourseSinglePageComponent {
     this.coursProvider.FindById(this.$stateParams.idCours).then(list => {
       this.LeCours = list;
       console.log('objet cours =>>', this.LeCours);
+
+
+
+      // creation de categ et scateg
+      this.scateg.id = this.LeCours.sous_categorie._id
+      this.scateg.libelle = this.LeCours.sous_categorie.libelle
+
+      this.categ.id = this.LeCours.sous_categorie.categorie
+      this.categ.libelle = `libelle de l'id ${this.LeCours.sous_categorie.categorie}`
+
+      this.souscategorieProvider.getSousCatByCategorie(this.scateg.id).then(list => {
+        this.lesSousCategories = list;
+      })
 
       // le createur du cours est il connecté
       if (this.getCurrentUser()._id === this.LeCours.user._id) {
@@ -221,6 +240,10 @@ export class CourseSinglePageComponent {
 
     }, 1000);
 
+    // Avoir toutes les categories au chargement de la page
+    this.categorieProvider.listCategorie().then(list => {
+      this.lesCategories = list;
+    })
   }
 
   // verifie les case à cocher pour les classes du cours
@@ -263,12 +286,12 @@ export class CourseSinglePageComponent {
     return false;
   }
 
-  // champs editable pour le template
+  // mode modification ou non en live 
   doModify() {
-    if (!this.modif) {
-      this.modif = true
+    if (!this.inModif) {
+      this.inModif = true
     } else {
-      this.modif = false
+      this.inModif = false
     }
 
   }
@@ -285,29 +308,18 @@ export class CourseSinglePageComponent {
 
   // update Cours
   updateCourse() {
-    if (typeof this.LeCours.titre !== 'undefined') {
+    if (typeof this.LeCours.titre !== 'undefined' && typeof this.LeCours.nbheures !== 'undefined' && typeof this.LeCours.contenu !== 'undefined', this.scateg.id !== 0) {
       this.$log.log('nouveau titre cours =>>', this.LeCours.titre)
+      this.$log.log('nouvelle duree cours =>>', this.LeCours.nbheures)
+      this.$log.log('nouvelle description cours =>>', this.LeCours.description)
+      this.$log.log('nouvelle scat cours =>>', this.scateg.id)
       // Ici modifier que le titre
     } else {
-      this.$log.log(`titre cours est ${typeof this.LeCours.titre} et ne doit pas etre modifié`)
+      this.$log.info('titre cours =>>', this.LeCours.titre)
+      this.$log.info('duree cours =>>', this.LeCours.nbheures)
+      this.$log.info('description cours =>>', this.LeCours.description)
     }
 
-    if (typeof this.LeCours.nbheures !== 'undefined') {
-      this.$log.log('nouvelle duree cours =>>', this.LeCours.nbheures)
-      // Ici modifier que la durée
-    } else {
-      this.$log.log(`nbheures cours est ${typeof this.LeCours.nbheures} et ne doit pas etre modifié`)
-    }
-
-    // modifier la description si le cours a des chapitres
-    if (typeof this.LeCours.contenu !== 'undefined') {
-      if (typeof this.LeCours.description !== 'undefined') {
-        this.$log.log('nouvelle description cours =>>', this.LeCours.description)
-        // Ici modifier que la description
-      } else {
-        this.$log.log(`description cours est ${typeof this.LeCours.description} et ne doit pas etre modifiée`)
-      }
-    }
 
   }
 
@@ -325,9 +337,42 @@ export class CourseSinglePageComponent {
       this.firstPart = true
     }
   }
+
+  showDialog() {
+    $('#coursePoster').click();
+
+  }
+  // permet d'avoir la liste des sous categories pour une categorie
+  selectedCategorie() {
+    this.souscategorieProvider.getSousCatByCategorie(this.selectedId).then(list => {
+      this.lesSousCategories = list;
+    })
+    this.sousCatVisible = true;
+  }
+  // permet d'avoir la liste des sous categories pour une categorie
+  selectedCateg(categorie) {
+    this.categ.id = categorie._id;
+    this.categ.libelle = categorie.libelle;
+    console.log(this.categ)
+    this.souscategorieProvider.getSousCatByCategorie(this.categ.id).then(list => {
+      this.lesSousCategories = list;
+    })
+    this.scateg.id = 0;
+    this.scateg.libelle = "Domaine";
+  }
+  // filtre si une sous categorie est clickés
+  sousCategCourse(scat) {
+    this.coursProvider.getCoursBySousCat(scat._id).then(list => {
+      this.lesCoursBySousCat = list;
+      this.choixList = this.lesCoursBySousCat;
+    });
+    this.scateg.id = scat._id;
+    this.scateg.libelle = scat.libelle;
+    console.log(this.scateg)
+  }
 }
 
-CourseSinglePageComponent.$inject = ["jsFonctions", "coursProvider", "$stateParams", "souscategorieProvider", "chapitreProvider", "userProvider", "suiviCoursProvider", "Auth", "$state", "$timeout", "classeProvider", "$log"];
+CourseSinglePageComponent.$inject = ["jsFonctions", "coursProvider", "$stateParams", "souscategorieProvider", "chapitreProvider", "userProvider", "suiviCoursProvider", "Auth", "$state", "$timeout", "classeProvider", "$log", "ouvreDialogProvider", "categorieProvider"];
 export default angular.module('samaschoolApp.courseSinglePage', [uiRouter])
   .config(routes)
   .component('courseSinglePage', {

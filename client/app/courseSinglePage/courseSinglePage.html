@@ -14,8 +14,21 @@
       <div id="post-content" ng-if="courseCtrl.firstPart" class="col-md-8 col-sm-12 single-course">
         <!--    [TITRE DU COURS]    -->
         <div class="single-course-title text-center">
-          <h3><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
-              title="{{courseCtrl.LeCours.titre}}">{{courseCtrl.LeCours.titre}} </a></h3>
+          <h3 ng-hide="courseCtrl.inModif">
+            <a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
+              title="{{courseCtrl.LeCours.titre}}">{{courseCtrl.LeCours.titre}} </a>
+          </h3>
+          <!--en titre modification -->
+          <form ng-show="courseCtrl.inModif" name="titreForm">
+            <h3 contenteditable name="titreContent" ng-model="courseCtrl.LeCours.titre" strip-br="true" ng-minlength="5" ng-maxlength="200"
+              required>
+              <a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
+                title="{{courseCtrl.LeCours.titre}}">{{courseCtrl.LeCours.titre}} </a>
+            </h3>
+            <span ng-show="titreForm.titreContent.$error.required">le titre du cours est obligatoire</span>
+            <span ng-show="titreForm.titreContent.$error.minlength">le titre doit depasser 5 caracteres</span>
+            <span ng-show="titreForm.titreContent.$error.maxlength">vous avez dépasser le nombre maximum de caracteres</span>
+          </form>
           <div class="post-sharing">
             <ul class="list-inline">
               <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="hidden-xs">Share on Facebook</span></a></li>
@@ -27,12 +40,24 @@
         </div>
         <!-- end single-course-title -->
         <hr class="invis">
+
+
         <!--    [DESCRIPTION DU COURS]    -->
         <div class="course-single-desc clearfix">
           <!-- end big-title -->
           <div class="isa_info">
             <i class="fa fa-info-circle"></i>
-            <p ng-bind-html="courseCtrl.LeCours.description"></p>
+            <p ng-hide="courseCtrl.inModif" ng-bind-html="courseCtrl.LeCours.description"></p>
+            <!--Modification de la description (ou objectif) du cours -->
+            <form name="objectifForm">
+              <div ng-show="courseCtrl.inModif" class="form-group">
+                <!--<label for="objectif">Objectif du cours</label>-->
+                <textarea name="objectifContent" class="form-control" id="objectif" rows="4" ckeditor="courseCtrl.options" ng-model="courseCtrl.LeCours.description"
+                  required ng-minlength="40"></textarea>
+                <span ng-show="objectifForm.objectifContent.$error.required">Objectif obligatoire!!!</span>
+                <span ng-show="objectifForm.objectifContent.$error.minlength">Objectif trop court!!!</span>
+              </div>
+            </form>
           </div>
         </div>
         <!-- end post-padding -->
@@ -177,9 +202,11 @@
             <ul class="list-inline">
               <li><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
                   title="{{courseCtrl.LeCours.titre}}" class="gp-button btn btn-primary" title="Home"><i class="fa fa-home"></i></a></li>
-              <li ng-if="courseCtrl.isThePrev"><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.isThePrev._id})" title="courseCtrl.isThePrev.libelle" class="btn btn-primary"><i class="fa fa-arrow-left"></i><span class="hidden-xs">Précédent Chapitre</span> </a></li>
+              <li ng-if="courseCtrl.isThePrev"><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.isThePrev._id})"
+                  title="courseCtrl.isThePrev.libelle" class="btn btn-primary"><i class="fa fa-arrow-left"></i><span class="hidden-xs">Précédent Chapitre</span> </a></li>
 
-              <li ng-if="courseCtrl.isTheNext"><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.isTheNext._id})" title="courseCtrl.isTheNext.libelle" class="btn btn-primary"><span class="hidden-xs">Prochain chapitre</span><i class="fa fa-arrow-right" aria-hidden="true"></i> </a></li>
+              <li ng-if="courseCtrl.isTheNext"><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.isTheNext._id})"
+                  title="courseCtrl.isTheNext.libelle" class="btn btn-primary"><span class="hidden-xs">Prochain chapitre</span><i class="fa fa-arrow-right" aria-hidden="true"></i> </a></li>
             </ul>
           </div>
           <!-- end post-sharing -->
@@ -197,7 +224,18 @@
       <div id="sidebar" class="col-md-3 col-sm-12">
         <div class="row">
           <div class="post-media clearfix">
-            <img ng-src="../../assets/upload/Cours/{{courseCtrl.LeCours.images}}" alt="" class="img-responsive">
+            <!--Le poster du cours et la modification du poster-->
+            <!--<form id="editPosterForm" class="row" name="editPosterForm" method="post" enctype="multipart/form-data">-->
+            <div class="entry">
+              <img id="posterTag" ng-src="../../assets/upload/Cours/{{courseCtrl.LeCours.images}}" alt="" class="img-responsive">
+              <div class="magnifier">
+                <div class="shop-bottom clearfix">
+                  <a ng-click="courseCtrl.showDialog()" title="Changer la photo"><i class="fa fa-wrench"></i></a>
+                  <input type="file" style="display:none;" name="myFile" id="coursePoster">
+                </div>
+              </div>
+            </div>
+            <!--</form>-->
           </div>
           <!-- end post-media -->
           <div class="widget custom-widget course-pricing clearfix">
@@ -222,7 +260,30 @@
               <input type="submit" value="Ne plus suivre" ng-show="courseCtrl.bool" ng-click="courseCtrl.pasSuivreClick()" class="btn btn-danger btn-block"
               />
               <div class="course-meta clearfix">
-                <p class="course-category">Domaine: <a> {{courseCtrl.LeCours.sous_categorie.libelle}}</a></p>
+                <!--Modification SOusDomaine-->
+                <p ng-hide="courseCtrl.inModif" class="course-category">Domaine: <a> {{courseCtrl.LeCours.sous_categorie.libelle}}</a></p>
+
+                <!--CATEGORIES-->
+                <div class="btn-group" uib-dropdown is-open="false">
+                  <button ng-model="courseCtrl.categ.id" id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+                      {{courseCtrl.categ.libelle | limitTo:13}} 
+                      <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                    <li role="menuitem" ng-repeat="cat in courseCtrl.lesCategories" ng-click="courseCtrl.selectedCateg(cat)"><a href="#">{{cat.libelle}}</a></li>
+                  </ul>
+                </div>
+                <!--Sous CATEGORIES-->
+                <div class="btn-group" uib-dropdown is-open="false">
+                  <button ng-model="courseCtrl.scateg.id" id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+                      {{courseCtrl.scateg.libelle | limitTo:13}} 
+                      <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                    <li role="menuitem" ng-repeat="scat in courseCtrl.lesSousCategories" ng-click="courseCtrl.sousCategCourse(scat)"><a href="#">{{scat.libelle}}</a></li>
+                  </ul>
+                </div>
+
                 <hr>
                 <p class="course-instructors">Professeur :
                   <a ui-sref="profil({username:courseCtrl.LeCours.user.username})" title="{{courseCtrl.LeCours.user.username}}">
@@ -232,10 +293,10 @@
                 <hr>
                 <!--<p class="course-time">Perriod : 12 Month </p>
                 <hr>-->
-                <p ng-hide="courseCtrl.modif" class="course-time">Durée : {{courseCtrl.LeCours.nbheures}}h</p>
+                <p ng-hide="courseCtrl.inModif" class="course-time">Durée : {{courseCtrl.LeCours.nbheures}}h</p>
                 <!--Modification duree du cours-->
                 <form name="nbHeure">
-                  <p ng-show="courseCtrl.modif" class="course-time">Durée :
+                  <p ng-show="courseCtrl.inModif" class="course-time">Durée :
                     <input style="color: #000;" ng-change="courseCtrl.verifyNumber()" type="number" id="nbh" ng-model="courseCtrl.LeCours.nbheures"
                       name="nbheur" ng-min="1" ng-max="99" required /> <br>
                     <span ng-show="courseCtrl.numberError" class="label label-warning">le nombre d'heures doit etre compris entre 1 et 99h</span>
@@ -244,9 +305,9 @@
                   </p>
                 </form>
                 <hr>
-                <input type="submit" ng-show="courseCtrl.modif" ng-click="courseCtrl.updateCourse()" value="Mettre à jour" class="btn btn-primary btn-block"
+                <input type="submit" ng-show="courseCtrl.inModif" ng-click="courseCtrl.updateCourse()" value="Mettre à jour" class="btn btn-primary btn-block"
                 />
-                <input type="submit" ng-click="courseCtrl.doModify()" ng-show="!courseCtrl.modif && courseCtrl.courseCreator" value="Cliquez pour modifier"
+                <input type="submit" ng-click="courseCtrl.doModify()" ng-show="!courseCtrl.inModif && courseCtrl.courseCreator" value="Cliquez pour modifier"
                   class="btn btn-primary btn-block" />
 
                 <!--<p class="course-forum">Course Forum : <a href="#" title="">Web Designers</a></p>-->
