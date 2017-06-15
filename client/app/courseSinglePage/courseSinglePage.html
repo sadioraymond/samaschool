@@ -177,9 +177,9 @@
             <ul class="list-inline">
               <li><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
                   title="{{courseCtrl.LeCours.titre}}" class="gp-button btn btn-primary" title="Home"><i class="fa fa-home"></i></a></li>
-              <li ng-if="courseCtrl.isThePrev._id !== ''"><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.isThePrev._id})" title="courseCtrl.isThePrev.libelle" class="btn btn-primary"><i class="fa fa-arrow-left"></i><span class="hidden-xs">Précédent Chapitre</span> </a></li>
+              <li ng-if="courseCtrl.isThePrev"><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.isThePrev._id})" title="courseCtrl.isThePrev.libelle" class="btn btn-primary"><i class="fa fa-arrow-left"></i><span class="hidden-xs">Précédent Chapitre</span> </a></li>
 
-              <li ng-if="courseCtrl.isTheNext._id !== ''"><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.isTheNext._id})" title="courseCtrl.isTheNext.libelle" class="btn btn-primary"><span class="hidden-xs">Prochain chapitre</span><i class="fa fa-arrow-right" aria-hidden="true"></i> </a></li>
+              <li ng-if="courseCtrl.isTheNext"><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.isTheNext._id})" title="courseCtrl.isTheNext.libelle" class="btn btn-primary"><span class="hidden-xs">Prochain chapitre</span><i class="fa fa-arrow-right" aria-hidden="true"></i> </a></li>
             </ul>
           </div>
           <!-- end post-sharing -->

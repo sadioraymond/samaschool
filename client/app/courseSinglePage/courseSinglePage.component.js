@@ -50,8 +50,8 @@ export class CourseSinglePageComponent {
     //false par defaut si page accueil du cours
     this.secondPart = false
     // Pour la pagination
-    this.isTheNext
-    this.isThePrev
+    this.isTheNext = false
+    this.isThePrev = false
   }
   $onInit() {
     if (this.coursProvider.reload) {
