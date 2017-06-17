@@ -1,9 +1,9 @@
-<banner></banner>
+<!--<banner></banner>-->
 <section class="section bgw">
   <div class="container">
-    <div style="margin: 4em;" class="text-center image-center hidden-xs">
+    <!--<div style="margin: 4em;" class="text-center image-center hidden-xs">
       <img src="assets/upload/device_03.png" alt="" class="img-responsive wow fadeInUp" style="display: block;">
-    </div>
+    </div>-->
     <div class="row">
 
 
@@ -13,12 +13,12 @@
 
       <div id="post-content" ng-if="courseCtrl.firstPart" class="col-md-8 col-sm-12 single-course">
         <!--    [TITRE DU COURS]    -->
-        <div class="single-course-title text-center">
+        <div class="text-center">
           <h3 ng-hide="courseCtrl.inModif">
             <a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
               title="{{courseCtrl.LeCours.titre}}">{{courseCtrl.LeCours.titre}} </a>
           </h3>
-          <!--en titre modification -->
+          <!-- titre modification -->
           <form ng-show="courseCtrl.inModif" name="titreForm">
             <h3 contenteditable name="titreContent" ng-model="courseCtrl.LeCours.titre" strip-br="true" ng-minlength="5" ng-maxlength="200"
               required>
@@ -38,7 +38,7 @@
           </div>
           <!-- end post-sharing -->
         </div>
-        <!-- end single-course-title -->
+        <!-- end -->
         <hr class="invis">
 
 
@@ -98,8 +98,8 @@
         </div>
         <!-- end course-table -->
         <!-- SI EXITE PAS  [BUTTON VERS CONTENU COURS]     -->
-        <div class="all-buttons text-center">
-          <a ng-show="courseCtrl.LeCours.contenu" ng-click="courseCtrl.exploreCourse()" class="btn btn-primary btn-lg btn-square">Explorer le cours</a>
+        <div class="all-buttons text-center" ng-show="courseCtrl.LeCours.contenu">
+          <a ng-click="courseCtrl.exploreCourse()" class="btn btn-primary btn-lg btn-square">Explorer le cours</a>
         </div>
 
 
@@ -117,9 +117,12 @@
 
       <div id="post-content" ng-if="courseCtrl.secondPart" class="col-md-8 col-sm-12 single-course">
         <!--    [TITRE DU COURS]    -->
-        <div ng-if="courseCtrl.$stateParams.idChap === ''" class="single-course-title text-center">
-          <h3><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
-              ng-click="courseCtrl.titreClick()" title="{{courseCtrl.LeCours.titre}}">{{courseCtrl.LeCours.titre}} </a></h3>
+        <div ng-if="courseCtrl.$stateParams.idChap === ''" class="text-center">
+          <h3>
+            <a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: ''})"
+              ng-click="courseCtrl.titreClick()" title="{{courseCtrl.LeCours.titre}}">{{courseCtrl.LeCours.titre}} </a>
+          </h3>
+
           <div class="post-sharing">
             <ul class="list-inline">
               <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="hidden-xs">Share on Facebook</span></a></li>
@@ -129,7 +132,41 @@
           </div>
           <!-- end post-sharing -->
         </div>
-        <!-- end single-course-title -->
+        <!-- end -->
+
+
+        <!--    [TITRE DU CHAPITRE]    -->
+        <div ng-if="courseCtrl.$stateParams.idChap !== ''" class="text-center">
+          <h3 ng-hide="courseCtrl.inModif">
+            <a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.LeChapitre.libelle})"
+              title="{{courseCtrl.LeChapitre.libelle}}"> {{courseCtrl.LeChapitre.numchap}} {{courseCtrl.LeChapitre.libelle}} </a>
+          </h3>
+
+
+          <!-- titre chap modification -->
+          <form ng-show="courseCtrl.inModif" name="titreChapForm">
+            <h3 contenteditable name="titreChapContent" ng-model="courseCtrl.LeChapitre.libelle" strip-br="true" ng-minlength="5" ng-maxlength="200"
+              required>
+              <a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.LeChapitre.libelle})"
+                title="{{courseCtrl.LeChapitre.libelle}}">{{courseCtrl.LeChapitre.libelle}} </a>
+            </h3>
+            <span ng-show="titreChapForm.titreChapContent.$error.required">le titre du Chapitre est obligatoire</span>
+            <span ng-show="titreChapForm.titreChapContent.$error.minlength">le titre doit depasser 5 caracteres</span>
+            <span ng-show="titreChapForm.titreChapContent.$error.maxlength">vous avez dépasser le nombre maximum de caracteres</span>
+          </form>
+
+
+
+          <div class="post-sharing">
+            <ul class="list-inline">
+              <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="hidden-xs">Share on Facebook</span></a></li>
+              <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i> <span class="hidden-xs">Tweet on Twitter</span></a></li>
+              <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+          </div>
+          <!-- end post-sharing -->
+        </div>
+        <!-- end -->
 
         <hr class="invis">
 
@@ -137,28 +174,19 @@
         <div ng-if="courseCtrl.$stateParams.idChap === ''" class="post-media clearfix">
           <!--LIEN VIDEO-->
           <iframe width="560" height="315" src="{{courseCtrl.LeCours.link |trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
+          <p ng-show="courseCtrl.inModif">
+            <input type="text" name="videoLink" class="form-control" ng-model="courseCtrl.LeCours.link">
+          </p>
         </div>
         <!-- end media -->
 
 
-        <!--    [TITRE DU CHAPITRE]    -->
-        <div ng-if="courseCtrl.$stateParams.idChap !== ''" class="single-course-title text-center">
-          <h3><a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.LeChapitre.libelle})"
-              title="{{courseCtrl.LeChapitre.libelle}}"> {{courseCtrl.LeChapitre.numchap}} {{courseCtrl.LeChapitre.libelle}} </a></h3>
-          <div class="post-sharing">
-            <ul class="list-inline">
-              <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="hidden-xs">Share on Facebook</span></a></li>
-              <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i> <span class="hidden-xs">Tweet on Twitter</span></a></li>
-              <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
-            </ul>
-          </div>
-          <!-- end post-sharing -->
-        </div>
-        <!-- end single-course-title -->
-
         <!--  [CONTENU VIDEO DU COURS AVEC CHAPITRE]  -->
         <div ng-if="courseCtrl.$stateParams.idChap !== ''" class="post-media clearfix">
           <iframe width="300" height="200" src="{{courseCtrl.LeChapitre.linkchapitre |trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
+          <p ng-show="courseCtrl.inModif">
+            <input type="text" name="videoChapLink" class="form-control" ng-model="courseCtrl.LeChapitre.link">
+          </p>
         </div>
         <!-- end media -->
 
@@ -167,7 +195,17 @@
           <!-- end big-title -->
           <div class="isa_info">
             <i class="fa fa-info-circle"></i>
-            <p ng-bind-html="courseCtrl.LeChapitre.objectif"></p>
+            <p ng-hide="courseCtrl.inModif" ng-bind-html="courseCtrl.LeChapitre.objectif"></p>
+            <!--Modification de la description (ou objectif) du CHAPITRE -->
+            <form name="objectifChapForm">
+              <div ng-show="courseCtrl.inModif" class="form-group">
+                <!--<label for="objectif">Objectif du cours</label>-->
+                <textarea name="objectifChapContent" class="form-control" id="objectif" rows="4" ckeditor="courseCtrl.options" ng-model="courseCtrl.LeChapitre.objectif"
+                  required ng-minlength="40"></textarea>
+                <span ng-show="objectifChapForm.objectifChapContent.$error.required">Objectif obligatoire!!!</span>
+                <span ng-show="objectifChapForm.objectifChapContent.$error.minlength">Objectif trop court!!!</span>
+              </div>
+            </form>
           </div>
         </div>
         <!-- end post-padding -->
@@ -175,13 +213,33 @@
         <hr class="invis">
         <!--  [CONTENU TEXTE DU COURS]  -->
         <div ng-if="courseCtrl.$stateParams.idChap === ''" class="course-single-desc clearfix">
-          <p ng-bind-html="courseCtrl.LeCours.contenu"></p>
+          <p ng-hide="courseCtrl.inModif" ng-bind-html="courseCtrl.LeCours.contenu"></p>
+          <!--Modification du contenu  du cours -->
+          <form name="contenuForm">
+            <div ng-show="courseCtrl.inModif" class="form-group">
+              <!--<label for="contenu">contenu du cours</label>-->
+              <textarea name="contenuContent" class="form-control" id="contenuCours" rows="4" ckeditor="courseCtrl.options" ng-model="courseCtrl.LeCours.contenu"
+                required ng-minlength="40"></textarea>
+              <span ng-show="contenuForm.contenuContent.$error.required">contenu obligatoire!!!</span>
+              <span ng-show="contenuForm.contenuContent.$error.minlength">contenu trop court!!!</span>
+            </div>
+          </form>
         </div>
         <!-- end post-padding -->
 
         <!--  [CONTENU TEXTE DU CHAPITRE]  -->
         <div ng-if="courseCtrl.$stateParams.idChap !== ''" class="course-single-desc clearfix">
-          <p ng-bind-html="courseCtrl.LeChapitre.contenu"></p>
+          <p ng-hide="courseCtrl.inModif" ng-bind-html="courseCtrl.LeChapitre.contenu"></p>
+          <!--Modification du contenu  du CHAPITRE -->
+          <form name="contenuChapForm">
+            <div ng-show="courseCtrl.inModif" class="form-group">
+              <!--<label for="contenu">contenu du cours</label>-->
+              <textarea name="contenuChapContent" class="form-control" id="contenu" rows="4" ckeditor="courseCtrl.options" ng-model="courseCtrl.LeChapitre.contenu"
+                required ng-minlength="40"></textarea>
+              <span ng-show="contenuChapForm.contenuChapContent.$error.required">contenu obligatoire!!!</span>
+              <span ng-show="contenuChapForm.contenuChapContent.$error.minlength">contenu trop court!!!</span>
+            </div>
+          </form>
         </div>
         <!-- end post-padding -->
 
@@ -260,11 +318,12 @@
               <input type="submit" value="Ne plus suivre" ng-show="courseCtrl.bool" ng-click="courseCtrl.pasSuivreClick()" class="btn btn-danger btn-block"
               />
               <div class="course-meta clearfix">
+                <hr>
                 <!--Modification SOusDomaine-->
                 <p ng-hide="courseCtrl.inModif" class="course-category">Domaine: <a> {{courseCtrl.LeCours.sous_categorie.libelle}}</a></p>
 
                 <!--CATEGORIES-->
-                <div class="btn-group" uib-dropdown is-open="false">
+                <div ng-show="courseCtrl.inModif && courseCtrl.firstPart" class="btn-group" uib-dropdown is-open="false">
                   <button ng-model="courseCtrl.categ.id" id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
                       {{courseCtrl.categ.libelle | limitTo:13}} 
                       <span class="caret"></span>
@@ -274,7 +333,7 @@
                   </ul>
                 </div>
                 <!--Sous CATEGORIES-->
-                <div class="btn-group" uib-dropdown is-open="false">
+                <div ng-show="courseCtrl.inModif && courseCtrl.firstPart" class="btn-group" uib-dropdown is-open="false">
                   <button ng-model="courseCtrl.scateg.id" id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
                       {{courseCtrl.scateg.libelle | limitTo:13}} 
                       <span class="caret"></span>
@@ -291,12 +350,11 @@
                   </a>
                 </p>
                 <hr>
-                <!--<p class="course-time">Perriod : 12 Month </p>
-                <hr>-->
+                <!--DUREE DU COURS-->
                 <p ng-hide="courseCtrl.inModif" class="course-time">Durée : {{courseCtrl.LeCours.nbheures}}h</p>
                 <!--Modification duree du cours-->
                 <form name="nbHeure">
-                  <p ng-show="courseCtrl.inModif" class="course-time">Durée :
+                  <p ng-show="courseCtrl.inModif && courseCtrl.firstPart" class="course-time">Durée :
                     <input style="color: #000;" ng-change="courseCtrl.verifyNumber()" type="number" id="nbh" ng-model="courseCtrl.LeCours.nbheures"
                       name="nbheur" ng-min="1" ng-max="99" required /> <br>
                     <span ng-show="courseCtrl.numberError" class="label label-warning">le nombre d'heures doit etre compris entre 1 et 99h</span>
