@@ -204,6 +204,14 @@ export class ProfilComponent {
       }
     });
 
+    // RAYMOND
+     // avoir les preferences restantes
+    if(this.isLoggedIn()){
+      this.preferenceProvider.getRestPreferenceUser(this.getCurrentUser()._id).then(list => {
+        console.log("rest", list);
+      })
+    }
+
     // Liste des sous catégories au chargement de la page
     this.sousCategorieProvider.listSousCategorie().then(list => {
       this.listSousCat = list;
@@ -215,6 +223,8 @@ export class ProfilComponent {
         // $log.info('les sous cat ', this.listSousCat);
       }
     });
+
+   
 
   }
 

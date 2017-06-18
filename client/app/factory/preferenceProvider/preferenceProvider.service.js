@@ -15,6 +15,21 @@ this.addPref = function(user, scat, date){
       date: date
     })
 }
+
+this.getRestPreferenceUser = function (user) {
+    var deferred = $q.defer();
+    var liste = [];
+    $http.get('/api/preferences/restpreference/' + user, {
+      cache: true
+    }).then(function (list) {
+      liste = list.data;
+      deferred.resolve(liste);
+    });
+    liste = deferred.promise;
+
+    return liste;
+
+  }
 }
 
 export default angular.module('samaschoolApp.preferenceProvider', [])
