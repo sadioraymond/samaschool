@@ -138,7 +138,7 @@
         <!--    [TITRE DU CHAPITRE]    -->
         <div ng-if="courseCtrl.$stateParams.idChap !== ''" class="text-center">
           <h3 ng-hide="courseCtrl.inModif">
-            <a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.LeChapitre.libelle})"
+            <a ui-sref="courseSinglePage({sousDomaine:courseCtrl.LeCours.sous_categorie._id, idCours:courseCtrl.LeCours._id, idChap: courseCtrl.LeChapitre._id})"
               title="{{courseCtrl.LeChapitre.libelle}}"> {{courseCtrl.LeChapitre.numchap}} {{courseCtrl.LeChapitre.libelle}} </a>
           </h3>
 
@@ -388,8 +388,8 @@
                 <div class="checkbox checkbox-warning checkbox-inline" ng-repeat="classe in etablissemt.classe">
                   <input id="{{classe._id}}" type="checkbox" class="styled" ng-checked="courseCtrl.checkIfClasseMustBeChecked(classe._id)">
                   <label for="{{classe._id}}">
-                    {{classe.libelle}} 
-                </label>
+                      {{classe.libelle}} 
+                  </label>
                 </div>
                 <!--<input type="submit" value="Join Course" class="btn btn-primary btn-block" />-->
               </form>
