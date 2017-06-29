@@ -109,11 +109,6 @@ export function getRestPreferenceUser(req, res) {
                 tabs.push(e);
             });
             tabbi = verify(tab, tabs);
-            console.log('tableau', tab);
-            console.log('tableau 1', tabs);
-            console.log('mom', tabbi);
-            console.log('taille', tab.length);
-            console.log('taille 1', tabbi.length);
             return res.json(tabbi);
         });
     });
