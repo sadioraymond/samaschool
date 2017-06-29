@@ -11,6 +11,7 @@ router.get('/deletepicture/:images', controller.deletePicture);
 router.get('/recents', controller.getCoursRecents);
 router.get('/:id', controller.show);
 router.get('/sousCat/:scat', controller.getCoursBySousCat);
+router.get('/categorie/:categorie', controller.getCoursByCategorie);
 router.get('/prof/:id', controller.getCoursByProf);
 router.get('/school/:etab', controller.getCoursByEtablissement);
 router.get('/cours/suivi', controller.getCoursPlusSuivi);
