@@ -18,6 +18,7 @@ import SuiviCours from '../suivi_cours/suivi_cours.model';
 import Suivi from '../../Etablissement_Module/suivi_cours_classe/suivi_cours_classe.model';
 import SuiviCoursClasse from '../../Etablissement_Module/suivi_cours_classe/suivi_cours_classe.model';
 import Classe from '../../Etablissement_Module/classe/classe.model';
+import SousCat from '../../Utilisateur_Module/sous_categorie/sous_categorie.model';
 var fs = require('fs');
 
 function respondWithResult(res, statusCode) {
@@ -354,7 +355,45 @@ export function getCoursBySousCat(req, res) {
         .catch(handleError(res));
 }
 
+//Get cours by Categorie
 
+export function getCoursByCategorie(req, res) {
+    var tab = [];
+    var coursyi = [];
+    var cou = [];
+    var tabs = [];
+    var cour="Cours";
+    SousCat.find({ categorie:req.params.categorie }).exec().then(sousc => {
+        sousc.forEach(function(element) {
+            tab.push(element._id);
+        });
+        if (tab.length == 0) {
+            return res.json(tabs);
+        } else {
+            console.log('khol li', tab);
+            var cpt = 0;
+            for (let i = 0; i < tab.length; i++) {
+                Cours.find({ sous_categorie: tab[i],Genre:cour }).exec().then(li => {
+                    cpt++;
+                    li.forEach(function(el) {
+                        if (coursyi.length == 0) {
+                                coursyi.push(el._id);
+                                cou.push(el);
+                        } else {
+                            if (!verifys(coursyi, el._id)) {
+                                    coursyi.push((el._id));
+                                    cou.push(el);
+                            }
+                        }
+                    });
+                     if (cpt == tab.length) {
+                            return res.json(cou);
+                        }
+                });
+            }
+        }
+    })
+}
 // Creates a new Cours in the DB
 export function create(req, res) {
     return Cours.create(req.body)

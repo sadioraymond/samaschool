@@ -330,6 +330,20 @@ export function coursProviderService($http, $q, cfpLoadingBar) {
         return liste;
 
     }
+    this.getCoursByCategorie=function(categorie){
+         var deferred = $q.defer();
+        var liste = [];
+        $http.get('/api/courss/categorie/' + categorie, {
+            cache: true
+        }).then(function(list) {
+            liste = list.data;
+            deferred.resolve(liste);
+
+        });
+        liste = deferred.promise;
+
+        return liste;
+    }
 }
 
 export default angular.module('samaschoolApp.coursProvider', ['angular-loading-bar'])
