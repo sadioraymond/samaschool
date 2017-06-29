@@ -56,7 +56,6 @@ export class ProfilComponent {
     libelle: ""
   };
   multerProvider;
-  userbi;
   /*@ngInject*/
   constructor(jsFonctions, categorieProvider, souscategorieProvider, Auth, etablissementProvider, suiviCoursProvider, coursProvider, userProvider, $stateParams, $state, $location, ouvreDialogProvider, $filter, $timeout, $log, multerProvider, preferenceProvider) {
     this.$log = $log
@@ -88,18 +87,7 @@ export class ProfilComponent {
 
     });
   }
-  getrestPref(id){
-    this.preferenceProvider.getRestPreferenceUser(id).then(list => {
-        console.log("rest", list);
-      })
-  }
-  getuserbyusername(id){
-    this.userProvider.findByUsername(id).then(list => {
-      this.userbi=list[0];
-      this.getrestPref(this.userbi._id);
-      
-    })
-  }
+ 
   $onInit() {
     if (this.coursProvider.reload) {
       window.location.reload();
@@ -171,6 +159,11 @@ export class ProfilComponent {
           console.info('les erreurs getEtabByUser ==>', error);
         });
 
+        // RAYMOND
+     // avoir les preferences restantes
+      this.preferenceProvider.getRestPreferenceUser(this.getCurrentUser()._id).then(list => {
+        console.log("rest", list);
+      })
         // voir le type de profil du user
         this.$timeout(() => {
           this.userProvider.isProf(this.userData._id).then(user => {
@@ -216,14 +209,6 @@ export class ProfilComponent {
 
       }
     });
-
-    // RAYMOND
-     // avoir les preferences restantes
-     console.log('param yi', this.$stateParams);
-     if(this.$stateParams.username !== ""){
-      this.getuserbyusername(this.$stateParams.username);
-     }
-
     // Liste des sous catégories au chargement de la page
     this.sousCategorieProvider.listSousCategorie().then(list => {
       this.listSousCat = list;
