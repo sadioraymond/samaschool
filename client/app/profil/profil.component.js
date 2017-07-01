@@ -32,6 +32,7 @@ export class ProfilComponent {
   LesEtabSuivi;
   dateNaissance: Date
   currentdate = new Date();
+  lesPrefs;
   //les booleen pour cacher ou montrer des div
   profil = true;
   contact = true;
@@ -87,7 +88,7 @@ export class ProfilComponent {
 
     });
   }
- 
+
   $onInit() {
     if (this.coursProvider.reload) {
       window.location.reload();
@@ -158,12 +159,11 @@ export class ProfilComponent {
         }, error => {
           console.info('les erreurs getEtabByUser ==>', error);
         });
-
-        // RAYMOND
-     // avoir les preferences restantes
-      this.preferenceProvider.getRestPreferenceUser(this.getCurrentUser()._id).then(list => {
-        console.log("rest", list);
-      })
+        // les preferences du user
+        this.preferenceProvider.getPrefByUser(this.userData._id).then(list => {
+          this.lesPrefs = list;
+          console.log("les prefs", list);
+        })
         // voir le type de profil du user
         this.$timeout(() => {
           this.userProvider.isProf(this.userData._id).then(user => {
@@ -199,16 +199,20 @@ export class ProfilComponent {
 
       }
     });
-    // Liste des categories au chargement de la page
-    this.categorieProvider.listCategorie().then(list => {
-      this.listCat = list;
-      if (this.listCat.length == 0) {
-        console.log('Liste Vide');
-      } else {
-        console.log('Les Categories', this.listCat);
 
-      }
-    });
+    // Liste des categories au chargement de la page
+    this.$timeout(() => {
+      this.preferenceProvider.getRestPreferenceUser(this.getCurrentUser()._id).then(list => {
+        this.listCat = list;
+        if (this.listCat.length == 0) {
+          console.log('Liste Vide');
+        } else {
+          console.log('Les Categories', this.listCat);
+
+        }
+      });
+    }, 1000);
+
     // Liste des sous catégories au chargement de la page
     this.sousCategorieProvider.listSousCategorie().then(list => {
       this.listSousCat = list;
@@ -221,7 +225,7 @@ export class ProfilComponent {
       }
     });
 
-   
+
 
   }
 
@@ -336,8 +340,8 @@ export class ProfilComponent {
     this.categ.id = categorie._id;
     this.categ.libelle = categorie.libelle;
     this.selectedId = true;
-    console.log(this.categ);
-    this.getSousCatByCategorie(this.categ.id);
+    console.log("verif", this.categ);
+
 
   }
 
@@ -348,15 +352,14 @@ export class ProfilComponent {
       (this.currentdate.getMonth() + 1) + "-" +
       this.currentdate.getDate();
 
-   
+
     this.userData.dateNaiss = new Date(this.userData.dateNaissance)
 
     // permet de parcourrir la liste de sous categorie apres click de la catégorie
-    for (var i = 0; i < this.listSouscatBycat.length; i++) {
-      var scatBi = this.listSouscatBycat[i];
-      this.preferenceProvider.addPref(this.getCurrentUser()._id, scatBi._id, datetime);
 
-    }
+    this.preferenceProvider.addPref(this.getCurrentUser()._id, this.categ.id, datetime);
+
+
 
     this.userProvider.completerProfil(this.userData._id, this.userData.facebook, this.userData.twitter, this.userData.linkedIn, this.userData.google, this.dateNaissance, this.userData.bio).then((msg) => {
       console.info("msg", msg)
@@ -374,6 +377,18 @@ export class ProfilComponent {
   // cacher le formulaire pour compéter profil
   cacherForm() {
     this.formCompleterIns = false;
+  }
+
+  // supprimmer une preference
+  supPref(pref){
+     this.preferenceProvider.delPref(pref._id);
+    this.lesPrefs.map((f, index) => {
+      if (f._id === pref._id) {
+        // suppresion de la filiere dans la liste
+        this.lesPrefs.splice(index, 1)
+      }
+    })
+   
   }
 }
 

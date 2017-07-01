@@ -303,6 +303,9 @@
                   <input type="date" name="dateNaiss" class="form-control"  max="2015-12-31" ng-model="profilCtrl.dateNaissance">
                   <textarea class="form-control" name="comments" rows="6" placeholder="Votre Bio" ng-model="profilCtrl.userData.bio"></textarea>
                    <!--Dropdown des sous categories:-->
+                   <button type="button" class="btn btn-default" ng-repeat="pref in profilCtrl.lesPrefs">
+                    {{pref.sous_categorie.libelle}} <i class="fa fa-times" aria-hidden="true" ng-click="profilCtrl.supPref(pref)"></i>
+              </button> <br> <br>
                     <label for="categorie">Préférences </label>
                     <!-- Single button -->
                     <div class="btn-group" uib-dropdown is-open="false">
